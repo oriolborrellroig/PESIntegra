@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
 
     <TableLayout
@@ -41,19 +42,24 @@
             android:layout_height="0dp"
             android:gravity="center">
 
-            <EditText
-                android:id="@+id/login_email"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/register_layout_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@mipmap/ic_account_circle_grey600_36dp"
-                android:drawableTint="@color/accent"
-                app:layout_constraintTop_toBottomOf="@+id/logo" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/register_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:drawableRight="@mipmap/ic_account_circle_grey600_36dp"
+                    android:drawableTint="@color/accent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo" />
+            </android.support.design.widget.TextInputLayout>
 
         </TableRow>
 
@@ -63,19 +69,24 @@
             android:layout_height="0dp"
             android:gravity="center">
 
-            <EditText
-                android:id="@+id/login_confirmacio_email"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/register_layout_pass_"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:hint="Confirmació email"
-                android:inputType="textEmailAddress"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@mipmap/ic_account_circle_grey600_36dp"
-                android:drawableTint="@color/accent"
-                app:layout_constraintTop_toBottomOf="@+id/logo" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/register_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="Contrassenya"
+                    android:inputType="textPassword"
+                    android:drawableRight="@mipmap/ic_lock_outline_grey600_36dp"
+                    android:drawableTint="@color/accent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo" />
+            </android.support.design.widget.TextInputLayout>
 
         </TableRow>
 
@@ -85,20 +96,27 @@
             android:layout_height="0dp"
             android:gravity="center">
 
-            <EditText
-                android:id="@+id/login_pass"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/register_layout_confirmacio_pass_"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="Contrassenya"
-                android:inputType="textPassword"
-                android:drawableLeft="@mipmap/ic_lock_outline_grey600_36dp"
-                android:drawablePadding="10dp"
-                android:drawableTint="@color/accent"
-                app:layout_constraintTop_toBottomOf="@+id/login_register" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/register_confirmacio_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Confirmació contrassenya"
+                    android:inputType="textPassword"
+                    android:drawableRight="@mipmap/ic_lock_outline_grey600_36dp"
+                    android:drawableTint="@color/accent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_register" />
+
+            </android.support.design.widget.TextInputLayout>
+
 
         </TableRow>
 
@@ -108,24 +126,33 @@
             android:layout_height="0dp"
             android:gravity="center">
 
-            <EditText
-                android:id="@+id/login_datanaixement"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/register_layout_datanaixement_"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="Data naixement : dd/mm/aa"
-                android:inputType="date"
-                android:drawableLeft="@mipmap/ic_today_black_36dp"
-                android:drawablePadding="10dp"
-                android:drawableTint="@color/accent"
-                app:layout_constraintTop_toBottomOf="@+id/login_register" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/register_datanaixement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Data naixement"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:maxLines="1"
+                    android:drawableRight="@mipmap/ic_today_black_36dp"
+                    android:drawableTint="@color/accent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_register" />
+
+            </android.support.design.widget.TextInputLayout>
 
         </TableRow>
 
-        <TableRow
+        <!--<TableRow
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -139,7 +166,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"/>
 
-        </TableRow>
+        </TableRow>-->
 
         <TableRow
             android:layout_weight="1"
