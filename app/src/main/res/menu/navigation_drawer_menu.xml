@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/hola1"
+        android:title="hola1"
+        android:icon="@mipmap/ic_today_black_36dp">
+    </item>
+
+    <item
+        android:id="@+id/hola2"
+        android:title="hola2"
+        android:icon="@mipmap/ic_today_black_36dp">
+    </item>
+
+    <item
+        android:id="@+id/hola3"
+        android:title="hola3"
+        android:icon="@mipmap/ic_today_black_36dp">
+    </item>
+
+    <item
+        android:id="@+id/hola4"
+        android:title="hola4"
+        android:icon="@mipmap/ic_today_black_36dp">
+    </item>
+
+</menu>
