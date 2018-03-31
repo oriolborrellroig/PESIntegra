@@ -6,26 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="integra.pesintegra.MainActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
     android:id="@+id/nav_drawer">
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/divider">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/primary"
+            app:navigationIcon="@mipmap/ic_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.Toolbar>
 
     </LinearLayout>
 
-    
+
     <android.support.design.widget.NavigationView
-        app:headerLayout="@layout/activity_header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@color/primary_light"
-        app:itemTextColor="@color/primary_dark"
-        app:itemIconTint="@color/accent"
-        app:menu="@menu/navigation_drawer_menu"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        android:background="#FFFFFF"
+        app:headerLayout="@layout/activity_header"
+        app:itemIconTint="@color/secondary_text"
+        app:itemTextColor="@color/primary_text"
+        app:menu="@menu/navigation_drawer_menu">
 
 
     </android.support.design.widget.NavigationView>
