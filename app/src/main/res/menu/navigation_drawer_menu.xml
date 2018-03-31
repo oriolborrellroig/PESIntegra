@@ -1,28 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_section_1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/allPosts"
+            android:title="@string/tots_els_posts"
+            android:icon="@mipmap/ic_inbox_multiple_grey600_36dp">
+        </item>
+    </group>
 
-    <item
-        android:id="@+id/hola1"
-        android:title="hola1"
-        android:icon="@mipmap/ic_today_black_36dp">
-    </item>
+    <group
+        android:id="@+id/menu_section_2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/house"
+            android:title="@string/habitatge"
+            android:icon="@mipmap/ic_home_grey600_36dp">
+        </item>
 
-    <item
-        android:id="@+id/hola2"
-        android:title="hola2"
-        android:icon="@mipmap/ic_today_black_36dp">
-    </item>
+        <item
+            android:id="@+id/work"
+            android:title="@string/feina"
+            android:icon="@mipmap/ic_briefcase_grey600_36dp">
+        </item>
 
-    <item
-        android:id="@+id/hola3"
-        android:title="hola3"
-        android:icon="@mipmap/ic_today_black_36dp">
-    </item>
+        <item
+            android:id="@+id/activities"
+            android:title="@string/activitats"
+            android:icon="@mipmap/ic_account_multiple_grey600_36dp">
+        </item>
 
-    <item
-        android:id="@+id/hola4"
-        android:title="hola4"
-        android:icon="@mipmap/ic_today_black_36dp">
-    </item>
+    </group>
+
+    <group
+        android:id="@+id/menu_section_3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/information"
+            android:title="@string/informaci_til"
+            android:icon="@mipmap/ic_information_grey600_36dp">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/menu_section_4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/profile"
+            android:title="@string/perfil"
+            android:icon="@mipmap/ic_account_circle_grey600_36dp">
+        </item>
+
+        <item
+            android:id="@+id/settings"
+            android:title="@string/configuracio"
+            android:icon="@mipmap/ic_settings_grey600_36dp">
+        </item>
+
+        <item
+            android:id="@+id/help"
+            android:title="@string/ajuda"
+            android:icon="@mipmap/ic_help_circle_grey600_36dp">
+        </item>
+        <item
+            android:id="@+id/logout"
+            android:title="Sortir"
+            android:icon="@mipmap/ic_logout_grey600_36dp">
+        </item>
+    </group>
 
 </menu>

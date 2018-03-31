@@ -11,4 +11,12 @@
     <string name="err_msg_password">Enter the password</string>
     <string name="open">Obrir</string>
     <string name="close">Tancar</string>
+    <string name="tots_els_posts">Tots els posts</string>
+    <string name="habitatge">Habitatge</string>
+    <string name="feina">Feina</string>
+    <string name="activitats">Activitats</string>
+    <string name="informaci_til">Informació útil</string>
+    <string name="perfil">Perfil</string>
+    <string name="configuracio">Configuració</string>
+    <string name="ajuda">Ajuda</string>
 </resources>

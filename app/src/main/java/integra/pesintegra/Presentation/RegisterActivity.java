@@ -1,4 +1,4 @@
-package integra.pesintegra;
+package integra.pesintegra.Presentation;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,6 +11,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+
+import integra.pesintegra.R;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
     private EditText dateEditText;
