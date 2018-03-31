@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp">
 
@@ -9,12 +10,13 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@drawable/navdraw_header"/>
-    
+
     <ImageView
         android:id="@+id/foto_perfil"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@mipmap/ic_today_black_36dp"/>
+        android:src="@mipmap/ic_account_circle_grey600_36dp"
+        android:elevation="5dp"/>
     <!-->
     <TextView
         android:layout_width="wrap_content"

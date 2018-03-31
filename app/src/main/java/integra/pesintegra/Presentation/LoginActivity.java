@@ -27,7 +27,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         Intent intent;
         switch (v.getId()) {
             case R.id.login_entrar:
-                intent = new Intent(getApplicationContext(),BaseActivity.class);
+                intent = new Intent(getApplicationContext(),AllPostsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.login_register:

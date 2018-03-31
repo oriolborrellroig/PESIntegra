@@ -62,6 +62,6 @@ class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDa
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        editText.setText(day + "/" + month+1 +"/" + year);
+        editText.setText(day + "/" + (month+1) +"/" + year);
     }
 }
