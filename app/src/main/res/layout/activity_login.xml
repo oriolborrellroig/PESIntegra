@@ -113,7 +113,7 @@
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
                 android:textColor="@color/primary_text"
-                android:text="Ets nou? Fes click aquí per registrarte!"
+                android:text="Ets nou? Fes click aquí per registrar-te!"
                 app:layout_constraintTop_toBottomOf="@+id/login_pass"/>
 
         </TableRow>
