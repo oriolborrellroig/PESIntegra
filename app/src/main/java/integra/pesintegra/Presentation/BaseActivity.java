@@ -1,16 +1,21 @@
 package integra.pesintegra.Presentation;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import integra.pesintegra.R;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -22,6 +27,7 @@ public class BaseActivity extends Activity {
         setView();
 
 
+
     }
 
     protected void setView() {
@@ -31,6 +37,8 @@ public class BaseActivity extends Activity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -52,5 +60,20 @@ public class BaseActivity extends Activity {
 
         super.setContentView(fullLayout);
         setView();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        Intent intent;
+        switch (id) {
+            case R.id.profile: //TODO: Posat que canvii de activity aqui per testejat, Clarament el perfil no et portara a La vista de un post.
+                intent = new Intent(getApplicationContext(), PostActivity.class);
+                startActivity(intent);
+                break;
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
