@@ -41,8 +41,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 showDatePickerDialog();
                 break;
             case R.id.registrar_cancel:
-                intent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(intent);
+               // intent = new Intent(getApplicationContext(),LoginActivity.class);
+                //startActivity(intent);
+                this.finish();
                 break;
             case R.id.registrar_entrar:
                 intent = new Intent(getApplicationContext(),AllPostsActivity.class);

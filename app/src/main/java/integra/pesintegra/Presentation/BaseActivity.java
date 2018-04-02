@@ -71,6 +71,9 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent = new Intent(getApplicationContext(), PostActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.logout:
+                this.finish();
+                break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
         drawer.closeDrawer(GravityCompat.START);
