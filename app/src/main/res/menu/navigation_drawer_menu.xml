@@ -53,6 +53,16 @@
         </item>
 
         <item
+            android:id="@+id/calendar"
+            android:title="@string/calendari"
+            android:icon="@mipmap/ic_calendar_blank_grey600_36dp">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/menu_section_5"
+        android:checkableBehavior="single">
+        <item
             android:id="@+id/settings"
             android:title="@string/configuracio"
             android:icon="@mipmap/ic_settings_grey600_36dp">
