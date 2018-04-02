@@ -27,7 +27,6 @@
                 android:id="@+id/frame_layout_base"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-
         </android.support.v7.widget.Toolbar>
 
     </LinearLayout>
@@ -43,8 +42,6 @@
         app:itemIconTint="@color/secondary_text"
         app:itemTextColor="@color/primary_text"
         app:menu="@menu/navigation_drawer_menu">
-
-
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
-
-    <TextView
-        android:id="@+id/titol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Posts"
-        android:textSize="20dp"
-        android:textColor="@color/primary_dark"
-        android:textStyle="bold"
-        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
@@ -20,9 +10,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal|top"
         android:background="#ffffff"
-        android:layout_below="@id/titol"
         android:scrollbars="vertical" />
-</RelativeLayout>
+</LinearLayout>
 
 
 
