@@ -35,9 +35,15 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:navigationIcon="@mipmap/ic_arrow_left_grey600_36dp"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+                    <Button
+                        android:id="@+id/btn_post_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/ic_arrow_left_grey600_36dp"
+                        android:backgroundTint="@color/icons"
+                        />
+            </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -49,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:src="@mipmap/ic_calendar_plus_grey600_36dp"
+        android:tint="@color/icons"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 
