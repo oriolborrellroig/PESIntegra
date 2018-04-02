@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -24,13 +26,27 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         dateEditText = (EditText)findViewById(R.id.register_datanaixement);
         dateEditText.setOnClickListener(this);
 
+        Button cancel_btn = (Button)findViewById(R.id.registrar_cancel);
+        cancel_btn.setOnClickListener(this);
+        Button registrar_btn = (Button)findViewById(R.id.registrar_entrar);
+        registrar_btn.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.register_datanaixement:
                 showDatePickerDialog();
+                break;
+            case R.id.registrar_cancel:
+                intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.registrar_entrar:
+                intent = new Intent(getApplicationContext(),AllPostsActivity.class);
+                startActivity(intent);
                 break;
         }
     }

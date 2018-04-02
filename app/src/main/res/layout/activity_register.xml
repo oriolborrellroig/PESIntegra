@@ -185,6 +185,7 @@
                 >
 
                 <Button
+                    android:id="@+id/registrar_cancel"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:background="@color/divider"
@@ -196,6 +197,7 @@
                     />
 
                 <Button
+                    android:id="@+id/registrar_entrar"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
