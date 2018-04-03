@@ -36,4 +36,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
+    @Override
+    public void onBackPressed() {
+    }
+
 }
