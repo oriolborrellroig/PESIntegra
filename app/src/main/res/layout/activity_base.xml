@@ -17,7 +17,6 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:minHeight="?attr/actionBarSize"
             android:background="@color/primary"
             app:navigationIcon="@mipmap/ic_menu"
             android:layout_width="match_parent"
