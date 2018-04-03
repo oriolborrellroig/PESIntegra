@@ -48,6 +48,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             case R.id.registrar_entrar:
                 intent = new Intent(getApplicationContext(),AllPostsActivity.class);
                 startActivity(intent);
+                this.finish();
                 break;
         }
     }

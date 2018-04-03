@@ -43,7 +43,6 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (mToggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -75,8 +74,20 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 this.finish();
                 break;
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        //drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
