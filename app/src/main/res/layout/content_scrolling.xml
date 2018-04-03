@@ -9,177 +9,46 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/post_titol"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
+            android:layout_height="60dp"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:hint="Titol"/>
         <TextView
+            android:id="@+id/post_direccio"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
+            android:layout_height="30dp"
+            android:textStyle="italic"
+            android:hint="direccio. Fas click i porta a Google Maps"/>
         <TextView
+            android:id="@+id/post_data"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="Hola1"/>
+            android:textStyle="italic"
+            android:gravity="center|left"
+            android:drawableRight="@mipmap/ic_today_black_36dp"
+            android:drawableTint="@color/accent"
+            android:hint="3/4/2018 10:00 - 5/5/2018 13:00"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
         <TextView
+            android:id="@+id/post_text"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Hola1"/>
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:singleLine="false"
+            android:layout_gravity="center_vertical|right"
+            android:hint="Text del Post"/>
 
     </LinearLayout>
 
