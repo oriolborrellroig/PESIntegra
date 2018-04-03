@@ -10,26 +10,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/navdraw_header">
 
-        <TableRow>
-        <ImageView
-            android:id="@+id/foto_perfil"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/logo_pes"
-            android:scaleType="centerInside"
-            android:padding="10dp"
-            />
-         </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marina Moreno"
-                android:textColor="@color/primary_dark"
-                android:textStyle="bold"
-                android:padding="15dp"/>
-        </TableRow>
 
     </TableLayout>
 </android.support.constraint.ConstraintLayout>
