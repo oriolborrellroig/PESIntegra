@@ -70,6 +70,10 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent = new Intent(getApplicationContext(), PostActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.information:
+                intent = new Intent(getApplicationContext(), InformationActivity.class);
+                startActivity(intent);
+                break;
             case R.id.logout:
                 this.finish();
                 break;
