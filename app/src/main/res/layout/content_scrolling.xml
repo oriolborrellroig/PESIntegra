@@ -17,15 +17,18 @@
             android:id="@+id/post_titol"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:textSize="40dp"
             android:textStyle="bold"
             android:hint="Titol"/>
         <TextView
             android:id="@+id/post_direccio"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textStyle="italic"
+            android:gravity="center|left"
+            android:drawableRight="@mipmap/ic_map_marker_grey600_36dp"
+            android:drawableTint="@color/accent"
             android:hint="direccio. Fas click i porta a Google Maps"/>
         <TextView
             android:id="@+id/post_data"
