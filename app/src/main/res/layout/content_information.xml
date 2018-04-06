@@ -18,13 +18,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:textColor="@color/primary_dark"
-            android:text="Emergencies" />
+            android:textColorHint="@color/primary_dark"
+            android:hint="@string/hint_emergencies"
+            />
         <TextView
+            android:id="@+id/emergencies_txt"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Call 110 for the police, and 112 for fire or ambulance services."
             android:textColor="@color/primary_text"
             />
         <TextView
@@ -32,13 +33,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:textColor="@color/primary_dark"
-            android:text="Hospital and urgent care centers" />
+            android:hint="@string/hint_hospitals"
+            android:textColorHint="@color/primary_dark"
+            />
         <TextView
+            android:id="@+id/hospitals_txt"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Many of Berlin's hospitals have 24-hour emergency wards, the most central being:"
             android:textColor="@color/primary_text"
             />
 
