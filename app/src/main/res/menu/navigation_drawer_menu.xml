@@ -75,6 +75,11 @@
         </item>
         <item
             android:id="@+id/logout"
+            android:title="Log Out"
+            android:icon="@mipmap/ic_reply_black_36dp">
+        </item>
+        <item
+            android:id="@+id/exit"
             android:title="Sortir"
             android:icon="@mipmap/ic_logout_grey600_36dp">
         </item>

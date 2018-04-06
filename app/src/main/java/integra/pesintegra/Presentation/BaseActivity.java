@@ -1,6 +1,8 @@
 package integra.pesintegra.Presentation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -74,8 +76,34 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent = new Intent(getApplicationContext(), InformationActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.exit:
+                new AlertDialog.Builder(this)
+                        .setMessage("Segur que vols sortir?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent startMain = new Intent(Intent.ACTION_MAIN);
+                                startMain.addCategory(Intent.CATEGORY_HOME);
+                                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(startMain);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                break;
             case R.id.logout:
-                this.finish();
+                new AlertDialog.Builder(this)
+                        .setMessage("Segur que vols sortir?")
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 break;
         }
 
