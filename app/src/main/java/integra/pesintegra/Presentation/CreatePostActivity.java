@@ -46,7 +46,7 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void addDatePickerListener() {
-        limitDate = (EditText) findViewById(R.id.dateInput);
+        limitDate = (EditText) findViewById(R.id.dateInputAct);
 
         limitDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,15 +91,11 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dateInput:
-                //showDatePickerDialog();
-                break;
-
             case R.id.submitPostAct:
-                String data = ((EditText) findViewById(R.id.dateInput)).getText().toString();
-                String lloc = ((EditText) findViewById(R.id.dateInput)).getText().toString();
-                String titol = ((EditText) findViewById(R.id.dateInput)).getText().toString();
-                String descripcio = ((EditText) findViewById(R.id.dateInput)).getText().toString();
+                String data = ((EditText) findViewById(R.id.dateInputAct)).getText().toString();
+                String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
+                String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
+                String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
 
                 Post_Activitat activitat = new Post_Activitat();
                // PostService = ServiceManager.getPostService();
