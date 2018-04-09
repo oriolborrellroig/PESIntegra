@@ -7,11 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +76,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch(v.getId()) {
             case R.id.fabAdd :
 
@@ -106,14 +105,48 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                     fabIsOpen = true;
 
                 }
-                /*Intent intent = new Intent(getApplicationContext(),CreatePostActivity.class);
-                startActivity(intent);*/
                 break;
             case R.id.fabAddAct :
+                fabAdd.startAnimation(rotate_backward);
+                fabAddHab.startAnimation(fab_close);
+                fabAddFei.startAnimation(fab_close);
+                fabAddAct.startAnimation(fab_close);
+
+                fabAddHab.setClickable(false);
+                fabAddFei.setClickable(false);
+                fabAddAct.setClickable(false);
+
+                fabIsOpen = false;
+                intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
+                startActivity(intent);
                 break;
             case R.id.fabAddHab :
+                fabAdd.startAnimation(rotate_backward);
+                fabAddHab.startAnimation(fab_close);
+                fabAddFei.startAnimation(fab_close);
+                fabAddAct.startAnimation(fab_close);
+
+                fabAddHab.setClickable(false);
+                fabAddFei.setClickable(false);
+                fabAddAct.setClickable(false);
+
+                fabIsOpen = false;
+                intent = new Intent(getApplicationContext(),CreateHouseActivity.class);
+                startActivity(intent);
                 break;
             case R.id.fabAddFei :
+                fabAdd.startAnimation(rotate_backward);
+                fabAddHab.startAnimation(fab_close);
+                fabAddFei.startAnimation(fab_close);
+                fabAddAct.startAnimation(fab_close);
+
+                fabAddHab.setClickable(false);
+                fabAddFei.setClickable(false);
+                fabAddAct.setClickable(false);
+
+                fabIsOpen = false;
+                intent = new Intent(getApplicationContext(),CreateWorkActivity.class);
+                startActivity(intent);
                 break;
         }
     }

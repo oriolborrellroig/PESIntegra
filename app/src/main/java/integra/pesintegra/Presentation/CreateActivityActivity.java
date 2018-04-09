@@ -3,8 +3,6 @@ package integra.pesintegra.Presentation;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -14,29 +12,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
-import integra.pesintegra.Logic.Clases.Post;
-import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
-import integra.pesintegra.Services.PostService;
-import integra.pesintegra.Services.ServiceManager;
 
-public class CreatePostActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView limitDate;
     TextView activityHour;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_post);
+        setContentView(R.layout.activity_create_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -58,7 +47,7 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(CreatePostActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(CreateActivityActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         String showHour = "";
@@ -90,7 +79,7 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        CreatePostActivity.this,
+                        CreateActivityActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year,month,day);

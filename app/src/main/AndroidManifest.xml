@@ -42,12 +42,14 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".Presentation.CreatePostActivity"
-            android:screenOrientation="portrait">
-        <intent-filter>
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:name=".Presentation.CreateActivityActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Presentation.CreateHouseActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Presentation.CreateWorkActivity"
+            android:screenOrientation="portrait"/>
 
 
     </application>
