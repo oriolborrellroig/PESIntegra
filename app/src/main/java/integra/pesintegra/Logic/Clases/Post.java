@@ -2,10 +2,28 @@ package integra.pesintegra.Logic.Clases;
 
 import android.net.Uri;
 
-public class Post {
+import java.util.UUID;
 
-    private String titol, descripcio, dataini, datafi, hora, direccio;
+public abstract class Post {
+
+    private String id, titol, descripcio, dataini, datafi, hora, direccio;
     private Uri uri;
+    private char tipus;
+
+    public Post(){
+        setId();
+    }
+
+    Post(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, char tipus){
+        this.titol = titol;
+        this.descripcio = descripcio;
+        this.dataini = dataini;
+        this.datafi = datafi;
+        this.hora = hora;
+        this.direccio = direccio;
+        this.tipus = tipus;
+        setId();
+    }
 
     public String getTitol(){
         return this.titol;
@@ -63,4 +81,15 @@ public class Post {
         this.uri = uri;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = this.tipus + '_' + UUID.randomUUID().toString();
+    }
+
+    public char getTipus(){
+        return this.tipus;
+    }
 }
