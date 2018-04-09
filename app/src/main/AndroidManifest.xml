@@ -41,6 +41,15 @@
             android:name=".Presentation.BaseActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".Presentation.CreatePostActivity"
+            android:screenOrientation="portrait">
+        <intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>

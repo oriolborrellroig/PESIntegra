@@ -1,11 +1,15 @@
 package integra.pesintegra.Presentation;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +19,7 @@ import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.R;
 
-public class AllPostsActivity extends BaseActivity {
+public class AllPostsActivity extends BaseActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private ListAdapter listAdapter;
@@ -42,6 +46,9 @@ public class AllPostsActivity extends BaseActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(listAdapter);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        fab.setOnClickListener(this);
+
     }
 
     @Override
@@ -53,4 +60,13 @@ public class AllPostsActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.fabAdd :
+                Intent intent = new Intent(getApplicationContext(),CreatePostActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }
