@@ -1,6 +1,7 @@
 package integra.pesintegra.Presentation;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,8 +26,8 @@ import integra.pesintegra.Services.ServiceManager;
 
 public class CreatePostActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText limitDate;
-
+    TextView limitDate;
+    TextView activityHour;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 
@@ -42,11 +45,41 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         addDatePickerListener();
+        addTimePickerListener();
+    }
 
+    private void addTimePickerListener() {
+        activityHour = (TextView) findViewById(R.id.hourInputAct);
+        activityHour.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(CreatePostActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        String showHour = "";
+                        String showMinute = "";
+                        if (selectedHour < 10) showHour = "0" + selectedHour;
+                        else showHour = ((Integer) selectedHour).toString();
+                        if (selectedMinute < 10) showMinute = "0" + selectedMinute;
+                        else showMinute = ((Integer) selectedMinute).toString();
+
+                        activityHour.setText( showHour + ":" + showMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
     }
 
     private void addDatePickerListener() {
-        limitDate = (EditText) findViewById(R.id.dateInputAct);
+        limitDate = (TextView) findViewById(R.id.dateInputAct);
 
         limitDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,14 +125,18 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submitPostAct:
-                String data = ((EditText) findViewById(R.id.dateInputAct)).getText().toString();
+                String data = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
+                String hour = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
 
-                Post_Activitat activitat = new Post_Activitat();
+
+                //Post_Activitat activitat = new Post_Activitat();
                // PostService = ServiceManager.getPostService();
+                break;
         }
+
 
     }
 
