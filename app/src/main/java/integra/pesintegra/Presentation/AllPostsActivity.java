@@ -12,6 +12,7 @@ import java.util.List;
 
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.R;
 
 public class AllPostsActivity extends BaseActivity {
@@ -30,7 +31,7 @@ public class AllPostsActivity extends BaseActivity {
 
         List<Post> list_posts = new ArrayList<>();
         for (int i = 0; i < 5; ++i){
-            Post p = new Post();
+            Post p = new Post_Feina();
             p.setTitol("Empezamos");
             p.setTDataIni("12/02/2018");
             list_posts.add(p);

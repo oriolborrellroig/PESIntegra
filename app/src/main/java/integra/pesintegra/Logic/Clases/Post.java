@@ -10,8 +10,9 @@ public abstract class Post {
     private Uri uri;
     private char tipus;
 
-    public Post(){
+    public Post(char tipus){
         setId();
+        this.tipus = tipus;
     }
 
     Post(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, char tipus){
