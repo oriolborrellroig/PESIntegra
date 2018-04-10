@@ -7,16 +7,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.R;
 
@@ -37,7 +38,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
-
+        //-------------connectar amb la BD!------------------
         List<Post> list_posts = new ArrayList<>();
         for (int i = 0; i < 5; ++i){
             Post p = new Post_Feina();
@@ -45,6 +46,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             p.setTDataIni("12/02/2018");
             list_posts.add(p);
         }
+        //-------------....................------------------
+
         listAdapter = new ListAdapter(list_posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -118,13 +121,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabAddAct.setClickable(false);
 
                 fabIsOpen = false;
-                Toast.makeText(
-                        AllPostsActivity.this,
-                        "You Clicked : Activitat",
-                        Toast.LENGTH_SHORT
-                ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
-                intent.putExtra("flag", "A");
                 startActivity(intent);
                 break;
             case R.id.fabAddHab :
@@ -138,13 +135,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabAddAct.setClickable(false);
 
                 fabIsOpen = false;
-                Toast.makeText(
-                        AllPostsActivity.this,
-                        "You Clicked : Habitatge",
-                        Toast.LENGTH_SHORT
-                ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
-                intent.putExtra("flag", "H");
                 startActivity(intent);
                 break;
             case R.id.fabAddFei :
@@ -158,15 +149,11 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabAddAct.setClickable(false);
 
                 fabIsOpen = false;
-                Toast.makeText(
-                        AllPostsActivity.this,
-                        "You Clicked : Feina",
-                        Toast.LENGTH_SHORT
-                ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
-                intent.putExtra("flag", "F");
                 startActivity(intent);
                 break;
+
         }
+
     }
 }
