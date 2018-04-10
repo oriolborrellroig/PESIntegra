@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+
 import java.util.Calendar;
 
+import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
 public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,6 +37,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         addDatePickerListener();
+        addDate_endPickerListener();
         addTimePickerListener();
     }
 
@@ -100,6 +104,39 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         };
     }
 
+    private void addDate_endPickerListener() {
+        limitDate = (TextView) findViewById(R.id.date_endInputAct);
+
+        limitDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        CreateActivityActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+
+                String date = month + "/" + day + "/" + year;
+                limitDate.setText(date);
+            }
+        };
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -115,13 +152,14 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.submitPostAct:
                 String data = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
+                String dataFi = ((TextView) findViewById(R.id.date_endInputAct)).getText().toString();
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hour = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
 
 
-                //Post_Activitat activitat = new Post_Activitat();
+                Post activitat = new Post_Activitat(titol, descripcio, data, dataFi, hour, lloc);
                // PostService = ServiceManager.getPostService();
                 break;
         }
