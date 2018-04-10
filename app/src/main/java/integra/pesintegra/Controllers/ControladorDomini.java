@@ -1,6 +1,7 @@
 package integra.pesintegra.Controllers;
 
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Sessio;
 
 public class ControladorDomini extends AbstractBaseController {
@@ -18,7 +19,12 @@ public class ControladorDomini extends AbstractBaseController {
 
     }
 
-    public void creaPost(Post post) {
-        cntrlBD.creaPost();
+    public void creaPostActivitat(Post_Activitat activitat) {
+        cntrlBD.afegeixPostActivitat(activitat);
+    }
+
+    public void creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {
+        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
+        cntrlBD.afegeixPostActivitat(activitat);
     }
 }

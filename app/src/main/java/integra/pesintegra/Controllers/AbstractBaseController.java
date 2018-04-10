@@ -7,7 +7,7 @@ public abstract class AbstractBaseController {
     //control d excepcions a fer...
 
     public void comprovaCampNoBuid(String s) throws Exception {
-        if (s == "") {
+        if (s.equals("")) {
             throw new Exception("Hi ha algun camp buit");
         }
     }
@@ -35,6 +35,15 @@ public abstract class AbstractBaseController {
                 throw new Exception("Els caràcters no són vàlids");
             }
         }
+    }
+
+    public String dataActual () {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        String data = day + "/" + month+1 + "/" + year;
+        return data;
     }
 
 }

@@ -1,5 +1,7 @@
 package integra.pesintegra.Controllers;
 
+import integra.pesintegra.Logic.Clases.Post_Activitat;
+
 public class ControladorBD extends AbstractBaseController {
 
 
@@ -7,6 +9,7 @@ public class ControladorBD extends AbstractBaseController {
         super();
     }
 
-    public void creaPost() {
+    public void afegeixPostActivitat(Post_Activitat activitat) {
+
     }
 }

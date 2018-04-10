@@ -1,7 +1,9 @@
 package integra.pesintegra.Presentation;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,10 +16,13 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
 public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
+    ControladorPresentacio cntrlPresentacio;
     TextView limitDate;
     TextView activityHour;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -25,6 +30,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_create_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -114,15 +120,29 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submitPostAct:
-                String data = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
+                String dataF = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
-                String hour = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
+                String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
 
 
-                //Post_Activitat activitat = new Post_Activitat();
-               // PostService = ServiceManager.getPostService();
+                //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
+                //PostService = ServiceManager.getPostService();
+                try {
+                    cntrlPresentacio.creaPostActivitat(titol, descripcio, dataF, hora, lloc);
+                } catch (Exception e) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                    alertDialog.setTitle("Error");
+                    alertDialog.setMessage("Ha saltat alguna excepció dels camps");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
                 break;
         }
 
