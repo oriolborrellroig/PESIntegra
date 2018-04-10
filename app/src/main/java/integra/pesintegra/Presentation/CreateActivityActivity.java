@@ -155,8 +155,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submitPostAct:
-                String data = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
-                String dataFi = ((TextView) findViewById(R.id.date_endInputAct)).getText().toString();
+                String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
+                String dataF = ((TextView) findViewById(R.id.date_endInputAct)).getText().toString();
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
@@ -166,7 +166,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
                 //PostService = ServiceManager.getPostService();
                 try {
-                    cntrlPresentacio.creaPostActivitat(titol, descripcio, dataF, hora, lloc);
+                    cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
                 } catch (Exception e) {
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                     alertDialog.setTitle("Error");

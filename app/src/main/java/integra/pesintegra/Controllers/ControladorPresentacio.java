@@ -31,14 +31,14 @@ public class ControladorPresentacio extends AbstractBaseController {
     }
 
 
-    public void creaPostActivitat(String titol, String descripcio, String dataF, String hora, String lloc) throws Exception {
+    public void creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
         //fer comprobacions necessàries
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
         comprovaDataNoAnterior(dataF);
         comprovaHoraValida(hora);
-        //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataActual(), dataF, hora, lloc);
-        cntrlDom.creaPostActivitat(titol, descripcio, dataActual(), dataF, hora, lloc);
+        //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
+        cntrlDom.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
     }
 
 }
