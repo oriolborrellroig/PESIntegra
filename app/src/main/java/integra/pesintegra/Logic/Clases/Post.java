@@ -1,5 +1,6 @@
 package integra.pesintegra.Logic.Clases;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import java.util.UUID;
@@ -9,6 +10,7 @@ public abstract class Post {
     private String id, titol, descripcio, dataini, datafi, hora, direccio;
     private Uri uri;
     private char tipus;
+    private Bitmap imatge;
 
     public Post(char tipus){
         setId();
@@ -92,5 +94,13 @@ public abstract class Post {
 
     public char getTipus(){
         return this.tipus;
+    }
+
+    public void setImatge(Bitmap imatge){
+        this.imatge = imatge;
+    }
+
+    public Bitmap getImatge() {
+        return imatge;
     }
 }
