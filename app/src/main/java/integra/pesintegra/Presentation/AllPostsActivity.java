@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,13 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabAddAct.setClickable(false);
 
                 fabIsOpen = false;
+                Toast.makeText(
+                        AllPostsActivity.this,
+                        "You Clicked : Activitat",
+                        Toast.LENGTH_SHORT
+                ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
+                intent.putExtra("flag", "A");
                 startActivity(intent);
                 break;
             case R.id.fabAddHab :
@@ -131,7 +138,13 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabAddAct.setClickable(false);
 
                 fabIsOpen = false;
-                intent = new Intent(getApplicationContext(),CreateHouseActivity.class);
+                Toast.makeText(
+                        AllPostsActivity.this,
+                        "You Clicked : Habitatge",
+                        Toast.LENGTH_SHORT
+                ).show();
+                intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
+                intent.putExtra("flag", "H");
                 startActivity(intent);
                 break;
             case R.id.fabAddFei :
@@ -145,7 +158,13 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabAddAct.setClickable(false);
 
                 fabIsOpen = false;
-                intent = new Intent(getApplicationContext(),CreateWorkActivity.class);
+                Toast.makeText(
+                        AllPostsActivity.this,
+                        "You Clicked : Feina",
+                        Toast.LENGTH_SHORT
+                ).show();
+                intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
+                intent.putExtra("flag", "F");
                 startActivity(intent);
                 break;
         }

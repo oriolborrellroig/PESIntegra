@@ -41,17 +41,17 @@ public class ControladorPresentacio extends AbstractBaseController {
         cntrlDom.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
     }
 
-    public void creaPostHabitatge(String titol, String descripcio, String dataF, String hora, String lloc) {
+    public void creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {
         //Camps a comprobar...
 
 
-        cntrlDom.creaPostHabitatge(titol, descripcio, dataActual(), dataF, hora, lloc);
+        cntrlDom.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
     }
 
-    public void creaPostFeina(String titol, String descripcio, String dataF, String hora, String lloc) {
+    public void creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {
         //Camps a comprobar...
 
 
-        cntrlDom.creaPostFeina(titol, descripcio, dataActual(), dataF, hora, lloc);
+        cntrlDom.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
     }
 }

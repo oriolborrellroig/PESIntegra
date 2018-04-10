@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -166,7 +167,11 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
                 //PostService = ServiceManager.getPostService();
                 try {
-                    cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
+                    Intent intent = getIntent();
+                    String tipus = intent.getStringExtra("flag");
+                    if(tipus.equals("A")) cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
+                    if(tipus.equals("F")) cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
+                    if(tipus.equals("H")) cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                 } catch (Exception e) {
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                     alertDialog.setTitle("Error");
