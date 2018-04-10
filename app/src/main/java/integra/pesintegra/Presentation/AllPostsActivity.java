@@ -19,6 +19,11 @@ import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.R;
+import integra.pesintegra.Services.PostService;
+import integra.pesintegra.Services.ServiceManager;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AllPostsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -37,14 +42,29 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
-
-        List<Post> list_posts = new ArrayList<>();
+        final List<Post> list_posts = new ArrayList<>();
         for (int i = 0; i < 5; ++i){
             Post p = new Post_Feina();
             p.setTitol("Empezamos");
             p.setTDataIni("12/02/2018");
             list_posts.add(p);
         }
+
+        /*PostService service = ServiceManager.getPostService();
+        Call<Post> createCall = service.getPost("2");
+        createCall.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                list_posts.add(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+
+            }
+        });*/
+
         listAdapter = new ListAdapter(list_posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
