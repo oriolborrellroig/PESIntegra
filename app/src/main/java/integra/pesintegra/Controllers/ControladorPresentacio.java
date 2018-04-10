@@ -1,5 +1,7 @@
 package integra.pesintegra.Controllers;
 
+import android.util.Log;
+
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Sessio;

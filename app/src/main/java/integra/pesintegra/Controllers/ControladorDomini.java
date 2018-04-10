@@ -1,5 +1,7 @@
 package integra.pesintegra.Controllers;
 
+import android.util.Log;
+
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
@@ -24,6 +26,7 @@ public class ControladorDomini extends AbstractBaseController {
     public void creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {
         Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
         cntrlBD.afegeixPostActivitat(activitat);
+
     }
 
     public void creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {

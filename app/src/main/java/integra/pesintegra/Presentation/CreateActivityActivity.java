@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,7 +36,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_create_activity);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         if (getSupportActionBar() != null){
@@ -42,8 +43,10 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         addDatePickerListener();
-        addDate_endPickerListener();
         addTimePickerListener();
+
+        Button enviar_btn = (Button)findViewById(R.id.submitPostAct);
+        enviar_btn.setOnClickListener(this);
     }
 
     private void addTimePickerListener() {
@@ -109,38 +112,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         };
     }
 
-    private void addDate_endPickerListener() {
-        limitDate = (TextView) findViewById(R.id.date_endInputAct);
-
-        limitDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CreateActivityActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year,month,day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-
-                String date = month + "/" + day + "/" + year;
-                limitDate.setText(date);
-            }
-        };
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -157,7 +128,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
-                String dataF = ((TextView) findViewById(R.id.date_endInputAct)).getText().toString();
+                String dataF = dataI;
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
@@ -170,8 +141,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                     Intent intent = getIntent();
                     String tipus = intent.getStringExtra("flag");
                     if(tipus.equals("A")) cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
-                    if(tipus.equals("F")) cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
-                    if(tipus.equals("H")) cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
+                    else if(tipus.equals("F")) cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
+                    else if(tipus.equals("H")) cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                 } catch (Exception e) {
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                     alertDialog.setTitle("Error");
