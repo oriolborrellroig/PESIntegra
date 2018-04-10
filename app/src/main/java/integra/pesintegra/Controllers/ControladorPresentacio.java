@@ -32,7 +32,7 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
     public void creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
-        //fer comprobacions necessàries
+        //fer comprobacions necessàries...
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
         comprovaDataNoAnterior(dataF);
@@ -41,4 +41,17 @@ public class ControladorPresentacio extends AbstractBaseController {
         cntrlDom.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
     }
 
+    public void creaPostHabitatge(String titol, String descripcio, String dataF, String hora, String lloc) {
+        //Camps a comprobar...
+
+
+        cntrlDom.creaPostHabitatge(titol, descripcio, dataActual(), dataF, hora, lloc);
+    }
+
+    public void creaPostFeina(String titol, String descripcio, String dataF, String hora, String lloc) {
+        //Camps a comprobar...
+
+
+        cntrlDom.creaPostFeina(titol, descripcio, dataActual(), dataF, hora, lloc);
+    }
 }
