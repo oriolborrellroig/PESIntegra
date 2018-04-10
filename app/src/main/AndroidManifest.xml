@@ -41,6 +41,17 @@
             android:name=".Presentation.BaseActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".Presentation.CreateActivityActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Presentation.CreateHouseActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Presentation.CreateWorkActivity"
+            android:screenOrientation="portrait"/>
+
+
     </application>
 
 </manifest>

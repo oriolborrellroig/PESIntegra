@@ -22,4 +22,10 @@
     <string name="calendari">Calendari</string>
     <string name="hint_emergencies">Emergencies</string>
     <string name="hint_hospitals">Hospitals and urgent care centers</string>
+    <string name="horaTitol">Hora:</string>
+    <string name="dataTitol">Data:</string>
+    <string name="titolTitol">Títol:</string>
+    <string name="localitzacioTitol">Localització:</string>
+    <string name="descripcioTitol">Descripció:</string>
+    <string name="botoEnviar">Enviar</string>
 </resources>

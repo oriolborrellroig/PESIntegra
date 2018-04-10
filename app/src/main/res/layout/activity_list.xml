@@ -1,17 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="232dp"
+        android:layout_marginEnd="25dp"
+        android:clickable="true"
+        android:tint="@color/icons"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_orange_light"
+        android:src="@mipmap/ic_account_multiple_grey600_36dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddHab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="172dp"
+        android:layout_marginEnd="25dp"
+        android:clickable="true"
+        android:tint="@color/icons"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_orange_light"
+        android:src="@mipmap/ic_home_grey600_36dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAddFei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="112dp"
+        android:layout_marginEnd="25dp"
+        android:clickable="true"
+        android:tint="@color/icons"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_orange_light"
+        android:src="@mipmap/ic_briefcase_grey600_36dp"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:elevation="6dp"
+        app:backgroundTint="@color/accent"
+        app:pressedTranslationZ="12dp"
+        android:tint="@color/icons"
+        android:src="@mipmap/ic_plus_grey600_36dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
         android:background="#ffffff"
-        android:scrollbars="vertical" />
-</LinearLayout>
+        android:scrollbars="vertical" >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>
+
+
 
 
 
