@@ -1,7 +1,5 @@
 package integra.pesintegra.Controllers;
 
-import android.util.Log;
-
 import java.util.Calendar;
 
 public abstract class AbstractBaseController {
@@ -40,6 +38,7 @@ public abstract class AbstractBaseController {
 
 
     //Per si cal es pot cambiar. (agafa num / lletres pero no signes extranys)
+
     public void comprovaPasswordValida(String pw) throws Exception{
 
         char[] array = pw.toCharArray();
@@ -50,12 +49,13 @@ public abstract class AbstractBaseController {
         }
     }
 
+
     public String dataActual () {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-        String data = day + "/" + month+1 + "/" + year;
+        String data = day + "/" + month + 1 + "/" + year;
         return data;
     }
 

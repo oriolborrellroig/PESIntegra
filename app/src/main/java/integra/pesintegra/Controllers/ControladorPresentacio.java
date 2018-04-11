@@ -4,6 +4,8 @@ import android.util.Log;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
+import integra.pesintegra.Logic.Clases.Post_Feina;
+import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Logic.Clases.Sessio;
 
 public class ControladorPresentacio extends AbstractBaseController {
@@ -37,19 +39,23 @@ public class ControladorPresentacio extends AbstractBaseController {
     //A REVISAR
 
 
-    public void creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
-        //fer comprobacions necessàries...
+    public Post creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
+
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
         comprovaCampNoBuid(dataI);
         comprovaCampNoBuid(hora);
         comprovaCampNoBuid(lloc);
         comprovaDataValida(dataF);
-        //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
-        cntrlDom.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
+
+        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
+        cntrlDom.creaPostActivitat(activitat);
+
+        return activitat;
     }
 
-    public void creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception{
+    public Post creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
+
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
         comprovaCampNoBuid(dataI);
@@ -57,11 +63,14 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoBuid(lloc);
         comprovaDataValida(dataF);
 
+        Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc);
+        cntrlDom.creaPostHabitatge(habitatge);
 
-        cntrlDom.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
+        return habitatge;
     }
 
-    public void creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
+    public Post creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
+
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
         comprovaCampNoBuid(dataI);
@@ -69,8 +78,10 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoBuid(lloc);
         comprovaDataValida(dataF);
 
+        Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc);
+        cntrlDom.creaPostFeina(feina);
 
-        cntrlDom.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
+        return feina;
     }
 
 

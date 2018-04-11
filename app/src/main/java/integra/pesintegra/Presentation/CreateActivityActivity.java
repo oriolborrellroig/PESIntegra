@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import java.io.FileOutputStream;
 import java.util.Calendar;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
@@ -47,7 +49,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cntrlPresentacio = new ControladorPresentacio();
+        this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_create_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -164,34 +166,32 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
 
 
+                Post new_post = new Post_Activitat();
 
                 try {
                     Intent intent = getIntent();
                     String tipus = intent.getStringExtra("flag");
-                    if(tipus.equals("A")){
-                        cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
-                        Intent intent_act = new Intent(getApplicationContext(), PostActivity.class);
-
-
-                        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                        bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-                        byte[] byteArray = bStream.toByteArray();
-                        intent_act.putExtra("image", byteArray);
-
-
-
-
-                        this.finish();
-                        startActivity(intent_act);
-                        break;
+                    if (tipus.equals("A")) {
+                        new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
+                    } else if (tipus.equals("F")) {
+                        new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
+                    } else if (tipus.equals("H")) {
+                        new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                     }
+                    Intent intent_act = new Intent(getApplicationContext(), PostActivity.class);
 
-                    else if(tipus.equals("F")){
-                        cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
-                    }
-                    else if(tipus.equals("H")){
-                        cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
-                    }
+
+                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                    bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                    byte[] byteArray = bStream.toByteArray();
+                    //intent_act.putExtra("image", byteArray);
+                    intent_act.putExtra("post", new_post);
+
+                    this.finish();
+                    startActivity(intent_act);
+
+                    break;
+
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
                             .setTitle("ERROR")
