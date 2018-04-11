@@ -175,7 +175,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
 
 
-
+                        this.finish();
                         startActivity(intent_act);
                         break;
                     }
