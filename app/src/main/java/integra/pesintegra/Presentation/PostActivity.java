@@ -87,9 +87,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 this.finish();
                 break;
             case R.id.fab:
-                //això no ha d'anar aquí, és per provar. Ha d'anar al crear o editar post. Quan estigui fet ho moc.
-                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, 52);
+
 
                 break;
         }
