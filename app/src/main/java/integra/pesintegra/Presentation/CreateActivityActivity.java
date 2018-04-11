@@ -121,9 +121,15 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-
-                String date = month + "/" + day + "/" + year;
+                String dia = Integer.toString(day);
+                String mes = Integer.toString(month);
+                if (day < 10) {
+                    dia = "0" + day;
+                }
+                if (month < 10) {
+                    mes = "0" + month;
+                }
+                String date = dia + "/" + mes + "/" + year;
                 limitDate.setText(date);
             }
         };
@@ -187,16 +193,11 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                     }
                 } catch (Exception e) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                    alertDialog.setTitle("Error");
-                    alertDialog.setMessage("Ha saltat alguna excepció dels camps");
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
+                    new AlertDialog.Builder(this)
+                            .setTitle("ERROR")
+                            .setMessage(e.getMessage())
+                            .setNeutralButton("Torna", null)
+                            .show();
                 }
 
 

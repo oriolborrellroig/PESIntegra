@@ -23,7 +23,7 @@ public class ControladorPresentacio extends AbstractBaseController {
         cntrlDom.creaPost(post);
     }*/
 
-    public void createUser (String mail, String username, String pw1, String pw2, String dataNaixement) throws Exception {
+    /*public void createUser (String mail, String username, String pw1, String pw2, String dataNaixement) throws Exception {
         comprovaPasswordValida(pw1);
         comprovaPasswordValida(pw1);
         if (pw1 != pw2) {
@@ -31,29 +31,47 @@ public class ControladorPresentacio extends AbstractBaseController {
         }
 
     }
+    */
+
+
+    //A REVISAR
 
 
     public void creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
         //fer comprobacions necessàries...
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
-        comprovaDataNoAnterior(dataF);
-        comprovaHoraValida(hora);
+        comprovaCampNoBuid(dataI);
+        comprovaCampNoBuid(hora);
+        comprovaCampNoBuid(lloc);
+        comprovaDataValida(dataF);
         //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
         cntrlDom.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
     }
 
-    public void creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {
-        //Camps a comprobar...
+    public void creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception{
+        comprovaCampNoBuid(titol);
+        comprovaCampNoBuid(descripcio);
+        comprovaCampNoBuid(dataI);
+        comprovaCampNoBuid(hora);
+        comprovaCampNoBuid(lloc);
+        comprovaDataValida(dataF);
 
 
         cntrlDom.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
     }
 
-    public void creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) {
-        //Camps a comprobar...
+    public void creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc) throws Exception {
+        comprovaCampNoBuid(titol);
+        comprovaCampNoBuid(descripcio);
+        comprovaCampNoBuid(dataI);
+        comprovaCampNoBuid(hora);
+        comprovaCampNoBuid(lloc);
+        comprovaDataValida(dataF);
 
 
         cntrlDom.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
     }
+
+
 }
