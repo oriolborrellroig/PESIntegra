@@ -125,7 +125,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void onRestart() {
-        super.onResume();
+        super.onRestart();
         getPostsFromDB();
     }
 
