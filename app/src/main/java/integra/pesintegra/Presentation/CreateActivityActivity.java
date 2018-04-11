@@ -36,6 +36,11 @@ import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
+import integra.pesintegra.Services.PostService;
+import integra.pesintegra.Services.ServiceManager;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -178,8 +183,26 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                     } else if (tipus.equals("H")) {
                         new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                     }
-                    Intent intent_act = new Intent(getApplicationContext(), PostActivity.class);
 
+                    ///////AIXO CREA UN POST////
+                    PostService service = ServiceManager.getPostService();
+                    Call<Post> createCall = service.createPost(new_post);
+                    createCall.enqueue(new Callback<Post>() {
+                        @Override
+                        public void onResponse(Call<Post> call, Response<Post> response) {
+                        }
+
+                        @Override
+                        public void onFailure(Call<Post> call, Throwable t) {
+                            String message = t.getMessage();
+                            Log.d("failure", message);
+
+                        }
+                    });
+                    ///////////////////////////
+
+
+                    Intent intent_act = new Intent(getApplicationContext(), PostActivity.class);
 
                     ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                     bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
@@ -199,15 +222,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                             .setNeutralButton("Torna", null)
                             .show();
                 }
-
-
-
-
-
-
-
-
-
 
                 break;
             case R.id.add_image:
