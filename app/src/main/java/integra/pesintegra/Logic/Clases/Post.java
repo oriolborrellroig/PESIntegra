@@ -5,26 +5,19 @@ import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class Post {
+public abstract class Post implements Serializable {
 
-    @SerializedName("id")
     private String id;
-    @SerializedName("titol")
     private String titol;
-    @SerializedName("descripcio")
     private String descripcio;
-    @SerializedName("dataini")
     private String dataini;
-    @SerializedName("datafi")
     private String datafi;
-    @SerializedName("hora")
     private String hora;
-    @SerializedName("direccio")
     private String direccio;
     private Uri uri;
-    @SerializedName("tipus")
     private char tipus;
     private Bitmap imatge;
 

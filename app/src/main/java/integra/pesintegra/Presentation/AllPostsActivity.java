@@ -50,7 +50,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         createCall.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
-                Log.d("app","I am here");
                 list_posts.add(response.body());
                 Log.d("app", response.body().getTitol());
                 listAdapter = new ListAdapter(list_posts);
@@ -73,7 +72,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                Log.d("app","I am here faukeeeeeeeeed");
                 String message = t.getMessage();
                 Log.d("failure", message);
 
@@ -83,7 +81,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         PostService service = ServiceManager.getPostService();
 
-        Call<ArrayList<Post>> createCall2 = service.getAllPosts();
+        Call<ArrayList<Post>> createCall2 = service.getAllPosts("any");
         createCall2.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
