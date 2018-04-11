@@ -3,14 +3,20 @@ package integra.pesintegra.Logic.Clases;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.UUID;
 
-@SuppressWarnings("serial")
+public abstract class Post implements Serializable {
 
-public abstract class Post implements Serializable{
-
-    private String id, titol, descripcio, dataini, datafi, hora, direccio;
+    private String id;
+    private String titol;
+    private String descripcio;
+    private String dataini;
+    private String datafi;
+    private String hora;
+    private String direccio;
     private Uri uri;
     private char tipus;
     private Bitmap imatge;

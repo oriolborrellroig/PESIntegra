@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -43,12 +44,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         final List<Post> list_posts = new ArrayList<>();
-        for (int i = 0; i < 5; ++i){
-            Post p = new Post_Feina();
-            p.setTitol("Empezamos");
-            p.setTDataIni("12/02/2018");
-            list_posts.add(p);
-        }
 
         /*PostService service = ServiceManager.getPostService();
         Call<Post> createCall = service.getPost("2");
@@ -56,20 +51,53 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 list_posts.add(response.body());
-
+                Log.d("app", response.body().getTitol());
+                listAdapter = new ListAdapter(list_posts);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(listAdapter);
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
+            }
+        });*/
+
+        /*Call<Post> createCall = service.createPost(p);
+        createCall.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                String message = t.getMessage();
+                Log.d("failure", message);
 
             }
         });*/
 
-        listAdapter = new ListAdapter(list_posts);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(listAdapter);
+
+        PostService service = ServiceManager.getPostService();
+
+        Call<ArrayList<Post>> createCall2 = service.getAllPosts("any");
+        createCall2.enqueue(new Callback<ArrayList<Post>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
+                list_posts.addAll(response.body());
+                listAdapter = new ListAdapter(list_posts);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(listAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
+            }
+        });
+
 
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAddHab = (FloatingActionButton) findViewById(R.id.fabAddHab);
