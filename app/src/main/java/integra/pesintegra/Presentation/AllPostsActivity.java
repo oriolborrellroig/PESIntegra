@@ -45,7 +45,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
-
+        //creant posts sense BD
         /*for(int i= 0; i < 5; i++){
             Post p = new Post_Activitat();
             p.setTDataIni("12/05/2018");
