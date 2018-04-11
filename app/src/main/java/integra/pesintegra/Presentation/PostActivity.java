@@ -1,6 +1,7 @@
 package integra.pesintegra.Presentation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -17,16 +18,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
+import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
 public class PostActivity extends Activity implements View.OnClickListener{
+
+    Post post;
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     @Override
@@ -63,6 +70,33 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 popup.show(); //showing popup menu
             }
         }); //closing the setOnClickListener method
+
+        //Intent intent = getIntent();
+       // String image_name = intent.getStringExtra("bitmap_img");
+
+        this.post = (Post) getIntent().getExtras().getSerializable("post");
+        TextView post_titol = (TextView) findViewById(R.id.post_titol);
+        post_titol.setText(post.getTitol());
+        TextView post_direccio = (TextView) findViewById(R.id.post_direccio);
+        post_direccio.setText(post.getDireccio());
+        TextView post_data = (TextView) findViewById(R.id.post_data);
+        post_data.setText(post.getDataIni());
+        TextView post_text = (TextView) findViewById(R.id.post_text);
+        post_text.setText(post.getDescripcio());
+
+
+
+        //DANI T HE COMENTAT TOT AIXO
+
+        //Bitmap img_pre;
+        //byte[] byteArray = getIntent().getByteArrayExtra("image");
+        //img_pre = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //iv.setImageBitmap(img_pre);
+
+        // JAJA FINS AQUI
+
+
+
         /*
         if (la imatge del post no és nul·la){
             iv.setImageBitmap(Bitmap.createScaledBitmap(bitmap_del_post, iv.getMaxWidth(), iv.getMaxHeight(), false));
@@ -79,9 +113,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 this.finish();
                 break;
             case R.id.fab:
-                //això no ha d'anar aquí, és per provar. Ha d'anar al crear o editar post. Quan estigui fet ho moc.
-                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, 52);
+
 
                 break;
         }

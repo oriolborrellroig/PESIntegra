@@ -68,9 +68,8 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
         int id = item.getItemId();
         Intent intent;
         switch (id) {
-            case R.id.profile: //TODO: Posat que canvii de activity aqui per testejat, Clarament el perfil no et portara a La vista de un post.
-                intent = new Intent(getApplicationContext(), PostActivity.class);
-                startActivity(intent);
+            case R.id.profile:
+
                 break;
             case R.id.information:
                 intent = new Intent(getApplicationContext(), InformationActivity.class);

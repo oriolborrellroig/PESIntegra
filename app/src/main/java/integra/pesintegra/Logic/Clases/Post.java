@@ -3,9 +3,12 @@ package integra.pesintegra.Logic.Clases;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class Post {
+@SuppressWarnings("serial")
+
+public abstract class Post implements Serializable{
 
     private String id, titol, descripcio, dataini, datafi, hora, direccio;
     private Uri uri;
