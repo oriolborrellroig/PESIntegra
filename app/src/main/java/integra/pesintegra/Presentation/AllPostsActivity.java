@@ -31,6 +31,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private RecyclerView recyclerView;
     private ListAdapter listAdapter;
     private boolean fabIsOpen = false;
+    private List<Post> list_posts = new ArrayList<>();
 
     private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
@@ -42,8 +43,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-
-        final List<Post> list_posts = new ArrayList<>();
+        getPostsFromDB();
 
         /*PostService service = ServiceManager.getPostService();
         Call<Post> createCall = service.getPost("2");
@@ -78,27 +78,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             }
         });*/
 
-
-        PostService service = ServiceManager.getPostService();
-
-        Call<ArrayList<Post>> createCall2 = service.getAllPosts("any");
-        createCall2.enqueue(new Callback<ArrayList<Post>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                list_posts.addAll(response.body());
-                listAdapter = new ListAdapter(list_posts);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(listAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
-            }
-        });
-
-
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAddHab = (FloatingActionButton) findViewById(R.id.fabAddHab);
         fabAddFei = (FloatingActionButton) findViewById(R.id.fabAddFei);
@@ -114,6 +93,28 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    private void getPostsFromDB() {
+        PostService service = ServiceManager.getPostService();
+
+        Call<ArrayList<Post>> createCall2 = service.getAllPosts("any");
+        createCall2.enqueue(new Callback<ArrayList<Post>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
+                list_posts.clear();
+                list_posts.addAll(response.body());
+                listAdapter = new ListAdapter(list_posts);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(listAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
@@ -122,6 +123,11 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onResume();
+        getPostsFromDB();
+    }
 
     @Override
     public void onClick(View v) {
