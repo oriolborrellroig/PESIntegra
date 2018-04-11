@@ -43,7 +43,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        getPostsFromDB();
+        //getPostsFromDB();
 
         /*PostService service = ServiceManager.getPostService();
         Call<Post> createCall = service.getPost("2");
@@ -123,9 +123,15 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    @Override
+    /*@Override
     protected void onRestart() {
         super.onRestart();
+        getPostsFromDB();
+    }*/
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getPostsFromDB();
     }
 

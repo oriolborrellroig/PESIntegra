@@ -68,6 +68,22 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
         int id = item.getItemId();
         Intent intent;
         switch (id) {
+            case R.id.allPosts:
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.work:
+                intent = new Intent(getApplicationContext(), WorkPostActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.house:
+                intent = new Intent(getApplicationContext(), HousePostActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.activities:
+                intent = new Intent(getApplicationContext(), ActivityPostActivity.class);
+                startActivity(intent);
+                break;
             case R.id.profile:
 
                 break;

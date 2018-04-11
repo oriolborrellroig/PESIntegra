@@ -38,13 +38,21 @@
             android:name=".Presentation.AllPostsActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".Presentation.WorkPostActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Presentation.ActivityPostActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Presentation.HousePostActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".Presentation.BaseActivity"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Presentation.CreateActivityActivity"
             android:screenOrientation="portrait"/>
-
 
     </application>
 
