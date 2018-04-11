@@ -1,4 +1,7 @@
 package integra.pesintegra.Services;
+import com.google.gson.JsonElement;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
@@ -12,8 +15,8 @@ import retrofit2.http.Query;
 
 public interface PostService {
 
-    @GET("post/get")
-    Call<Post> getPost(@Query("id") String id);
+    @GET("/post/get")
+    Call<Post> getPost(@Query("id") String value);
 
     /*@GET("books/{isbn}")
     Call<Book> get(@Path("isbn") String isbn);
@@ -21,6 +24,12 @@ public interface PostService {
     @POST("books/new")
     Call<Book> create(@Body Book book);*/
 
+   /* @GET("/post/all")
+    Call<ArrayList<Post>> getAllPosts();*/
+
+    @GET("/post/all")
+    Call<ArrayList<Post>> getAllPosts(@Query("type") String type);
+
     @POST("post/new")
-    Call<Post> createActivity(@Body Post post);
+    Call<Post> createPost(@Body Post post);
 }
