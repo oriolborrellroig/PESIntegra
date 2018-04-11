@@ -18,6 +18,7 @@ import java.util.List;
 
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.R;
 import integra.pesintegra.Services.PostService;
@@ -43,6 +44,20 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
+
+
+        /*for(int i= 0; i < 5; i++){
+            Post p = new Post_Activitat();
+            p.setTDataIni("12/05/2018");
+            p.setTitol("Empezamos");
+            list_posts.add(p);
+        }
+        listAdapter = new ListAdapter(list_posts);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(listAdapter);
+        */
         //getPostsFromDB();
 
         /*PostService service = ServiceManager.getPostService();
