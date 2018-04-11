@@ -1,6 +1,7 @@
 package integra.pesintegra.Presentation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -63,6 +64,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 popup.show(); //showing popup menu
             }
         }); //closing the setOnClickListener method
+
+        //Intent intent = getIntent();
+       // String image_name = intent.getStringExtra("bitmap_img");
+        Bitmap img_pre;
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        img_pre = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        iv.setImageBitmap(img_pre);
         /*
         if (la imatge del post no és nul·la){
             iv.setImageBitmap(Bitmap.createScaledBitmap(bitmap_del_post, iv.getMaxWidth(), iv.getMaxHeight(), false));

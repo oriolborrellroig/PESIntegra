@@ -150,15 +150,21 @@
             android:layout_weight="1"
             android:gravity="center">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:src="@mipmap/ic_insert_photo_black_36dp"
-            android:tint="@color/icons"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/add_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:src="@mipmap/ic_insert_photo_black_36dp"
+                android:tint="@color/icons"
+                app:layout_anchor="@id/app_bar"
+                app:layout_anchorGravity="bottom|end" />
+
+            <ImageView
+                android:id="@+id/img_prev"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:srcCompat="@mipmap/ic_plus_grey600_36dp" />
         </TableRow>
 
         <TableRow
