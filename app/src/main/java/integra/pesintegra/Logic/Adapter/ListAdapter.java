@@ -21,29 +21,8 @@ import integra.pesintegra.R;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
 
-    Context context;
+    private Context context;
     private List<Post> posts;
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView titol, dia;
-        public View v;
-
-        public MyViewHolder(View view) {
-            super(view);
-            titol = (TextView) view.findViewById(R.id.cv_titol);
-            dia = (TextView) view.findViewById(R.id.cv_dia);
-            v = view;
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Log.d("clicked", "---------------------------------------------------------------");
-                    //postactivity peta
-                    Intent intent = new Intent(context,PostActivity.class);
-                    context.startActivity(intent);
-                }
-            });
-        }
-    }
 
     public ListAdapter (List<Post> list_posts){
         this.posts = list_posts;
@@ -52,7 +31,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        this.context = parent.getContext();
+        context = parent.getContext();
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.activity_card, parent, false);
         CardView cv = (CardView) itemView.findViewById(R.id.cv);
@@ -66,6 +45,30 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         Post p = posts.get(position);
         holder.titol.setText(p.getTitol());
         holder.dia.setText(String.valueOf(p.getDataIni()));
+        holder.p = p;
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView titol, dia;
+        public Post p;
+        private final Context context2;
+
+        public MyViewHolder(View view) {
+            super(view);
+            titol = (TextView) view.findViewById(R.id.cv_titol);
+            dia = (TextView) view.findViewById(R.id.cv_dia);
+            context2 = view.getContext();
+            view.setClickable(true);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v){
+            final Intent intent;
+            intent = new Intent(context2, PostActivity.class);
+            intent.putExtra("post", p);
+            context2.startActivity(intent);
+        }
     }
 
     public Post getItem(int position){
