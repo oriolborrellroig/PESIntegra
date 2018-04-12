@@ -12,7 +12,9 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +38,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     Post post;
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
+    private CoordinatorLayout coordinatorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(this);
         iv = (ImageView) findViewById(R.id.imatge);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +56,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 //Creating the instance of PopupMenu
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 //Inflating the Popup using xml file
-                popup.getMenuInflater()
-                        .inflate(R.menu.popup_menu, popup.getMenu());
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -63,6 +66,19 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 "You Clicked : " + item.getTitle(),
                                 Toast.LENGTH_SHORT
                         ).show();
+                        if (item.getItemId() == R.id.hide_post){
+                            Snackbar snackbar = Snackbar
+                                    .make(coordinatorLayout, "Message is deleted", Snackbar.LENGTH_LONG)
+                                    .setAction("UNDO", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
+                                            snackbar1.show();
+                                        }
+                                    });
+
+                            snackbar.show();
+                        }
                         return true;
                     }
                 });
@@ -83,6 +99,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         post_data.setText(post.getDataIni());
         TextView post_text = (TextView) findViewById(R.id.post_text);
         post_text.setText(post.getDescripcio());
+        //iv.setImageBitmap(post.getImatge());
 
 
 
