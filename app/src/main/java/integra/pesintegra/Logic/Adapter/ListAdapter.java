@@ -13,7 +13,7 @@ import android.content.Intent;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
-import integra.pesintegra.Logic.Interface.CustomItemClickListener;
+//import integra.pesintegra.Logic.Interface.CustomItemClickListener;
 import integra.pesintegra.Presentation.CreateActivityActivity;
 import integra.pesintegra.Presentation.LoginActivity;
 import integra.pesintegra.Presentation.PostActivity;

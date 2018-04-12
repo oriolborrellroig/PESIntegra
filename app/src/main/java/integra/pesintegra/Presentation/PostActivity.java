@@ -104,6 +104,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         */
 
+        TextView titol = (TextView)findViewById(R.id.post_titol);
+        
+
     }
 
     @Override
