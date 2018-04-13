@@ -113,9 +113,5 @@ public abstract class Post implements Serializable {
         return imatge;
     }
 
-    public boolean equals(Post obj) {
-
-        return (this.id.equals(obj.getId()));
-    }
 
 }
