@@ -17,7 +17,7 @@ public abstract class Post implements Serializable {
     private String datafi;
     private String hora;
     private String direccio;
-    private Uri uri;
+    private String uri;
     private char tipus;
     private Bitmap imatge;
 
@@ -85,11 +85,11 @@ public abstract class Post implements Serializable {
         this.direccio = direccio;
     }
 
-    public Uri getUri(){
+    public String getUri(){
         return this.uri;
     }
 
-    public void setUri(Uri uri){
+    public void setUri(String uri){
         this.uri = uri;
     }
 
