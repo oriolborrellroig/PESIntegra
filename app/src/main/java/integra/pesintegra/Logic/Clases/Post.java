@@ -112,4 +112,10 @@ public abstract class Post implements Serializable {
     public Bitmap getImatge() {
         return imatge;
     }
+
+    public boolean equals(Post obj) {
+
+        return (this.id.equals(obj.getId()));
+    }
+
 }

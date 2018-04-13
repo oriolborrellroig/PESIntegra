@@ -33,9 +33,12 @@ import java.io.FileOutputStream;
 import java.util.Calendar;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Controllers.ControladorServeisCreateActivity;
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
+import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
 import retrofit2.Call;
@@ -50,6 +53,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     ImageView iv;
     Bitmap bitmapImage;
+    Post new_post;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,14 +169,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
 
-
-                //Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc);
-                //PostService = ServiceManager.getPostService();
-
-
-
-
-                Post new_post = new Post_Activitat();
+                 new_post = new Post_Activitat();
 
                 try {
                     Intent intent = getIntent();
@@ -184,37 +182,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                     }
 
-                    ///////AIXO CREA UN POST////
-                    PostService service = ServiceManager.getPostService();
-                    Call<Void> createCall = service.createPost(new_post);
-                    createCall.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            String message = t.getMessage();
-                            Log.d("failure", message);
-
-                        }
-                    });
-                    ///////////////////////////
-
-
-                    Intent intent_act = new Intent(getApplicationContext(), PostActivity.class);
-
-                    if (bitmapImage != null){
-                        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                        bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-                        byte[] byteArray = bStream.toByteArray();
-                    }
-
-                    //intent_act.putExtra("image", byteArray);
-                    intent_act.putExtra("post", new_post);
-
-                    this.finish();
-                    startActivity(intent_act);
+                    ControladorServeisCreateActivity controlador = new ControladorServeisCreateActivity(this, getApplicationContext());
+                    controlador.createPost(new_post,imageUri);
 
                     break;
 
@@ -249,6 +218,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         int amplada = iv.getMaxWidth();
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
                         iv.setImageBitmap(bitmapImage);
+                        imageUri = selectedImage;
                         //guardar imatge a la bd
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -297,6 +267,20 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             fileName = null;
         }
         return fileName;
+    }
+
+    public void showNewPost(Context ctx) {
+        Intent intent_act = new Intent(ctx, PostActivity.class);
+
+        if (bitmapImage != null) {
+            ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+            byte[] byteArray = bStream.toByteArray();
+        }
+        //intent_act.putExtra("image", byteArray);
+        intent_act.putExtra("post", new_post);
+        this.finish();
+        startActivity(intent_act);
     }
 
 

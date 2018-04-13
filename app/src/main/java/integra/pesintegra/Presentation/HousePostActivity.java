@@ -1,4 +1,5 @@
 package integra.pesintegra.Presentation;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorServeisHousePosts;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Feina;
@@ -28,8 +30,8 @@ import retrofit2.Response;
 
 public class HousePostActivity extends BaseActivity implements View.OnClickListener {
 
-    private RecyclerView recyclerView;
-    private ListAdapter listAdapter;
+    private static RecyclerView recyclerView;
+    private static ListAdapter listAdapter;
     private boolean fabIsOpen = false;
     private List<Post> list_posts = new ArrayList<>();
 
@@ -44,38 +46,6 @@ public class HousePostActivity extends BaseActivity implements View.OnClickListe
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         getPostsFromDB();
 
-        /*PostService service = ServiceManager.getPostService();
-        Call<Post> createCall = service.getPost("2");
-        createCall.enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                list_posts.add(response.body());
-                Log.d("app", response.body().getTitol());
-                listAdapter = new ListAdapter(list_posts);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(listAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-            }
-        });*/
-
-        /*Call<Post> createCall = service.createPost(p);
-        createCall.enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-                String message = t.getMessage();
-                Log.d("failure", message);
-
-            }
-        });*/
 
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(this);
@@ -83,25 +53,8 @@ public class HousePostActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void getPostsFromDB() {
-        PostService service = ServiceManager.getPostService();
-
-        Call<ArrayList<Post>> createCall2 = service.getAllPosts("home");
-        createCall2.enqueue(new Callback<ArrayList<Post>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                list_posts.clear();
-                list_posts.addAll(response.body());
-                listAdapter = new ListAdapter(list_posts);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(listAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
-            }
-        });
+        ControladorServeisHousePosts controlador = new ControladorServeisHousePosts(this,getApplicationContext());
+        controlador.loadFeedPosts();
     }
 
     @Override
@@ -128,5 +81,13 @@ public class HousePostActivity extends BaseActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
         }
+    }
+
+    public static void updateFeed(ArrayList<Post> body, Context context) {
+        listAdapter = new ListAdapter(body);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(listAdapter);
     }
 }

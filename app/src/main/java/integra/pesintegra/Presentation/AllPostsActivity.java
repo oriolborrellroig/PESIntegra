@@ -1,4 +1,5 @@
 package integra.pesintegra.Presentation;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorServeis;
+import integra.pesintegra.Controllers.ControladorServeisAllPostsActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
@@ -29,8 +32,8 @@ import retrofit2.Response;
 
 public class AllPostsActivity extends BaseActivity implements View.OnClickListener {
 
-    private RecyclerView recyclerView;
-    private ListAdapter listAdapter;
+    private static ListAdapter listAdapter;
+    private static RecyclerView recyclerView;
     private boolean fabIsOpen = false;
     private List<Post> list_posts = new ArrayList<>();
 
@@ -109,25 +112,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void getPostsFromDB() {
-        PostService service = ServiceManager.getPostService();
-
-        Call<ArrayList<Post>> createCall2 = service.getAllPosts("any");
-        createCall2.enqueue(new Callback<ArrayList<Post>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                list_posts.clear();
-                list_posts.addAll(response.body());
-                listAdapter = new ListAdapter(list_posts);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(listAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
-            }
-        });
+        ControladorServeisAllPostsActivity cs = new ControladorServeisAllPostsActivity(this,getApplicationContext());
+        cs.loadFeedPosts();
     }
 
     @Override
@@ -242,6 +228,17 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 intent.putExtra("flag", "F");
                 startActivity(intent);
                 break;
+            case R.id.recycler :
+                int position = recyclerView.getChildLayoutPosition(v);
+                Log.d("Pos " , ((Integer) position).toString());
         }
+    }
+
+    public static void updateFeed(ArrayList<Post> body, Context ctx) {
+        listAdapter = new ListAdapter(body);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(listAdapter);
     }
 }

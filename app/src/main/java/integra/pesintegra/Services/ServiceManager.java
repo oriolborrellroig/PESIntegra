@@ -23,5 +23,17 @@ public class ServiceManager {
         return service;
     }
 
+    public static ImageService getImageService() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Post.class, new JsonPostAdapter());
+        Gson gsonExt = builder.create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://pesintegratest.herokuapp.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final ImageService service = retrofit.create(ImageService.class);
+        return service;
+    }
 
 }
