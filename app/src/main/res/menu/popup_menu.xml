@@ -2,14 +2,14 @@
 
     <item
         android:id="@+id/hide_post"
-        android:title="Amagar Activitat"/>
+        android:title="Amagar post"/>
 
     <item
-        android:id="@+id/two"
-        android:title="Two"/>
+        android:id="@+id/editar_post"
+        android:title="Editar post"/>
 
     <item
-        android:id="@+id/three"
-        android:title="Three"/>
+        android:id="@+id/borrar_post"
+        android:title="Borrar post"/>
 
 </menu>

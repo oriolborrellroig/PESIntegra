@@ -66,18 +66,27 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 "You Clicked : " + item.getTitle(),
                                 Toast.LENGTH_SHORT
                         ).show();
-                        if (item.getItemId() == R.id.hide_post){
-                            Snackbar snackbar = Snackbar
-                                    .make(coordinatorLayout, "Message is deleted", Snackbar.LENGTH_LONG)
-                                    .setAction("UNDO", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
-                                            snackbar1.show();
-                                        }
-                                    });
 
-                            snackbar.show();
+                        switch (item.getItemId()){
+                            case R.id.hide_post:
+                                Snackbar snackbar = Snackbar
+                                        .make(coordinatorLayout, "Message is deleted", Snackbar.LENGTH_LONG)
+                                        .setAction("UNDO", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
+                                                snackbar1.show();
+                                            }
+                                        });
+
+                                snackbar.show();
+                                break;
+                            case R.id.borrar_post:
+
+                                break;
+                            case R.id.editar_post:
+
+                                break;
                         }
                         return true;
                     }

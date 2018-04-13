@@ -204,9 +204,12 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
                     Intent intent_act = new Intent(getApplicationContext(), PostActivity.class);
 
-                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
-                    bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
-                    byte[] byteArray = bStream.toByteArray();
+                    if (bitmapImage != null){
+                        ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                        bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                        byte[] byteArray = bStream.toByteArray();
+                    }
+
                     //intent_act.putExtra("image", byteArray);
                     intent_act.putExtra("post", new_post);
 
