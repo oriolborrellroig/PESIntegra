@@ -19,15 +19,6 @@ public interface PostService {
     @GET("/post/get")
     Call<Post> getPost(@Query("id") String value);
 
-    /*@GET("books/{isbn}")
-    Call<Book> get(@Path("isbn") String isbn);
-
-    @POST("books/new")
-    Call<Book> create(@Body Book book);*/
-
-   /* @GET("/post/all")
-    Call<ArrayList<Post>> getAllPosts();*/
-
     @GET("/post/all")
     Call<ArrayList<Post>> getAllPosts(@Query("type") String type);
 

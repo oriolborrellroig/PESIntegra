@@ -260,6 +260,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
             fo.write(bytes.toByteArray());
+            fo.write(bytes.toByteArray());
             // remember close file output
             fo.close();
         } catch (Exception e) {

@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import integra.pesintegra.Controllers.ControladorServeisPostOpen;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
@@ -81,9 +83,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                                 snackbar.show();
                                 break;
-                            case R.id.borrar_post:
 
+                            case R.id.borrar_post:
+                                onDelete();
                                 break;
+
                             case R.id.editar_post:
 
                                 break;
@@ -195,5 +199,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
         BitmapFactory.Options o2 = new BitmapFactory.Options();
         o2.inSampleSize = scale;
         return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
+    }
+
+    private void onDelete () {
+        ControladorServeisPostOpen controlador = new ControladorServeisPostOpen(this, getApplicationContext());
+        controlador.deletePost(post.getId());
+        this.finish();
     }
 }
