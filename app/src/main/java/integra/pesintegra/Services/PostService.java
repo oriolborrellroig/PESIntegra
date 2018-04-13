@@ -8,6 +8,7 @@ import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -31,5 +32,8 @@ public interface PostService {
     Call<ArrayList<Post>> getAllPosts(@Query("type") String type);
 
     @POST("post/new")
-    Call<Post> createPost(@Body Post post);
+    Call<Void> createPost(@Body Post post);
+
+    @DELETE("/post/delete")
+    Call<Void> deletePost(@Query("id") String value);
 }

@@ -186,14 +186,14 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
                     ///////AIXO CREA UN POST////
                     PostService service = ServiceManager.getPostService();
-                    Call<Post> createCall = service.createPost(new_post);
-                    createCall.enqueue(new Callback<Post>() {
+                    Call<Void> createCall = service.createPost(new_post);
+                    createCall.enqueue(new Callback<Void>() {
                         @Override
-                        public void onResponse(Call<Post> call, Response<Post> response) {
+                        public void onResponse(Call<Void> call, Response<Void> response) {
                         }
 
                         @Override
-                        public void onFailure(Call<Post> call, Throwable t) {
+                        public void onFailure(Call<Void> call, Throwable t) {
                             String message = t.getMessage();
                             Log.d("failure", message);
 
