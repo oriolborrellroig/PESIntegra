@@ -24,7 +24,7 @@ public abstract class AbstractBaseController {
                 throw new Exception("La data és anterior, no és vàlida. Mes incorrecte.");
             }
             else if (Integer.parseInt(d.substring(3, 5)) == month + 1 ) {
-                if (Integer.parseInt(d.substring(0, 2)) < day ) {
+                if (Integer.parseInt(d.substring(0, 2)) <= day ) {
                     throw new Exception("La data és anterior, no és vàlida. Dia incorrecte.");
                 }
             }
