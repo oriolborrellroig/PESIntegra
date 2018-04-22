@@ -61,7 +61,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(listAdapter);
         */
-        //getPostsFromDB();
+        /*getPostsFromDB();*/
 
         /*PostService service = ServiceManager.getPostService();
         Call<Post> createCall = service.getPost("2");
