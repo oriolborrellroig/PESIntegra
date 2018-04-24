@@ -39,6 +39,7 @@ public class ActivityPostActivity extends BaseActivity implements View.OnClickLi
     private FloatingActionButton fabAdd;
 
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
