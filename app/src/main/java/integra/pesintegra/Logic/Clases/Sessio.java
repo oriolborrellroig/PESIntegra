@@ -30,4 +30,11 @@ public class Sessio {
 
 
     }
+
+    public void resetSessio() {
+        username = "";
+        password = "";
+        mail = "";
+        idioma = "";
+    }
 }

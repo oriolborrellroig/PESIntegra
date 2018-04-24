@@ -15,16 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.R;
 
 public class BaseActivity extends Activity implements NavigationView.OnNavigationItemSelectedListener {
 
+    ControladorPresentacio cntrlPresentacio;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_base);
         setView();
 
@@ -119,7 +122,9 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                cntrlPresentacio.logout();
                                 startActivity(finishApp);
+
                             }
                         })
                         .setNegativeButton("No", null)

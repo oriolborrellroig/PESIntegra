@@ -64,5 +64,8 @@ public class ControladorPresentacio extends AbstractBaseController {
         return feina;
     }
 
+    public void logout() {
+        cntrlDom.logout();
+    }
 
 }

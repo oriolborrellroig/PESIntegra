@@ -31,6 +31,45 @@ public abstract class AbstractBaseController {
         }
     }
 
+    public Boolean comprovaDataExpired(String d) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int dayExpire = Integer.parseInt(d.substring(0, 2)) + 7;
+        int monthExpire;
+        int yearExpire;
+            if (dayExpire > 31) {
+                dayExpire = dayExpire - 31;
+                monthExpire = Integer.parseInt(d.substring(3, 5)) + 1;
+                if (monthExpire > 12) {
+                    monthExpire = monthExpire - 12;
+                    yearExpire = Integer.parseInt(d.substring(6, 10)) + 1;
+                }
+                else {
+                    yearExpire = Integer.parseInt(d.substring(6, 10));
+                }
+            }
+            else {
+                monthExpire = Integer.parseInt(d.substring(3, 5));
+                yearExpire = Integer.parseInt(d.substring(6, 10));
+            }
+        if (yearExpire < year ) {
+            return Boolean.TRUE;
+        }
+        else if (yearExpire == year ) {
+            if (monthExpire < month + 1) {
+                return Boolean.TRUE;
+            }
+            else if (monthExpire == month + 1 ) {
+                if (dayExpire <= day ) {
+                    return Boolean.TRUE;
+                }
+            }
+        }
+        return Boolean.FALSE;
+    }
+
 
     /*public void comprovaHoraValida(String h){
 
