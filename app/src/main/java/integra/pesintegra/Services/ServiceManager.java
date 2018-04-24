@@ -44,4 +44,15 @@ public class ServiceManager {
         final InfoService service = retrofit.create(InfoService.class);
         return service;
     }
+
+    public static UserService getUserService() {
+        GsonBuilder builder = new GsonBuilder();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://pesintegratest.herokuapp.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final UserService service = retrofit.create(UserService.class);
+        return service;
+    }
 }
