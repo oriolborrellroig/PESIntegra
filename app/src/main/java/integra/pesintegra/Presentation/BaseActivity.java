@@ -85,7 +85,8 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 startActivity(intent);
                 break;
             case R.id.profile:
-
+                intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.information:
                 intent = new Intent(getApplicationContext(), InformationActivity.class);
