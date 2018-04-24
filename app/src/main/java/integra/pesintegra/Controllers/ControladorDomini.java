@@ -17,6 +17,7 @@ public class ControladorDomini extends AbstractBaseController {
         super();
         this.usuari = usuari;
         this.cntrlPres = controladorPresentacio;
+        
 
 
     }

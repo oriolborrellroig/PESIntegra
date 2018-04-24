@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/user_mail"
+                android:layout_weight="3"
+                android:hint="prova@pes.esi.upc.edu"
+                android:textSize="20dp"
+                android:textColor="@color/primary_dark"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:drawableLeft="@mipmap/ic_email_black_24dp"
+                android:gravity="center"
+                ></TextView>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/user_birth_date"
+                android:layout_weight="3"
+                android:hint="27/01/1996"
+                android:textSize="20dp"
+                android:textColor="@color/primary_dark"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:drawableLeft="@mipmap/ic_today_black_36dp"
+                android:gravity="center" ></TextView>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/user_country"
+                android:layout_weight="3"
+                android:hint="India"
+                android:textSize="20dp"
+                android:textColor="@color/primary_dark"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:drawableLeft="@mipmap/ic_map_marker_grey600_36dp"
+                android:gravity="center" ></TextView>
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/primary_dark"/>
+
+        <TableRow>
+
+        </TableRow>
+
+    </TableLayout>
+
+</android.support.v4.widget.NestedScrollView>

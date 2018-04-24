@@ -85,7 +85,8 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 startActivity(intent);
                 break;
             case R.id.profile:
-
+                intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.information:
                 intent = new Intent(getApplicationContext(), InformationActivity.class);
@@ -110,11 +111,15 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 break;
             case R.id.logout:
                 new AlertDialog.Builder(this)
-                        .setMessage("Segur que vols sortir?")
+                        .setMessage("Segur que vols sortir de l'aplicació?")
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finish();
+                                Intent finishApp = new Intent (BaseActivity.this, LoginActivity.class);
+                                finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                finishApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(finishApp);
                             }
                         })
                         .setNegativeButton("No", null)
