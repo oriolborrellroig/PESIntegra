@@ -18,6 +18,7 @@ public abstract class Post implements Serializable {
     private String hora;
     private String direccio;
     private String uri;
+    private String owner;
     private char tipus;
     private Bitmap imatge;
 
@@ -26,13 +27,14 @@ public abstract class Post implements Serializable {
         this.tipus = tipus;
     }
 
-    Post(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, char tipus){
+    Post(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, String owner, char tipus){
         this.titol = titol;
         this.descripcio = descripcio;
         this.dataini = dataini;
         this.datafi = datafi;
         this.hora = hora;
         this.direccio = direccio;
+        this.owner = owner;
         this.tipus = tipus;
         setId();
     }
@@ -114,4 +116,11 @@ public abstract class Post implements Serializable {
     }
 
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 }
