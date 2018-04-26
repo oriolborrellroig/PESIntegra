@@ -7,6 +7,7 @@ import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Presentation.LoginActivity;
+import integra.pesintegra.Controllers.ControladorServeisLoginActivity;
 
 public class ControladorPresentacio extends AbstractBaseController {
 

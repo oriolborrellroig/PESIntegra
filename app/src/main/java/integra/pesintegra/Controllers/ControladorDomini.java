@@ -32,7 +32,4 @@ public class ControladorDomini extends AbstractBaseController {
     public void creaPostFeina(Post_Feina feina) {
     }
 
-    public boolean comprova_login(String email, String pass){
-        return true;
-    }
 }
