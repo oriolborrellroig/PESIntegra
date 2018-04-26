@@ -2,17 +2,23 @@ package integra.pesintegra.Presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.R;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
+
+    ControladorPresentacio cp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         entrar_btn.setOnClickListener(this);
         Button login_btn = (Button)findViewById(R.id.login_register);
         login_btn.setOnClickListener(this);
+        this.cp = new ControladorPresentacio();
 
     }
 
@@ -31,8 +38,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         Intent intent;
         switch (v.getId()) {
             case R.id.login_entrar:
-                intent = new Intent(getApplicationContext(),AllPostsActivity.class);
-                startActivity(intent);
+                String username = ((EditText)findViewById(R.id.input_email)).getText().toString();
+                String pass = ((EditText)findViewById(R.id.input_password)).getText().toString();
+                cp.comprova_login(this, username, pass);
                 break;
             case R.id.login_register:
                 intent = new Intent(getApplicationContext(),RegisterActivity.class);
@@ -55,5 +63,22 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 .show();
 
 
+    }
+
+    public void rejectLogin(Context context) {
+        //TODO: Aquesta funcio es crida quan el login no es valid
+        ((EditText)findViewById(R.id.input_password)).setText("");
+        Toast.makeText(
+                LoginActivity.this,
+                "Email o password incorrectes",
+                Toast.LENGTH_SHORT
+        ).show();
+
+    }
+
+    public void acceptLogin(Context context) {
+        //TODO: Aquesta funcio es crida quan el login es acceptat
+        Intent intent = new Intent(getApplicationContext(),AllPostsActivity.class);
+        startActivity(intent);
     }
 }

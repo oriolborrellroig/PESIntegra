@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import java.util.regex.Pattern;
 
 import java.util.Calendar;
 
+import integra.pesintegra.Controllers.ControladorServeisRegisterActivity;
+import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
@@ -113,8 +116,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String dataN = ((TextView) findViewById(R.id.register_datanaixement)).getText().toString();
 
                 if (comprovar_camps(pass1, pass2, email, dataN)){
-                    intent = new Intent(getApplicationContext(),AllPostsActivity.class);
-                    startActivity(intent);
+
+                    User userTest = new User("1", "testmail1@mail.com", "TestUsername1", "TestPassword","TestTipus", "testData" );
+                    ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
+                    controlador.doRegister(userTest);
+                    //intent = new Intent(getApplicationContext(),AllPostsActivity.class);
+                    //startActivity(intent);
                     this.finish();
                 }else{
                     //mostrar missatge d'error
@@ -143,6 +150,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = new DatePickerFragment(dateEditText);
         newFragment.show(getFragmentManager().beginTransaction(), "datePicker");
+    }
+
+    public void logIn(Context context) {
+        Intent intent;
+        intent = new Intent(context,AllPostsActivity.class);
+        startActivity(intent);
     }
 }
 

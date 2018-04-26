@@ -1,14 +1,18 @@
 package integra.pesintegra.Controllers;
 
-
+import android.app.Application;
+import android.content.Context;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
+import integra.pesintegra.Presentation.LoginActivity;
+import integra.pesintegra.Controllers.ControladorServeisLoginActivity;
 
 public class ControladorPresentacio extends AbstractBaseController {
 
     private ControladorDomini cntrlDom;
+    private ApplicationContextProvider context;
 
     public ControladorPresentacio() {
         super();
@@ -67,5 +71,11 @@ public class ControladorPresentacio extends AbstractBaseController {
     public void logout() {
         cntrlDom.logout();
     }
+
+    public void comprova_login(LoginActivity la, String username, String pass){
+        ControladorServeisLoginActivity controlador = new ControladorServeisLoginActivity(la, context.getContext());
+        controlador.checkLogin(username, pass);
+    }
+
 
 }
