@@ -68,6 +68,7 @@ public class ControladorPresentacio extends AbstractBaseController {
         return feina;
     }
 
+    //poder fer comit
     public void logout() {
         cntrlDom.logout();
     }
@@ -76,6 +77,5 @@ public class ControladorPresentacio extends AbstractBaseController {
         ControladorServeisLoginActivity controlador = new ControladorServeisLoginActivity(la, context.getContext());
         controlador.checkLogin(username, pass);
     }
-
 
 }
