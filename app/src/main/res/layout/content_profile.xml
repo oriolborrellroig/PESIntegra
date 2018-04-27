@@ -53,9 +53,145 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_margin="30dp"
             android:background="@color/primary_dark"/>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_esport"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Esport"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_musica"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Música"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_cinema"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cinema"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+            </GridLayout>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_lectura"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lectura"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_tech"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tecnologia"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_cuina"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cuina"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+            </GridLayout>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_moda"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Moda"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_viatges"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Viatges"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_art"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Art"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+            </GridLayout>
 
         </TableRow>
 
