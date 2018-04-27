@@ -117,11 +117,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
                 if (comprovar_camps(pass1, pass2, email, dataN)){
 
-                    User userTest = new User("1", "testmail1@mail.com", "TestUsername1", "TestPassword","TestTipus", "testData" );
+                    //User userTest = new User("1", "testmail1@mail.com", "TestUsername1", "TestPassword","TestTipus", "testData" );
+                    User newUser = new User(email, pass1, "usuari", dataN);
                     ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
-                    controlador.doRegister(userTest);
-                    //intent = new Intent(getApplicationContext(),AllPostsActivity.class);
-                    //startActivity(intent);
+                    controlador.doRegister(newUser);
+                    intent = new Intent(getApplicationContext(),AllPostsActivity.class);
+                    startActivity(intent);
                     this.finish();
                 }else{
                     //mostrar missatge d'error

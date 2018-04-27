@@ -1,5 +1,7 @@
 package integra.pesintegra.Logic.Clases;
 
+import java.util.UUID;
+
 public class User {
     private String id;
     private String mail;
@@ -8,10 +10,10 @@ public class User {
     private String tipus;
     private String data;
 
-    public User(String s, String s1, String testUsername1, String testPassword, String testTipus, String testData) {
-        this.id = s;
+    public User(String s1, String testPassword, String testTipus, String testData) {
+        setId();
         this.mail = s1;
-        this.username = testUsername1;
+        setUsernameFromEmail();
         this.password = testPassword;
         this.tipus = testTipus;
         this.data = testData;
@@ -63,5 +65,14 @@ public class User {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public void setId() {
+        this.id = this.tipus + '_' + UUID.randomUUID().toString();
+    }
+
+    public void setUsernameFromEmail() {
+        int index = this.mail.indexOf('@');
+        this.username = this.mail.substring(0,index);
     }
 }
