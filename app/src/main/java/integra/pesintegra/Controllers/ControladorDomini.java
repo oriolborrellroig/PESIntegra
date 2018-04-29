@@ -14,11 +14,7 @@ public class ControladorDomini extends AbstractBaseController {
 
     public ControladorDomini(ControladorPresentacio controladorPresentacio) {
         super();
-        this.usuari = usuari;
         this.cntrlPres = controladorPresentacio;
-        
-
-
     }
 
     public void creaPostActivitat(Post_Activitat activitat) {
