@@ -36,6 +36,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private static RecyclerView recyclerView;
     private boolean fabIsOpen = false;
     private List<Post> list_posts = new ArrayList<>();
+    private String postType = "none";
 
     private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
@@ -45,7 +46,10 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            postType = bundle.getString("type");
+        }
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         //creant posts sense BD
@@ -113,7 +117,18 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     private void getPostsFromDB() {
         ControladorServeisAllPostsActivity cs = new ControladorServeisAllPostsActivity(this,getApplicationContext());
-        cs.loadFeedPosts();
+        if (postType.equals("any")) {
+            cs.loadFeedAnyPosts();
+        }
+        else if (postType.equals("house")) {
+            cs.loadFeedHousePosts();
+        }
+        else if (postType.equals("work")) {
+            cs.loadFeedWorkPosts();
+        }
+        else if (postType.equals("activity")){
+            cs.loadFeedActivityPosts();
+        }
     }
 
     @Override
