@@ -126,7 +126,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                cntrlPresentacio.logout();
+                                //cntrlPresentacio.logout();
                                 startActivity(finishApp);
 
                             }

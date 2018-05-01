@@ -37,4 +37,10 @@ public class Sessio {
         mail = "";
         idioma = "";
     }
+
+    public void comprova_password(String password) throws Exception{
+
+        if (!this.password.equals(password)) throw new Exception("Password incorrecte");
+        
+    }
 }

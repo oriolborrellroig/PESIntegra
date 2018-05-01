@@ -9,16 +9,18 @@ import integra.pesintegra.Logic.Clases.Sessio;
 
 public class ControladorDomini extends AbstractBaseController {
 
+    private ControladorServeis cntrlServeis;
     private ControladorPresentacio cntrlPres;
     private Sessio usuari;
 
     public ControladorDomini(ControladorPresentacio controladorPresentacio) {
         super();
-        this.usuari = usuari;
         this.cntrlPres = controladorPresentacio;
-        
+        this.cntrlServeis = new ControladorServeis();
+    }
 
-
+    public void setUsuari(Sessio usuari) {
+        this.usuari = usuari;
     }
 
     public void creaPostActivitat(Post_Activitat activitat) {
@@ -39,5 +41,9 @@ public class ControladorDomini extends AbstractBaseController {
 
     public void logout() {
         usuari.resetSessio();
+    }
+
+    public void comprova_contrasenya_usuari(String password) throws Exception {
+        usuari.comprova_password(password);
     }
 }

@@ -47,7 +47,9 @@
         <activity
             android:name=".Presentation.ProfileActivity"
             android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".Presentation.ChangeMailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -64,7 +64,25 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String pass2 = ((EditText) findViewById(R.id.register_confirmacio_pass)).getText().toString();
                 String email = ((EditText) findViewById(R.id.register_email)).getText().toString();
                 String dataN = ((TextView) findViewById(R.id.register_datanaixement)).getText().toString();
+                try {
+                    User newUser = cp.comprovar_camps(pass1, pass2, email, dataN);
+                    ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
+                    controlador.doRegister(newUser);
+                    intent = new Intent(getApplicationContext(),AllPostsActivity.class);
+                    startActivity(intent);
+                    this.finish();
+                    break;
 
+                } catch (Exception e) {
+                    new AlertDialog.Builder(this)
+                            .setTitle("ERROR")
+                            .setMessage(e.getMessage())
+                            .setNeutralButton("Torna", null)
+                            .show();
+                }
+                break;
+
+                /*
                 if (cp.comprovar_camps(pass1, pass2, email, dataN)){
 
                     //User userTest = new User("1", "testmail1@mail.com", "TestUsername1", "TestPassword","TestTipus", "testData" );
@@ -92,9 +110,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                                 .setNegativeButton("OK", null)
                                 .show();
                     }
-                }
-
-                break;
+                }*/
         }
     }
 

@@ -1,5 +1,6 @@
 package integra.pesintegra.Presentation;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_profile);
         setView();
 
+        Button change_email = (Button)findViewById(R.id.btn_change_mail);
+        change_email.setOnClickListener(this);
+
         /*Button button_esport = findViewById(R.id.btn_esport);
         button_esport.setBackgroundColor(Color.parseColor("#C5CAE9")); (....)*/
     }
@@ -36,6 +40,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View view) {
 
         switch (view.getId()) {
+
+            case R.id.btn_change_mail:
+                Intent intent = new Intent(getApplicationContext(), ChangeMailActivity.class);
+                startActivity(intent);
+                break;
+
+
             case R.id.btn_esport:
                 button = findViewById(R.id.btn_esport);
 
