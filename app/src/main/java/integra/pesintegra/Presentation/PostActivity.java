@@ -1,7 +1,9 @@
 package integra.pesintegra.Presentation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -58,7 +60,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 //Creating the instance of PopupMenu
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 //Inflating the Popup using xml file
-                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+                if(post.isShowed()) popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+                else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -70,27 +73,46 @@ public class PostActivity extends Activity implements View.OnClickListener{
                         ).show();
 
                         switch (item.getItemId()){
-                            case R.id.hide_post:
+                            case R.id.show_post:
+                                post.setShow();
                                 Snackbar snackbar = Snackbar
-                                        .make(coordinatorLayout, "Message is deleted", Snackbar.LENGTH_LONG)
+                                        .make(coordinatorLayout, "Message is showed again", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
-                                                snackbar1.show();
+                                                post.setShow();
+                                                Snackbar snackbar2 = Snackbar.make(coordinatorLayout, "Request canceled!", Snackbar.LENGTH_SHORT);
+                                                snackbar2.show();
                                             }
                                         });
 
                                 snackbar.show();
                                 break;
+                            case R.id.hide_post:
+                                post.setHidden();
+                                Snackbar snackbar3 = Snackbar
+                                        .make(coordinatorLayout, "Message is hidden", Snackbar.LENGTH_LONG)
+                                        .setAction("UNDO", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                post.setShow();
+                                                Snackbar snackbar4 = Snackbar.make(coordinatorLayout, "Message is showed!", Snackbar.LENGTH_SHORT);
+                                                snackbar4.show();
+                                            }
+                                        });
+
+                                snackbar3.show();
+                                break;
 
                             case R.id.borrar_post:
                                 onDelete();
+
                                 break;
 
                             case R.id.editar_post:
 
                                 break;
+
                         }
                         return true;
                     }
@@ -143,6 +165,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_post_back:
+                Intent data = new Intent();
+                data.putExtra("post", post);
+                setResult(RESULT_OK, data);
                 this.finish();
                 break;
             case R.id.fab:

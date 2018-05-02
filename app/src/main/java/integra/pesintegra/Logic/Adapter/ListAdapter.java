@@ -43,9 +43,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Post p = posts.get(position);
-        holder.titol.setText(p.getTitol());
-        holder.dia.setText(String.valueOf(p.getDataIni()));
-        holder.p = p;
+        if(p.isShowed()){
+            holder.titol.setText(p.getTitol());
+            holder.dia.setText(String.valueOf(p.getDataIni()));
+            holder.p = p;
+        }
+        else{
+
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -64,12 +69,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
 
         @Override
         public void onClick(View v){
-            final Intent intent;
-            intent = new Intent(context2, PostActivity.class);
+            final Intent intent = new Intent(context2, PostActivity.class);
             intent.putExtra("post", p);
             context2.startActivity(intent);
         }
     }
+
+
+
 
     public Post getItem(int position){
         return posts.get(position);

@@ -22,6 +22,9 @@ public interface PostService {
     @GET("/post/all")
     Call<ArrayList<Post>> getAllPosts(@Query("type") String type);
 
+    @GET("/post/hidden")
+    Call<ArrayList<Post>> getHiddenPost (@Query("hidden") String hidden);
+
     @POST("post/new")
     Call<Void> createPost(@Body Post post);
 

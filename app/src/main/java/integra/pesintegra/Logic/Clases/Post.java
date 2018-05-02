@@ -20,9 +20,11 @@ public abstract class Post implements Serializable {
     private String uri;
     private char tipus;
     private Bitmap imatge;
+    private boolean hidden;
 
     public Post(char tipus){
         setId();
+        setShow();
         this.tipus = tipus;
     }
 
@@ -35,6 +37,7 @@ public abstract class Post implements Serializable {
         this.direccio = direccio;
         this.tipus = tipus;
         setId();
+        setShow();
     }
 
     public String getTitol(){
@@ -113,5 +116,10 @@ public abstract class Post implements Serializable {
         return imatge;
     }
 
+    public void setHidden (){this.hidden=true;}
+
+    public void setShow(){this.hidden=false;}
+
+    public boolean isShowed(){return !this.hidden;}
 
 }
