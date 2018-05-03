@@ -23,7 +23,7 @@ public class ControladorServeisLoginActivity extends ControladorServeis {
     }
     public void checkLogin (String username, String password) {
         UserService service = this.getServiceManager().getUserService();
-        Call<User> createCall2 = service.getUser(username, password);
+        Call<User> createCall2 = service.loginUser(username, password);
         createCall2.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

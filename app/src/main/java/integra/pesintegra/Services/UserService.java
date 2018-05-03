@@ -12,8 +12,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface UserService {
+    @GET("/users/login")
+    Call<User> loginUser(@Query("usr") String usr, @Query("pas") String pas);
+
     @GET("/users/get")
-    Call<User> getUser(@Query("usr") String usr, @Query("pas") String pas);
+    Call<User> getUser(@Query("usr") String usr);
 
     @POST("users/new")
     Call<Void> createUser(@Body User user);
