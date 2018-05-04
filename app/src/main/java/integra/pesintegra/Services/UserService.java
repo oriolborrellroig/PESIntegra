@@ -23,4 +23,10 @@ public interface UserService {
 
     @PATCH("users/updateMail")
     Call<Void> updateMailUser(@Query("usrid") String userid, @Query("mail") String mail);
+
+    @PATCH("users/updateAddToHide")
+    Call<Void> updateAddToHide(@Query("usrid") String userid, @Query("postid") String postid);
+
+    @PATCH("users/updateRemoveToHide")
+    Call<Void> updateRemoveToHide(@Query("usrid") String userid, @Query("postid") String postid);
 }
