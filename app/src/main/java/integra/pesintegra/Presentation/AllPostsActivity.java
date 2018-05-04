@@ -264,7 +264,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
         listAdapter = new ListAdapter(body);
-        System.out.println("--------------------------------------Entro en el updateFedd-----------------------");
         listAdapter.removeHidden(new LoginActivity().getCurrentUser().getHiddenPosts());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);

@@ -90,7 +90,7 @@ public class User {
 
     public int isInHiddenList(String idPost){
         for(int i = 0; i < hiddenPosts.size(); ++i){
-            if(hiddenPosts.get(i) == idPost) return i;
+            if(hiddenPosts.get(i).equals(idPost)) return i;
         }
         return -1;
     }

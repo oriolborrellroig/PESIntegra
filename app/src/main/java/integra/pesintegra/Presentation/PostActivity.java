@@ -43,6 +43,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
+    private final LoginActivity li = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 //Creating the instance of PopupMenu
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 //Inflating the Popup using xml file
-                if(new LoginActivity().getCurrentUser().isInHiddenList(post.getId()) < 0) popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+                int r = li.getCurrentUser().isInHiddenList(post.getId());
+                System.out.println("-----------------------------------r: "+r+"----------------------------------------");
+                System.out.println("---------------------------------idPost: "+post.getId()+"--------------------------");
+                if(r < 0) popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
@@ -74,13 +78,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                         switch (item.getItemId()){
                             case R.id.show_post:
-                                new LoginActivity().getCurrentUser().removeHiddenPost(post.getId());
+                                li.getCurrentUser().removeHiddenPost(post.getId());
                                 Snackbar snackbar = Snackbar
                                         .make(coordinatorLayout, "El missatge mostrara. Vols cancelar? ", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                new LoginActivity().getCurrentUser().addHiddenPost(post.getId());
+                                                li.getCurrentUser().addHiddenPost(post.getId());
 
                                                 Snackbar snackbar2 = Snackbar.make(coordinatorLayout, "Request canceled!", Snackbar.LENGTH_SHORT);
                                                 snackbar2.show();
@@ -90,13 +94,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 snackbar.show();
                                 break;
                             case R.id.hide_post:
-                                new LoginActivity().getCurrentUser().addHiddenPost(post.getId());
+                                li.getCurrentUser().addHiddenPost(post.getId());
                                 Snackbar snackbar3 = Snackbar
                                         .make(coordinatorLayout, "El missatge s'ha amagat. Vols cancelar?", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                new LoginActivity().getCurrentUser().removeHiddenPost(post.getId());
+                                                li.getCurrentUser().removeHiddenPost(post.getId());
                                                 Snackbar snackbar4 = Snackbar.make(coordinatorLayout, "Message is showed!", Snackbar.LENGTH_SHORT);
                                                 snackbar4.show();
                                             }

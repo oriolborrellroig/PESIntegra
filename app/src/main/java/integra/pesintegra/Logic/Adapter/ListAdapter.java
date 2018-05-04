@@ -9,10 +9,11 @@ import android.widget.TextView;
 import android.view.View;
 import android.util.Log;
 import android.content.Intent;
-import android.app.Activity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.security.auth.login.LoginException;
 
 import integra.pesintegra.Logic.Clases.Post;
 //import integra.pesintegra.Logic.Interface.CustomItemClickListener;
@@ -68,10 +69,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         @Override
         public void onClick(View v){
             final Intent intent = new Intent(context2, PostActivity.class);
-            System.out.println("------------------------------------------------Salgo del Adapter------------------------------");
-            System.out.println(p.getId()+" "+ p.isShowed());
             intent.putExtra("post", p);
-            ((Activity)context2).startActivityForResult(intent, 10);
+            context2.startActivity(intent);
         }
     }
 
@@ -88,11 +87,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     }
 
     public void removeHidden(List<String> postsH){
+        System.out.println("--------------------------------------------------------------------entro en removeHidden()--------------------------------------");
+        System.out.println("-------------------------------------------------------------posts.size(): "+posts.size()+"--------------------------------------");
+        System.out.println("------------------------------------------------------------postsH.size()"+postsH.size()+"---------------------------------------");
+        System.out.println(postsH);
         Boolean end = false;
         int i = 0;
         while( end == false){
             for(int j = 0;j < posts.size(); ++j){
-                if(posts.get(j).getId() == postsH.get(i)){
+                if(posts.get(j).getId().equals(postsH.get(i))){
                     posts.remove(j);
                     j+=posts.size();
                 }
