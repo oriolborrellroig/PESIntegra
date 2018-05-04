@@ -1,6 +1,8 @@
 package integra.pesintegra.Presentation;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
@@ -23,6 +25,7 @@ import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
+import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
@@ -36,18 +39,23 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private static RecyclerView recyclerView;
     private boolean fabIsOpen = false;
     private List<Post> list_posts = new ArrayList<>();
+    private String postType = "none";
 
     private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            postType = bundle.getString("type");
+        }
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-
+       // listAdapter = new ListAdapter();
         //creant posts sense BD
         /*for(int i= 0; i < 5; i++){
             Post p = new Post_Activitat();
@@ -61,7 +69,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(listAdapter);
         */
-        /*getPostsFromDB();*/
+        getPostsFromDB();
 
         /*PostService service = ServiceManager.getPostService();
         Call<Post> createCall = service.getPost("2");
@@ -109,11 +117,23 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
 
+
     }
 
     private void getPostsFromDB() {
         ControladorServeisAllPostsActivity cs = new ControladorServeisAllPostsActivity(this,getApplicationContext());
-        cs.loadFeedPosts();
+        if (postType.equals("any")) {
+            cs.loadFeedAnyPosts();
+        }
+        else if (postType.equals("house")) {
+            cs.loadFeedHousePosts();
+        }
+        else if (postType.equals("work")) {
+            cs.loadFeedWorkPosts();
+        }
+        else if (postType.equals("activity")){
+            cs.loadFeedActivityPosts();
+        }
     }
 
     @Override
@@ -124,16 +144,24 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    /*@Override
+   /* @Override
     protected void onRestart() {
         super.onRestart();
+
+    }*/
+
+    /*@Override
+    protected void onStart() {
+        super.onStart();
         getPostsFromDB();
     }*/
 
     @Override
-    protected void onResume() {
+    protected void onResume(){
         super.onResume();
-        getPostsFromDB();
+        System.out.println("------------------------------------------------------------------------------------HiddenList size:"+ new LoginActivity().getCurrentUser().getHiddenPosts().size()+"------------------------------------------");
+        if(listAdapter != null) listAdapter.removeHidden(new LoginActivity().getCurrentUser().getHiddenPosts());
+        if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
 
     @Override
@@ -236,9 +264,12 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
         listAdapter = new ListAdapter(body);
+        System.out.println("--------------------------------------Entro en el updateFedd-----------------------");
+        listAdapter.removeHidden(new LoginActivity().getCurrentUser().getHiddenPosts());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(listAdapter);
     }
+
 }

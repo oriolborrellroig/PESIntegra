@@ -20,10 +20,33 @@ public class ControladorServeisAllPostsActivity extends ControladorServeis {
         this.context = cont;
         this.activity = allposts;
     }
-    public void loadFeedPosts () {
+
+    public void loadFeedAnyPosts () {
         PostService service = this.getServiceManager().getPostService();
-        Call<ArrayList<Post>> createCall2 = service.getAllPosts("any");
-        createCall2.enqueue(new Callback<ArrayList<Post>>() {
+        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        enqueueCall(call);
+    }
+
+    public void loadFeedWorkPosts () {
+        PostService service = this.getServiceManager().getPostService();
+        Call<ArrayList<Post>> call = service.getAllPosts("work");
+        enqueueCall(call);
+    }
+
+    public void loadFeedActivityPosts () {
+        PostService service = this.getServiceManager().getPostService();
+        Call<ArrayList<Post>> call = service.getAllPosts("activity");
+        enqueueCall(call);
+    }
+
+    public void loadFeedHousePosts () {
+        PostService service = this.getServiceManager().getPostService();
+        Call<ArrayList<Post>> call = service.getAllPosts("home");
+        enqueueCall(call);
+    }
+
+    private void enqueueCall (Call<ArrayList<Post>> call) {
+        call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
                 activity.updateFeed(response.body(), context);

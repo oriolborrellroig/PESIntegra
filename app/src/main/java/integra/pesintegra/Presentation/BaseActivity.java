@@ -15,19 +15,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.R;
 
 public class BaseActivity extends Activity implements NavigationView.OnNavigationItemSelectedListener {
 
+    ControladorPresentacio cntrlPresentacio;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_base);
         setView();
-
 
 
     }
@@ -45,7 +47,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -70,18 +72,22 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
         switch (id) {
             case R.id.allPosts:
                 intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "any");
                 startActivity(intent);
                 break;
             case R.id.work:
-                intent = new Intent(getApplicationContext(), WorkPostActivity.class);
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "work");
                 startActivity(intent);
                 break;
             case R.id.house:
-                intent = new Intent(getApplicationContext(), HousePostActivity.class);
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "house");
                 startActivity(intent);
                 break;
             case R.id.activities:
-                intent = new Intent(getApplicationContext(), ActivityPostActivity.class);
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "activity");
                 startActivity(intent);
                 break;
             case R.id.profile:
@@ -115,11 +121,13 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent finishApp = new Intent (BaseActivity.this, LoginActivity.class);
+                                Intent finishApp = new Intent(BaseActivity.this, LoginActivity.class);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 finishApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                //cntrlPresentacio.logout();
                                 startActivity(finishApp);
+
                             }
                         })
                         .setNegativeButton("No", null)
@@ -141,5 +149,9 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }

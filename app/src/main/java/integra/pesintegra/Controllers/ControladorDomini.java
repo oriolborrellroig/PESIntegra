@@ -1,6 +1,5 @@
 package integra.pesintegra.Controllers;
 
-import android.util.Log;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
@@ -10,16 +9,18 @@ import integra.pesintegra.Logic.Clases.Sessio;
 
 public class ControladorDomini extends AbstractBaseController {
 
+    private ControladorServeis cntrlServeis;
     private ControladorPresentacio cntrlPres;
     private Sessio usuari;
 
     public ControladorDomini(ControladorPresentacio controladorPresentacio) {
         super();
-        this.usuari = usuari;
         this.cntrlPres = controladorPresentacio;
-        
+        this.cntrlServeis = new ControladorServeis();
+    }
 
-
+    public void setUsuari(Sessio usuari) {
+        this.usuari = usuari;
     }
 
     public void creaPostActivitat(Post_Activitat activitat) {
@@ -30,5 +31,19 @@ public class ControladorDomini extends AbstractBaseController {
     }
 
     public void creaPostFeina(Post_Feina feina) {
+    }
+
+
+    // Idea és passar tots els post de la database per comprobar quins s'haurien de guardar com expired. (es podria passar com a llista)
+    public Boolean post_Caducat(Post post) {
+        return comprovaDataExpired(post.getDataFi());
+    }
+
+    public void logout() {
+        usuari.resetSessio();
+    }
+
+    public void comprova_contrasenya_usuari(String password) throws Exception {
+        usuari.comprova_password(password);
     }
 }

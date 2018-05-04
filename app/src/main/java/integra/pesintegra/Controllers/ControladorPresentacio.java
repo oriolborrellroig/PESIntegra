@@ -1,21 +1,29 @@
 package integra.pesintegra.Controllers;
 
+import android.app.Application;
+import android.content.Context;
+
+import java.util.Calendar;
+import java.util.regex.Pattern;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
+import integra.pesintegra.Logic.Clases.Sessio;
+import integra.pesintegra.Logic.Clases.User;
+import integra.pesintegra.Presentation.LoginActivity;
+import integra.pesintegra.Controllers.ControladorServeisLoginActivity;
 
 public class ControladorPresentacio extends AbstractBaseController {
 
     private ControladorDomini cntrlDom;
+    private ApplicationContextProvider context;
 
     public ControladorPresentacio() {
         super();
             cntrlDom = new ControladorDomini(this);
     }
-
-
 
 
 
@@ -64,5 +72,34 @@ public class ControladorPresentacio extends AbstractBaseController {
         return feina;
     }
 
+    public void logout() {
+        cntrlDom.logout();
+    }
 
+    public void comprova_login(LoginActivity la, String username, String pass){
+        ControladorServeisLoginActivity controlador = new ControladorServeisLoginActivity(la, context.getContext());
+        controlador.checkLogin(username, pass);
+        Sessio usuari = new Sessio(username, pass);
+        cntrlDom.setUsuari(usuari);
+    }
+
+    public User comprovar_camps(String pass1, String pass2, String email, String dataN) throws Exception{
+
+        valid_mail(email);
+        comprova_contrasenya_coincident(pass1, pass2);
+        data_naix_correcte(dataN);
+
+        return new User(email, pass1, "usuari", dataN);
+    }
+
+
+
+
+    public void change_email(String email, String pass1, String pass2) throws Exception{
+
+        valid_mail(email);
+        comprova_contrasenya_coincident(pass1, pass2);
+        cntrlDom.comprova_contrasenya_usuari(pass1);
+
+    }
 }

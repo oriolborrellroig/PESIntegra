@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.view.View;
 import android.util.Log;
 import android.content.Intent;
+import android.app.Activity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
@@ -22,7 +24,7 @@ import integra.pesintegra.R;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
 
     private Context context;
-    private List<Post> posts;
+    private static List<Post> posts;
 
     public ListAdapter (List<Post> list_posts){
         this.posts = list_posts;
@@ -43,14 +45,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Post p = posts.get(position);
-        if(p.isShowed()){
-            holder.titol.setText(p.getTitol());
-            holder.dia.setText(String.valueOf(p.getDataIni()));
-            holder.p = p;
-        }
-        else{
-
-        }
+        holder.titol.setText(p.getTitol());
+        holder.dia.setText(String.valueOf(p.getDataIni()));
+        holder.p = p;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -63,6 +60,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
             titol = (TextView) view.findViewById(R.id.cv_titol);
             dia = (TextView) view.findViewById(R.id.cv_dia);
             context2 = view.getContext();
+            if(p != null && !p.isShowed()) view.setVisibility(View.INVISIBLE);
             view.setClickable(true);
             view.setOnClickListener(this);
         }
@@ -70,8 +68,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         @Override
         public void onClick(View v){
             final Intent intent = new Intent(context2, PostActivity.class);
+            System.out.println("------------------------------------------------Salgo del Adapter------------------------------");
+            System.out.println(p.getId()+" "+ p.isShowed());
             intent.putExtra("post", p);
-            context2.startActivity(intent);
+            ((Activity)context2).startActivityForResult(intent, 10);
         }
     }
 
@@ -87,5 +87,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         return posts.size();
     }
 
-
+    public void removeHidden(List<String> postsH){
+        Boolean end = false;
+        int i = 0;
+        while( end == false){
+            for(int j = 0;j < posts.size(); ++j){
+                if(posts.get(j).getId() == postsH.get(i)){
+                    posts.remove(j);
+                    j+=posts.size();
+                }
+            }
+            ++i;
+            if(i>=postsH.size()) end = true;
+        }
+    }
 }

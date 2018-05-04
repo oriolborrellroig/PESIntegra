@@ -19,10 +19,10 @@ import retrofit2.Response;
 
 public class ControladorServeis {
 
-    private ServiceManager serviceManager = new ServiceManager();
+    private static ServiceManager serviceManager = new ServiceManager();
 
 
-    public ServiceManager getServiceManager() {
+    public static ServiceManager getServiceManager() {
         return serviceManager;
     }
 

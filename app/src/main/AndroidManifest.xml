@@ -38,15 +38,6 @@
             android:name=".Presentation.AllPostsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Presentation.WorkPostActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Presentation.ActivityPostActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Presentation.HousePostActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".Presentation.BaseActivity"
             android:screenOrientation="portrait"/>
 
@@ -56,7 +47,9 @@
         <activity
             android:name=".Presentation.ProfileActivity"
             android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".Presentation.ChangeProfileActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

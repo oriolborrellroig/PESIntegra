@@ -10,7 +10,8 @@ public class Post_Activitat extends Post{
     }
 
     public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio){
-        super(titol, descripcio, dataini, datafi, hora, direccio, 'A');
+        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A');
+        //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
     }
 
     public int getN_max() {

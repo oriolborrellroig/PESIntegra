@@ -17,8 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import integra.pesintegra.Controllers.ControladorServeisHousePosts;
-import integra.pesintegra.Controllers.ControladorServeisWorkPosts;
+import integra.pesintegra.Controllers.ControladorServeisHidePosts;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Feina;
@@ -29,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WorkPostActivity extends BaseActivity implements View.OnClickListener {
+public class HidePostActivity extends BaseActivity implements View.OnClickListener {
 
     private static RecyclerView recyclerView;
     private static ListAdapter listAdapter;
@@ -38,21 +37,22 @@ public class WorkPostActivity extends BaseActivity implements View.OnClickListen
 
     private FloatingActionButton fabAdd;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        getPostsFromDB();
+        //getPostsFromDB();
+
 
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(this);
+
     }
 
     private void getPostsFromDB() {
-        ControladorServeisWorkPosts controlador = new ControladorServeisWorkPosts(this, getApplicationContext());
+        ControladorServeisHidePosts controlador = new ControladorServeisHidePosts(this,getApplicationContext());
         controlador.loadFeedPosts();
     }
 
@@ -67,16 +67,16 @@ public class WorkPostActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onResume() {
         super.onResume();
-        getPostsFromDB();
+       // getPostsFromDB();
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId()) {
-            case R.id.fabAdd:
-                intent = new Intent(getApplicationContext(), CreateActivityActivity.class);
-                intent.putExtra("flag", "F");
+        switch(v.getId()) {
+            case R.id.fabAdd :
+                intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
+                intent.putExtra("flag", "H");
                 startActivity(intent);
                 break;
         }

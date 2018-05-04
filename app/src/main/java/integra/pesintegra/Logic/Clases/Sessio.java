@@ -11,6 +11,7 @@ public class Sessio {
     private List<String> tags;
     private String idioma;
 
+
     //creacio d'un usuari nou amb tags buids, sense foto...
     public Sessio (String username, String password, String mail) {
         this.username = username;
@@ -29,5 +30,18 @@ public class Sessio {
          */
 
 
+    }
+
+    public void resetSessio() {
+        username = "";
+        password = "";
+        mail = "";
+        idioma = "";
+    }
+
+    public void comprova_password(String password) throws Exception{
+
+        if (!this.password.equals(password)) throw new Exception("Password incorrecte");
+        
     }
 }
