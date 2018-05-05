@@ -53,6 +53,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         iv = (ImageView) findViewById(R.id.imatge);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
+
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +115,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         TextView post_text = (TextView) findViewById(R.id.post_text);
         post_text.setText(post.getDescripcio());
         //iv.setImageBitmap(post.getImatge());
+
+
 
 
 
@@ -206,5 +209,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
         ControladorPresentacioPostOpen controlador = new ControladorPresentacioPostOpen(this, getApplicationContext());
         controlador.deletePost(post.getId());
         this.finish();
+    }
+
+    public void updateRating(String puntuacio, String nombreVots) {
+
+        //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
+
+        Log.d("PUNTS ", puntuacio);
+        Log.d("VOTS ", nombreVots);
     }
 }

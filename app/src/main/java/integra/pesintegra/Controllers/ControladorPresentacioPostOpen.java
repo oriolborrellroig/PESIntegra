@@ -24,4 +24,20 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
 
     }
+
+    public void getPostRating(String postId) {
+        Cdomini.getRating(postId);
+
+
+    }
+
+    public void votePost(String postId, String puntuacio) {
+        Cdomini.votaPost(postId, puntuacio);
+
+
+    }
+
+    public void updateRating(String puntuacio, String nombreVots) {
+        activity.updateRating(puntuacio,nombreVots);
+    }
 }

@@ -1,5 +1,8 @@
 package integra.pesintegra.Services;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,9 @@ public interface PostService {
     @GET("/post/allHiddenUser")
     Call<ArrayList<Post>> getHiddenListFromUser(@Query("owner") String owner);
 
+    @GET("/post/rating")
+    Call<JsonObject> getPostRating(@Query("postid") String postID);
+
     @POST("post/new")
     Call<Void> createPost(@Body Post post);
 
@@ -38,4 +44,7 @@ public interface PostService {
 
     @PATCH("post/update")
     Call<Void> updatePost(@Query("postid") String postid, @Body Post post);
+
+    @PATCH("post/vote")
+    Call<JsonObject> votePost(@Query("postid") String postid, @Query("punts") String punts);
 }

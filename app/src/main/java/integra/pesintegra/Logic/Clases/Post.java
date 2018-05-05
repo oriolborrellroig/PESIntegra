@@ -6,6 +6,7 @@ import android.net.Uri;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public abstract class Post implements Serializable {
@@ -21,6 +22,8 @@ public abstract class Post implements Serializable {
     private String owner;
     private char tipus;
     private Bitmap imatge;
+    private int puntuacio;
+    private int nombreVots;
 
     public Post(char tipus){
         setId();
@@ -36,6 +39,8 @@ public abstract class Post implements Serializable {
         this.direccio = direccio;
         this.owner = owner;
         this.tipus = tipus;
+        this.puntuacio = 0;
+        this.nombreVots = 0;
         setId();
     }
 
