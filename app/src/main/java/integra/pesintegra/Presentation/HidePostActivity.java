@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import integra.pesintegra.Controllers.ControladorServeisHidePosts;
+import integra.pesintegra.Controllers.ControladorPresentacioHidePosts;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Feina;
@@ -52,7 +52,7 @@ public class HidePostActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void getPostsFromDB() {
-        ControladorServeisHidePosts controlador = new ControladorServeisHidePosts(this,getApplicationContext());
+        ControladorPresentacioHidePosts controlador = new ControladorPresentacioHidePosts(this,getApplicationContext());
         controlador.loadFeedPosts();
     }
 

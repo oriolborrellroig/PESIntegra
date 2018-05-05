@@ -19,19 +19,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import integra.pesintegra.Controllers.ControladorServeis;
-import integra.pesintegra.Controllers.ControladorServeisAllPostsActivity;
+import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
+
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.User;
+
 import integra.pesintegra.R;
-import integra.pesintegra.Services.PostService;
-import integra.pesintegra.Services.ServiceManager;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AllPostsActivity extends BaseActivity implements View.OnClickListener {
 
@@ -121,7 +117,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void getPostsFromDB() {
-        ControladorServeisAllPostsActivity cs = new ControladorServeisAllPostsActivity(this,getApplicationContext());
+        ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
         if (postType.equals("any")) {
             cs.loadFeedAnyPosts();
         }
@@ -159,7 +155,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onResume(){
         super.onResume();
-        System.out.println("------------------------------------------------------------------------------------HiddenList size:"+ new LoginActivity().getCurrentUser().getHiddenPosts().size()+"------------------------------------------");
         if(listAdapter != null) listAdapter.removeHidden(new LoginActivity().getCurrentUser().getHiddenPosts());
         if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
@@ -257,6 +252,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.recycler :
+
                 int position = recyclerView.getChildLayoutPosition(v);
                 Log.d("Pos " , ((Integer) position).toString());
         }

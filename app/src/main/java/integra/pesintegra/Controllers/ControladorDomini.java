@@ -6,21 +6,22 @@ import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Logic.Clases.Sessio;
+import integra.pesintegra.Services.ServiceManager;
 
-public class ControladorDomini extends AbstractBaseController {
+public class ControladorDomini extends  AbstractBaseController{
 
-    private ControladorServeis cntrlServeis;
-    private ControladorPresentacio cntrlPres;
-    private Sessio usuari;
+    private static ServiceManager serviceManager;
+    private ControladorPresentacio CP;
+    private static Sessio sessio;
 
-    public ControladorDomini(ControladorPresentacio controladorPresentacio) {
-        super();
-        this.cntrlPres = controladorPresentacio;
-        this.cntrlServeis = new ControladorServeis();
+    public ControladorDomini () {}
+    public ControladorDomini (ControladorPresentacio cp) {
+        this.CP =cp;
     }
+    public void setSessio(Sessio usuari) {
 
-    public void setUsuari(Sessio usuari) {
-        this.usuari = usuari;
+        this.sessio = usuari;
+         this.serviceManager = new ServiceManager(usuari.getToken(), usuari.getUsername());
     }
 
     public void creaPostActivitat(Post_Activitat activitat) {
@@ -40,10 +41,21 @@ public class ControladorDomini extends AbstractBaseController {
     }
 
     public void logout() {
-        usuari.resetSessio();
+        sessio.resetSessio();
     }
 
-    public void comprova_contrasenya_usuari(String password) throws Exception {
-        usuari.comprova_password(password);
+
+    public ServiceManager getServiceManager() {
+        return serviceManager;
     }
+
+    protected String getSessioUser() {
+        return sessio.getUsername();
+    }
+
+    protected String getSessioToken() {
+        return sessio.getToken();
+
+    }
+
 }

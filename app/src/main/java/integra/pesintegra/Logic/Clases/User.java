@@ -17,12 +17,12 @@ public class User {
         hiddenPosts = new ArrayList<String>();
     }
 
-    public User(String s1, String testPassword, String testTipus, String testData) {
+    public User(String pas, String s1, String testTipus, String testData) {
         setId();
         this.mail = s1;
         setUsernameFromEmail();
-        this.password = testPassword;
         this.tipus = testTipus;
+        this.password = pas;
         this.data = testData;
         hiddenPosts = new ArrayList<String>();
     }
@@ -51,13 +51,7 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getTipus() {
         return tipus;

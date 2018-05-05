@@ -1,5 +1,7 @@
 package integra.pesintegra.Services;
 
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.User;
@@ -13,7 +15,7 @@ import retrofit2.http.Query;
 
 public interface UserService {
     @GET("/users/login")
-    Call<User> loginUser(@Query("usr") String usr, @Query("pas") String pas);
+    Call<JsonObject> loginUser(@Query("usr") String usr, @Query("pas") String pas);
 
     @GET("/users/get")
     Call<User> getUser(@Query("usr") String usr);

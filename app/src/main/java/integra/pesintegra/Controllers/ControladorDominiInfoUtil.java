@@ -16,14 +16,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ControladorServeisInfoUtil extends ControladorServeis{
+public class ControladorDominiInfoUtil extends ControladorDomini{
 
-    private InformationActivity activity;
-    private Context context;
+    private ControladorPresentacioInfoUtil Cpresentacio;
 
-    public ControladorServeisInfoUtil (InformationActivity callActivity, Context cont) {
-        this.activity = callActivity;
-        this.context = cont;
+    public ControladorDominiInfoUtil (ControladorPresentacioInfoUtil Cpresentacio) {
+        this.Cpresentacio = Cpresentacio;
     }
 
 
@@ -33,7 +31,7 @@ public class ControladorServeisInfoUtil extends ControladorServeis{
         createCall.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                activity.posaInformacio(response.body());
+                Cpresentacio.posaInformacio(response.body());
             }
 
             @Override

@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import integra.pesintegra.Controllers.ControladorServeisProfileActivity;
+import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
@@ -35,7 +35,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         change_profile
                 .setOnClickListener(this);
 
-        ControladorServeisProfileActivity  cp= new ControladorServeisProfileActivity(this, getApplicationContext());
+        ControladorPresentacioProfileActivity cp= new ControladorPresentacioProfileActivity(this, getApplicationContext());
         cp.getUser("1");
 
         /*Button button_esport = findViewById(R.id.btn_esport);

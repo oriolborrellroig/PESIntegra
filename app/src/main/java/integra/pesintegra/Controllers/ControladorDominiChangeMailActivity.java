@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*
 public class ControladorServeisChangeMailActivity extends ControladorServeis {
     private ChangeProfileActivity activity;
     private Context context;
@@ -15,9 +16,15 @@ public class ControladorServeisChangeMailActivity extends ControladorServeis {
     public ControladorServeisChangeMailActivity(ChangeProfileActivity allposts, Context cont) {
         this.context = cont;
         this.activity = allposts;
-    }
+*/
+public class ControladorDominiChangeMailActivity extends ControladorDomini {
+    private ControladorPresentacioChangeMailActivity Cpresentacio;
 
-    public void loadFeedPosts (String id, String newmail) {
+    public ControladorDominiChangeMailActivity(ControladorPresentacioChangeMailActivity cp) {
+        this.Cpresentacio = cp;
+}
+
+    public void changeMail (String id, String newmail) {
         UserService service = this.getServiceManager().getUserService();
         Call<Void> createCall2 = service.updateMailUser(id, newmail);
         createCall2.enqueue(new Callback<Void>() {
