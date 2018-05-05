@@ -31,7 +31,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import integra.pesintegra.Controllers.ControladorServeisPostOpen;
+import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
@@ -202,7 +203,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     private void onDelete () {
-        ControladorServeisPostOpen controlador = new ControladorServeisPostOpen(this, getApplicationContext());
+        ControladorPresentacioPostOpen controlador = new ControladorPresentacioPostOpen(this, getApplicationContext());
         controlador.deletePost(post.getId());
         this.finish();
     }

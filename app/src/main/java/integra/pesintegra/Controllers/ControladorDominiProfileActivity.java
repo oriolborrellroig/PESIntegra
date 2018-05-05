@@ -1,9 +1,11 @@
 package integra.pesintegra.Controllers;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 
+import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.ProfileActivity;
 import integra.pesintegra.Services.UserService;
@@ -11,13 +13,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisProfileActivity extends ControladorServeis {
-    private ProfileActivity activity;
-    private Context context;
+public class ControladorDominiProfileActivity extends ControladorDomini {
 
-    public ControladorServeisProfileActivity(ProfileActivity allposts, Context cont) {
-        this.context = cont;
-        this.activity = allposts;
+    private ControladorPresentacioProfileActivity Cpresentacio;
+
+    public ControladorDominiProfileActivity(ControladorPresentacioProfileActivity Cpresentacio) {
+        this.Cpresentacio = Cpresentacio;
     }
 
     public void getUser (String id) {
@@ -26,11 +27,13 @@ public class ControladorServeisProfileActivity extends ControladorServeis {
         createCall2.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                activity.setUserInfo(response.body(), context);
+                Log.d("ASDAS", response.body().getId());
+                Cpresentacio.setUserInfo(response.body());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Log.d("sadasds","aaa");
             }
         });
     }

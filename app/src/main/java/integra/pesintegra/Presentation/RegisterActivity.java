@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 import java.util.Calendar;
 
-import integra.pesintegra.Controllers.ControladorServeisRegisterActivity;
+import integra.pesintegra.Controllers.ControladorPresentacioRegisterActivity;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 import integra.pesintegra.Controllers.ControladorPresentacio;
@@ -66,7 +66,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String dataN = ((TextView) findViewById(R.id.register_datanaixement)).getText().toString();
                 try {
                     User newUser = cp.comprovar_camps(pass1, pass2, email, dataN);
-                    ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
+                    ControladorPresentacioRegisterActivity controlador = new ControladorPresentacioRegisterActivity(this, getApplicationContext());
                     controlador.doRegister(newUser);
                     intent = new Intent(getApplicationContext(),AllPostsActivity.class);
                     startActivity(intent);

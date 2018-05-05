@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
-import integra.pesintegra.Controllers.ControladorServeisChangeMailActivity;
-import integra.pesintegra.Controllers.ControladorServeisRegisterActivity;
+import integra.pesintegra.Controllers.ControladorPresentacioChangeMailActivity;
+
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
@@ -46,8 +46,8 @@ public class ChangeMailActivity extends Activity implements View.OnClickListener
                 String pass2 = ((EditText) findViewById(R.id.confirm_mail_pass2)).getText().toString();
                 try {
                     //cntrlPresentacio.change_email(email, pass1, pass2);
-                    ControladorServeisChangeMailActivity controlador = new ControladorServeisChangeMailActivity(this, getApplicationContext());
-                    controlador.loadFeedPosts("null_604bd978-5b10-41ab-b483-bc34b0df2f2c","hacanviat@hacanviat.com");
+                    ControladorPresentacioChangeMailActivity controlador = new ControladorPresentacioChangeMailActivity(this, getApplicationContext());
+                    controlador.changeMail("null_604bd978-5b10-41ab-b483-bc34b0df2f2c","hacanviat@hacanviat.com");
                     /*
                     ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
                     controlador.changeEmail();

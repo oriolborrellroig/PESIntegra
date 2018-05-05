@@ -1,6 +1,7 @@
 package integra.pesintegra.Controllers;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -11,18 +12,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisAllPostsActivity extends ControladorServeis {
+public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
-    private AllPostsActivity activity;
+    private ControladorPresentacioAllPostsActivity Cpresentacio;
     private Context context;
 
-    public ControladorServeisAllPostsActivity(AllPostsActivity allposts, Context cont) {
-        this.context = cont;
-        this.activity = allposts;
+    public ControladorDominiAllPostsActivity(ControladorPresentacioAllPostsActivity allposts) {
+        this.Cpresentacio = allposts;
     }
 
     public void loadFeedAnyPosts () {
         PostService service = this.getServiceManager().getPostService();
+        Log.d("TOOKKKK",this.getSessioToken());
+        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
         Call<ArrayList<Post>> call = service.getAllPosts("any");
         enqueueCall(call);
     }
@@ -49,7 +51,7 @@ public class ControladorServeisAllPostsActivity extends ControladorServeis {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                activity.updateFeed(response.body(), context);
+                Cpresentacio.updateFeed(response.body());
             }
 
             @Override

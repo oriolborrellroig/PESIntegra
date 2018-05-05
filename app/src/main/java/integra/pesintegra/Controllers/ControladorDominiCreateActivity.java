@@ -24,13 +24,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisCreateActivity extends ControladorServeis {
-    private CreateActivityActivity activity;
-    private Context context;
+public class ControladorDominiCreateActivity extends ControladorDomini {
 
-    public ControladorServeisCreateActivity (CreateActivityActivity callActivity, Context cont) {
-        this.activity = callActivity;
-        this.context = cont;
+    private ControladorPresentacioCreateActivity Cpresentacio;
+
+
+    public ControladorDominiCreateActivity(ControladorPresentacioCreateActivity allposts) {
+        this.Cpresentacio = allposts;
     }
 
 
@@ -40,7 +40,7 @@ public class ControladorServeisCreateActivity extends ControladorServeis {
         createCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                activity.showNewPost(context);
+                Cpresentacio.showNewPost();
             }
 
             @Override

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import integra.pesintegra.Controllers.ControladorServeisInfoUtil;
+import integra.pesintegra.Controllers.ControladorPresentacioInfoUtil;
 import integra.pesintegra.R;
 
 public class InformationActivity extends Activity implements View.OnClickListener{
@@ -21,7 +21,7 @@ public class InformationActivity extends Activity implements View.OnClickListene
         Button btn_back = (Button)findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
 
-        ControladorServeisInfoUtil controlador = new ControladorServeisInfoUtil(this,getApplicationContext());
+        ControladorPresentacioInfoUtil controlador = new ControladorPresentacioInfoUtil(this,getApplicationContext());
         controlador.getInfo();
 
 

@@ -1,46 +1,40 @@
 package integra.pesintegra.Logic.Clases;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sessio {
 
     private String username;
-    private String password;
-    private String mail;
     private List<String> tags;
     private String idioma;
+    private String token;
 
     //creacio d'un usuari nou amb tags buids, sense foto...
-    public Sessio (String username, String password, String mail) {
+    public Sessio (String username, String token) {
         this.username = username;
-        this.password = password;
-        this.mail = mail;
         this.idioma = "Catala";  //equivaldrà a numero del doc.
         this.tags = new ArrayList<>();
+        this.token = token;
+        Log.d("username", token);
     }
 
-    //càrrega d'un usuari de la bd, amb els seus atributs guardats com parametres tb
-    public Sessio (String username, String password) {
-        this.username = username;
-        this.password = password;
-        /*...
 
-         */
-
-
-    }
 
     public void resetSessio() {
         username = "";
-        password = "";
-        mail = "";
         idioma = "";
     }
 
-    public void comprova_password(String password) throws Exception{
 
-        if (!this.password.equals(password)) throw new Exception("Password incorrecte");
-        
+    public String getUsername() {
+        return username;
+    }
+
+
+    public String getToken() {
+        return token;
     }
 }

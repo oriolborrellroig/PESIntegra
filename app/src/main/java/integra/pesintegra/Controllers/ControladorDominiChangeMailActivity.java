@@ -8,16 +8,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisChangeMailActivity extends ControladorServeis {
-    private ChangeMailActivity activity;
-    private Context context;
+public class ControladorDominiChangeMailActivity extends ControladorDomini {
+    private ControladorPresentacioChangeMailActivity Cpresentacio;
 
-    public ControladorServeisChangeMailActivity(ChangeMailActivity allposts, Context cont) {
-        this.context = cont;
-        this.activity = allposts;
+    public ControladorDominiChangeMailActivity(ControladorPresentacioChangeMailActivity cp) {
+        this.Cpresentacio = cp;
     }
 
-    public void loadFeedPosts (String id, String newmail) {
+    public void changeMail (String id, String newmail) {
         UserService service = this.getServiceManager().getUserService();
         Call<Void> createCall2 = service.updateMailUser(id, newmail);
         createCall2.enqueue(new Callback<Void>() {

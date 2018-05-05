@@ -10,14 +10,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisRegisterActivity extends ControladorServeis {
+public class ControladorDominiRegisterActivity extends ControladorDomini {
 
-    private RegisterActivity activity;
-    private Context context;
 
-    public ControladorServeisRegisterActivity(RegisterActivity registerActivity, Context cont) {
-        this.context = cont;
-        this.activity = registerActivity;
+    private ControladorPresentacioRegisterActivity Cpresentacio;
+
+    public ControladorDominiRegisterActivity(ControladorPresentacioRegisterActivity Cpresentacio) {
+        this.Cpresentacio = Cpresentacio;
     }
     public void doRegister (User user) {
         UserService service = this.getServiceManager().getUserService();
@@ -26,7 +25,7 @@ public class ControladorServeisRegisterActivity extends ControladorServeis {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 //activity.updateFeed(response.body(), context);
-                activity.logIn(context);
+                Cpresentacio.logIn();
             }
 
             @Override

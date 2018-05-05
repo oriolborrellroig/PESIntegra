@@ -13,12 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.R;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
 
-    ControladorPresentacio cp;
+    ControladorPresentacioLoginActivity cp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         entrar_btn.setOnClickListener(this);
         Button login_btn = (Button)findViewById(R.id.login_register);
         login_btn.setOnClickListener(this);
-        this.cp = new ControladorPresentacio();
+        this.cp = new ControladorPresentacioLoginActivity(this,getApplicationContext());
 
     }
 
@@ -40,7 +41,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             case R.id.login_entrar:
                 String username = ((EditText)findViewById(R.id.input_email)).getText().toString();
                 String pass = ((EditText)findViewById(R.id.input_password)).getText().toString();
-                cp.comprova_login(this, username, pass);
+                cp.checkLogin(username, pass);
                 break;
             case R.id.login_register:
                 intent = new Intent(getApplicationContext(),RegisterActivity.class);

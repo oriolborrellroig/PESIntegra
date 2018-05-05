@@ -33,7 +33,7 @@ import java.io.FileOutputStream;
 import java.util.Calendar;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
-import integra.pesintegra.Controllers.ControladorServeisCreateActivity;
+import integra.pesintegra.Controllers.ControladorPresentacioCreateActivity;
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
@@ -182,7 +182,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
                     }
 
-                    ControladorServeisCreateActivity controlador = new ControladorServeisCreateActivity(this, getApplicationContext());
+                    ControladorPresentacioCreateActivity controlador = new ControladorPresentacioCreateActivity(this, getApplicationContext());
                     controlador.createPost(new_post,imageUri);
 
                     break;

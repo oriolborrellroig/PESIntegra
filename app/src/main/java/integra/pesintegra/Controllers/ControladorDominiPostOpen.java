@@ -12,13 +12,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisPostOpen extends ControladorServeis {
+public class ControladorDominiPostOpen extends ControladorDomini {
     private PostActivity activity;
     private Context context;
+    private ControladorPresentacioPostOpen Cpresentacio;
 
-    public ControladorServeisPostOpen (PostActivity callActivity, Context cont) {
-        this.activity = callActivity;
-        this.context = cont;
+    public ControladorDominiPostOpen (ControladorPresentacioPostOpen Cpresentacio) {
+        this.Cpresentacio = Cpresentacio;
     }
 
 

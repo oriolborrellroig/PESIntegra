@@ -12,13 +12,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ControladorServeisHidePosts extends ControladorServeis{
-    private HidePostActivity activity;
-    private Context context;
+public class ControladorDominiHidePosts extends ControladorDomini{
 
-    public ControladorServeisHidePosts(HidePostActivity allposts, Context cont) {
-        this.context = cont;
-        this.activity = allposts;
+    private ControladorPresentacioHidePosts CPresentacio;
+
+    public ControladorDominiHidePosts(ControladorPresentacioHidePosts CPresentacio) {
+
+        this.CPresentacio = CPresentacio;
     }
     public void loadFeedPosts () {
         PostService service = this.getServiceManager().getPostService();
@@ -31,7 +31,7 @@ public class ControladorServeisHidePosts extends ControladorServeis{
         createCall2.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                activity.updateFeed(response.body(), context);
+                CPresentacio.loadFeedPosts();
             }
 
             @Override
