@@ -9,7 +9,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
 
     private ProfileActivity activity;
     private Context context;
-    private ControladorDominiProfileActivity Cdomini;
+    private static ControladorDominiProfileActivity Cdomini;
 
     public ControladorPresentacioProfileActivity(ProfileActivity allposts, Context cont) {
         this.context = cont;
@@ -17,7 +17,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
         this.Cdomini = new ControladorDominiProfileActivity (this);
     }
 
-    public void getUser (String id) {
+    public static void getUser (String id) {
         Cdomini.getUser(id);
     }
 

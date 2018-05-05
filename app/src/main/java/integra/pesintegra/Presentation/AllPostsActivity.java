@@ -19,7 +19,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
+import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
+import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
 
@@ -35,6 +38,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private static RecyclerView recyclerView;
     private boolean fabIsOpen = false;
     private List<Post> list_posts = new ArrayList<>();
+    private static List<String> hidden_posts;
     private String postType = "none";
 
     private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct;
@@ -51,54 +55,10 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             postType = bundle.getString("type");
         }
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
-       // listAdapter = new ListAdapter();
-        //creant posts sense BD
-        /*for(int i= 0; i < 5; i++){
-            Post p = new Post_Activitat();
-            p.setTDataIni("12/05/2018");
-            p.setTitol("Empezamos");
-            list_posts.add(p);
-        }
-        listAdapter = new ListAdapter(list_posts);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(listAdapter);
-        */
+
+        new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext()).loadFeedHiddenPosts();
+
         getPostsFromDB();
-
-        /*PostService service = ServiceManager.getPostService();
-        Call<Post> createCall = service.getPost("2");
-        createCall.enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                list_posts.add(response.body());
-                Log.d("app", response.body().getTitol());
-                listAdapter = new ListAdapter(list_posts);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(listAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-            }
-        });*/
-
-        /*Call<Post> createCall = service.createPost(p);
-        createCall.enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-                String message = t.getMessage();
-                Log.d("failure", message);
-
-            }
-        });*/
 
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         fabAddHab = (FloatingActionButton) findViewById(R.id.fabAddHab);
@@ -130,6 +90,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         else if (postType.equals("activity")){
             cs.loadFeedActivityPosts();
         }
+        else if (postType.equals("hide")){
+            cs.loadFeedHiddenPosts();
+        }
     }
 
     @Override
@@ -155,7 +118,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onResume(){
         super.onResume();
-        if(listAdapter != null) listAdapter.removeHidden(new LoginActivity().getCurrentUser().getHiddenPosts());
+        new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext()).loadFeedHiddenPosts();
+        if(listAdapter != null) listAdapter.removeHidden(hidden_posts);
         if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
 
@@ -260,11 +224,16 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
         listAdapter = new ListAdapter(body);
-        listAdapter.removeHidden(new LoginActivity().getCurrentUser().getHiddenPosts());
+        listAdapter.removeHidden(hidden_posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(listAdapter);
     }
+    public void setHiddenList(List<String> l){
+        hidden_posts=l;
+    }
+
+
 
 }

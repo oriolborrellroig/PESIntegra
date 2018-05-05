@@ -13,9 +13,9 @@ import retrofit2.Response;
 
 public class ControladorPresentacioAllPostsActivity extends ControladorPresentacio {
 
-    private AllPostsActivity activity;
-    private ControladorDominiAllPostsActivity CDAllPosts;
-    private Context context;
+    private static AllPostsActivity activity;
+    private static ControladorDominiAllPostsActivity CDAllPosts;
+    private static Context context;
 
     public ControladorPresentacioAllPostsActivity(AllPostsActivity allposts, Context cont) {
         this.context = cont;
@@ -39,8 +39,18 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         CDAllPosts.loadFeedHousePosts();
     }
 
-    public void updateFeed(ArrayList<Post> posts) {
+    public static void loadFeedHiddenPosts () { CDAllPosts.loadFeedHiddenPosts(); }
+
+    public static void updateFeed(ArrayList<Post> posts) {
         activity.updateFeed(posts,context);
+    }
+
+    public void sendHiddenList(ArrayList<Post> postsH){
+        ArrayList<String> r = new ArrayList<>();
+        for(int i = 0; i<postsH.size();++i){
+            r.add(postsH.get(i).getId());
+        }
+        activity.setHiddenList(r);
     }
 
 }

@@ -85,11 +85,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
 
-    public void acceptLogin(Context context, User usr) {
+    public void acceptLogin(Context context) {
         //TODO: Aquesta funcio es crida quan el login es acceptat
         Intent intent = new Intent(getApplicationContext(),AllPostsActivity.class);
         intent.putExtra("type", "any");
-        currentUser = usr;
         startActivity(intent);
     }
 

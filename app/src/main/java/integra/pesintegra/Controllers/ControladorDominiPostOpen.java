@@ -15,10 +15,10 @@ import retrofit2.Response;
 public class ControladorDominiPostOpen extends ControladorDomini {
     private PostActivity activity;
     private Context context;
-    private ControladorPresentacioPostOpen Cpresentacio;
+    private static ControladorPresentacioPostOpen Cpresentacio;
 
-    public ControladorDominiPostOpen (ControladorPresentacioPostOpen Cpresentacio) {
-        this.Cpresentacio = Cpresentacio;
+    public ControladorDominiPostOpen (ControladorPresentacioPostOpen cPresentacio) {
+        Cpresentacio = cPresentacio;
     }
 
 
@@ -54,7 +54,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
     public void updateRemoveToHide (String userId, String postId) {
         UserService service = ServiceManager.getUserService();
-        Call<Void> createCall = service.updateAddToHide(userId, postId);
+        Call<Void> createCall = service.updateRemoveToHide(userId, postId);
         createCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

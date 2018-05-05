@@ -15,7 +15,7 @@ import retrofit2.Response;
 
 public class ControladorDominiProfileActivity extends ControladorDomini {
 
-    private ControladorPresentacioProfileActivity Cpresentacio;
+    private static ControladorPresentacioProfileActivity Cpresentacio;
 
     public ControladorDominiProfileActivity(ControladorPresentacioProfileActivity Cpresentacio) {
         this.Cpresentacio = Cpresentacio;

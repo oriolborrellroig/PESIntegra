@@ -10,7 +10,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
     private PostActivity activity;
     private Context context;
-    private ControladorDominiPostOpen Cdomini;
+    private static ControladorDominiPostOpen Cdomini;
 
     public ControladorPresentacioPostOpen (PostActivity callActivity, Context cont) {
         this.activity = callActivity;
@@ -19,9 +19,16 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
 
-    public void deletePost (String postId) {
+    public static void deletePost (String postId) {
         Cdomini.deletePost(postId);
-
-
     }
+
+    public static void updateAddHiddenList(String postId, String userId){
+        Cdomini.updateAddToHide(userId, postId);
+    }
+
+    public static void updateRemoveHiddenList(String postId, String userId){
+        Cdomini.updateRemoveToHide(userId, postId);
+    }
+
 }

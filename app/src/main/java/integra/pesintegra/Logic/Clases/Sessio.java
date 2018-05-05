@@ -38,4 +38,9 @@ public class Sessio {
     public String getToken() {
         return token;
     }
+
+
+    /* DESCOMENTAR QUAN ESTIGUI EL ID
+    public String getID() { return id; }
+    */
 }

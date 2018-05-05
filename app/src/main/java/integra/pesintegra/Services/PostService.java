@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -26,9 +27,15 @@ public interface PostService {
     @GET("/post/allUser")
     Call<ArrayList<Post>> getAllPostsFromUser(@Query("owner") String owner);
 
+    @GET("/post/allHiddenUser")
+    Call<ArrayList<Post>> getHiddenListFromUser(@Query("owner") String owner);
+
     @POST("post/new")
     Call<Void> createPost(@Body Post post);
 
     @DELETE("/post/delete")
     Call<Void> deletePost(@Query("id") String value);
+
+    @PATCH("post/update")
+    Call<Void> updatePost(@Query("postid") String postid, @Body Post post);
 }

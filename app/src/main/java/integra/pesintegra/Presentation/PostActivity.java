@@ -49,6 +49,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
         Button btn_back = (Button)findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
@@ -56,15 +57,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
         iv = (ImageView) findViewById(R.id.imatge);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
+
+
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //Creating the instance of PopupMenu
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
+
+
                 //Inflating the Popup using xml file
                 int r = li.getCurrentUser().isInHiddenList(post.getId());
+
                 if(r < 0) popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
+
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -76,35 +84,41 @@ public class PostActivity extends Activity implements View.OnClickListener{
                         ).show();
 
                         switch (item.getItemId()){
+
                             case R.id.show_post:
-                                li.getCurrentUser().removeHiddenPost(post.getId());
+                                //li.getCurrentUser().removeHiddenPost(post.getId());
+                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
+                                        , "1");
                                 Snackbar snackbar = Snackbar
-                                        .make(coordinatorLayout, "El missatge mostrara. Vols cancelar? ", Snackbar.LENGTH_LONG)
+                                        .make(coordinatorLayout, "El missatge es mostrara. Vols cancelar? ", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                li.getCurrentUser().addHiddenPost(post.getId());
-
+                                                //li.getCurrentUser().addHiddenPost(post.getId());
+                                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
+                                                        , "1");
                                                 Snackbar snackbar2 = Snackbar.make(coordinatorLayout, "Request canceled!", Snackbar.LENGTH_SHORT);
                                                 snackbar2.show();
                                             }
                                         });
-
                                 snackbar.show();
                                 break;
                             case R.id.hide_post:
-                                li.getCurrentUser().addHiddenPost(post.getId());
+                                //li.getCurrentUser().addHiddenPost(post.getId());
+                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
+                                        , "1");
                                 Snackbar snackbar3 = Snackbar
                                         .make(coordinatorLayout, "El missatge s'ha amagat. Vols cancelar?", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                li.getCurrentUser().removeHiddenPost(post.getId());
+                                                //li.getCurrentUser().removeHiddenPost(post.getId());
+                                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
+                                                        , "1");
                                                 Snackbar snackbar4 = Snackbar.make(coordinatorLayout, "Message is showed!", Snackbar.LENGTH_SHORT);
                                                 snackbar4.show();
                                             }
                                         });
-
                                 snackbar3.show();
                                 break;
 
@@ -160,17 +174,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         */
 
-        TextView titol = (TextView)findViewById(R.id.post_titol);
-        
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_post_back:
-                System.out.println("------------------------------------------------------------------------------------HiddenList size:"+ new LoginActivity().getCurrentUser().getHiddenPosts().size()+"------------------------------------------");
-                this.finish();
+               this.finish();
                 break;
             case R.id.fab:
 
@@ -229,8 +239,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     private void onDelete () {
-        ControladorPresentacioPostOpen controlador = new ControladorPresentacioPostOpen(this, getApplicationContext());
-        controlador.deletePost(post.getId());
+        new ControladorPresentacioPostOpen(this, getApplicationContext()).deletePost(post.getId());
         this.finish();
     }
 }

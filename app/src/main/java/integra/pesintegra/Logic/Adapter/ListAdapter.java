@@ -86,17 +86,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     }
 
     public void removeHidden(List<String> postsH){
-        Boolean end = false;
-        int i = 0;
-        while( end == false){
-            for(int j = 0;j < posts.size(); ++j){
-                if(posts.get(j).getId().equals(postsH.get(i))){
-                    posts.remove(j);
-                    j+=posts.size();
+        if(postsH.size() > 0){
+            Boolean end = false;
+            int i = 0;
+            while( !end){
+                for(int j = 0;j < posts.size(); ++j){
+                    if(posts.get(j).getId().equals(postsH.get(i))){
+                        posts.remove(j);
+                        j+=posts.size();
+                    }
                 }
+                ++i;
+                if(i>=postsH.size()) end = true;
             }
-            ++i;
-            if(i>=postsH.size()) end = true;
         }
+
     }
 }
