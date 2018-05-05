@@ -26,6 +26,9 @@ public interface PostService {
     @GET("/post/allUser")
     Call<ArrayList<Post>> getAllPostsFromUser(@Query("owner") String owner);
 
+    @GET("/post/allHiddenUser")
+    Call<ArrayList<Post>> getHiddenListFromUser(@Query("owner") String owner);
+
     @POST("post/new")
     Call<Void> createPost(@Body Post post);
 

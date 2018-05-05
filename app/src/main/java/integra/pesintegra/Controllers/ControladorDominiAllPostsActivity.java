@@ -57,9 +57,9 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         //lo de sota
         //getSessioID de ControladorDomini
         //getID a Sessio
-
-        //Call<ArrayList<Post>> call = service.getHiddenPosts(this.getSessioID());
-        //enqueueCall(call);
+        //TODO: agafar el current user enlloc de "1"
+        Call<ArrayList<Post>> call = service.getHiddenListFromUser("1");
+        enqueueCall(call);
     }
 
     private void enqueueCall (Call<ArrayList<Post>> call) {
