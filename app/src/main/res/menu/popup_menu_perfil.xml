@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/afegir_imatge"
+        android:title="Afegir/canviar imatge"/>
+
+    <item
+        android:id="@+id/canviar_mail"
+        android:title="Canviar mail"/>
+
+    <item
+        android:id="@+id/posts_propis"
+        android:title="Els meus posts"/>
+    <item
+        android:id="@+id/posts_amagats"
+        android:title="Posts amagats"/>
+</menu>
