@@ -43,6 +43,12 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         enqueueCall(call);
     }
 
+    public void loadFeedUserPosts () {
+        //TODO: agafar el current user enlloc de "1"
+        PostService service = this.getServiceManager().getPostService();
+        Call<ArrayList<Post>> call = service.getAllPostsFromUser("1");
+        enqueueCall(call);
+    }
     public void loadFeedHousePosts () {
         PostService service = this.getServiceManager().getPostService();
         Call<ArrayList<Post>> call = service.getAllPosts("home");
