@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.AllPostsActivity;
+import integra.pesintegra.Presentation.LoginActivity;
 import integra.pesintegra.Services.PostService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +49,19 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         enqueueCall(call);
     }
 
+    public void loadFeedHiddenPosts() {
+        PostService service = this.getServiceManager().getPostService();
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //Cal descomentar quan estigui el id a sessio i la crida a bd:
+        //lo de sota
+        //getSessioID de ControladorDomini
+        //getID a Sessio
+
+        //Call<ArrayList<Post>> call = service.getHiddenPosts(this.getSessioID());
+        //enqueueCall(call);
+    }
+
     private void enqueueCall (Call<ArrayList<Post>> call) {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
@@ -59,4 +74,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
             }
         });
     }
+
+
 }

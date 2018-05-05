@@ -53,6 +53,11 @@ public class ControladorDomini extends  AbstractBaseController{
         return sessio.getUsername();
     }
 
+    /* DESCOMENTAR QUAN ESTIGUI FET EL ID
+    protected String getSessioID() {
+        return sessio.getID();
+    }
+*/
     protected String getSessioToken() {
         return sessio.getToken();
 

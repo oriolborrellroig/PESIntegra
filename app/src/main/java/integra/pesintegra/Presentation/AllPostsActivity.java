@@ -121,6 +121,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         else if (postType.equals("activity")){
             cs.loadFeedActivityPosts();
         }
+        else if (postType.equals("hide")){
+            cs.loadFeedHiddenPosts();
+        }
     }
 
     @Override

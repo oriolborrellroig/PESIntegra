@@ -83,7 +83,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                                 break;
                             case R.id.posts_amagats:
-
+                                Intent inte = new Intent(getApplicationContext(), AllPostsActivity.class);
+                                inte.putExtra("type", "hide");
+                                startActivity(inte);
                                 break;
 
                         }
