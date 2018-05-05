@@ -1,11 +1,15 @@
 package integra.pesintegra.Presentation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import integra.pesintegra.Controllers.ControladorServeisProfileActivity;
+import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
@@ -30,6 +34,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         Button change_profile = (Button)findViewById(R.id.btn_change_profile);
         change_profile
                 .setOnClickListener(this);
+
+        ControladorServeisProfileActivity  cp= new ControladorServeisProfileActivity(this, getApplicationContext());
+        cp.getUser("1");
 
         /*Button button_esport = findViewById(R.id.btn_esport);
         button_esport.setBackgroundColor(Color.parseColor("#C5CAE9")); (....)*/
@@ -262,5 +269,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         //b = findViewById(R.id.btn_esport);
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));
+    }
+
+    public void setUserInfo(User body, Context context) {
+
+        Log.d("user id", body.getId());
+        Log.d("mail", body.getMail());
     }
 }

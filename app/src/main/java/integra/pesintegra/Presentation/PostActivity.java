@@ -62,8 +62,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 //Inflating the Popup using xml file
                 int r = li.getCurrentUser().isInHiddenList(post.getId());
-                System.out.println("-----------------------------------r: "+r+"----------------------------------------");
-                System.out.println("---------------------------------idPost: "+post.getId()+"--------------------------");
                 if(r < 0) popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
 

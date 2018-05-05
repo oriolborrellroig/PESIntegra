@@ -61,7 +61,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
             titol = (TextView) view.findViewById(R.id.cv_titol);
             dia = (TextView) view.findViewById(R.id.cv_dia);
             context2 = view.getContext();
-            if(p != null && !p.isShowed()) view.setVisibility(View.INVISIBLE);
             view.setClickable(true);
             view.setOnClickListener(this);
         }
@@ -87,10 +86,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     }
 
     public void removeHidden(List<String> postsH){
-        System.out.println("--------------------------------------------------------------------entro en removeHidden()--------------------------------------");
-        System.out.println("-------------------------------------------------------------posts.size(): "+posts.size()+"--------------------------------------");
-        System.out.println("------------------------------------------------------------postsH.size()"+postsH.size()+"---------------------------------------");
-        System.out.println(postsH);
         Boolean end = false;
         int i = 0;
         while( end == false){

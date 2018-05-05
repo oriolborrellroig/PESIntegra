@@ -12,12 +12,21 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface UserService {
+    @GET("/users/login")
+    Call<User> loginUser(@Query("usr") String usr, @Query("pas") String pas);
+
     @GET("/users/get")
-    Call<User> getUser(@Query("usr") String usr, @Query("pas") String pas);
+    Call<User> getUser(@Query("usr") String usr);
 
     @POST("users/new")
     Call<Void> createUser(@Body User user);
 
     @PATCH("users/updateMail")
     Call<Void> updateMailUser(@Query("usrid") String userid, @Query("mail") String mail);
+
+    @PATCH("users/updateAddToHide")
+    Call<Void> updateAddToHide(@Query("usrid") String userid, @Query("postid") String postid);
+
+    @PATCH("users/updateRemoveToHide")
+    Call<Void> updateRemoveToHide(@Query("usrid") String userid, @Query("postid") String postid);
 }

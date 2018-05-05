@@ -21,9 +21,12 @@ public class ControladorServeisLoginActivity extends ControladorServeis {
         this.context = cont;
         this.activity = loginActivity;
     }
-    public static void checkLogin (final String username, String password) {
-        UserService service = getServiceManager().getUserService();
-        Call<User> createCall2 = service.getUser(username, password);
+
+
+    public void checkLogin (String username, String password) {
+        UserService service = this.getServiceManager().getUserService();
+        Call<User> createCall2 = service.loginUser(username, password);
+
         createCall2.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
