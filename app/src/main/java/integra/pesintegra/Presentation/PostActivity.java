@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,10 +48,15 @@ public class PostActivity extends Activity implements View.OnClickListener{
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
+    private ControladorPresentacioPostOpen cp;
+    TextView votantsTotals;
+    TextView avgScore;
+    RatingBar scoreBar;
     private final LoginActivity li = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cp = new ControladorPresentacioPostOpen(this, getApplicationContext());
         setContentView(R.layout.activity_post);
 
         Button btn_back = (Button)findViewById(R.id.btn_post_back);
@@ -157,9 +163,23 @@ public class PostActivity extends Activity implements View.OnClickListener{
         post_text.setText(post.getDescripcio());
         //iv.setImageBitmap(post.getImatge());
 
+        votantsTotals = (TextView) findViewById(R.id.votantsTotals);
+        avgScore = (TextView) findViewById(R.id.avgPunt);
+        scoreBar = (RatingBar)findViewById(R.id.ratingBar1);
 
+        cp.getPostRating(this.post.getId());
+        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar2);
 
-
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                ratingBar.setIsIndicator(true);
+                cp.votePost(post.getId(), String.valueOf(ratingBar.getRating()));
+                /*Toast.makeText(PostActivity.this,
+                        "Rating changed, current rating "+ ratingBar.getRating(),
+                        Toast.LENGTH_SHORT).show();*/
+            }
+        });
 
         //DANI T HE COMENTAT TOT AIXO
 
@@ -251,6 +271,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
     public void updateRating(String puntuacio, String nombreVots) {
 
         //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
+        votantsTotals.setText(nombreVots);
+        avgScore.setText(puntuacio);
 
         Log.d("PUNTS ", puntuacio);
         Log.d("VOTS ", nombreVots);
