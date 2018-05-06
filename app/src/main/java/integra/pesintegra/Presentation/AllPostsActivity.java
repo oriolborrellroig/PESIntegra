@@ -119,7 +119,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     protected void onResume(){
         super.onResume();
         new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext()).loadFeedHiddenPosts();
-        if(listAdapter != null) listAdapter.removeHidden(hidden_posts);
+        //if(listAdapter != null) listAdapter.removeHidden(hidden_posts);
         if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
 
@@ -224,7 +224,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
         listAdapter = new ListAdapter(body);
-        listAdapter.removeHidden(hidden_posts);
+//        listAdapter.removeHidden(hidden_posts);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

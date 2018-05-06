@@ -60,13 +60,8 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     public void loadFeedHiddenPosts() {
         PostService service = this.getServiceManager().getPostService();
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //Cal descomentar quan estigui el id a sessio i la crida a bd:
-        //lo de sota
-        //getSessioID de ControladorDomini
-        //getID a Sessio
-        //TODO: agafar el current user enlloc de "1"
-        Call<ArrayList<Post>> call = service.getHiddenListFromUser("1");
+
+        Call<ArrayList<Post>> call = service.getHiddenListFromUser(this.getSessioUser());
         h = true;
         enqueueCall(call);
     }
@@ -75,8 +70,8 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                if(!h)Cpresentacio.updateFeed(response.body());
-                else Cpresentacio.sendHiddenList(response.body());
+                /*if(h)*/Cpresentacio.updateFeed(response.body());
+                //else Cpresentacio.sendHiddenList(response.body());
             }
 
             @Override

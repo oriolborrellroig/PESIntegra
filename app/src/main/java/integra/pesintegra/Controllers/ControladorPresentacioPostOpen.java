@@ -47,4 +47,5 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void updateRating(String puntuacio, String nombreVots) {
         activity.updateRating(puntuacio,nombreVots);
     }
+
 }
