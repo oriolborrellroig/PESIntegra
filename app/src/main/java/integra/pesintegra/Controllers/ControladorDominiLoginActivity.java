@@ -36,7 +36,8 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
                 }
                 else {
                     createSession(response.body().get("token").toString().replace("\"", ""),
-                            response.body().get("user").toString().replace("\"", ""));
+                            response.body().get("user").toString().replace("\"", "")
+                            );
                     Cpresentasio.acceptLogin();
                 }
 
