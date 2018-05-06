@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -81,8 +79,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 startActivityForResult(i, 52);
                                 break;
                             case R.id.canviar_mail:
-                                Intent intent = new Intent(getApplicationContext(), ChangeProfileActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), ChangeMailActivity.class);
                                 startActivity(intent);
+                                break;
+                            case R.id.canviar_pswd:
+                                Intent chng = new Intent(getApplicationContext(), ChangePasswordActivity.class);
+                                startActivity(chng);
                                 break;
                             case R.id.posts_propis:
                                 Intent postsAmagats = new Intent(getApplicationContext(), AllPostsActivity.class);
@@ -115,7 +117,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         switch (view.getId()) {
 
             case R.id.tres_punts:
-               /* Intent intent = new Intent(getApplicationContext(), ChangeProfileActivity.class);
+               /* Intent intent = new Intent(getApplicationContext(), ChangeMailActivity.class);
                 startActivity(intent);*/
                 break;
 

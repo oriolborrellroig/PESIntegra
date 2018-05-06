@@ -1,8 +1,5 @@
 package integra.pesintegra.Controllers;
 
-import android.content.Context;
-
-import integra.pesintegra.Presentation.ChangeProfileActivity;
 import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -10,10 +7,10 @@ import retrofit2.Response;
 
 /*
 public class ControladorServeisChangeMailActivity extends ControladorServeis {
-    private ChangeProfileActivity activity;
+    private ChangeMailActivity activity;
     private Context context;
 
-    public ControladorServeisChangeMailActivity(ChangeProfileActivity allposts, Context cont) {
+    public ControladorServeisChangeMailActivity(ChangeMailActivity allposts, Context cont) {
         this.context = cont;
         this.activity = allposts;
 */

@@ -46,13 +46,13 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public static void updateFeed(ArrayList<Post> posts) {
         activity.updateFeed(posts,context);
     }
-
+/*
     public void sendHiddenList(ArrayList<Post> postsH){
         ArrayList<String> r = new ArrayList<>();
         for(int i = 0; i<postsH.size();++i){
             r.add(postsH.get(i).getId());
         }
         activity.setHiddenList(r);
-    }
+    }*/
 
 }

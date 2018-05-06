@@ -9,8 +9,14 @@
         android:title="Canviar mail"/>
 
     <item
+        android:id="@+id/canviar_pswd"
+        android:title="Canviar contrassenya"/>
+
+    <item
         android:id="@+id/posts_propis"
         android:title="Els meus posts"/>
+
+
     <item
         android:id="@+id/posts_amagats"
         android:title="Posts amagats"/>

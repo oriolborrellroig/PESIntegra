@@ -16,7 +16,7 @@ import integra.pesintegra.Controllers.ControladorPresentacioChangeMailActivity;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
-public class ChangeProfileActivity extends Activity implements View.OnClickListener {
+public class ChangeMailActivity extends Activity implements View.OnClickListener {
 
     ControladorPresentacio cntrlPresentacio;
 
@@ -43,11 +43,11 @@ public class ChangeProfileActivity extends Activity implements View.OnClickListe
             case R.id.change_email_confirm:
                 String email = ((EditText) findViewById(R.id.new_email)).getText().toString();
                 String pass1 = ((EditText) findViewById(R.id.confirm_mail_pass1)).getText().toString();
-                String pass2 = ((EditText) findViewById(R.id.confirm_mail_pass2)).getText().toString();
+                //String pass2 = ((EditText) findViewById(R.id.confirm_mail_pass2)).getText().toString();
                 try {
                     //cntrlPresentacio.change_email(email, pass1, pass2);
                     ControladorPresentacioChangeMailActivity controlador = new ControladorPresentacioChangeMailActivity(this, getApplicationContext());
-                    controlador.changeMail(email, pass1, pass2);
+                    controlador.changeMail(email, pass1);
                     /*
                     ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
                     controlador.changeEmail();
