@@ -54,5 +54,9 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
         this.setSessio(sessio);
 
     }
+
+    public String getUserSession(){
+        return getSessioUser();
+    }
 }
 

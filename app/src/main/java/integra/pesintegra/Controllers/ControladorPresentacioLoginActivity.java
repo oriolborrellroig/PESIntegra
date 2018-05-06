@@ -8,9 +8,13 @@ import integra.pesintegra.Presentation.LoginActivity;
 public class ControladorPresentacioLoginActivity extends ControladorPresentacio  {
 
 
-    private LoginActivity activity;
-    private Context context;
-    private ControladorDominiLoginActivity Cdomini;
+    private static LoginActivity activity;
+    private static Context context;
+    private static ControladorDominiLoginActivity Cdomini;
+
+    public ControladorPresentacioLoginActivity () {
+
+    }
 
     public ControladorPresentacioLoginActivity(LoginActivity loginActivity, Context cont) {
         this.context = cont;
@@ -27,5 +31,11 @@ public class ControladorPresentacioLoginActivity extends ControladorPresentacio 
 
     public void rejectLogin() {
         activity.rejectLogin(context);
+    }
+
+    public static String getUserSessio(){return Cdomini.getUserSession();}
+
+    public static LoginActivity getActivityLogin(){
+        return activity;
     }
 }

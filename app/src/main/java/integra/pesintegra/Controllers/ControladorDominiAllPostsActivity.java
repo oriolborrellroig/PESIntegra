@@ -75,8 +75,9 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                if(!h)Cpresentacio.updateFeed(response.body());
-                else Cpresentacio.sendHiddenList(response.body());
+                //if(!h)
+                    Cpresentacio.updateFeed(response.body());
+                //else Cpresentacio.sendHiddenList(response.body());
             }
 
             @Override

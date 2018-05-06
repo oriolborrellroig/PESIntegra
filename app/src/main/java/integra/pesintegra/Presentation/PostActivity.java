@@ -33,8 +33,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import integra.pesintegra.Controllers.ControladorDomini;
 import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
+import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
@@ -88,7 +91,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                             case R.id.show_post:
                                 //li.getCurrentUser().removeHiddenPost(post.getId());
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
-                                        , "1");
+                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
                                 Snackbar snackbar = Snackbar
                                         .make(coordinatorLayout, "El missatge es mostrara. Vols cancelar? ", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
@@ -96,7 +99,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                             public void onClick(View view) {
                                                 //li.getCurrentUser().addHiddenPost(post.getId());
                                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
-                                                        , "1");
+                                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
                                                 Snackbar snackbar2 = Snackbar.make(coordinatorLayout, "Request canceled!", Snackbar.LENGTH_SHORT);
                                                 snackbar2.show();
                                             }
@@ -106,7 +109,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                             case R.id.hide_post:
                                 //li.getCurrentUser().addHiddenPost(post.getId());
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
-                                        , "1");
+                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
                                 Snackbar snackbar3 = Snackbar
                                         .make(coordinatorLayout, "El missatge s'ha amagat. Vols cancelar?", Snackbar.LENGTH_LONG)
                                         .setAction("UNDO", new View.OnClickListener() {
@@ -114,7 +117,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                             public void onClick(View view) {
                                                 //li.getCurrentUser().removeHiddenPost(post.getId());
                                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
-                                                        , "1");
+                                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
                                                 Snackbar snackbar4 = Snackbar.make(coordinatorLayout, "Message is showed!", Snackbar.LENGTH_SHORT);
                                                 snackbar4.show();
                                             }
