@@ -22,12 +22,12 @@ public abstract class Post implements Serializable {
     private String owner;
     private char tipus;
     private Bitmap imatge;
-<<<<<<< HEAD
+
     private boolean hidden;
-=======
+
     private int puntuacio;
     private int nombreVots;
->>>>>>> master
+
 
     public Post(char tipus){
         setId();

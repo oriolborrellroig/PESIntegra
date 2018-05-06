@@ -58,10 +58,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

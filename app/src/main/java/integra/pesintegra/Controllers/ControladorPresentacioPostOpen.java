@@ -31,8 +31,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         Cdomini.updateRemoveToHide(userId, postId);
     }
 
-<<<<<<< HEAD
-=======
+
     public void getPostRating(String postId) {
         Cdomini.getRating(postId);
 
@@ -48,5 +47,4 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void updateRating(String puntuacio, String nombreVots) {
         activity.updateRating(puntuacio,nombreVots);
     }
->>>>>>> master
 }
