@@ -58,7 +58,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +159,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
 
 
+
+
         //DANI T HE COMENTAT TOT AIXO
 
         //Bitmap img_pre;
@@ -241,5 +246,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
     private void onDelete () {
         new ControladorPresentacioPostOpen(this, getApplicationContext()).deletePost(post.getId());
         this.finish();
+    }
+
+    public void updateRating(String puntuacio, String nombreVots) {
+
+        //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
+
+        Log.d("PUNTS ", puntuacio);
+        Log.d("VOTS ", nombreVots);
     }
 }

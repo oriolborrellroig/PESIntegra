@@ -3,6 +3,10 @@ package integra.pesintegra.Controllers;
 import android.content.Context;
 import android.net.Uri;
 
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
+
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.Services.PostService;
@@ -62,6 +66,40 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getRating (String postId) {
+        PostService service = ServiceManager.getPostService();
+        Call<JsonObject> createCall = service.getPostRating(postId);
+        createCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Cpresentacio.updateRating(response.body().get("puntuacio").toString().replace("\"", ""),
+                        response.body().get("nombreVots").toString().replace("\"", ""));
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void votaPost (String postId, String puntuacio) {
+        PostService service = ServiceManager.getPostService();
+        Call<JsonObject> createCall = service.votePost(postId, puntuacio);
+        createCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Cpresentacio.updateRating(response.body().get("puntuacio").toString().replace("\"", ""),
+                        response.body().get("nombreVots").toString().replace("\"", ""));
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
 
             }
         });
