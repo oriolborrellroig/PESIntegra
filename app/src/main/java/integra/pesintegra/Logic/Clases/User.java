@@ -11,6 +11,7 @@ public class User {
     private String tipus;
     private String data;
     private List<String> hiddenPosts;
+    private List<String> interessos;
 
     public User (){
         hiddenPosts = new ArrayList<String>();
@@ -48,8 +49,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
 
     public String getTipus() {
         return tipus;
@@ -104,5 +103,9 @@ public class User {
         return false;
     }
 
+    public List<String> getInteressos(){
+
+        return interessos;
+    }
 
 }

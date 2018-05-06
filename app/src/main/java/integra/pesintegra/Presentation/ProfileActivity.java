@@ -14,9 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Clases.User;
@@ -37,6 +41,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     ImageView iv;
     Bitmap bitmapImage;
     Uri imageUri;
+    ControladorPresentacioProfileActivity cp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +56,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 */
         iv = (ImageView) findViewById(R.id.imatge_perfil);
 
-        ControladorPresentacioProfileActivity cp= new ControladorPresentacioProfileActivity(this, getApplicationContext());
-        cp.setUserInterest("cinema", "true");
+        cp = new ControladorPresentacioProfileActivity(this, getApplicationContext());
+        //cp.setUserInterest("cinema", "true");
+
 
 
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
@@ -106,8 +112,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         });
 
-        /*Button button_esport = findViewById(R.id.btn_esport);
-        button_esport.setBackgroundColor(Color.parseColor("#C5CAE9")); (....)*/
+        cp.getUser();
     }
 
 
@@ -126,195 +131,153 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 button = findViewById(R.id.btn_esport);
 
                 if(clicked_esport){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_esport = !clicked_esport;
+                    cp.setUserInterest("esport", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_esport = !clicked_esport;
+                    cp.setUserInterest("esport", "false");
                 }
 
                 break;
 
             case R.id.btn_musica:
-                System.out.println("has CLICKAT!----------");
                 button = findViewById(R.id.btn_musica);
 
                 if(clicked_musica){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_musica = !clicked_musica;
+                    cp.setUserInterest("musica", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_musica = !clicked_musica;
+                    cp.setUserInterest("musica", "false");
                 }
 
                 break;
 
             case R.id.btn_cinema:
-                System.out.println("has CLICKAT!----------");
                 button = findViewById(R.id.btn_cinema);
 
                 if(clicked_cinema){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_cinema = !clicked_cinema;
+                    cp.setUserInterest("cinema", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_cinema = !clicked_cinema;
+                    cp.setUserInterest("cinema", "false");
                 }
 
                 break;
 
             case R.id.btn_lectura:
-                System.out.println("has CLICKAT!----------");
                 button = findViewById(R.id.btn_lectura);
 
                 if(clicked_lectura){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_lectura = !clicked_lectura;
+                    cp.setUserInterest("lectura", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_lectura = !clicked_lectura;
+                    cp.setUserInterest("lectura", "false");
                 }
 
                 break;
 
 
-            /*case R.id.btn_tech:
-                System.out.println("has CLICKAT!----------");
+            case R.id.btn_tech:
                 button = findViewById(R.id.btn_tech);
 
                 if(clicked_tech){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_tech = !clicked_tech;
+                    cp.setUserInterest("tecnologia", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_tech = !clicked_tech;
-                }*/
+                    cp.setUserInterest("tecnologia", "false");
+                }
+
+                break;
 
             case R.id.btn_cuina:
-                System.out.println("has CLICKAT!----------");
-                button = findViewById(R.id.btn_cuina);
+               button = findViewById(R.id.btn_cuina);
 
                 if(clicked_cuina){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
-                    item_seleccionat(button);
+                   item_seleccionat(button);
                     clicked_cuina = !clicked_cuina;
+                    cp.setUserInterest("cuina", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_cuina = !clicked_cuina;
+                    cp.setUserInterest("cuina", "false");
                 }
 
                 break;
 
             case R.id.btn_moda:
-                System.out.println("has CLICKAT!----------");
                 button = findViewById(R.id.btn_moda);
 
                 if(clicked_moda){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_moda = !clicked_moda;
+                    cp.setUserInterest("moda", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_moda = !clicked_moda;
+                    cp.setUserInterest("moda", "false");
                 }
 
                 break;
 
 
             case R.id.btn_viatges:
-                System.out.println("has CLICKAT!----------");
                 button = findViewById(R.id.btn_viatges);
 
                 if(clicked_viatges){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_viatges = !clicked_viatges;
+                    cp.setUserInterest("viatges", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_viatges = !clicked_viatges;
+                    cp.setUserInterest("viatges", "false");
                 }
 
                 break;
 
             case R.id.btn_art:
-                System.out.println("has CLICKAT!----------");
                 button = findViewById(R.id.btn_art);
 
                 if(clicked_art){
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("Esta clicat");
-
                     item_seleccionat(button);
                     clicked_art = !clicked_art;
+                    cp.setUserInterest("art", "true");
                 }
 
                 else {
-                    System.out.println("has tronar a clicar pillina!----------");
-                    System.out.println("no esta clicat");
-
                     item_no_seleccionat(button);
                     clicked_art = !clicked_art;
+                    cp.setUserInterest("art", "false");
                 }
 
                 break;
@@ -327,24 +290,67 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     public void item_seleccionat(Button b){
         //pintar color seleccionat primary_dark
 
-        //b = findViewById(R.id.);
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
+
     }
 
     public void item_no_seleccionat(Button b){
         //pintar color no seleccionat primary_light
 
-        //b = findViewById(R.id.btn_esport);
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));
+
     }
 
     public void setUserInfo(User body, Context context) {
+        Log.d("caca:",((Integer) body.getInteressos().size()).toString());
+        TextView mail = (TextView) findViewById(R.id.user_mail);
+        mail.setText(body.getMail());
+        TextView data = (TextView) findViewById(R.id.user_birth_date);
+        data.setText(body.getData());
+        for ( int i = 0; i < body.getInteressos().size(); ++i){
 
-        Log.d("user id", body.getId());
-        Log.d("mail", body.getMail());
+            if (body.getInteressos().get(i).equals("esport") ){
+                button = (Button) findViewById(R.id.btn_esport);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("musica")){
+                button = (Button) findViewById(R.id.btn_musica);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("cinema")){
+                button = (Button) findViewById(R.id.btn_cinema);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("lectura")){
+                button = (Button) findViewById(R.id.btn_lectura);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("tecnologia")){
+                button = (Button) findViewById(R.id.btn_tech);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("cuina")){
+                button = (Button) findViewById(R.id.btn_cuina);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("moda")){
+                button = (Button) findViewById(R.id.btn_moda);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("viatges")){
+                button = (Button) findViewById(R.id.btn_viatges);
+                item_seleccionat(button);
+            }
+            else if (body.getInteressos().get(i).equals("art")){
+                button = (Button) findViewById(R.id.btn_art);
+                item_seleccionat(button);
+            }
+            else break;
+        }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -392,8 +398,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     public void updateInterestInfo(String interes, String valor) {
 
-        Log.d("interes : ", interes);
-        Log.d("valorrr : ", valor);
+        //Log.d("interes : ", interes);
+        //Log.d("valorrr : ", valor);
         //fer coses amb el nom del interes canviat i el nou valor true false en format string.
     }
 }
