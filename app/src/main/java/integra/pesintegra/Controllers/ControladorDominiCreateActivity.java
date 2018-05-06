@@ -35,6 +35,7 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
 
 
     public void createPost (Post post, Uri uri) {
+        post.setOwner(this.getSessioUser());
         PostService service = ServiceManager.getPostService();
         Call<Void> createCall = service.createPost(post);
         createCall.enqueue(new Callback<Void>() {
