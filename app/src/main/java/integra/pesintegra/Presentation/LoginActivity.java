@@ -21,7 +21,6 @@ import integra.pesintegra.R;
 public class LoginActivity extends Activity implements View.OnClickListener {
 
 
-    private static User currentUser;
 
     ControladorPresentacioLoginActivity cp;
 
@@ -38,7 +37,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         this.cp = new ControladorPresentacioLoginActivity(this,getApplicationContext());
 
-        currentUser = new User();
 
     }
 
@@ -92,7 +90,4 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         startActivity(intent);
     }
 
-    public static User getCurrentUser(){
-        return currentUser;
-    }
 }

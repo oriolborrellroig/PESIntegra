@@ -71,11 +71,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
 
                 //Inflating the Popup using xml file
-                int r = li.getCurrentUser().isInHiddenList(post.getId());
+                //int r = li.getCurrentUser().isInHiddenList(post.getId());
 
-                if(r < 0) popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
-                else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
-
+                ///if(r < 0) ;
+                //else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

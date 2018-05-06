@@ -48,7 +48,11 @@
             android:name=".Presentation.ProfileActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Presentation.ChangeProfileActivity"
+            android:name=".Presentation.ChangeMailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".Presentation.ChangePasswordActivity"
             android:screenOrientation="portrait"/>
     </application>
 
