@@ -41,7 +41,9 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
-    public void updateAddToHide (String userId, String postId) {
+    public void updateAddToHide ( String postId) {
+
+        String userId = this.getSessioUser();
         UserService service = ServiceManager.getUserService();
         Call<Void> createCall = service.updateAddToHide(userId, postId);
         createCall.enqueue(new Callback<Void>() {
@@ -56,7 +58,9 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
-    public void updateRemoveToHide (String userId, String postId) {
+    public void updateRemoveToHide (String postId) {
+        String userId = this.getSessioUser();
+
         UserService service = ServiceManager.getUserService();
         Call<Void> createCall = service.updateRemoveToHide(userId, postId);
         createCall.enqueue(new Callback<Void>() {

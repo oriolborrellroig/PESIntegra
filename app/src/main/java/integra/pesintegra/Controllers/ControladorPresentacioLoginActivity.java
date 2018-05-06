@@ -22,7 +22,7 @@ public class ControladorPresentacioLoginActivity extends ControladorPresentacio 
         this.Cdomini = new ControladorDominiLoginActivity(this);
     }
     public void checkLogin (String username, String password) {
-        Cdomini.checkLogin(username,password);
+        Cdomini.checkLogin(username,hash_password(password));
     }
 
     public void acceptLogin() {

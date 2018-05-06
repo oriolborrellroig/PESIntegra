@@ -24,11 +24,11 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public static void updateAddHiddenList(String postId, String userId){
-        Cdomini.updateAddToHide(userId, postId);
+        Cdomini.updateAddToHide(postId);
     }
 
     public static void updateRemoveHiddenList(String postId, String userId){
-        Cdomini.updateRemoveToHide(userId, postId);
+        Cdomini.updateRemoveToHide(postId);
     }
 
 

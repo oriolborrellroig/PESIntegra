@@ -24,6 +24,7 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
     public void doRegister(final User user, final String hash) {
         UserService service = this.getServiceManager().getLoginService();
         Call<Void> createCall2 = service.createUser(user,hash);
+
         createCall2.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

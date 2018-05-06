@@ -52,7 +52,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         iv = (ImageView) findViewById(R.id.imatge_perfil);
 
         ControladorPresentacioProfileActivity cp= new ControladorPresentacioProfileActivity(this, getApplicationContext());
-        cp.setUserInterest("2", "cinema", "true");
+        cp.setUserInterest("cinema", "true");
 
 
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
