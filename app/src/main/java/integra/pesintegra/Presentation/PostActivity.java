@@ -271,8 +271,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
     public void updateRating(String puntuacio, String nombreVots) {
 
         //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
-        votantsTotals.setText(nombreVots);
+        votantsTotals.setText("("+nombreVots+")");
         avgScore.setText(puntuacio);
+        scoreBar.setRating(Float.parseFloat(puntuacio));
 
         Log.d("PUNTS ", puntuacio);
         Log.d("VOTS ", nombreVots);
