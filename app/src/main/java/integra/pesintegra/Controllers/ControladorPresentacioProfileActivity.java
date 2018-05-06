@@ -17,12 +17,12 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
         this.Cdomini = new ControladorDominiProfileActivity (this);
     }
 
-    public static void getUser (String id) {
-        Cdomini.getUser(id);
+    public static void getUser () {
+        Cdomini.getUser();
     }
 
-    public void setUserInterest (String userID, String interes, String nouValor) {
-        Cdomini.setUserInfo(userID,interes.toLowerCase(),nouValor.toLowerCase());
+    public void setUserInterest (String interes, String nouValor) {
+        Cdomini.setUserInfo(interes.toLowerCase(),nouValor.toLowerCase());
     }
 
     public void setUserInfo (User body) {

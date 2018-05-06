@@ -69,7 +69,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     String hash = cp.hash_password(pass1);
                     ControladorPresentacioRegisterActivity controlador = new ControladorPresentacioRegisterActivity(this, getApplicationContext());
                     controlador.doRegister(newUser, hash);
-                    this.finish();
                     break;
 
                 } catch (Exception e) {
@@ -123,6 +122,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         intent = new Intent(context,AllPostsActivity.class);
         intent.putExtra("type", "any");
         startActivity(intent);
+        this.finish();
     }
 
 

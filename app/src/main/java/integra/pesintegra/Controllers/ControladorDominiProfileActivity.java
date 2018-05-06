@@ -23,7 +23,8 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         this.Cpresentacio = Cpresentacio;
     }
 
-    public void getUser (String id) {
+    public void getUser () {
+        String id = this.getSessioUser();
         UserService service = this.getServiceManager().getUserService();
         Call<User> createCall2 = service.getUser(id);
         createCall2.enqueue(new Callback<User>() {
@@ -40,11 +41,12 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         });
     }
 
-    public void setUserInfo(String userID, String interes, String valor) {
+    public void setUserInfo(String interes, String valor) {
 
+        String userID = this.getSessioUser();
         UserService service = this.getServiceManager().getUserService();
         Call<JsonObject> createCall2 = service.setInterest(userID, interes, valor);
-        Log.d("interiooor", "HGOLAAAAAAA");
+        Log.d("interiooor", "user");
         createCall2.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
