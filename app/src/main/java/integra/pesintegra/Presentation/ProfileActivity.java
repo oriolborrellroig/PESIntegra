@@ -85,7 +85,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 startActivity(intent);
                                 break;
                             case R.id.posts_propis:
-
+                                Intent postsAmagats = new Intent(getApplicationContext(), AllPostsActivity.class);
+                                postsAmagats.putExtra("type", "propis");
+                                startActivity(postsAmagats);
                                 break;
                             case R.id.posts_amagats:
                                 Intent inte = new Intent(getApplicationContext(), AllPostsActivity.class);

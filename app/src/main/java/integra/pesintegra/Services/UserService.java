@@ -24,7 +24,7 @@ public interface UserService {
     Call<Void> createUser(@Body User user);
 
     @PATCH("users/updateMail")
-    Call<Void> updateMailUser(@Query("usrid") String userid, @Query("mail") String mail);
+    Call<Void> updateMailUser(@Query("usrid") String userid, @Query("mail") String mail, @Query("pass") String pass);
 
     @PATCH("users/updateAddToHide")
     Call<Void> updateAddToHide(@Query("usrid") String userid, @Query("postid") String postid);

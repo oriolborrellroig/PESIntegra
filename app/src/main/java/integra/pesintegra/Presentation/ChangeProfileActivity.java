@@ -47,7 +47,7 @@ public class ChangeProfileActivity extends Activity implements View.OnClickListe
                 try {
                     //cntrlPresentacio.change_email(email, pass1, pass2);
                     ControladorPresentacioChangeMailActivity controlador = new ControladorPresentacioChangeMailActivity(this, getApplicationContext());
-                    controlador.changeMail("null_604bd978-5b10-41ab-b483-bc34b0df2f2c","hacanviat@hacanviat.com");
+                    controlador.changeMail(email, pass1, pass2);
                     /*
                     ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
                     controlador.changeEmail();
@@ -63,7 +63,7 @@ public class ChangeProfileActivity extends Activity implements View.OnClickListe
                             .setMessage(e.getMessage())
                             .setNeutralButton("Torna", null)
                             .show();
-            }
+                }
                 break;
         }
     }

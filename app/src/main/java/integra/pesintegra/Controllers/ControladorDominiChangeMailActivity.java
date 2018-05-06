@@ -24,9 +24,9 @@ public class ControladorDominiChangeMailActivity extends ControladorDomini {
         this.Cpresentacio = cp;
 }
 
-    public void changeMail (String id, String newmail) {
+    public void changeMail (String email, String pass) {
         UserService service = this.getServiceManager().getUserService();
-        Call<Void> createCall2 = service.updateMailUser(id, newmail);
+        Call<Void> createCall2 = service.updateMailUser(this.getSessioUser(), email, pass);
         createCall2.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
