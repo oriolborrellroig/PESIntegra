@@ -54,7 +54,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         iv = (ImageView) findViewById(R.id.imatge_perfil);
 
         ControladorPresentacioProfileActivity cp= new ControladorPresentacioProfileActivity(this, getApplicationContext());
-        cp.getUser("1");
+        cp.setUserInterest("2", "cinema", "true");
 
 
         final Button tres_punts = (Button) findViewById(R.id.tres_punts);
@@ -386,5 +386,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         BitmapFactory.Options o2 = new BitmapFactory.Options();
         o2.inSampleSize = scale;
         return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
+    }
+
+    public void updateInterestInfo(String interes, String valor) {
+
+        Log.d("interes : ", interes);
+        Log.d("valorrr : ", valor);
+        //fer coses amb el nom del interes canviat i el nou valor true false en format string.
     }
 }

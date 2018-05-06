@@ -21,7 +21,15 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
         Cdomini.getUser(id);
     }
 
+    public void setUserInterest (String userID, String interes, String nouValor) {
+        Cdomini.setUserInfo(userID,interes.toLowerCase(),nouValor.toLowerCase());
+    }
+
     public void setUserInfo (User body) {
         activity.setUserInfo(body,context);
+    }
+
+    public void updateInterestInfo(String interes, String valor) {
+        activity.updateInterestInfo(interes, valor);
     }
 }

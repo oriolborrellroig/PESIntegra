@@ -66,10 +66,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String dataN = ((TextView) findViewById(R.id.register_datanaixement)).getText().toString();
                 try {
                     User newUser = cp.comprovar_camps(pass1, pass2, email, dataN);
+                    String hash = cp.hash_password(pass1);
                     ControladorPresentacioRegisterActivity controlador = new ControladorPresentacioRegisterActivity(this, getApplicationContext());
-                    controlador.doRegister(newUser);
-                    intent = new Intent(getApplicationContext(),AllPostsActivity.class);
-                    startActivity(intent);
+                    controlador.doRegister(newUser, hash);
                     this.finish();
                     break;
 
@@ -122,8 +121,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     public void logIn(Context context) {
         Intent intent;
         intent = new Intent(context,AllPostsActivity.class);
+        intent.putExtra("type", "any");
         startActivity(intent);
     }
+
+
 }
 
 @SuppressLint("ValidFragment")

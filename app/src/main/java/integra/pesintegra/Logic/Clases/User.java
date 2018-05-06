@@ -8,7 +8,6 @@ public class User {
     private String id;
     private String mail;
     private String username;
-    private String password;
     private String tipus;
     private String data;
     private List<String> hiddenPosts;
@@ -17,12 +16,11 @@ public class User {
         hiddenPosts = new ArrayList<String>();
     }
 
-    public User(String pas, String s1, String testTipus, String testData) {
+    public User(String mail, String testTipus, String testData) {
         setId();
-        this.mail = s1;
+        this.mail = mail;
         setUsernameFromEmail();
         this.tipus = testTipus;
-        this.password = pas;
         this.data = testData;
         hiddenPosts = new ArrayList<String>();
     }

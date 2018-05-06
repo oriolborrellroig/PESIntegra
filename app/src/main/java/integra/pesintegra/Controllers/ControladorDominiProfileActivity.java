@@ -3,6 +3,8 @@ package integra.pesintegra.Controllers;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Sessio;
@@ -33,6 +35,26 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Log.d("sadasds","aaa");
+            }
+        });
+    }
+
+    public void setUserInfo(String userID, String interes, String valor) {
+
+        UserService service = this.getServiceManager().getUserService();
+        Call<JsonObject> createCall2 = service.setInterest(userID, interes, valor);
+        Log.d("interiooor", "HGOLAAAAAAA");
+        createCall2.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                Log.d("crida fetaaa", response.body().get("interes").toString().replace("\"", ""));
+                Cpresentacio.updateInterestInfo(response.body().get("interes").toString().replace("\"", ""),
+                        response.body().get("valor").toString().replace("\"", ""));
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d("sadasds","aaa");
             }
         });

@@ -17,12 +17,12 @@ import retrofit2.Response;
 
 public class ControladorDominiLoginActivity extends ControladorDomini {
 
-    private ControladorPresentacioLoginActivity Cpresentasio;
+    private ControladorPresentacioLoginActivity Cpresentacio;
     private Context context;
     private String username;
 
-    public ControladorDominiLoginActivity(ControladorPresentacioLoginActivity Cpresentasio) {
-        this.Cpresentasio = Cpresentasio;
+    public ControladorDominiLoginActivity(ControladorPresentacioLoginActivity Cpresentacio) {
+        this.Cpresentacio = Cpresentacio;
     }
     public void checkLogin (String username, String password) {
         UserService service = this.getServiceManager().getLoginService();
@@ -32,13 +32,12 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 //activity.updateFeed(response.body(), context);
                 if ( response.body() == null) {
-                    Cpresentasio.rejectLogin();
+                    Cpresentacio.rejectLogin();
                 }
                 else {
                     createSession(response.body().get("token").toString().replace("\"", ""),
-                            response.body().get("user").toString().replace("\"", "")
-                            );
-                    Cpresentasio.acceptLogin();
+                            response.body().get("user").toString().replace("\"", ""));
+                    Cpresentacio.acceptLogin();
                 }
 
             }

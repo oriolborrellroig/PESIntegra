@@ -16,11 +16,15 @@ public class ControladorPresentacioRegisterActivity extends ControladorPresentac
         this.activity = registerActivity;
         this.Cdomini = new ControladorDominiRegisterActivity (this);
     }
-    public void doRegister (User user) {
-        Cdomini.doRegister(user);
+    public void doRegister(User user, String hash) {
+        Cdomini.doRegister(user, hash);
     }
 
     public void logIn (){
+        activity.logIn(context);
+    }
+
+    public void acceptLogin() {
         activity.logIn(context);
     }
 }

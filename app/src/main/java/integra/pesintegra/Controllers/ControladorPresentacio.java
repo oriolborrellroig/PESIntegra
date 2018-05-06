@@ -2,7 +2,10 @@ package integra.pesintegra.Controllers;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
@@ -79,11 +82,45 @@ public class ControladorPresentacio extends AbstractBaseController {
 
     public User comprovar_camps(String pass1, String pass2, String email, String dataN) throws Exception{
 
+        Log.d("aaa","petaas");
         valid_mail(email);
-        comprova_contrasenya_coincident(pass1, pass2);
-        data_naix_correcte(dataN);
+        Log.d("aaa","petaas");
 
-        return new User(email, pass1, "usuari", dataN);
+        comprova_contrasenya_coincident(pass1, pass2);
+        Log.d("aaa","petaas");
+
+        data_naix_correcte(dataN);
+        Log.d("aaa","petaas");
+
+
+        return new User(email, "usuari", dataN);
+    }
+
+    public String hash_password(String pas) {
+        String passwordToHash = "password";
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(passwordToHash.getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return generatedPassword;
     }
 
 }
