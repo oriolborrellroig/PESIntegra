@@ -7,30 +7,29 @@ import java.util.List;
 
 public class Sessio {
 
-    private String username;
+    private String id;
     private List<String> tags;
     private String idioma;
     private String token;
 
     //creacio d'un usuari nou amb tags buids, sense foto...
-    public Sessio (String username, String token) {
-        this.username = username;
+    public Sessio (String id, String token) {
+        this.id = id;
         this.idioma = "Catala";  //equivaldrà a numero del doc.
         this.tags = new ArrayList<>();
         this.token = token;
-        Log.d("username", token);
     }
 
 
 
     public void resetSessio() {
-        username = "";
+        id = "";
         idioma = "";
     }
 
 
     public String getUsername() {
-        return username;
+        return id;
     }
 
 
