@@ -51,7 +51,7 @@
             android:textSize="16sp" />
 
             <RatingBar
-                android:id="@+id/ratingBar1"
+                android:id="@+id/cv_ratingBar"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

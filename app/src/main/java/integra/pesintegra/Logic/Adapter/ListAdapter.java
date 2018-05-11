@@ -1,31 +1,36 @@
 package integra.pesintegra.Logic.Adapter;
 
 import android.content.Context;
+import android.media.Rating;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.view.View;
-import android.util.Log;
 import android.content.Intent;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.JsonObject;
 
-import javax.security.auth.login.LoginException;
+import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
 //import integra.pesintegra.Logic.Interface.CustomItemClickListener;
-import integra.pesintegra.Presentation.CreateActivityActivity;
-import integra.pesintegra.Presentation.LoginActivity;
 import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.R;
+import integra.pesintegra.Services.PostService;
+import integra.pesintegra.Services.ServiceManager;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
 
     private Context context;
     private static List<Post> posts;
+    private float rate = 0;
 
     public ListAdapter (List<Post> list_posts){
         this.posts = list_posts;
@@ -48,11 +53,36 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         Post p = posts.get(position);
         holder.titol.setText(p.getTitol());
         holder.dia.setText(String.valueOf(p.getDataIni()));
+        getRating(p.getId(), holder.rating);
+        //holder.rating.setRating(rate);
         holder.p = p;
+    }
+
+    public void getRating(final String postId, final RatingBar rating) {
+        PostService service = ServiceManager.getPostService();
+        Call<JsonObject> createCall = service.getPostRating(postId);
+        createCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                updateRating(response.body().get("puntuacio").toString().replace("\"", ""), rating);
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+    }
+
+    void updateRating(String puntuacio, RatingBar rating) {
+        rate =  Float.parseFloat(puntuacio);
+        rating.setRating(rate);
+        //Log.d("puntuacio " + postId +": ", String.valueOf(rate));
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView titol, dia;
+        public RatingBar rating;
         public Post p;
         private final Context context2;
 
@@ -60,6 +90,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
             super(view);
             titol = (TextView) view.findViewById(R.id.cv_titol);
             dia = (TextView) view.findViewById(R.id.cv_dia);
+            rating = (RatingBar) view.findViewById(R.id.cv_ratingBar);
             context2 = view.getContext();
             view.setClickable(true);
             view.setOnClickListener(this);
