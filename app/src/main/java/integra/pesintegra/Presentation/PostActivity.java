@@ -59,13 +59,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
         cp = new ControladorPresentacioPostOpen(this, getApplicationContext());
         setContentView(R.layout.activity_post);
 
-        Button btn_back = (Button)findViewById(R.id.btn_post_back);
+        Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
-        iv = (ImageView) findViewById(R.id.imatge);
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
-        final Button tres_punts = (Button) findViewById(R.id.tres_punts);
+        iv = findViewById(R.id.imatge);
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+        final Button tres_punts = findViewById(R.id.tres_punts);
 
 
         tres_punts.setOnClickListener(new View.OnClickListener() {

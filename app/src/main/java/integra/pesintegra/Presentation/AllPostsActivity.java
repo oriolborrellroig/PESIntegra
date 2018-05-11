@@ -78,23 +78,25 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     private void getPostsFromDB() {
         ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
-        if (postType.equals("any")) {
-            cs.loadFeedAnyPosts();
-        }
-        else if (postType.equals("house")) {
-            cs.loadFeedHousePosts();
-        }
-        else if (postType.equals("work")) {
-            cs.loadFeedWorkPosts();
-        }
-        else if (postType.equals("activity")){
-            cs.loadFeedActivityPosts();
-        }
-        else if (postType.equals("propis")){
-            cs.loadFeedUserPropiPosts();
-        }
-        else if (postType.equals("hide")){
-            cs.loadFeedHiddenPosts();
+        switch (postType) {
+            case "any":
+                cs.loadFeedAnyPosts();
+                break;
+            case "house":
+                cs.loadFeedHousePosts();
+                break;
+            case "work":
+                cs.loadFeedWorkPosts();
+                break;
+            case "activity":
+                cs.loadFeedActivityPosts();
+                break;
+            case "propis":
+                cs.loadFeedUserPropiPosts();
+                break;
+            case "hide":
+                cs.loadFeedHiddenPosts();
+                break;
         }
     }
 

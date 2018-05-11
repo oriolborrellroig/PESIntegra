@@ -18,7 +18,7 @@ public class InformationActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infomation);
-        Button btn_back = (Button)findViewById(R.id.btn_post_back);
+        Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
 
         ControladorPresentacioInfoUtil controlador = new ControladorPresentacioInfoUtil(this,getApplicationContext());
@@ -38,10 +38,10 @@ public class InformationActivity extends Activity implements View.OnClickListene
     }
 
     public void posaInformacio(JsonObject body) {
-        TextView emergencies = (TextView)findViewById(R.id.emergencies_txt);
+        TextView emergencies = findViewById(R.id.emergencies_txt);
         emergencies.setText(body.get("emergencies").toString().replace("\"", ""));
 
-        TextView hospitals = (TextView)findViewById(R.id.hospitals_txt);
+        TextView hospitals = findViewById(R.id.hospitals_txt);
         hospitals.setText(body.get("hospitals").toString().replace("\"", ""));
     }
 }

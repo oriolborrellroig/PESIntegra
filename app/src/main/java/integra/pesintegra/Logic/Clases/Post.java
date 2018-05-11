@@ -110,7 +110,7 @@ public abstract class Post implements Serializable {
         return id;
     }
 
-    public void setId() {
+    private void setId() {
         this.id = this.tipus + '_' + UUID.randomUUID().toString();
     }
 
@@ -128,7 +128,7 @@ public abstract class Post implements Serializable {
 
     public void setHidden (){this.hidden=true;}
 
-    public void setShow(){this.hidden=false;}
+    private void setShow(){this.hidden=false;}
 
     public boolean isShowed(){return !this.hidden;}
 

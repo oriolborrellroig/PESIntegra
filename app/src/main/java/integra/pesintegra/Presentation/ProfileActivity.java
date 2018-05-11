@@ -304,47 +304,46 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     public void setUserInfo(User body, Context context) {
-        Log.d("caca:",((Integer) body.getInteressos().size()).toString());
-        TextView mail = (TextView) findViewById(R.id.user_mail);
+        TextView mail = findViewById(R.id.user_mail);
         mail.setText(body.getMail());
-        TextView data = (TextView) findViewById(R.id.user_birth_date);
+        TextView data = findViewById(R.id.user_birth_date);
         data.setText(body.getData());
         for ( int i = 0; i < body.getInteressos().size(); ++i){
 
             if (body.getInteressos().get(i).equals("esport") ){
-                button = (Button) findViewById(R.id.btn_esport);
+                button = findViewById(R.id.btn_esport);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("musica")){
-                button = (Button) findViewById(R.id.btn_musica);
+                button = findViewById(R.id.btn_musica);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("cinema")){
-                button = (Button) findViewById(R.id.btn_cinema);
+                button = findViewById(R.id.btn_cinema);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("lectura")){
-                button = (Button) findViewById(R.id.btn_lectura);
+                button = findViewById(R.id.btn_lectura);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("tecnologia")){
-                button = (Button) findViewById(R.id.btn_tech);
+                button = findViewById(R.id.btn_tech);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("cuina")){
-                button = (Button) findViewById(R.id.btn_cuina);
+                button = findViewById(R.id.btn_cuina);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("moda")){
-                button = (Button) findViewById(R.id.btn_moda);
+                button = findViewById(R.id.btn_moda);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("viatges")){
-                button = (Button) findViewById(R.id.btn_viatges);
+                button = findViewById(R.id.btn_viatges);
                 item_seleccionat(button);
             }
             else if (body.getInteressos().get(i).equals("art")){
-                button = (Button) findViewById(R.id.btn_art);
+                button = findViewById(R.id.btn_art);
                 item_seleccionat(button);
             }
             else break;

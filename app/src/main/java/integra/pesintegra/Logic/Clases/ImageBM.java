@@ -8,8 +8,8 @@ import okhttp3.RequestBody;
 
 public class ImageBM {
 
-    MultipartBody.Part bitmapImage;
-    String uri;
+    private MultipartBody.Part bitmapImage;
+    private String uri;
 
     public ImageBM(String imageId, MultipartBody.Part requestFile) {
         this.uri = imageId;

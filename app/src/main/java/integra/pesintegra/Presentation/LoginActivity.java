@@ -30,9 +30,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button entrar_btn = (Button)findViewById(R.id.login_entrar);
+        Button entrar_btn = findViewById(R.id.login_entrar);
         entrar_btn.setOnClickListener(this);
-        Button login_btn = (Button)findViewById(R.id.login_register);
+        Button login_btn = findViewById(R.id.login_register);
         login_btn.setOnClickListener(this);
 
         this.cp = new ControladorPresentacioLoginActivity(this,getApplicationContext());

@@ -36,12 +36,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        dateEditText = (EditText)findViewById(R.id.register_datanaixement);
+        dateEditText = findViewById(R.id.register_datanaixement);
         dateEditText.setOnClickListener(this);
 
-        Button cancel_btn = (Button)findViewById(R.id.registrar_cancel);
+        Button cancel_btn = findViewById(R.id.registrar_cancel);
         cancel_btn.setOnClickListener(this);
-        Button registrar_btn = (Button)findViewById(R.id.registrar_entrar);
+        Button registrar_btn = findViewById(R.id.registrar_entrar);
         registrar_btn.setOnClickListener(this);
 
     }
@@ -80,35 +80,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 }
                 break;
 
-                /*
-                if (cp.comprovar_camps(pass1, pass2, email, dataN)){
 
-                    //User userTest = new User("1", "testmail1@mail.com", "TestUsername1", "TestPassword","TestTipus", "testData" );
-                    User newUser = new User(email, pass1, "usuari", dataN);
-                    ControladorServeisRegisterActivity controlador = new ControladorServeisRegisterActivity(this, getApplicationContext());
-                    controlador.doRegister(newUser);
-                    intent = new Intent(getApplicationContext(),AllPostsActivity.class);
-                    startActivity(intent);
-                    this.finish();
-                }else{
-                    //mostrar missatge d'error
-                    if (!cp.valid_mail(email)){
-                        new AlertDialog.Builder(this)
-                                .setMessage("El email no és correcte")
-                                .setNegativeButton("OK", null)
-                                .show();
-                    }else if (cp.contrassenya_no_coincident(pass1, pass2)){
-                        new AlertDialog.Builder(this)
-                                .setMessage("Les contrasenyes no coincideixen")
-                                .setNegativeButton("OK", null)
-                                .show();
-                    }else if (cp.data_naix_posterior_actual(dataN)){
-                        new AlertDialog.Builder(this)
-                                .setMessage("La data de naixement és posterior a avui")
-                                .setNegativeButton("OK", null)
-                                .show();
-                    }
-                }*/
         }
     }
 
