@@ -58,11 +58,14 @@ public class PostActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         cp = new ControladorPresentacioPostOpen(this, getApplicationContext());
         setContentView(R.layout.activity_post);
-
+        char tipus = post.getTipus();
+        if (tipus == 'A') {
+            FloatingActionButton join = findViewById(R.id.join);
+            join.setVisibility(View.VISIBLE);
+            join.setOnClickListener(this);
+        }
         Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(this);
         iv = findViewById(R.id.imatge);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
         final Button tres_punts = findViewById(R.id.tres_punts);
@@ -140,6 +143,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                                 break;
 
+                            case R.id.join:
+
                         }
                         return true;
                     }
@@ -207,7 +212,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
             case R.id.btn_post_back:
                this.finish();
                 break;
-            case R.id.fab:
+            case R.id.join:
 
 
                 break;

@@ -16,6 +16,7 @@ import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.R;
+import integra.pesintegra.Constants1;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -31,8 +32,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         Button entrar_btn = findViewById(R.id.login_entrar);
+        entrar_btn.setText(Constants1.BTNlogin[2]);
         entrar_btn.setOnClickListener(this);
         Button login_btn = findViewById(R.id.login_register);
+        login_btn.setText(Constants1.msgRegister[2]);
         login_btn.setOnClickListener(this);
 
         this.cp = new ControladorPresentacioLoginActivity(this,getApplicationContext());
