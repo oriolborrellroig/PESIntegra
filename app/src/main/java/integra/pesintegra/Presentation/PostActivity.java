@@ -58,12 +58,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         cp = new ControladorPresentacioPostOpen(this, getApplicationContext());
         setContentView(R.layout.activity_post);
-        char tipus = post.getTipus();
-        if (tipus == 'A') {
-            FloatingActionButton join = findViewById(R.id.join);
-            join.setVisibility(View.VISIBLE);
-            join.setOnClickListener(this);
-        }
+        FloatingActionButton join = findViewById(R.id.join);
+        join.setOnClickListener(this);
         Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
         iv = findViewById(R.id.imatge);
