@@ -54,7 +54,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         holder.titol.setText(p.getTitol());
         holder.dia.setText(String.valueOf(p.getDataIni()));
         getRating(p.getId(), holder.rating);
-        //holder.rating.setRating(rate);
+        holder.rating.setRating(rate);
         holder.p = p;
     }
 
@@ -77,7 +77,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     void updateRating(String puntuacio, RatingBar rating) {
         rate =  Float.parseFloat(puntuacio);
         rating.setRating(rate);
-        //Log.d("puntuacio " + postId +": ", String.valueOf(rate));
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
