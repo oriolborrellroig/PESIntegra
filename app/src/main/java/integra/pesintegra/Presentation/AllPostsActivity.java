@@ -97,6 +97,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             case "hide":
                 cs.loadFeedHiddenPosts();
                 break;
+            case "tags":
+                cs.loadFeedTagsPosts();
+                break;
         }
     }
 

@@ -90,6 +90,11 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent.putExtra("type", "activity");
                 startActivity(intent);
                 break;
+            case R.id.tags:
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "tags");
+                startActivity(intent);
+                break;
             case R.id.profile:
                 intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);

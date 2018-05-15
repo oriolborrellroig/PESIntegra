@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,6 +56,15 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     Bitmap bitmapImage;
     Post new_post;
     Uri imageUri;
+    CheckBox checkBox_esport;
+    CheckBox checkBox_musica;
+    CheckBox checkBox_cinema;
+    CheckBox checkBox_lectura;
+    CheckBox checkBox_tecnologia;
+    CheckBox checkBox_cuina;
+    CheckBox checkBox_moda;
+    CheckBox checkBox_viatges;
+    CheckBox checkBox_art;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +85,15 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         FloatingActionButton add_image_btn = (FloatingActionButton)findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
         iv = (ImageView) findViewById(R.id.img_prev);
-
+        checkBox_esport = (CheckBox)findViewById(R.id.tag_esport);
+        checkBox_musica = (CheckBox)findViewById(R.id.tag_musica);
+        checkBox_cinema = (CheckBox)findViewById(R.id.tag_cinema);
+        checkBox_lectura = (CheckBox)findViewById(R.id.tag_lectura);
+        checkBox_tecnologia = (CheckBox)findViewById(R.id.tag_tecnologia);
+        checkBox_cuina = (CheckBox)findViewById(R.id.tag_cuina);
+        checkBox_moda = (CheckBox)findViewById(R.id.tag_moda);
+        checkBox_viatges = (CheckBox)findViewById(R.id.tag_viatges);
+        checkBox_art = (CheckBox)findViewById(R.id.tag_art);
     }
 
     private void addTimePickerListener() {
@@ -168,7 +186,16 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
-
+                Boolean tag_esport = checkBox_esport.isChecked();
+                Boolean tag_musica = checkBox_musica.isChecked();
+                Boolean tag_cinema = checkBox_cinema.isChecked();
+                Boolean tag_lectura = checkBox_lectura.isChecked();
+                Boolean tag_tecnologia = checkBox_tecnologia.isChecked();
+                Boolean tag_cuina = checkBox_cuina.isChecked();
+                Boolean tag_moda = checkBox_moda.isChecked();
+                Boolean tag_viatges = checkBox_viatges.isChecked();
+                Boolean tag_art = checkBox_art.isChecked();
+                //fer algo amb els booleans dels tags
                  new_post = new Post_Activitat();
 
                 try {
@@ -199,6 +226,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             case R.id.add_image:
                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 52);
+                break;
         }
 
 

@@ -19,10 +19,12 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     private ControladorPresentacioAllPostsActivity Cpresentacio;
     private Context context;
     private boolean h;
+    private boolean tags;
 
     public ControladorDominiAllPostsActivity(ControladorPresentacioAllPostsActivity allposts) {
         this.Cpresentacio = allposts;
         h = false;
+        tags = false;
     }
 
     public void loadFeedAnyPosts () {
@@ -31,6 +33,16 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         Log.d("TOOsadasdsadKKKK",this.getSessioUser());
         Call<ArrayList<Post>> call = service.getAllPosts("any");
         enqueueCall(call);
+    }
+
+    public void loadFeedTagsPosts(){
+        tags = true;
+        PostService service = this.getServiceManager().getPostService();
+        Log.d("TOOKKKK",this.getSessioToken());
+        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
+        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        enqueueCall(call);
+
     }
 
     public void loadFeedWorkPosts () {
@@ -70,9 +82,21 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                //if(!h)
+                //aixo esta fet aixi cutre per lo dels tags, cal mirar en lloc del tipus que els tags del post coincideixin amb els de l'usuari loggejat
+
+                if (tags){
+                    ArrayList aa = new ArrayList<Post>();
+                    for (int i = 0; i < response.body().size(); i++){
+                            if (response.body().get(i).getTipus() == 'A'){
+                                aa.add(response.body().get(i));
+                            }
+                        }
+                    Cpresentacio.updateFeed(aa);
+                }else{
                     Cpresentacio.updateFeed(response.body());
-                //else Cpresentacio.sendHiddenList(response.body());
+
+                }
+
             }
 
             @Override
