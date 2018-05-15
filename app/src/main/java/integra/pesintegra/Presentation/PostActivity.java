@@ -272,8 +272,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
     public void updateRating(String puntuacio, String nombreVots) {
 
         //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
+        Double puntuacioRounded = Math.round(Double.parseDouble(puntuacio) * 100.0) / 100.0;
         votantsTotals.setText("("+nombreVots+")");
-        avgScore.setText(puntuacio);
+        avgScore.setText(String.valueOf(puntuacioRounded));
         scoreBar.setRating(Float.parseFloat(puntuacio));
 
         Log.d("PUNTS ", puntuacio);
