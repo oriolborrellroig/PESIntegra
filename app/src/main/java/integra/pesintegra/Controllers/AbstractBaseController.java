@@ -1,5 +1,7 @@
 package integra.pesintegra.Controllers;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
@@ -9,6 +11,12 @@ public abstract class AbstractBaseController {
     public void comprovaCampNoBuid(String s) throws Exception {
         if (s.equals("")) {
             throw new Exception("Hi ha algun camp buit");
+        }
+    }
+
+    public void comprovaCampNoNull(LatLng l) throws Exception {
+        if (l == null) {
+            throw new Exception("Localitzacio no vàlida");
         }
     }
 

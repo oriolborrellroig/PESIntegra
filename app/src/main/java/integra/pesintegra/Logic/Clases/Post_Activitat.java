@@ -1,5 +1,7 @@
 package integra.pesintegra.Logic.Clases;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class Post_Activitat extends Post{
 
     //n_max = nombre maxim de persones en aquella activitat
@@ -9,8 +11,8 @@ public class Post_Activitat extends Post{
         super('A');
     }
 
-    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio){
-        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A');
+    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, double lat, double lng){
+        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A', lat, lng);
         //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
     }
 

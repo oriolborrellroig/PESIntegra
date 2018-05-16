@@ -3,6 +3,7 @@ package integra.pesintegra.Logic.Clases;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -17,11 +18,13 @@ public abstract class Post implements Serializable {
     private String dataini;
     private String datafi;
     private String hora;
-    private String direccio;
+    private String localitzacio;
     private String uri;
     private String owner;
     private char tipus;
     private Bitmap imatge;
+    private double lat;
+    private double lng;
 
     private boolean hidden;
 
@@ -35,15 +38,17 @@ public abstract class Post implements Serializable {
         this.tipus = tipus;
     }
 
-    Post(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, String owner, char tipus){
+    Post(String titol, String descripcio, String dataini, String datafi, String hora, String localitzacio, String owner, char tipus, double lat, double lng){
         this.titol = titol;
         this.descripcio = descripcio;
         this.dataini = dataini;
         this.datafi = datafi;
         this.hora = hora;
-        this.direccio = direccio;
+        this.localitzacio = localitzacio;
         this.owner = owner;
         this.tipus = tipus;
+        this.lat = lat;
+        this.lng = lng;
         this.puntuacio = 0;
         this.nombreVots = 0;
         setId();
@@ -90,12 +95,12 @@ public abstract class Post implements Serializable {
         this.hora = hora;
     }
 
-    public String getDireccio(){
-        return this.direccio;
+    public String getLocalitzacio(){
+        return this.localitzacio;
     }
 
-    public void setDireccio(String direccio){
-        this.direccio = direccio;
+    public void setLocalitzacio(String localitzacio){
+        this.localitzacio = localitzacio;
     }
 
     public String getUri(){
@@ -138,5 +143,13 @@ public abstract class Post implements Serializable {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLng() {
+        return lng;
     }
 }

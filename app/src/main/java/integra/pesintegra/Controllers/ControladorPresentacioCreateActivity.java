@@ -3,6 +3,8 @@ package integra.pesintegra.Controllers;
 import android.content.Context;
 import android.net.Uri;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.CreateActivityActivity;
 
@@ -23,7 +25,7 @@ public class ControladorPresentacioCreateActivity extends ControladorPresentacio
         comprovaCampNoBuid(post.getDescripcio());
         comprovaCampNoBuid(post.getDataIni());
         comprovaCampNoBuid(post.getHora());
-        comprovaCampNoBuid(post.getDireccio());
+        comprovaCampNoBuid(post.getLocalitzacio());
         comprovaDataValida(post.getDataFi());
         CDCreateActivity.createPost(post,uri);
 
@@ -33,5 +35,9 @@ public class ControladorPresentacioCreateActivity extends ControladorPresentacio
 
     public void showNewPost() {
         activity.showNewPost(context);
+    }
+
+    public LatLng getLoc(String lloc, Context context) {
+        return CDCreateActivity.getLoc(lloc, context);
     }
 }

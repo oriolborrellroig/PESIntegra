@@ -3,11 +3,19 @@ package integra.pesintegra.Controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
+import android.util.Log;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.lang.Object;
 
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
@@ -51,6 +59,24 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
         });
 
 
+
     }
 
+    public LatLng getLoc(String lloc, Context context) {
+        Geocoder gc = new Geocoder(context);
+        try {
+            List<Address> list = gc.getFromLocationName(lloc, 1);
+            Address address = list.get(0);
+            double lat = address.getLatitude();
+            double lng = address.getLongitude();
+            Log.d("latitude", Double.toString(lat));
+            Log.d("longitude", Double.toString(lng));
+            return new LatLng(lat, lng);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 }

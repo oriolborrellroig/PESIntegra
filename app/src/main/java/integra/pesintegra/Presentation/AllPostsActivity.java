@@ -54,16 +54,16 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         if (bundle != null) {
             postType = bundle.getString("type");
         }
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView =  findViewById(R.id.recycler);
 
         new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext()).loadFeedHiddenPosts();
 
         getPostsFromDB();
 
-        fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
-        fabAddHab = (FloatingActionButton) findViewById(R.id.fabAddHab);
-        fabAddFei = (FloatingActionButton) findViewById(R.id.fabAddFei);
-        fabAddAct = (FloatingActionButton) findViewById(R.id.fabAddAct);
+        fabAdd = findViewById(R.id.fabAdd);
+        fabAddHab = findViewById(R.id.fabAddHab);
+        fabAddFei = findViewById(R.id.fabAddFei);
+        fabAddAct = findViewById(R.id.fabAddAct);
         fabAdd.setOnClickListener(this);
         fabAddHab.setOnClickListener(this);
         fabAddFei.setOnClickListener(this);

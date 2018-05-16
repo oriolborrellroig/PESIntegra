@@ -154,22 +154,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
        // String image_name = intent.getStringExtra("bitmap_img");
 
         this.post = (Post) getIntent().getExtras().getSerializable("post");
-        TextView post_titol = (TextView) findViewById(R.id.post_titol);
+        TextView post_titol = findViewById(R.id.post_titol);
         post_titol.setText(post.getTitol());
-        TextView post_direccio = (TextView) findViewById(R.id.post_direccio);
-        post_direccio.setText(post.getDireccio());
-        TextView post_data = (TextView) findViewById(R.id.post_data);
+        TextView post_direccio = findViewById(R.id.post_direccio);
+        post_direccio.setText(post.getLocalitzacio());
+        TextView post_data = findViewById(R.id.post_data);
         post_data.setText(post.getDataIni());
-        TextView post_text = (TextView) findViewById(R.id.post_text);
+        TextView post_text = findViewById(R.id.post_text);
         post_text.setText(post.getDescripcio());
         //iv.setImageBitmap(post.getImatge());
 
-        votantsTotals = (TextView) findViewById(R.id.votantsTotals);
-        avgScore = (TextView) findViewById(R.id.avgPunt);
-        scoreBar = (RatingBar)findViewById(R.id.ratingBar1);
+        votantsTotals = findViewById(R.id.votantsTotals);
+        avgScore = findViewById(R.id.avgPunt);
+        scoreBar = findViewById(R.id.ratingBar1);
 
         cp.getPostRating(this.post.getId());
-        RatingBar ratingBar = (RatingBar)findViewById(R.id.ratingBar2);
+        RatingBar ratingBar = findViewById(R.id.ratingBar2);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
             @Override

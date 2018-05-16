@@ -28,6 +28,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -49,6 +51,7 @@ import retrofit2.Response;
 public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
     ControladorPresentacio cntrlPresentacio;
+    private ControladorPresentacioCreateActivity controlador;
     TextView limitDate;
     TextView activityHour;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -65,13 +68,15 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     CheckBox checkBox_moda;
     CheckBox checkBox_viatges;
     CheckBox checkBox_art;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.cntrlPresentacio = new ControladorPresentacio();
+        this.controlador = new ControladorPresentacioCreateActivity(this, getApplicationContext());
         setContentView(R.layout.activity_create_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,24 +85,26 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         addDatePickerListener();
         addTimePickerListener();
 
-        Button enviar_btn = (Button)findViewById(R.id.submitPostAct);
+        context = getApplicationContext();
+
+        Button enviar_btn = findViewById(R.id.submitPostAct);
         enviar_btn.setOnClickListener(this);
-        FloatingActionButton add_image_btn = (FloatingActionButton)findViewById(R.id.add_image);
+        FloatingActionButton add_image_btn = findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
-        iv = (ImageView) findViewById(R.id.img_prev);
-        checkBox_esport = (CheckBox)findViewById(R.id.tag_esport);
-        checkBox_musica = (CheckBox)findViewById(R.id.tag_musica);
-        checkBox_cinema = (CheckBox)findViewById(R.id.tag_cinema);
-        checkBox_lectura = (CheckBox)findViewById(R.id.tag_lectura);
-        checkBox_tecnologia = (CheckBox)findViewById(R.id.tag_tecnologia);
-        checkBox_cuina = (CheckBox)findViewById(R.id.tag_cuina);
-        checkBox_moda = (CheckBox)findViewById(R.id.tag_moda);
-        checkBox_viatges = (CheckBox)findViewById(R.id.tag_viatges);
-        checkBox_art = (CheckBox)findViewById(R.id.tag_art);
+        iv = findViewById(R.id.img_prev);
+        checkBox_esport = findViewById(R.id.tag_esport);
+        checkBox_musica = findViewById(R.id.tag_musica);
+        checkBox_cinema = findViewById(R.id.tag_cinema);
+        checkBox_lectura = findViewById(R.id.tag_lectura);
+        checkBox_tecnologia = findViewById(R.id.tag_tecnologia);
+        checkBox_cuina = findViewById(R.id.tag_cuina);
+        checkBox_moda = findViewById(R.id.tag_moda);
+        checkBox_viatges = findViewById(R.id.tag_viatges);
+        checkBox_art = findViewById(R.id.tag_art);
     }
 
     private void addTimePickerListener() {
-        activityHour = (TextView) findViewById(R.id.hourInputAct);
+        activityHour = findViewById(R.id.hourInputAct);
         activityHour.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -178,6 +185,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
@@ -186,6 +194,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
+                LatLng coord = controlador.getLoc(lloc, context);
                 Boolean tag_esport = checkBox_esport.isChecked();
                 Boolean tag_musica = checkBox_musica.isChecked();
                 Boolean tag_cinema = checkBox_cinema.isChecked();
@@ -202,14 +211,14 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                     Intent intent = getIntent();
                     String tipus = intent.getStringExtra("flag");
                     if (tipus.equals("A")) {
-                        new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc);
+                        new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc, coord);
                     } else if (tipus.equals("F")) {
-                        new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc);
+                        new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc, coord);
                     } else if (tipus.equals("H")) {
-                        new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc);
+                        new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc, coord);
                     }
 
-                    ControladorPresentacioCreateActivity controlador = new ControladorPresentacioCreateActivity(this, getApplicationContext());
+
                     controlador.createPost(new_post,imageUri);
 
                     break;

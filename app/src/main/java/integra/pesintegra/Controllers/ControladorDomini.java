@@ -1,6 +1,10 @@
 package integra.pesintegra.Controllers;
 
 
+import android.location.Geocoder;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
@@ -58,5 +62,6 @@ public class ControladorDomini extends  AbstractBaseController{
         return sessio.getToken();
 
     }
+
 
 }
