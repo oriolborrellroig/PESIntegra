@@ -2,22 +2,22 @@
 
     <item
         android:id="@+id/afegir_imatge"
-        android:title="Afegir/canviar imatge"/>
+        android:title="@string/AddChangeImg"/>
 
     <item
         android:id="@+id/canviar_mail"
-        android:title="Canviar mail"/>
+        android:title="@string/changeMail"/>
 
     <item
         android:id="@+id/canviar_pswd"
-        android:title="Canviar contrassenya"/>
+        android:title="@string/changePassword"/>
 
     <item
         android:id="@+id/posts_propis"
-        android:title="Els meus posts"/>
+        android:title="@string/myPosts"/>
 
 
     <item
         android:id="@+id/posts_amagats"
-        android:title="Posts amagats"/>
+        android:title="@string/hiddenPosts"/>
 </menu>

@@ -105,8 +105,8 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 break;
             case R.id.exit:
                 new AlertDialog.Builder(this)
-                        .setMessage("Segur que vols sortir?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        .setMessage(R.string.msgExitApp)
+                        .setPositiveButton(R.string.msgYes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 finish();
@@ -116,14 +116,14 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                                 startActivity(startMain);
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(R.string.msgNo, null)
                         .show();
 
                 break;
             case R.id.logout:
                 new AlertDialog.Builder(this)
-                        .setMessage("Segur que vols sortir de l'aplicació?")
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        .setMessage(R.string.msgLogOut)
+                        .setPositiveButton(R.string.msgYes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent finishApp = new Intent(BaseActivity.this, LoginActivity.class);
@@ -135,7 +135,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(R.string.msgNo, null)
                         .show();
                 break;
         }

@@ -56,7 +56,7 @@
                     android:layout_marginTop="5dp"
                     android:drawableRight="@mipmap/ic_account_circle_grey600_36dp"
                     android:drawableTint="@color/accent"
-                    android:hint="Email"
+                    android:hint="@string/mail"
                     android:inputType="textEmailAddress"
                     app:layout_constraintTop_toBottomOf="@+id/logo" />
             </android.support.design.widget.TextInputLayout>
@@ -81,10 +81,10 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
                     android:drawableRight="@mipmap/ic_lock_outline_grey600_36dp"
                     android:drawableTint="@color/accent"
-                    android:hint="Contrassenya"
-                    android:inputType="textPassword"
                     app:layout_constraintTop_toBottomOf="@+id/logo" />
             </android.support.design.widget.TextInputLayout>
 
@@ -111,7 +111,7 @@
                     android:drawableRight="@mipmap/ic_lock_outline_grey600_36dp"
                     android:drawableTint="@color/accent"
                     android:ems="10"
-                    android:hint="Confirmació contrassenya"
+                    android:hint="@string/confirmPassword"
                     android:inputType="textPassword"
                     app:layout_constraintTop_toBottomOf="@+id/login_register" />
 
@@ -143,7 +143,7 @@
                     android:drawableTint="@color/accent"
                     android:ems="10"
                     android:focusable="false"
-                    android:hint="Data naixement"
+                    android:hint="@string/birthdate"
                     android:inputType="date"
                     android:maxLines="1"
                     app:layout_constraintTop_toBottomOf="@+id/login_register" />
@@ -151,22 +151,6 @@
             </android.support.design.widget.TextInputLayout>
 
         </TableRow>
-
-        <!--<TableRow
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center">
-
-            <Spinner
-                android:id="@+id/pais"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"/>
-
-        </TableRow>-->
 
         <TableRow
             android:layout_weight="1"
@@ -192,7 +176,7 @@
                     android:textColor="@color/icons"
                     android:layout_marginRight="10dp"
                     app:layout_constraintTop_toBottomOf="@+id/login_email"
-                    android:text="Cancel·la"
+                    android:text="@string/BTNcancel"
                     android:layout_gravity="center"
                     />
 
@@ -203,7 +187,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:background="@color/primary_dark"
-                    android:text="Registra't"
+                    android:text="@string/BTNregister"
                     android:textColor="@color/icons"
                     app:layout_constraintTop_toBottomOf="@+id/login_email" />
 

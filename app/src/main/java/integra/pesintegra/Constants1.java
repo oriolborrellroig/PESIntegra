@@ -1,25 +1,8 @@
 package integra.pesintegra;
 
 public class Constants1 {
-    public static final String BTNyes[] = {"SI", "SI", "YES"};
-    public static final String BTNno[] = {"NO", "NO", "NO"};
-    public static final String username[] = {"Nom d'usuari", "Nombre de usuario", "Username"};
-    public static final String password[] = {"Contrasenya", "Contraseña", "Password"};
-    public static final String msgRegister[] = {"Ets nou? Fes clic aquí per registrar-te!", "Eres nuevo? Haz clic aquí para registrarte!", "Are you new? Click here to register!"};
-    public static final String mail[] = {"Correu", "Correo", "Email"};
-    public static final String confirmationPassword[] = {"Confirmació de contrasenya", "Confirmación de contraseña", "Password confirmation"};
-    public static final String birthdate[] = {"Data de naixement", "Fecha de nacimiento", "Birthdate"};
-    public static final String BTNcancel[] = {"CANCEL·LA", "CANCELA", "CANCEL"};
-    public static final String BTNregister[] = {"REGISTRA'T", "REGÍSTRATE", "REGISTER"};
-    public static final String BTNlogin[] = {"ENTRAR", "ENTRAR", "LOGIN"};
-    public static final String allPost[] = {"Tots els posts", "Todos los post", "All posts"};
-    public static final String housing[] = {"Habitatge", "Vivienda", "Housing"};
-    public static final String work[] = {"Feina", "Trabajo", "Work"};
-    public static final String activities[] = {"Activitats", "Actividades", "Activities"};
-    public static final String usefulInfo[] = {"Informació útil", "Información útil", "Useful information"};
-    public static final String profile[] = {"Perfil", "Perfil", "Profile"};
-    public static final String calendar[] = {"Calendari", "Calendario", "Calendar"};
-    public static final String configuration[] = {"Configuració", "Configuración", "Configuration"};
+
+
     public static final String help[] = {"Ajuda", "Ayuda", "Help"};
     public static final String logOut[] = {"Tancar sessió", "Cerrar sesión", "Log out"};
     public static final String exit[] = {"Sortir", "Salir", "Exit"};

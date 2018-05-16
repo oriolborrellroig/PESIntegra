@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/show_post"
-        android:title="Mostrar post"/>
+        android:title="@string/showPost"/>
 
     <item
         android:id="@+id/editar_post"
-        android:title="Editar post"/>
+        android:title="@string/editPost"/>
 
     <item
         android:id="@+id/borrar_post"
-        android:title="Borrar post"/>
+        android:title="@string/deletePost"/>
 
 </menu>

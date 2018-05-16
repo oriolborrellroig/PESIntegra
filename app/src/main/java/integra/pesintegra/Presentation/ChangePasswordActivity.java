@@ -53,9 +53,9 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
                 }
                 catch (Exception e) {
                     new AlertDialog.Builder(this)
-                            .setTitle("ERROR")
+                            .setTitle(R.string.errorTitle)
                             .setMessage(e.getMessage())
-                            .setNeutralButton("Torna", null)
+                            .setNeutralButton(R.string.BTNback, null)
                             .show();
                 }
                 break;

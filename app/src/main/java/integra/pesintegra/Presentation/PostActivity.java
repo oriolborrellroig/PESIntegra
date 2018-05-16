@@ -87,7 +87,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                     public boolean onMenuItemClick(MenuItem item) {
                         Toast.makeText(
                                 PostActivity.this,
-                                "You Clicked : " + item.getTitle(),
+                                R.string.msgYouClicked + item.getTitle().toString(),
                                 Toast.LENGTH_SHORT
                         ).show();
 
@@ -98,8 +98,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
                                         , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
                                 Snackbar snackbar = Snackbar
-                                        .make(coordinatorLayout, "El missatge es mostrara. Vols cancelar? ", Snackbar.LENGTH_LONG)
-                                        .setAction("UNDO", new View.OnClickListener() {
+                                        .make(coordinatorLayout, R.string.confShowPostAgain, Snackbar.LENGTH_LONG)
+                                        .setAction(R.string.undo, new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
                                                 //li.getCurrentUser().addHiddenPost(post.getId());
@@ -116,8 +116,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
                                         , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
                                 Snackbar snackbar3 = Snackbar
-                                        .make(coordinatorLayout, "El missatge s'ha amagat. Vols cancelar?", Snackbar.LENGTH_LONG)
-                                        .setAction("UNDO", new View.OnClickListener() {
+                                        .make(coordinatorLayout, R.string.confPostHidden, Snackbar.LENGTH_LONG)
+                                        .setAction(R.string.undo, new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
                                                 //li.getCurrentUser().removeHiddenPost(post.getId());

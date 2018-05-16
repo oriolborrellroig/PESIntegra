@@ -75,7 +75,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     public boolean onMenuItemClick(MenuItem item) {
                         Toast.makeText(
                                 ProfileActivity.this,
-                                "You Clicked : " + item.getTitle(),
+                                R.string.msgYouClicked + item.getTitle().toString(),
                                 Toast.LENGTH_SHORT
                         ).show();
 

@@ -32,10 +32,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         Button entrar_btn = findViewById(R.id.login_entrar);
-        entrar_btn.setText(Constants1.BTNlogin[2]);
+        entrar_btn.setText(R.string.BTNlogin);
         entrar_btn.setOnClickListener(this);
         Button login_btn = findViewById(R.id.login_register);
-        login_btn.setText(Constants1.msgRegister[2]);
+        login_btn.setText(R.string.msgRegister);
         login_btn.setOnClickListener(this);
 
         this.cp = new ControladorPresentacioLoginActivity(this,getApplicationContext());
@@ -62,14 +62,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setMessage("Segur que vols sortir?")
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                .setMessage(R.string.msgExit)
+                .setPositiveButton(R.string.msgYes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         LoginActivity.super.onBackPressed();
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(R.string.msgNo, null)
                 .show();
 
 
@@ -80,7 +80,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         ((EditText)findViewById(R.id.input_password)).setText("");
         Toast.makeText(
                 LoginActivity.this,
-                "Email o password incorrectes",
+                R.string.ERRlogin,
                 Toast.LENGTH_SHORT
         ).show();
 

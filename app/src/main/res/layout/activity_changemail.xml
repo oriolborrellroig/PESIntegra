@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15px"
             android:textSize="25px"
-            android:text="Email actual:" />
+            android:text="@string/currentEmail" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Nou E-mail"
+                    android:hint="@string/newEmail"
                     android:inputType="textEmailAddress"
                     android:drawableRight="@mipmap/ic_account_circle_grey600_36dp"
                     android:drawableTint="@color/accent"
@@ -106,7 +106,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Contrassenya"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
                     android:drawableRight="@mipmap/ic_lock_outline_grey600_36dp"
                     android:drawableTint="@color/accent"
@@ -140,7 +140,7 @@
                     android:textColor="@color/icons"
                     android:layout_marginRight="10dp"
                     app:layout_constraintTop_toBottomOf="@+id/login_email"
-                    android:text="Cancel·la"
+                    android:text="@string/BTNcancel"
                     android:layout_gravity="center"
                     />
 
@@ -151,7 +151,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:background="@color/primary_dark"
-                    android:text="CONFIRMA"
+                    android:text="@string/BTNconfirma"
                     android:textColor="@color/icons"
                     app:layout_constraintTop_toBottomOf="@+id/login_email" />
 

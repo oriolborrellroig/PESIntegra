@@ -5,7 +5,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/allPosts"
-            android:title="@string/tots_els_posts"
+            android:title="@string/allPost"
             android:icon="@mipmap/ic_inbox_multiple_grey600_36dp">
         </item>
     </group>
@@ -15,19 +15,19 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/house"
-            android:title="@string/habitatge"
+            android:title="@string/housing"
             android:icon="@mipmap/ic_home_grey600_36dp">
         </item>
 
         <item
             android:id="@+id/work"
-            android:title="@string/feina"
+            android:title="@string/work"
             android:icon="@mipmap/ic_briefcase_grey600_36dp">
         </item>
 
         <item
             android:id="@+id/activities"
-            android:title="@string/activitats"
+            android:title="@string/activities"
             android:icon="@mipmap/ic_account_multiple_grey600_36dp">
         </item>
 
@@ -48,7 +48,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/information"
-            android:title="@string/informaci_til"
+            android:title="@string/usefulInfo"
             android:icon="@mipmap/ic_information_grey600_36dp">
         </item>
     </group>
@@ -58,13 +58,13 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/profile"
-            android:title="@string/perfil"
+            android:title="@string/profile"
             android:icon="@mipmap/ic_account_circle_grey600_36dp">
         </item>
 
         <item
             android:id="@+id/calendar"
-            android:title="@string/calendari"
+            android:title="@string/calendar"
             android:icon="@mipmap/ic_calendar_blank_grey600_36dp">
         </item>
     </group>
@@ -74,23 +74,23 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/settings"
-            android:title="@string/configuracio"
+            android:title="@string/settings"
             android:icon="@mipmap/ic_settings_grey600_36dp">
         </item>
 
         <item
             android:id="@+id/help"
-            android:title="@string/ajuda"
+            android:title="@string/help"
             android:icon="@mipmap/ic_help_circle_grey600_36dp">
         </item>
         <item
             android:id="@+id/logout"
-            android:title="Log Out"
+            android:title="@string/logOut"
             android:icon="@mipmap/ic_reply_black_36dp">
         </item>
         <item
             android:id="@+id/exit"
-            android:title="Sortir"
+            android:title="@string/exit"
             android:icon="@mipmap/ic_logout_grey600_36dp">
         </item>
     </group>

@@ -178,7 +178,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabIsOpen = false;
                 Toast.makeText(
                         AllPostsActivity.this,
-                        "You Clicked : Activitat",
+                        R.string.msgClickedActivity,
                         Toast.LENGTH_SHORT
                 ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
@@ -198,7 +198,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabIsOpen = false;
                 Toast.makeText(
                         AllPostsActivity.this,
-                        "You Clicked : Habitatge",
+                        R.string.msgClickedHousing,
                         Toast.LENGTH_SHORT
                 ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
@@ -218,7 +218,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 fabIsOpen = false;
                 Toast.makeText(
                         AllPostsActivity.this,
-                        "You Clicked : Feina",
+                        R.string.msgClickedWork,
                         Toast.LENGTH_SHORT
                 ).show();
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);

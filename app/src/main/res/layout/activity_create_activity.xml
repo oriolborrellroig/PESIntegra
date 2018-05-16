@@ -52,7 +52,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Titol"
+                    android:hint="@string/title"
                     android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
@@ -76,7 +76,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_text_background"
-                    android:hint="Descripció"
+                    android:hint="@string/description"
                     android:minHeight="80dp" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
@@ -99,7 +99,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Data"
+                    android:hint="@string/date"
                     android:inputType="date"
                     android:focusable="false"
                     android:clickable="true"
@@ -125,7 +125,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Hora"
+                    android:hint="@string/time"
                     android:inputType="textPersonName"
                     android:focusable="false"
                     android:clickable="true"
@@ -151,7 +151,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Localització"
+                    android:hint="@string/location"
                     android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
@@ -314,7 +314,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/botoEnviar" />
+                android:text="@string/BTNcreate" />
 
 
             />

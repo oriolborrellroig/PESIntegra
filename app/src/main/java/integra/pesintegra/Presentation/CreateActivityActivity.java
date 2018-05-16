@@ -125,8 +125,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
                         activityHour.setText( showHour + ":" + showMinute);
                     }
-                }, hour, minute, true);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
+                }, hour, minute, true);
+                mTimePicker.setTitle(R.string.selectTime);
                 mTimePicker.show();
 
             }
@@ -225,9 +225,9 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
-                            .setTitle("ERROR")
+                            .setTitle(R.string.errorTitle)
                             .setMessage(e.getMessage())
-                            .setNeutralButton("Torna", null)
+                            .setNeutralButton(R.string.BTNback, null)
                             .show();
                 }
 
