@@ -27,9 +27,11 @@
             android:layout_height="40dp"
             android:textStyle="italic"
             android:gravity="center|left"
+            android:clickable="true"
             android:drawableRight="@mipmap/ic_map_marker_grey600_36dp"
             android:drawableTint="@color/accent"
-            android:hint="@string/locationGM"/>
+            android:hint="@string/locationGM"
+            android:focusable="true" />
         <TextView
             android:id="@+id/post_data"
             android:layout_width="match_parent"

@@ -52,6 +52,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     TextView votantsTotals;
     TextView avgScore;
     RatingBar scoreBar;
+    private TextView post_direccio;
     private final LoginActivity li = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
         iv = findViewById(R.id.imatge);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
         final Button tres_punts = findViewById(R.id.tres_punts);
+        post_direccio = findViewById(R.id.post_direccio);
+        post_direccio.setOnClickListener(this);
+
 
 
         tres_punts.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +160,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         this.post = (Post) getIntent().getExtras().getSerializable("post");
         TextView post_titol = findViewById(R.id.post_titol);
         post_titol.setText(post.getTitol());
-        TextView post_direccio = findViewById(R.id.post_direccio);
+       // post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setText(post.getLocalitzacio());
         TextView post_data = findViewById(R.id.post_data);
         post_data.setText(post.getDataIni());
@@ -211,6 +215,12 @@ public class PostActivity extends Activity implements View.OnClickListener{
             case R.id.join:
 
 
+                break;
+            case R.id.post_direccio:
+                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                intent.putExtra("lat", post.getLat());
+                intent.putExtra("lng", post.getLng());
+                startActivity(intent);
                 break;
         }
 

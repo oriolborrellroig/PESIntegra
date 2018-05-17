@@ -1,5 +1,6 @@
 package integra.pesintegra.Presentation;
 
+import android.content.Intent;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -40,10 +41,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        Intent intent = getIntent();
+        double lat = intent.getDoubleExtra("lat", 0);
+        double lng = intent.getDoubleExtra("lng", 0);
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng coord = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(coord).title("Marker in Activity"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(coord));
     }
 }
