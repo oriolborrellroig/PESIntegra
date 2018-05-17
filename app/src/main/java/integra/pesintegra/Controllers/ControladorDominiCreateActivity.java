@@ -66,12 +66,17 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
         Geocoder gc = new Geocoder(context);
         try {
             List<Address> list = gc.getFromLocationName(lloc, 1);
-            Address address = list.get(0);
-            double lat = address.getLatitude();
-            double lng = address.getLongitude();
-            Log.d("latitude", Double.toString(lat));
-            Log.d("longitude", Double.toString(lng));
-            return new LatLng(lat, lng);
+            int i = 0;
+            while (list.size() == 0 && i < 10){
+                ++i;
+                list = gc.getFromLocationName(lloc, 1);
+            }
+            if(list.size() > 0){
+                Address address = list.get(0);
+                double lat = address.getLatitude();
+                double lng = address.getLongitude();
+                return new LatLng(lat, lng);
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
