@@ -6,6 +6,8 @@ public class Post_Activitat extends Post{
 
     //n_max = nombre maxim de persones en aquella activitat
     private int n_max;
+    //n_max = nombre de persones apuntades actualment a aquella activitat
+    private int n_act;
 
     public Post_Activitat(){
         super('A');

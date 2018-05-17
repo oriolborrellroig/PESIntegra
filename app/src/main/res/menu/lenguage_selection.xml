@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/languages"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/langCatalan"
+            android:title="@string/catalan"
+            android:icon="@mipmap/ic_inbox_multiple_grey600_36dp">
+        </item>
+
+        <item
+            android:id="@+id/langEnglish"
+            android:title="@string/english"
+            android:icon="@mipmap/ic_inbox_multiple_grey600_36dp">
+        </item>
+
+        <item
+            android:id="@+id/langSpanish"
+            android:title="@string/spanish"
+            android:icon="@mipmap/ic_inbox_multiple_grey600_36dp">
+        </item>
+    </group>
+
+</menu>

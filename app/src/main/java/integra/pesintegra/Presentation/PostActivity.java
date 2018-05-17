@@ -143,8 +143,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                                 break;
 
-                            case R.id.join:
-
                         }
                         return true;
                     }
@@ -212,8 +210,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
             case R.id.btn_post_back:
                this.finish();
                 break;
-            case R.id.join:
 
+            case R.id.join:
+                cp.joinActivity();
 
                 break;
             case R.id.post_direccio:

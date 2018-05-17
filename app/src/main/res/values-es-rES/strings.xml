@@ -76,4 +76,8 @@
     <string name="confPostHidden">El post se ocultará. Quieres cancelar?</string>
     <string name="msgLogOut">Estás seguro de que quieres cerrar sesión?</string>
     <string name="undo">DESHAZ</string>
+    <string name="interests">Intereses</string>
+    <string name="catalan">Catalán (ca)</string>
+    <string name="spanish">Castellano (ES)</string>
+    <string name="english">Inglés (EN)</string>
 </resources>

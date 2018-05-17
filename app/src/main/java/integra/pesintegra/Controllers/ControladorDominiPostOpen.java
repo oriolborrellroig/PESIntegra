@@ -110,4 +110,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
     }
 
 
+    public void joinActivity() {
+    }
 }

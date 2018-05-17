@@ -48,4 +48,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         activity.updateRating(puntuacio,nombreVots);
     }
 
+    public void joinActivity() {
+        Cdomini.joinActivity();
+    }
 }

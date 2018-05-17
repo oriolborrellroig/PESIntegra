@@ -38,7 +38,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/tags"
-            android:title="Interessos"
+            android:title="@string/interests"
             android:icon="@mipmap/ic_plus_grey600_36dp">
         </item>
     </group>

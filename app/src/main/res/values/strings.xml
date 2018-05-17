@@ -94,4 +94,8 @@
     <string name="msgLogOut">Are you sure you want to log out?</string>
     <string name="undo">UNDO</string>
     <string name="title_activity_maps">Map</string>
+    <string name="interests">Interests</string>
+    <string name="catalan">Catalan (ca)</string>
+    <string name="spanish">Spanish (ES)</string>
+    <string name="english">English (EN)</string>
 </resources>
