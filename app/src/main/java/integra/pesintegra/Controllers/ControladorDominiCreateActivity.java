@@ -75,8 +75,6 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
                 Address address = list.get(0);
                 double lat = address.getLatitude();
                 double lng = address.getLongitude();
-                Log.d("latitude", Double.toString(lat));
-                Log.d("longitude", Double.toString(lng));
                 return new LatLng(lat, lng);
             }
         }catch (IOException e){
