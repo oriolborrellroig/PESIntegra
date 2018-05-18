@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public abstract class Post implements Serializable {
@@ -25,6 +26,7 @@ public abstract class Post implements Serializable {
     private Bitmap imatge;
     private double lat;
     private double lng;
+    private List<String> interessos;
 
     private boolean hidden;
 
@@ -151,5 +153,9 @@ public abstract class Post implements Serializable {
 
     public double getLng() {
         return lng;
+    }
+
+    public List<String> getInteressos(){
+        return interessos;
     }
 }
