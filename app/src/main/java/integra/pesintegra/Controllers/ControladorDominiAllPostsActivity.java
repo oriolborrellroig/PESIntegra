@@ -45,6 +45,14 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     }
 
+    public void loadFeedCalendarPosts(){
+        PostService service = this.getServiceManager().getPostService();
+        Log.d("TOOKKKK",this.getSessioToken());
+        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
+        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        enqueueCall(call);
+    }
+
     public void loadFeedWorkPosts () {
         PostService service = this.getServiceManager().getPostService();
         Call<ArrayList<Post>> call = service.getAllPosts("work");

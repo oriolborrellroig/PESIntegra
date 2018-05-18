@@ -50,6 +50,10 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public static void loadFeedTagsPosts() {
         CDAllPosts.loadFeedTagsPosts();
     }
+
+    public static void loadFeedTaCalendarPosts() {
+        CDAllPosts.loadFeedCalendarPosts();
+    }
 /*
     public void sendHiddenList(ArrayList<Post> postsH){
         ArrayList<String> r = new ArrayList<>();

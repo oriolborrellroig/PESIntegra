@@ -100,6 +100,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             case "tags":
                 cs.loadFeedTagsPosts();
                 break;
+            case "calendar":
+                cs.loadFeedTaCalendarPosts();
+                break;
         }
     }
 

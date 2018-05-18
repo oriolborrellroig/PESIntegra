@@ -99,6 +99,11 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.calendar:
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "calendar");
+                startActivity(intent);
+                break;
             case R.id.information:
                 intent = new Intent(getApplicationContext(), InformationActivity.class);
                 startActivity(intent);
