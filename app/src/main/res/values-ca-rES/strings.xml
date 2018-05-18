@@ -80,4 +80,5 @@
     <string name="catalan">Català (ca)</string>
     <string name="spanish">Castellà (ES)</string>
     <string name="english">Anglès (EN)</string>
+    <string name="adv_search">Cerca Avançada</string>
 </resources>

@@ -41,6 +41,11 @@
             android:title="@string/interests"
             android:icon="@mipmap/ic_plus_grey600_36dp">
         </item>
+        <item
+            android:id="@+id/adv_search"
+            android:title="@string/adv_search"
+            android:icon="@mipmap/baseline_search_black_36">
+        </item>
     </group>
 
     <group
