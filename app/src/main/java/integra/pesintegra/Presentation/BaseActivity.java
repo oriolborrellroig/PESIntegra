@@ -95,6 +95,10 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent.putExtra("type", "tags");
                 startActivity(intent);
                 break;
+            case R.id.adv_search:
+                intent = new Intent(getApplicationContext(), AdvancedSearchActivity.class);
+                startActivity(intent);
+                break;
             case R.id.profile:
                 intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);

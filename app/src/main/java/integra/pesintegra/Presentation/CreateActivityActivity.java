@@ -134,7 +134,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     }
 
     private void addDatePickerListener() {
-        limitDate = (TextView) findViewById(R.id.dateInputAct);
+        limitDate = findViewById(R.id.dateInputAct);
 
         limitDate.setOnClickListener(new View.OnClickListener() {
             @Override

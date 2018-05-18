@@ -81,4 +81,10 @@
     <string name="spanish">Castellà (ES)</string>
     <string name="english">Anglès (EN)</string>
     <string name="adv_search">Cerca Avançada</string>
+    <string name="adv_search_query">Text a buscar</string>
+    <string name="adv_search_user">Usuari</string>
+    <string name="adv_search_date_ini">Data Inicial</string>
+    <string name="adv_search_date_fi">Data Final</string>
+    <string name="BTNadv_search">Cercar</string>
+    <string name="adv_search_language">Idioma</string>
 </resources>

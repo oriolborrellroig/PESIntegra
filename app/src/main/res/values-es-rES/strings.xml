@@ -81,4 +81,10 @@
     <string name="spanish">Castellano (ES)</string>
     <string name="english">Inglés (EN)</string>
     <string name="adv_search">Búsqueda avanzada</string>
+    <string name="adv_search_query">Texto a buscar</string>
+    <string name="adv_search_user">Usuario</string>
+    <string name="adv_search_date_ini">Fecha Inicial</string>
+    <string name="adv_search_date_fi">Fecha Final</string>
+    <string name="BTNadv_search">Buscar</string>
+    <string name="adv_search_language">Idioma</string>
 </resources>
