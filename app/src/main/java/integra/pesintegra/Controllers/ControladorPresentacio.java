@@ -102,13 +102,12 @@ public class ControladorPresentacio extends AbstractBaseController {
     }
 
     public String hash_password(String pas) {
-        String passwordToHash = "password";
         String generatedPassword = null;
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             //Add password bytes to digest
-            md.update(passwordToHash.getBytes());
+            md.update(pas.getBytes());
             //Get the hash's bytes
             byte[] bytes = md.digest();
             //This bytes[] has bytes in decimal format;
