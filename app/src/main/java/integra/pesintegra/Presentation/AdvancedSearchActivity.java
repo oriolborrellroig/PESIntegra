@@ -50,7 +50,6 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
     private List<String> clicked_tags;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +71,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
 
         clicked_tags = new ArrayList<>();
 
-        context = getApplicationContext();
+        Context context = getApplicationContext();
 
         cp = new ControladorPresentacioAdvancedSearchActivity(context);
     }
@@ -86,8 +85,6 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
         posts.add(getString(R.string.work));
         posts.add(getString(R.string.activities));
 
-        //ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, posts);
-        //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ETtipus.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, posts));
 
 
@@ -216,6 +213,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
                 getFields();
                 try {
                     cp.comprovaCamps(dateIni, dateFi, user);
+
                 }  catch (Exception e) {
                      new AlertDialog.Builder(this)
                     .setTitle(R.string.errorTitle)

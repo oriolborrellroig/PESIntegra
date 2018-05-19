@@ -31,7 +31,7 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
 
-    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord) throws Exception {
+    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -41,13 +41,13 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
 
-        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude);
+        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang);
         cntrlDom.creaPostActivitat(activitat);
 
         return activitat;
     }
 
-    public Post_Habitatge creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord) throws Exception {
+    public Post_Habitatge creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -57,13 +57,13 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
 
-        Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude);
+        Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang);
         cntrlDom.creaPostHabitatge(habitatge);
 
         return habitatge;
     }
 
-    public Post_Feina creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord) throws Exception {
+    public Post_Feina creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -73,7 +73,7 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
 
-        Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude);
+        Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang);
         cntrlDom.creaPostFeina(feina);
 
         return feina;

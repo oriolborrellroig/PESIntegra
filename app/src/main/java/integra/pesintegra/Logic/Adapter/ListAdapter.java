@@ -42,10 +42,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         context = parent.getContext();
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.activity_card, parent, false);
-        CardView cv = (CardView) itemView.findViewById(R.id.cv);
+        CardView cv = itemView.findViewById(R.id.cv);
         cv.setCardBackgroundColor(0xFFFFFFFF);
-        final MyViewHolder mvh=  new MyViewHolder(itemView);
-        return mvh;
+        return new MyViewHolder(itemView);
     }
 
     @Override
@@ -74,7 +73,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         });
     }
 
-    void updateRating(String puntuacio, RatingBar rating) {
+    private void updateRating(String puntuacio, RatingBar rating) {
         rate =  Float.parseFloat(puntuacio);
         rating.setRating(rate);
     }
@@ -87,9 +86,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
 
         public MyViewHolder(View view) {
             super(view);
-            titol = (TextView) view.findViewById(R.id.cv_titol);
-            dia = (TextView) view.findViewById(R.id.cv_dia);
-            rating = (RatingBar) view.findViewById(R.id.cv_ratingBar);
+            titol = view.findViewById(R.id.cv_titol);
+            dia = view.findViewById(R.id.cv_dia);
+            rating = view.findViewById(R.id.cv_ratingBar);
             context2 = view.getContext();
             view.setClickable(true);
             view.setOnClickListener(this);

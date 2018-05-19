@@ -19,11 +19,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -33,7 +35,9 @@ import com.google.android.gms.maps.model.LatLng;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioCreateActivity;
@@ -50,24 +54,25 @@ import retrofit2.Response;
 
 public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ControladorPresentacio cntrlPresentacio;
+    private ControladorPresentacio cntrlPresentacio;
     private ControladorPresentacioCreateActivity controlador;
-    TextView limitDate;
-    TextView activityHour;
+    private TextView limitDate;
+    private TextView activityHour;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    ImageView iv;
-    Bitmap bitmapImage;
-    Post new_post;
-    Uri imageUri;
-    CheckBox checkBox_esport;
-    CheckBox checkBox_musica;
-    CheckBox checkBox_cinema;
-    CheckBox checkBox_lectura;
-    CheckBox checkBox_tecnologia;
-    CheckBox checkBox_cuina;
-    CheckBox checkBox_moda;
-    CheckBox checkBox_viatges;
-    CheckBox checkBox_art;
+    private ImageView iv;
+    private Spinner spinnerLang;
+    private Bitmap bitmapImage;
+    private Post new_post;
+    private Uri imageUri;
+    private CheckBox checkBox_esport;
+    private CheckBox checkBox_musica;
+    private CheckBox checkBox_cinema;
+    private CheckBox checkBox_lectura;
+    private CheckBox checkBox_tecnologia;
+    private CheckBox checkBox_cuina;
+    private CheckBox checkBox_moda;
+    private CheckBox checkBox_viatges;
+    private CheckBox checkBox_art;
     private Context context;
 
     @Override
@@ -85,6 +90,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         addDatePickerListener();
         addTimePickerListener();
 
+        setSpinner();
+
         context = getApplicationContext();
 
         Button enviar_btn = findViewById(R.id.submitPostAct);
@@ -101,6 +108,17 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         checkBox_moda = findViewById(R.id.tag_moda);
         checkBox_viatges = findViewById(R.id.tag_viatges);
         checkBox_art = findViewById(R.id.tag_art);
+    }
+
+    private void setSpinner() {
+        spinnerLang = findViewById(R.id.languageCreatePostInputAct);
+
+        List<String> languages = new ArrayList<>();
+        languages.add(getString(R.string.catalan));
+        languages.add(getString(R.string.spanish));
+        languages.add(getString(R.string.english));
+
+        spinnerLang.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, languages));
     }
 
     private void addTimePickerListener() {
@@ -194,6 +212,12 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
+                String lang_spinner = spinnerLang.getSelectedItem().toString();
+                String lang = "";
+                if(lang_spinner.equals(getString(R.string.catalan))) lang = "CA";
+                else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
+                else lang = "EN";
+                Log.d("laaaang", lang);
                 LatLng coord = controlador.getLoc(lloc, context);
                 Boolean tag_esport = checkBox_esport.isChecked();
                 Boolean tag_musica = checkBox_musica.isChecked();
@@ -211,11 +235,11 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                     Intent intent = getIntent();
                     String tipus = intent.getStringExtra("flag");
                     if (tipus.equals("A")) {
-                        new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc, coord);
+                        new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc, coord, lang);
                     } else if (tipus.equals("F")) {
-                        new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc, coord);
+                        new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc, coord, lang);
                     } else if (tipus.equals("H")) {
-                        new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc, coord);
+                        new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc, coord, lang);
                     }
 
 

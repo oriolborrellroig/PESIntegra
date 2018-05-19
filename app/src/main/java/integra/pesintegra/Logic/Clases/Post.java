@@ -26,6 +26,7 @@ public abstract class Post implements Serializable {
     private Bitmap imatge;
     private double lat;
     private double lng;
+    private String idioma;
     private List<String> interessos;
 
     private boolean hidden;
@@ -40,7 +41,7 @@ public abstract class Post implements Serializable {
         this.tipus = tipus;
     }
 
-    Post(String titol, String descripcio, String dataini, String datafi, String hora, String localitzacio, String owner, char tipus, double lat, double lng){
+    Post(String titol, String descripcio, String dataini, String datafi, String hora, String localitzacio, String owner, char tipus, double lat, double lng, String idioma){
         this.titol = titol;
         this.descripcio = descripcio;
         this.dataini = dataini;
@@ -51,6 +52,7 @@ public abstract class Post implements Serializable {
         this.tipus = tipus;
         this.lat = lat;
         this.lng = lng;
+        this.idioma = idioma;
         this.puntuacio = 0;
         this.nombreVots = 0;
         setId();
