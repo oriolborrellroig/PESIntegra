@@ -58,10 +58,10 @@
     <string name="msgClickedActivity">Has clicado: actividad</string>
     <string name="msgClickedHousing">Has clicado: habitaje</string>
     <string name="msgClickedWork">Has clicado: Trabajo</string>
-    <string name="msgExit">Estás seguro de que quieres salir?</string>
+    <string name="msgExit">¿Estás seguro de que quieres salir?</string>
     <string name="msgYes">Si</string>
     <string name="msgNo">No</string>
-    <string name="msgExitApp">Estás seguro de que quieres salir de la aplicación?</string>
+    <string name="msgExitApp">¿Estás seguro de que quieres salir de la aplicación?</string>
     <string name="errorTitle">ERROR</string>
     <string name="BTNback">ATRÁS</string>
     <string name="selectTime">Selecciona la hora</string>
@@ -72,14 +72,15 @@
     <string name="deletePost">Eliminar post</string>
     <string name="showPost">Mostrar post</string>
     <string name="AddChangeImg">Añadir/cambiar imagen</string>
-    <string name="confShowPostAgain">El post se volverá a mostrar. Quieres cancelar?</string>
-    <string name="confPostHidden">El post se ocultará. Quieres cancelar?</string>
-    <string name="msgLogOut">Estás seguro de que quieres cerrar sesión?</string>
+    <string name="confShowPostAgain">El post se volverá a mostrar. ¿Quieres cancelar?</string>
+    <string name="confPostHidden">¿El post se ocultará. Quieres cancelar?</string>
+    <string name="msgLogOut">¿Estás seguro de que quieres cerrar sesión?</string>
     <string name="undo">DESHAZ</string>
     <string name="interests">Intereses</string>
     <string name="catalan">Catalán (ca)</string>
     <string name="spanish">Castellano (ES)</string>
     <string name="english">Inglés (EN)</string>
+    <string name="any_lang">Cualquier idioma</string>
     <string name="adv_search">Búsqueda avanzada</string>
     <string name="adv_search_query">Texto a buscar</string>
     <string name="adv_search_user">Usuario</string>
@@ -87,4 +88,8 @@
     <string name="adv_search_date_fi">Fecha Final</string>
     <string name="BTNadv_search">Buscar</string>
     <string name="adv_search_language">Idioma</string>
+    <string name="usr_not_exists">Este usuario no existe</string>
+    <string name="invalid_date_year">La fecha es anterior, no es válida. Año incorrecto.</string>
+    <string name="invalid_date_month">La fecha es anterior, no es válida. Mes incorrecto.</string>
+    <string name="invalid_date_day">La fecha es anterior, no es válida. Día incorrecto.</string>
 </resources>

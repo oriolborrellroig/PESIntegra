@@ -80,6 +80,7 @@
     <string name="catalan">Català (ca)</string>
     <string name="spanish">Castellà (ES)</string>
     <string name="english">Anglès (EN)</string>
+    <string name="any_lang">Qualsevol idioma</string>
     <string name="adv_search">Cerca Avançada</string>
     <string name="adv_search_query">Text a buscar</string>
     <string name="adv_search_user">Usuari</string>
@@ -87,4 +88,8 @@
     <string name="adv_search_date_fi">Data Final</string>
     <string name="BTNadv_search">Cercar</string>
     <string name="adv_search_language">Idioma</string>
+    <string name="usr_not_exists">Aquest usuari no existeix</string>
+    <string name="invalid_date_year">La data és anterior, no és vàlida. Any incorrecte.</string>
+    <string name="invalid_date_month">La data és anterior, no és vàlida. Mes incorrecte.</string>
+    <string name="invalid_date_day">La data és anterior, no és vàlida. Dia incorrecte.</string>
 </resources>

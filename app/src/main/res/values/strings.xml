@@ -98,6 +98,7 @@
     <string name="catalan">Catalan (ca)</string>
     <string name="spanish">Spanish (ES)</string>
     <string name="english">English (EN)</string>
+    <string name="any_lang">Any language</string>
     <string name="adv_search">Advanced Search</string>
     <string name="adv_search_query">Text to search</string>
     <string name="adv_search_user">User</string>
@@ -105,4 +106,8 @@
     <string name="adv_search_date_fi">Final Date</string>
     <string name="BTNadv_search">Search</string>
     <string name="adv_search_language">Language</string>
+    <string name="usr_not_exists">This user does not exist.</string>
+    <string name="invalid_date_year">The date is invalid, it is anterior. Incorrect year.</string>
+    <string name="invalid_date_month">The date is invalid, it is anterior. Incorrect month.</string>
+    <string name="invalid_date_day">The date is invalid, it is anterior. Incorrect day.</string>
 </resources>

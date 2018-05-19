@@ -1,7 +1,9 @@
 package integra.pesintegra.Presentation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +37,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     private String dateIni;
     private String dateFi;
     private Spinner ETtipus;
+    private Spinner ETlanguage;
     private Button BTN_search;
     private Button button;
     private Boolean clicked_esport = true;
@@ -47,6 +50,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
     private List<String> clicked_tags;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,10 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
         BTN_search.setOnClickListener(this);
 
         clicked_tags = new ArrayList<>();
+
+        context = getApplicationContext();
+
+        cp = new ControladorPresentacioAdvancedSearchActivity(context);
     }
 
     private void setSpinner(){
@@ -78,9 +86,19 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
         posts.add(getString(R.string.work));
         posts.add(getString(R.string.activities));
 
-        //ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, posts);
+        //ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, posts);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ETtipus.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, posts));
+        ETtipus.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, posts));
+
+
+        ETlanguage = findViewById(R.id.languageInputAct);
+        List<String> lang = new ArrayList<>();
+        lang.add(getString(R.string.any_lang));
+        lang.add(getString(R.string.catalan));
+        lang.add(getString(R.string.spanish));
+        lang.add(getString(R.string.english));
+
+        ETlanguage.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, lang));
     }
 
     @Override
@@ -196,7 +214,15 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.submitSearchAct:
                 getFields();
-                //cp.comprovaCamps();
+                try {
+                    cp.comprovaCamps(dateIni, dateFi, user);
+                }  catch (Exception e) {
+                     new AlertDialog.Builder(this)
+                    .setTitle(R.string.errorTitle)
+                    .setMessage(e.getMessage())
+                    .setNeutralButton(R.string.BTNback, null)
+                    .show();
+                }
                 break;
         }
     }
@@ -250,7 +276,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void addDateFiPickerListener() {
-        ETDateFi = findViewById(R.id.dateIniInputAct);
+        ETDateFi = findViewById(R.id.dateFiInputAct);
 
         ETDateFi.setOnClickListener(new View.OnClickListener() {
             @Override
