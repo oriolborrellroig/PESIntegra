@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,14 +20,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorPresentacioAdvancedSearchActivity;
 import integra.pesintegra.R;
 
 class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener {
+    private ControladorPresentacioAdvancedSearchActivity cp;
     private DatePickerDialog.OnDateSetListener mDateIniSetListener;
-    private TextView DateIni;
+    private TextView ETDateIni;
     private DatePickerDialog.OnDateSetListener mDateFiSetListener;
-    private TextView DateFi;
-    private Spinner tipus;
+    private TextView ETDateFi;
+    private String text_to_search;
+    private String user;
+    private String tipus;
+    private String dateIni;
+    private String dateFi;
+    private Spinner ETtipus;
     private Button BTN_search;
     private Button button;
     private Boolean clicked_esport = true;
@@ -38,6 +46,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     private Boolean clicked_moda = true;
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
+    private List<String> clicked_tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +65,22 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
 
         BTN_search = findViewById(R.id.submitSearchAct);
         BTN_search.setOnClickListener(this);
+
+        clicked_tags = new ArrayList<>();
     }
 
     private void setSpinner(){
-        tipus = findViewById(R.id.tipoPostInputAct);
+        ETtipus = findViewById(R.id.tipoPostInputAct);
 
-        List<String> posts = new ArrayList<String>();
-        posts.add("@string/allPost");
-        posts.add("@string/housing");
-        posts.add("@string/work");
-        posts.add("@string/activities");
+        List<String> posts = new ArrayList<>();
+        posts.add(getString(R.string.allPost));
+        posts.add(getString(R.string.housing));
+        posts.add(getString(R.string.work));
+        posts.add(getString(R.string.activities));
 
         //ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, posts);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tipus.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, posts));
+        ETtipus.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, posts));
     }
 
     @Override
@@ -78,11 +89,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_art:
                 button = findViewById(R.id.adv_search_btn_art);
                 if(clicked_art){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "art");
                     clicked_art = !clicked_art;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "art");
                     clicked_art = !clicked_art;
                 }
                 break;
@@ -90,11 +101,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_cinema:
                 button = findViewById(R.id.adv_search_btn_cinema);
                 if(clicked_cinema){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "cinema");
                     clicked_cinema = !clicked_cinema;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "cinema");
                     clicked_cinema = !clicked_cinema;
                 }
                 break;
@@ -102,11 +113,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_cuina:
                 button = findViewById(R.id.adv_search_btn_cuina);
                 if(clicked_cuina){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "cuina");
                     clicked_cuina = !clicked_cuina;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "cuina");
                     clicked_cuina = !clicked_cuina;
                 }
                 break;
@@ -114,11 +125,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_esport:
                 button = findViewById(R.id.adv_search_btn_esport);
                 if(clicked_esport){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "esport");
                     clicked_esport = !clicked_esport;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "esport");
                     clicked_esport = !clicked_esport;
                 }
                 break;
@@ -126,11 +137,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_lectura:
                 button = findViewById(R.id.adv_search_btn_lectura);
                 if(clicked_lectura){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "lectura");
                     clicked_lectura = !clicked_lectura;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "lectura");
                     clicked_lectura = !clicked_lectura;
                 }
                 break;
@@ -138,11 +149,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_moda:
                 button = findViewById(R.id.adv_search_btn_moda);
                 if(clicked_moda){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "moda");
                     clicked_moda = !clicked_moda;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "moda");
                     clicked_moda = !clicked_moda;
                 }
                 break;
@@ -150,11 +161,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_musica:
                 button = findViewById(R.id.adv_search_btn_musica);
                 if(clicked_musica){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "musica");
                     clicked_musica = !clicked_musica;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "musica");
                     clicked_musica = !clicked_musica;
                 }
                 break;
@@ -162,11 +173,11 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_tech:
                 button = findViewById(R.id.adv_search_btn_tech);
                 if(clicked_tech){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "tech");
                     clicked_tech = !clicked_tech;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "tech");
                     clicked_tech = !clicked_tech;
                 }
                 break;
@@ -174,21 +185,36 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.adv_search_btn_viatges:
                 button = findViewById(R.id.adv_search_btn_viatges);
                 if(clicked_viatges){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "viatges");
                     clicked_viatges = !clicked_viatges;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "viatges");
                     clicked_viatges = !clicked_viatges;
                 }
+                break;
+
+            case R.id.submitSearchAct:
+                getFields();
+                //cp.comprovaCamps();
                 break;
         }
     }
 
-    private void addDateIniPickerListener() {
-        DateIni = findViewById(R.id.dateIniInputAct);
+    private void getFields() {
+        EditText ETtext = findViewById(R.id.queryInputAct);
+        user = ETtext.getText().toString();
 
-        DateIni.setOnClickListener(new View.OnClickListener() {
+        tipus = ETtipus.getSelectedItem().toString();
+
+        EditText ETuser = findViewById(R.id.userInputAct);
+        user = ETuser.getText().toString();
+    }
+
+    private void addDateIniPickerListener() {
+        ETDateIni = findViewById(R.id.dateIniInputAct);
+
+        ETDateIni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
@@ -201,7 +227,6 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateIniSetListener,
                         year,month,day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -218,17 +243,16 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
                 if (month < 10) {
                     mes = "0" + month;
                 }
-                String date = dia + "/" + mes + "/" + year;
-                DateIni.setText(date);
-                Log.d("data ini", date);
+                dateIni = dia + "/" + mes + "/" + year;
+                ETDateIni.setText(dateIni);
             }
         };
     }
 
     private void addDateFiPickerListener() {
-        DateFi = findViewById(R.id.dateIniInputAct);
+        ETDateFi = findViewById(R.id.dateIniInputAct);
 
-        DateFi.setOnClickListener(new View.OnClickListener() {
+        ETDateFi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
@@ -241,7 +265,6 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateFiSetListener,
                         year,month,day);
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -258,26 +281,25 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
                 if (month < 10) {
                     mes = "0" + month;
                 }
-                String date = dia + "/" + mes + "/" + year;
-                DateFi.setText(date);
-                Log.d("data fi", date);
+                dateFi = dia + "/" + mes + "/" + year;
+                ETDateFi.setText(dateFi);
             }
         };
     }
 
-    public void item_seleccionat(Button b){
+    public void item_seleccionat(Button b, String tag){
         //pintar color seleccionat primary_dark
 
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
-
+        clicked_tags.add(tag);
     }
 
-    public void item_no_seleccionat(Button b){
+    public void item_no_seleccionat(Button b, String tag){
         //pintar color no seleccionat primary_light
 
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));
-
+        clicked_tags.remove(tag);
     }
 }
