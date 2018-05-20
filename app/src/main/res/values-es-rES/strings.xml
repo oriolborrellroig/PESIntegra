@@ -92,4 +92,5 @@
     <string name="invalid_date_year">La fecha es anterior, no es válida. Año incorrecto.</string>
     <string name="invalid_date_month">La fecha es anterior, no es válida. Mes incorrecto.</string>
     <string name="invalid_date_day">La fecha es anterior, no es válida. Día incorrecto.</string>
+    <string name="afegir_comment">Añade comentario</string>
 </resources>

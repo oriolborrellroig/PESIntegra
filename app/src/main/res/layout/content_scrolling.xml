@@ -13,6 +13,8 @@
         android:layout_marginEnd="10dp"
         android:orientation="vertical">
 
+
+
         <TextView
             android:id="@+id/post_titol"
             android:layout_marginTop="15dp"
@@ -105,6 +107,7 @@
                     android:singleLine="false"
                     android:textSize="12sp" />
             </LinearLayout>
+
         </LinearLayout>
         <TextView
             android:id="@+id/post_text3"
@@ -129,6 +132,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="30dp"
+            android:background="@color/primary_dark" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/comentari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.2"
+            android:background="@drawable/input_text_background"
+            android:hint="@string/afegir_comment"
+            android:minHeight="80dp" />
+
+        <Button
+            android:id="@+id/enviar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="right|center_horizontal|center"
+            android:background="@mipmap/baseline_send_black_36"/>
+
+    </LinearLayout>
+
+        <include layout="@layout/activity_list_comments" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

@@ -110,4 +110,5 @@
     <string name="invalid_date_year">The date is invalid, it is anterior. Incorrect year.</string>
     <string name="invalid_date_month">The date is invalid, it is anterior. Incorrect month.</string>
     <string name="invalid_date_day">The date is invalid, it is anterior. Incorrect day.</string>
+    <string name="afegir_comment">Add coment</string>
 </resources>

@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RatingBar;
@@ -34,6 +35,7 @@ import org.w3c.dom.Text;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.Objects;
 
 import integra.pesintegra.Controllers.ControladorDomini;
@@ -41,12 +43,14 @@ import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
 import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
+import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
 public class PostActivity extends Activity implements View.OnClickListener{
 
     Post post;
+    String post_id;
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
@@ -69,6 +73,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         final Button tres_punts = findViewById(R.id.tres_punts);
         TextView post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setOnClickListener(this);
+        Button btn_enviar = findViewById(R.id.enviar);
+        btn_enviar.setOnClickListener(this);
 
 
 
@@ -171,6 +177,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         TextView post_titol = findViewById(R.id.post_titol);
         post_titol.setText(post.getTitol());
+        post_id = post.getId();
        // post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setText(post.getLocalitzacio());
         TextView post_data = findViewById(R.id.post_data);
@@ -233,6 +240,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 intent.putExtra("lat", post.getLat());
                 intent.putExtra("lng", post.getLng());
                 startActivity(intent);
+                break;
+            case R.id.enviar:
+
+                String text_comentari = ((EditText) findViewById(R.id.comentari)).getText().toString();
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                String data= year + "/" + month + "/" + day;
+                Toast.makeText(
+                        PostActivity.this,
+                        data,
+                        Toast.LENGTH_SHORT
+                ).show();
+                String user_id = "1";
+                Comentari comment = new Comentari(user_id, text_comentari, data, post_id);
                 break;
         }
 

@@ -92,4 +92,5 @@
     <string name="invalid_date_year">La data és anterior, no és vàlida. Any incorrecte.</string>
     <string name="invalid_date_month">La data és anterior, no és vàlida. Mes incorrecte.</string>
     <string name="invalid_date_day">La data és anterior, no és vàlida. Dia incorrecte.</string>
+    <string name="afegir_comment">Afegeix comentari</string>
 </resources>
