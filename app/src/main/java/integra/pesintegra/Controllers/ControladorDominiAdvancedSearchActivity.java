@@ -10,23 +10,15 @@ class ControladorDominiAdvancedSearchActivity {
 
     private Context context;
 
-    public ControladorDominiAdvancedSearchActivity(Context context){
+    ControladorDominiAdvancedSearchActivity(Context context){
         this.context = context;
     }
 
     public void comprovaCamps(String dateIni, String dateFi, String user) throws Exception {
-        comprovaUser(user);
         comprovaDates(dateIni, dateFi);
     }
 
-    private void comprovaUser(String user) throws Exception {
-        //TODO: crida a BD per comprovar que l'user existeix i retorna un boolean
-        /*
-            if (!crida) { //No existeix el user
-                throw new Exception(context.getResources().getString(R.string.usr_not_exists));
-            }
-        */
-    }
+
 
     //Throw Exception si dateFi < dateIni
     private void comprovaDates(String dateIni, String dateFi) throws Exception{

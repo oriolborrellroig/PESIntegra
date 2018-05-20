@@ -27,7 +27,7 @@ public abstract class Post implements Serializable {
     private double lat;
     private double lng;
     private String idioma;
-    private List<String> interessos;
+    private ArrayList<String> interessos;
 
     private boolean hidden;
 
@@ -55,6 +55,7 @@ public abstract class Post implements Serializable {
         this.idioma = idioma;
         this.puntuacio = 0;
         this.nombreVots = 0;
+        this.interessos = new ArrayList<>();
         setId();
         setShow();
     }
@@ -159,5 +160,15 @@ public abstract class Post implements Serializable {
 
     public List<String> getInteressos(){
         return interessos;
+    }
+
+    public String getIdioma() { return idioma; }
+
+    public int getPuntuacio() {
+        return puntuacio;
+    }
+
+    public int getNombreVots() {
+        return nombreVots;
     }
 }

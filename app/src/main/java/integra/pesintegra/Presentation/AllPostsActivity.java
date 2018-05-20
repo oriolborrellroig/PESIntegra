@@ -103,6 +103,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             case "calendar":
                 cs.loadFeedTaCalendarPosts();
                 break;
+            case "adv_search":
+                cs.loadFeedAdvSearch(getIntent().getExtras());
+                break;
         }
     }
 

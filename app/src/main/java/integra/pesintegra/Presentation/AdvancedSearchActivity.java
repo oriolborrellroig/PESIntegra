@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     private TextView ETDateFi;
     private String text_to_search;
     private String user;
+    private String lang;
     private String tipus;
     private String dateIni;
     private String dateFi;
@@ -213,6 +215,16 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
                 getFields();
                 try {
                     cp.comprovaCamps(dateIni, dateFi, user);
+                    Intent intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                    intent.putExtra("type", "adv_search");
+                    intent.putExtra("text_to_search", text_to_search);
+                    intent.putExtra("tipus", tipus);
+                    intent.putExtra("lang", lang);
+                    intent.putExtra("dateIni", dateIni);
+                    intent.putExtra("dateFi", dateFi);
+                    intent.putExtra("user", user);
+                    intent.putStringArrayListExtra("tags", (ArrayList<String>)clicked_tags);
+                    startActivity(intent);
 
                 }  catch (Exception e) {
                      new AlertDialog.Builder(this)
@@ -227,12 +239,14 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
 
     private void getFields() {
         EditText ETtext = findViewById(R.id.queryInputAct);
-        user = ETtext.getText().toString();
+        text_to_search = ETtext.getText().toString();
 
         tipus = ETtipus.getSelectedItem().toString();
 
         EditText ETuser = findViewById(R.id.userInputAct);
         user = ETuser.getText().toString();
+
+        lang = ETlanguage.getSelectedItem().toString();
     }
 
     private void addDateIniPickerListener() {

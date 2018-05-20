@@ -22,10 +22,10 @@ public class ControladorDomini extends  AbstractBaseController{
     public ControladorDomini (ControladorPresentacio cp) {
         this.CP =cp;
     }
-    public void setSessio(Sessio usuari) {
+    void setSessio(Sessio usuari) {
 
-        this.sessio = usuari;
-         this.serviceManager = new ServiceManager(usuari.getToken(), usuari.getUsername());
+        sessio = usuari;
+        serviceManager = new ServiceManager(usuari.getToken(), usuari.getUsername());
     }
 
     public void creaPostActivitat(Post_Activitat activitat) {
@@ -49,16 +49,16 @@ public class ControladorDomini extends  AbstractBaseController{
     }
 
 
-    public ServiceManager getServiceManager() {
+    ServiceManager getServiceManager() {
         return serviceManager;
     }
 
-    protected String getSessioUser() {
+    String getSessioUser() {
         return sessio.getUsername();
     }
 
 
-    protected String getSessioToken() {
+    String getSessioToken() {
         return sessio.getToken();
 
     }

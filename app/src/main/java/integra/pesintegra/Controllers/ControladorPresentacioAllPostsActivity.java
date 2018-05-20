@@ -1,6 +1,7 @@
 package integra.pesintegra.Controllers;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public ControladorPresentacioAllPostsActivity(AllPostsActivity allposts, Context cont) {
         this.context = cont;
         this.activity = allposts;
-        this.CDAllPosts = new ControladorDominiAllPostsActivity(this);
+        this.CDAllPosts = new ControladorDominiAllPostsActivity();
     }
 
     public void loadFeedAnyPosts () {
@@ -54,6 +55,9 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public static void loadFeedTaCalendarPosts() {
         CDAllPosts.loadFeedCalendarPosts();
     }
+
+    public void loadFeedAdvSearch(Bundle extras) { CDAllPosts.loadFeedAdvSearch(extras); }
+
 /*
     public void sendHiddenList(ArrayList<Post> postsH){
         ArrayList<String> r = new ArrayList<>();
