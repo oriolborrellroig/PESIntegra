@@ -14,7 +14,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public ControladorPresentacioProfileActivity(ProfileActivity allposts, Context cont) {
         this.context = cont;
         this.activity = allposts;
-        this.Cdomini = new ControladorDominiProfileActivity (this);
+        Cdomini = new ControladorDominiProfileActivity (this);
     }
 
     public static void getUser () {

@@ -1,5 +1,6 @@
 package integra.pesintegra.Controllers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.util.ResourceBundle;
@@ -9,13 +10,12 @@ import integra.pesintegra.Presentation.PostActivity;
 public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
     private PostActivity activity;
-    private Context context;
+    @SuppressLint("StaticFieldLeak")
     private static ControladorDominiPostOpen Cdomini;
 
     public ControladorPresentacioPostOpen (PostActivity callActivity, Context cont) {
         this.activity = callActivity;
-        this.context = cont;
-        this.Cdomini = new ControladorDominiPostOpen(this);
+        Cdomini = new ControladorDominiPostOpen(this);
     }
 
 

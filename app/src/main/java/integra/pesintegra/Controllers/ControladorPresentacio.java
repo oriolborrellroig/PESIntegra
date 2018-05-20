@@ -26,7 +26,7 @@ public class ControladorPresentacio extends AbstractBaseController {
 
     public ControladorPresentacio() {
         super();
-            cntrlDom = new ControladorDomini(this);
+            cntrlDom = new ControladorDomini();
     }
 
 
@@ -86,18 +86,9 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
     public User comprovar_camps(String pass1, String pass2, String email, String dataN) throws Exception{
-
-        Log.d("aaa","petaas");
         valid_mail(email);
-        Log.d("aaa","petaas");
-
         comprova_contrasenya_coincident(pass1, pass2);
-        Log.d("aaa","petaas");
-
         data_naix_correcte(dataN);
-        Log.d("aaa","petaas");
-
-
         return new User(email, "usuari", dataN);
     }
 
@@ -113,9 +104,8 @@ public class ControladorPresentacio extends AbstractBaseController {
             //This bytes[] has bytes in decimal format;
             //Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
             //Get complete hashed password in hex format
             generatedPassword = sb.toString();

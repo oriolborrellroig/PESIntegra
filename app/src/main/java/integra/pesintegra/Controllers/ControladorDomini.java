@@ -15,13 +15,10 @@ import integra.pesintegra.Services.ServiceManager;
 public class ControladorDomini extends  AbstractBaseController{
 
     private static ServiceManager serviceManager;
-    private ControladorPresentacio CP;
     private static Sessio sessio;
 
     public ControladorDomini () {}
-    public ControladorDomini (ControladorPresentacio cp) {
-        this.CP =cp;
-    }
+
     void setSessio(Sessio usuari) {
 
         sessio = usuari;

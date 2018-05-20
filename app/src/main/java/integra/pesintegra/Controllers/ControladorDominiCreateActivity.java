@@ -37,7 +37,7 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
     private ControladorPresentacioCreateActivity Cpresentacio;
 
 
-    public ControladorDominiCreateActivity(ControladorPresentacioCreateActivity allposts) {
+    ControladorDominiCreateActivity(ControladorPresentacioCreateActivity allposts) {
         this.Cpresentacio = allposts;
     }
 

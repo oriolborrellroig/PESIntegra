@@ -1,5 +1,6 @@
 package integra.pesintegra.Controllers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 
@@ -19,9 +20,10 @@ import retrofit2.Response;
 public class ControladorDominiPostOpen extends ControladorDomini {
     private PostActivity activity;
     private Context context;
+    @SuppressLint("StaticFieldLeak")
     private static ControladorPresentacioPostOpen Cpresentacio;
 
-    public ControladorDominiPostOpen (ControladorPresentacioPostOpen cPresentacio) {
+    ControladorDominiPostOpen(ControladorPresentacioPostOpen cPresentacio) {
         Cpresentacio = cPresentacio;
     }
 

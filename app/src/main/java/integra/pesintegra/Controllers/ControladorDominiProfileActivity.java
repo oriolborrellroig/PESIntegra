@@ -1,5 +1,6 @@
 package integra.pesintegra.Controllers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.ProfileActivity;
+import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,15 +19,16 @@ import retrofit2.Response;
 
 public class ControladorDominiProfileActivity extends ControladorDomini {
 
+    @SuppressLint("StaticFieldLeak")
     private static ControladorPresentacioProfileActivity Cpresentacio;
 
-    public ControladorDominiProfileActivity(ControladorPresentacioProfileActivity Cpresentacio) {
-        this.Cpresentacio = Cpresentacio;
+    ControladorDominiProfileActivity(ControladorPresentacioProfileActivity Cpresentacio) {
+        ControladorDominiProfileActivity.Cpresentacio = Cpresentacio;
     }
 
     public void getUser () {
         String id = this.getSessioUser();
-        UserService service = this.getServiceManager().getUserService();
+        UserService service = ServiceManager.getUserService();
         Call<User> createCall2 = service.getUser(id);
         createCall2.enqueue(new Callback<User>() {
             @Override
@@ -44,7 +47,7 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     public void setUserInfo(String interes, String valor) {
 
         String userID = this.getSessioUser();
-        UserService service = this.getServiceManager().getUserService();
+        UserService service = ServiceManager.getUserService();
         Call<JsonObject> createCall2 = service.setInterest(userID, interes, valor);
         Log.d("interiooor", "user");
         createCall2.enqueue(new Callback<JsonObject>() {

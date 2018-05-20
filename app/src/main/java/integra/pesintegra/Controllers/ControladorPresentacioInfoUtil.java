@@ -9,12 +9,10 @@ import integra.pesintegra.Presentation.InformationActivity;
 public class ControladorPresentacioInfoUtil extends ControladorPresentacio  {
 
     private InformationActivity activity;
-    private Context context;
     private ControladorDominiInfoUtil Cdomini;
 
     public ControladorPresentacioInfoUtil (InformationActivity callActivity, Context cont) {
         this.activity = callActivity;
-        this.context = cont;
         this.Cdomini = new ControladorDominiInfoUtil (this);
     }
 

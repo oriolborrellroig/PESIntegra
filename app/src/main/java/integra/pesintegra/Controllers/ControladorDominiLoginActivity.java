@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Sessio;
+import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.LoginActivity;
@@ -21,16 +22,15 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
     private Context context;
     private String username;
 
-    public ControladorDominiLoginActivity(ControladorPresentacioLoginActivity Cpresentacio) {
+    ControladorDominiLoginActivity(ControladorPresentacioLoginActivity Cpresentacio) {
         this.Cpresentacio = Cpresentacio;
     }
     public void checkLogin (String username, String password) {
-        UserService service = this.getServiceManager().getLoginService();
+        UserService service = ServiceManager.getLoginService();
         Call<JsonObject> createCall2 = service.loginUser(username, password);
         createCall2.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                //activity.updateFeed(response.body(), context);
                 if ( response.body() == null) {
                     Cpresentacio.rejectLogin();
                 }
@@ -44,7 +44,6 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.v("TAAAAG", "Failure");
             }
         });
     }

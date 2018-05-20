@@ -1,5 +1,6 @@
 package integra.pesintegra.Controllers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -9,7 +10,9 @@ public class ControladorPresentacioLoginActivity extends ControladorPresentacio 
 
 
     private static LoginActivity activity;
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
+    @SuppressLint("StaticFieldLeak")
     private static ControladorDominiLoginActivity Cdomini;
 
     public ControladorPresentacioLoginActivity () {
@@ -17,9 +20,9 @@ public class ControladorPresentacioLoginActivity extends ControladorPresentacio 
     }
 
     public ControladorPresentacioLoginActivity(LoginActivity loginActivity, Context cont) {
-        this.context = cont;
-        this.activity = loginActivity;
-        this.Cdomini = new ControladorDominiLoginActivity(this);
+        context = cont;
+        activity = loginActivity;
+        Cdomini = new ControladorDominiLoginActivity(this);
     }
     public void checkLogin (String username, String password) {
         Cdomini.checkLogin(username,hash_password(password));

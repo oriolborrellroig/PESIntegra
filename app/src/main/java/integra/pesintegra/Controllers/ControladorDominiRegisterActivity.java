@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.RegisterActivity;
+import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,18 +19,18 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
 
     private ControladorPresentacioRegisterActivity Cpresentacio;
 
-    public ControladorDominiRegisterActivity(ControladorPresentacioRegisterActivity Cpresentacio) {
+    ControladorDominiRegisterActivity(ControladorPresentacioRegisterActivity Cpresentacio) {
         this.Cpresentacio = Cpresentacio;
     }
     public void doRegister(final User user, final String hash) {
-        UserService service = this.getServiceManager().getLoginService();
+        UserService service = ServiceManager.getLoginService();
         Call<Void> createCall2 = service.createUser(user,hash);
 
         createCall2.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
 
-                UserService service = getServiceManager().getLoginService();
+                UserService service = ServiceManager.getLoginService();
                 Call<JsonObject> createCall2 = service.loginUser(user.getUsername(),hash);
                 createCall2.enqueue(new Callback<JsonObject>() {
                     @Override

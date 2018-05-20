@@ -1,5 +1,6 @@
 package integra.pesintegra.Controllers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -14,14 +15,16 @@ import retrofit2.Response;
 
 public class ControladorPresentacioAllPostsActivity extends ControladorPresentacio {
 
+    @SuppressLint("StaticFieldLeak")
     private static AllPostsActivity activity;
     private static ControladorDominiAllPostsActivity CDAllPosts;
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     public ControladorPresentacioAllPostsActivity(AllPostsActivity allposts, Context cont) {
-        this.context = cont;
-        this.activity = allposts;
-        this.CDAllPosts = new ControladorDominiAllPostsActivity();
+        context = cont;
+        activity = allposts;
+        CDAllPosts = new ControladorDominiAllPostsActivity();
     }
 
     public void loadFeedAnyPosts () {
@@ -45,7 +48,7 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public static void loadFeedUserPropiPosts () { CDAllPosts.loadFeedUserPosts(); }
 
     public static void updateFeed(ArrayList<Post> posts) {
-        activity.updateFeed(posts,context);
+        AllPostsActivity.updateFeed(posts,context);
     }
 
     public static void loadFeedTagsPosts() {
@@ -58,13 +61,6 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
 
     public void loadFeedAdvSearch(Bundle extras) { CDAllPosts.loadFeedAdvSearch(extras); }
 
-/*
-    public void sendHiddenList(ArrayList<Post> postsH){
-        ArrayList<String> r = new ArrayList<>();
-        for(int i = 0; i<postsH.size();++i){
-            r.add(postsH.get(i).getId());
-        }
-        activity.setHiddenList(r);
-    }*/
+
 
 }

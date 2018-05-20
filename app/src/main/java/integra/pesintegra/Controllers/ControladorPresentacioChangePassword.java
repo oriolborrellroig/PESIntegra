@@ -6,15 +6,10 @@ import android.content.Context;
 import integra.pesintegra.Presentation.ChangeMailActivity;
 
 public class ControladorPresentacioChangePassword extends ControladorPresentacio {
-    private static ChangePasswordActivity activity;
     private static ControladorDominiChangePassword CDChangePassword;
-    private Context context;
 
     public ControladorPresentacioChangePassword(ChangePasswordActivity act, Context con){
-        this.activity =act;
-        this.CDChangePassword= new ControladorDominiChangePassword(this);
-        this.context = con;
-
+        CDChangePassword= new ControladorDominiChangePassword();
     }
 
     public void changePassword(String userID, String current_pass, String new_pass, String new_pass_confirm) throws Exception{

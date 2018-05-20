@@ -20,13 +20,13 @@ public class ControladorDominiInfoUtil extends ControladorDomini{
 
     private ControladorPresentacioInfoUtil Cpresentacio;
 
-    public ControladorDominiInfoUtil (ControladorPresentacioInfoUtil Cpresentacio) {
+    ControladorDominiInfoUtil(ControladorPresentacioInfoUtil Cpresentacio) {
         this.Cpresentacio = Cpresentacio;
     }
 
 
     public void getInfo () {
-        InfoService service = this.getServiceManager().getInfoService();
+        InfoService service = ServiceManager.getInfoService();
         Call<JsonObject> createCall = service.getInfo();
         createCall.enqueue(new Callback<JsonObject>() {
             @Override
