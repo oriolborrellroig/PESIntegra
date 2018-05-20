@@ -1,4 +1,5 @@
 package integra.pesintegra.Presentation;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,7 +35,9 @@ import integra.pesintegra.R;
 
 public class AllPostsActivity extends BaseActivity implements View.OnClickListener {
 
+    @SuppressLint("StaticFieldLeak")
     private static ListAdapter listAdapter;
+    @SuppressLint("StaticFieldLeak")
     private static RecyclerView recyclerView;
     private boolean fabIsOpen = false;
     private List<Post> list_posts = new ArrayList<>();
@@ -56,7 +59,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         }
         recyclerView =  findViewById(R.id.recycler);
 
-        new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext()).loadFeedHiddenPosts();
+        new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext());
+        ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();
 
         getPostsFromDB();
 
@@ -92,16 +96,16 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 cs.loadFeedActivityPosts();
                 break;
             case "propis":
-                cs.loadFeedUserPropiPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedUserPropiPosts();
                 break;
             case "hide":
-                cs.loadFeedHiddenPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();
                 break;
             case "tags":
-                cs.loadFeedTagsPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedTagsPosts();
                 break;
             case "calendar":
-                cs.loadFeedTaCalendarPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedTaCalendarPosts();
                 break;
             case "adv_search":
                 cs.loadFeedAdvSearch(getIntent().getExtras());
@@ -111,31 +115,16 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             super.onBackPressed();
         }
     }
 
-   /* @Override
-    protected void onRestart() {
-        super.onRestart();
-
-    }*/
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-        getPostsFromDB();
-    }*/
-
     @Override
     protected void onResume(){
         super.onResume();
         getPostsFromDB();
-        //new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext()).loadFeedHiddenPosts();
-
-        //if(listAdapter != null) listAdapter.removeHidden(hidden_posts);
         if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
 

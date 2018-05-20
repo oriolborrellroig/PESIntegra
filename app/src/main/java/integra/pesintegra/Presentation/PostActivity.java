@@ -1,5 +1,6 @@
 package integra.pesintegra.Presentation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -33,6 +34,7 @@ import org.w3c.dom.Text;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 import integra.pesintegra.Controllers.ControladorDomini;
 import integra.pesintegra.Controllers.ControladorPresentacio;
@@ -52,7 +54,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
     TextView votantsTotals;
     TextView avgScore;
     RatingBar scoreBar;
-    private TextView post_direccio;
     private final LoginActivity li = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         iv = findViewById(R.id.imatge);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
         final Button tres_punts = findViewById(R.id.tres_punts);
-        post_direccio = findViewById(R.id.post_direccio);
+        TextView post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setOnClickListener(this);
 
 
@@ -99,16 +100,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                             case R.id.show_post:
                                 //li.getCurrentUser().removeHiddenPost(post.getId());
-                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
-                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
+                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
+                                new ControladorPresentacioLoginActivity();
+                                new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
+                                ControladorPresentacioPostOpen.updateRemoveHiddenList(post.getId()
+                                        , ControladorPresentacioLoginActivity.getUserSessio());
                                 Snackbar snackbar = Snackbar
                                         .make(coordinatorLayout, R.string.confShowPostAgain, Snackbar.LENGTH_LONG)
                                         .setAction(R.string.undo, new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
                                                 //li.getCurrentUser().addHiddenPost(post.getId());
-                                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
-                                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
+                                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
+                                                new ControladorPresentacioLoginActivity();
+                                                new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
+                                                ControladorPresentacioPostOpen.updateAddHiddenList(post.getId()
+                                                        , ControladorPresentacioLoginActivity.getUserSessio());
                                                 Snackbar snackbar2 = Snackbar.make(coordinatorLayout, "Request canceled!", Snackbar.LENGTH_SHORT);
                                                 snackbar2.show();
                                             }
@@ -117,16 +124,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 break;
                             case R.id.hide_post:
                                 //li.getCurrentUser().addHiddenPost(post.getId());
-                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateAddHiddenList(post.getId()
-                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
+                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
+                                new ControladorPresentacioLoginActivity();
+                                new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
+                                ControladorPresentacioPostOpen.updateAddHiddenList(post.getId()
+                                        , ControladorPresentacioLoginActivity.getUserSessio());
                                 Snackbar snackbar3 = Snackbar
                                         .make(coordinatorLayout, R.string.confPostHidden, Snackbar.LENGTH_LONG)
                                         .setAction(R.string.undo, new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
                                                 //li.getCurrentUser().removeHiddenPost(post.getId());
-                                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext()).updateRemoveHiddenList(post.getId()
-                                                        , new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio());
+                                                new ControladorPresentacioLoginActivity();
+                                                new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
+                                                new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
+                                                ControladorPresentacioPostOpen.updateRemoveHiddenList(post.getId()
+                                                        , ControladorPresentacioLoginActivity.getUserSessio());
                                                 Snackbar snackbar4 = Snackbar.make(coordinatorLayout, "Message is showed!", Snackbar.LENGTH_SHORT);
                                                 snackbar4.show();
                                             }
@@ -155,7 +168,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         //Intent intent = getIntent();
        // String image_name = intent.getStringExtra("bitmap_img");
 
-        this.post = (Post) getIntent().getExtras().getSerializable("post");
+        this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         TextView post_titol = findViewById(R.id.post_titol);
         post_titol.setText(post.getTitol());
        // post_direccio = findViewById(R.id.post_direccio);
@@ -274,10 +287,12 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     private void onDelete () {
-        new ControladorPresentacioPostOpen(this, getApplicationContext()).deletePost(post.getId());
+        new ControladorPresentacioPostOpen(this, getApplicationContext());
+        ControladorPresentacioPostOpen.deletePost(post.getId());
         this.finish();
     }
 
+    @SuppressLint("SetTextI18n")
     public void updateRating(String puntuacio, String nombreVots) {
 
         //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS

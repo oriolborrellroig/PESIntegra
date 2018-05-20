@@ -112,7 +112,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         });
 
-        cp.getUser();
+        ControladorPresentacioProfileActivity.getUser();
     }
 
 
@@ -122,8 +122,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         switch (view.getId()) {
 
             case R.id.tres_punts:
-               /* Intent intent = new Intent(getApplicationContext(), ChangeMailActivity.class);
-                startActivity(intent);*/
                 break;
 
 

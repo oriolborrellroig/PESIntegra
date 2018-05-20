@@ -1,5 +1,6 @@
 package integra.pesintegra.Presentation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,7 +22,6 @@ import integra.pesintegra.R;
 public class BaseActivity extends Activity implements NavigationView.OnNavigationItemSelectedListener {
 
     ControladorPresentacio cntrlPresentacio;
-    private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     @Override
@@ -37,7 +37,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
     protected void setView() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -56,7 +56,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
     @Override
     public void setContentView(int layoutResID) {
 
-        DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
+        @SuppressLint("InflateParams") DrawerLayout fullLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         FrameLayout frameLayout = (FrameLayout) fullLayout.findViewById(R.id.frame_layout_base);
 
         getLayoutInflater().inflate(layoutResID, frameLayout, true);

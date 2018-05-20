@@ -1,6 +1,5 @@
 package integra.pesintegra.Logic.Clases;
 
-import com.google.android.gms.maps.model.LatLng;
 
 public class Post_Activitat extends Post{
 

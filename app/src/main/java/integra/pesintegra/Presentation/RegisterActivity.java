@@ -84,6 +84,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("CommitTransaction")
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = new DatePickerFragment(dateEditText);
         newFragment.show(getFragmentManager().beginTransaction(), "datePicker");
@@ -120,6 +121,7 @@ class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDa
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
+    @SuppressLint("SetTextI18n")
     public void onDateSet(DatePicker view, int year, int month, int day) {
         editText.setText(day + "/" + (month+1) +"/" + year);
     }

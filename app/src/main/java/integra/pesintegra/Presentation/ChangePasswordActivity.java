@@ -24,7 +24,7 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.cntrlPresentacio = new ControladorPresentacio();
+        cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_changepassword);
 
         Button cancel = (Button)findViewById(R.id.change_pswd_cancel);
@@ -46,7 +46,9 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
                 String pass2 = ((EditText) findViewById(R.id.confirm_pswd_pass1)).getText().toString();
                 String pass3 = ((EditText) findViewById(R.id.confirm_pswd_pass2)).getText().toString();
                 try {
-                    String userID = new ControladorPresentacioLoginActivity(new ControladorPresentacioLoginActivity().getActivityLogin(), getApplicationContext()).getUserSessio();
+                    new ControladorPresentacioLoginActivity();
+                    new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
+                    String userID = ControladorPresentacioLoginActivity.getUserSessio();
                     new ControladorPresentacioChangePassword(this, getApplicationContext()).changePassword(userID, pass1, pass2, pass3);
                     this.finish();
                     break;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
     <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TableLayout
@@ -162,7 +163,7 @@
                         android:layout_marginTop="5dp"
                         android:hint="@string/adv_search_date_fi"
                         android:inputType="date"
-                        android:focusable="false"
+                        android:focusable="true"
                         android:clickable="true"
                         android:maxLines="1" />
                 </android.support.design.widget.TextInputLayout>
@@ -185,7 +186,8 @@
                 android:layout_height="wrap_content">
                 <GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <Button
                         android:layout_columnWeight="4"
@@ -194,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/BTNsport"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:onClick="onClick"> </Button>
@@ -208,7 +210,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
@@ -220,7 +222,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                 </GridLayout>
@@ -231,7 +233,8 @@
                 android:layout_height="wrap_content">
                 <GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <Button
                         android:layout_columnWeight="4"
@@ -240,7 +243,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/BTNreading"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:onClick="onClick"> </Button>
@@ -254,7 +257,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
@@ -266,7 +269,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                 </GridLayout>
@@ -278,7 +281,8 @@
                 android:layout_height="wrap_content">
                 <GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
 
                     <Button
                         android:layout_columnWeight="4"
@@ -287,7 +291,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/BTNfashion"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:onClick="onClick"> </Button>
@@ -301,7 +305,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
@@ -313,7 +317,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                 </GridLayout>
@@ -340,9 +344,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/BTNadv_search" />
-
-
-                />
             </TableRow>
 
         </TableLayout>

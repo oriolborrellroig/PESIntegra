@@ -66,11 +66,11 @@ public class User {
         this.data = data;
     }
 
-    public void setId() {
+    private void setId() {
         this.id = this.tipus + '_' + UUID.randomUUID().toString();
     }
 
-    public void setUsernameFromEmail() {
+    private void setUsernameFromEmail() {
         int index = this.mail.indexOf('@');
         this.username = this.mail.substring(0,index);
     }
@@ -79,7 +79,7 @@ public class User {
         return hiddenPosts;
     }
 
-    public int isInHiddenList(String idPost){
+    private int isInHiddenList(String idPost){
         for(int i = 0; i < hiddenPosts.size(); ++i){
             if(hiddenPosts.get(i).equals(idPost)) return i;
         }

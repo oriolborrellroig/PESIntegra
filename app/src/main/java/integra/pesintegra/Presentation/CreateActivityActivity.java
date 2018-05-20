@@ -207,7 +207,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
-                String dataF = dataI;
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
@@ -234,12 +233,16 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 try {
                     Intent intent = getIntent();
                     String tipus = intent.getStringExtra("flag");
-                    if (tipus.equals("A")) {
-                        new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataF, hora, lloc, coord, lang);
-                    } else if (tipus.equals("F")) {
-                        new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataF, hora, lloc, coord, lang);
-                    } else if (tipus.equals("H")) {
-                        new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataF, hora, lloc, coord, lang);
+                    switch (tipus) {
+                        case "A":
+                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang);
+                            break;
+                        case "F":
+                            new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataI, hora, lloc, coord, lang);
+                            break;
+                        case "H":
+                            new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataI, hora, lloc, coord, lang);
+                            break;
                     }
 
 

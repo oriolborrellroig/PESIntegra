@@ -40,8 +40,6 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     private String dateFi;
     private Spinner ETtipus;
     private Spinner ETlanguage;
-    private Button BTN_search;
-    private Button button;
     private Boolean clicked_esport = true;
     private Boolean clicked_musica = true;
     private Boolean clicked_cinema = true;
@@ -68,7 +66,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
         addDateIniPickerListener();
         addDateFiPickerListener();
 
-        BTN_search = findViewById(R.id.submitSearchAct);
+        Button BTN_search = findViewById(R.id.submitSearchAct);
         BTN_search.setOnClickListener(this);
 
         clicked_tags = new ArrayList<>();
@@ -104,7 +102,7 @@ class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.adv_search_btn_art:
-                button = findViewById(R.id.adv_search_btn_art);
+                Button button = findViewById(R.id.adv_search_btn_art);
                 if(clicked_art){
                     item_seleccionat(button, "art");
                     clicked_art = !clicked_art;
