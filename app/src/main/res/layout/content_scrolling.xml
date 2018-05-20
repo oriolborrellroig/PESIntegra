@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -18,7 +18,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:hint="@string/title"/>
         <TextView
@@ -31,16 +31,19 @@
             android:drawableRight="@mipmap/ic_map_marker_grey600_36dp"
             android:drawableTint="@color/accent"
             android:hint="@string/locationGM"
-            android:focusable="true" />
+            android:focusable="true"
+            tools:ignore="RtlHardcoded"
+            tools:targetApi="m" />
         <TextView
             android:id="@+id/post_data"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textStyle="italic"
             android:gravity="center|left"
-            android:drawableRight="@mipmap/ic_today_black_36dp"
+            android:drawableEnd="@mipmap/ic_today_black_36dp"
             android:drawableTint="@color/accent"
-            android:hint="3/4/2018 10:00 - 5/5/2018 13:00"/>
+            android:hint="3/4/2018 10:00 - 5/5/2018 13:00"
+            tools:targetApi="m" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -51,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:singleLine="false"
             android:layout_gravity="center_vertical|right"
             android:hint="Text del Post"/>
@@ -69,7 +72,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="0"
                 android:singleLine="false"
-                android:textSize="45dp" />
+                android:textSize="45sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,17 +92,18 @@
                     android:stepSize="1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="NestedWeights" />
 
                 <TextView
                     android:id="@+id/votantsTotals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="0dp"
                     android:layout_weight="0"
                     android:singleLine="false"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
         <TextView
@@ -107,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:singleLine="false"
             android:layout_gravity="center_vertical|right"
             android:hint="@string/vote"/>

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -32,7 +33,7 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/logo_pes"
                 android:scaleType="centerCrop"
-             />
+                tools:ignore="ContentDescription" />
         </TableRow>
 
 
@@ -51,9 +52,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:drawableRight="@mipmap/ic_account_circle_grey600_36dp"
+                    android:drawableEnd="@mipmap/ic_account_circle_grey600_36dp"
                     android:drawableTint="@color/accent"
-                    android:hint="@string/username" />
+                    android:hint="@string/username"
+                    tools:targetApi="m" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 
@@ -72,9 +74,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:drawableRight="@mipmap/ic_lock_outline_grey600_36dp"
+                    android:drawableEnd="@mipmap/ic_lock_outline_grey600_36dp"
                     android:drawableTint="@color/accent"
-                    android:hint="@string/password" />
+                    android:hint="@string/password"
+                    tools:targetApi="m" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 

@@ -18,7 +18,8 @@
         android:tint="@color/icons"
         android:visibility="invisible"
         app:backgroundTint="@android:color/holo_orange_light"
-        android:src="@mipmap/ic_account_multiple_grey600_36dp" />
+        android:src="@mipmap/ic_account_multiple_grey600_36dp"
+        android:focusable="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddHab"
@@ -32,7 +33,8 @@
         android:tint="@color/icons"
         android:visibility="invisible"
         app:backgroundTint="@android:color/holo_orange_light"
-        android:src="@mipmap/ic_home_grey600_36dp" />
+        android:src="@mipmap/ic_home_grey600_36dp"
+        android:focusable="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddFei"
@@ -46,7 +48,8 @@
         android:tint="@color/icons"
         android:visibility="invisible"
         app:backgroundTint="@android:color/holo_orange_light"
-        android:src="@mipmap/ic_briefcase_grey600_36dp"/>
+        android:src="@mipmap/ic_briefcase_grey600_36dp"
+        android:focusable="true" />
 
 
     <android.support.design.widget.FloatingActionButton

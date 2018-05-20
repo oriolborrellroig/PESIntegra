@@ -26,7 +26,7 @@ import java.util.List;
 import integra.pesintegra.Controllers.ControladorPresentacioAdvancedSearchActivity;
 import integra.pesintegra.R;
 
-class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener {
+public class AdvancedSearchActivity extends AppCompatActivity implements View.OnClickListener {
     private ControladorPresentacioAdvancedSearchActivity cp;
     private DatePickerDialog.OnDateSetListener mDateIniSetListener;
     private TextView ETDateIni;
