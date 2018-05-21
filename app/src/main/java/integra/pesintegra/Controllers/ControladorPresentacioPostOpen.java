@@ -56,4 +56,12 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         Cdomini.creaComentari(text, data, post_id);
 
     }
+
+    public String getCurrentUser() {
+        return Cdomini.getCurrentUser();
+    }
+
+    public Boolean isHidden(String post_id) {
+        return Cdomini.isHidden(post_id);
+    }
 }

@@ -5,11 +5,23 @@
         android:title="@string/hidePost"/>
 
     <item
+        android:id="@+id/show_post"
+        android:title="@string/showPost"/>
+
+    <item
         android:id="@+id/editar_post"
         android:title="@string/editPost"/>
 
     <item
         android:id="@+id/borrar_post"
         android:title="@string/deletePost"/>
+
+    <item
+        android:id="@+id/maps"
+        android:title="@string/view_map"/>
+
+    <item
+        android:id="@+id/user_profile"
+        android:title="@string/profile"/>
 
 </menu>

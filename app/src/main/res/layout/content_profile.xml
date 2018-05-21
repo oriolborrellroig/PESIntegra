@@ -37,19 +37,6 @@
                 android:gravity="center" ></TextView>
         </TableRow>
 
-        <TableRow>
-            <TextView
-                android:id="@+id/user_country"
-                android:layout_weight="3"
-                android:hint="India"
-                android:textSize="20dp"
-                android:textColor="@color/primary_dark"
-                android:layout_margin="15dp"
-                android:padding="5dp"
-                android:drawableLeft="@mipmap/ic_map_marker_grey600_36dp"
-                android:gravity="center" ></TextView>
-        </TableRow>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

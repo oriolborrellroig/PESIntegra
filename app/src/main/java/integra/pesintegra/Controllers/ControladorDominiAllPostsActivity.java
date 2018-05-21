@@ -56,9 +56,9 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         enqueueCall(call);
     }
 
-    public void loadFeedUserPosts () {
+    public void loadFeedUserPosts (String user) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPostsFromUser(this.getSessioUser());
+        Call<ArrayList<Post>> call = service.getAllPostsFromUser(user);
         enqueueCall(call);
     }
 

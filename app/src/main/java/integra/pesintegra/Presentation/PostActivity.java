@@ -22,6 +22,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -61,9 +62,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
     private ControladorPresentacioPostOpen cp;
+    String current_user;
+    String post_user;
     TextView votantsTotals;
     TextView avgScore;
     RatingBar scoreBar;
+    Boolean current;
+    Boolean hidden;
     private final LoginActivity li = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
 
+        this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
+        TextView post_titol = findViewById(R.id.post_titol);
+        post_titol.setText(post.getTitol());
+        post_id = post.getId();
+        // post_direccio = findViewById(R.id.post_direccio);
+        post_direccio.setText(post.getLocalitzacio());
+        TextView post_data = findViewById(R.id.post_data);
+        post_data.setText(post.getDataIni());
+        TextView post_text = findViewById(R.id.post_text);
+        post_text.setText(post.getDescripcio());
+        //iv.setImageBitmap(post.getImatge());
 
+        current_user = cp.getCurrentUser();
+        post_user = post.getOwner();
+        current = current_user.equals(post_user);
+        hidden = cp.isHidden(post_id);
 
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +110,20 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                 //Creating the instance of PopupMenu
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
+                Menu popupMenu = popup.getMenu();
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popupMenu);
 
+                if(current){
+                    popupMenu.findItem(R.id.hide_post).setVisible(false);
+                    popupMenu.findItem(R.id.show_post).setVisible(false);
+                }
+                else{
+                    if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
+                    else popupMenu.findItem(R.id.show_post).setVisible(false);
+                    popupMenu.findItem(R.id.editar_post).setVisible(false);
+                    popupMenu.findItem(R.id.borrar_post).setVisible(false);
 
-                //Inflating the Popup using xml file
-                //int r = li.getCurrentUser().isInHiddenList(post.getId());
-
-                ///if(r < 0) ;
-                //else popup.getMenuInflater().inflate(R.menu.popup_menu_hidden, popup.getMenu());
-                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+                }
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -111,7 +137,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
                         switch (item.getItemId()){
 
                             case R.id.show_post:
-                                //li.getCurrentUser().removeHiddenPost(post.getId());
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
                                 new ControladorPresentacioLoginActivity();
                                 new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
@@ -168,6 +193,19 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                                 break;
 
+                            case R.id.maps:
+                                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                                intent.putExtra("lat", post.getLat());
+                                intent.putExtra("lng", post.getLng());
+                                startActivity(intent);
+                                break;
+
+                            case R.id.user_profile:
+                                Intent perfil = new Intent(getApplicationContext(), ProfileActivity.class);
+                                perfil.putExtra("profile_user", post_user);
+                                startActivity(perfil);
+                                break;
+
                         }
                         return true;
                     }
@@ -179,18 +217,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         //Intent intent = getIntent();
        // String image_name = intent.getStringExtra("bitmap_img");
-
-        this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
-        TextView post_titol = findViewById(R.id.post_titol);
-        post_titol.setText(post.getTitol());
-        post_id = post.getId();
-       // post_direccio = findViewById(R.id.post_direccio);
-        post_direccio.setText(post.getLocalitzacio());
-        TextView post_data = findViewById(R.id.post_data);
-        post_data.setText(post.getDataIni());
-        TextView post_text = findViewById(R.id.post_text);
-        post_text.setText(post.getDescripcio());
-        //iv.setImageBitmap(post.getImatge());
 
         votantsTotals = findViewById(R.id.votantsTotals);
         avgScore = findViewById(R.id.avgPunt);

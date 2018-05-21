@@ -111,4 +111,8 @@
     <string name="invalid_date_month">The date is invalid, it is anterior. Incorrect month.</string>
     <string name="invalid_date_day">The date is invalid, it is anterior. Incorrect day.</string>
     <string name="afegir_comment">Add coment</string>
+    <string name="my_profile">My profile</string>
+    <string name="see_posts">Posts of user</string>
+    <string name="search_user">Search user</string>
+    <string name="view_map">View on map</string>
 </resources>

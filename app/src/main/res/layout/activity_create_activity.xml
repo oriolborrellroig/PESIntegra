@@ -105,7 +105,7 @@
                     android:layout_marginTop="5dp"
                     android:hint="@string/date"
                     android:inputType="date"
-                    android:focusable="true"
+                    android:focusable="false"
                     android:clickable="true"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
@@ -131,7 +131,7 @@
                     android:layout_marginTop="5dp"
                     android:hint="@string/time"
                     android:inputType="textPersonName"
-                    android:focusable="true"
+                    android:focusable="false"
                     android:clickable="true"
                     android:maxLines="1"/>
             </android.support.design.widget.TextInputLayout>

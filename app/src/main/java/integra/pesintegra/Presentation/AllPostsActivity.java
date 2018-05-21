@@ -96,7 +96,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 cs.loadFeedActivityPosts();
                 break;
             case "propis":
-                ControladorPresentacioAllPostsActivity.loadFeedUserPropiPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedUserPropiPosts(getIntent().getStringExtra("user"));
                 break;
             case "hide":
                 ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();

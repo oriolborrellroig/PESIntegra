@@ -8,7 +8,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     Boolean clicked_moda = true;
     Boolean clicked_viatges = true;
     Boolean clicked_art = true;
+    String current_user;
+    String profile_user;
+    Boolean current;
     ImageView iv;
     Bitmap bitmapImage;
     Uri imageUri;
@@ -49,27 +54,36 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_profile);
         setView();
 
-/*
-        Button change_profile = (Button)findViewById(R.id.btn_change_profile);
-        change_profile
-                .setOnClickListener(this);
-*/
-        iv = (ImageView) findViewById(R.id.imatge_perfil);
+        iv = findViewById(R.id.imatge_perfil);
 
         cp = new ControladorPresentacioProfileActivity(this, getApplicationContext());
-        //cp.setUserInterest("cinema", "true");
 
+        current_user = cp.getCurrentUser();
+        profile_user = getIntent().getStringExtra("profile_user");
+        current = current_user.equals(profile_user);
 
-
-        final Button tres_punts = (Button) findViewById(R.id.tres_punts);
+        final Button tres_punts = findViewById(R.id.tres_punts);
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
                 PopupMenu popup = new PopupMenu(ProfileActivity.this, tres_punts);
                 //Inflating the Popup using xml file
-                popup.getMenuInflater().inflate(R.menu.popup_menu_perfil, popup.getMenu());
+                Menu popupMenu = popup.getMenu();
 
+                popup.getMenuInflater().inflate(R.menu.popup_menu_perfil, popupMenu);
+                if(current){
+                    popupMenu.findItem(R.id.perfil_propi).setVisible(false);
+
+
+                }
+                else{
+                    popupMenu.findItem(R.id.afegir_imatge).setVisible(false);
+                    popupMenu.findItem(R.id.canviar_mail).setVisible(false);
+                    popupMenu.findItem(R.id.canviar_pswd).setVisible(false);
+                    popupMenu.findItem(R.id.posts_amagats).setVisible(false);
+
+                }
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
@@ -79,7 +93,17 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 Toast.LENGTH_SHORT
                         ).show();
 
+
+
                         switch (item.getItemId()){
+                            case R.id.perfil_propi:
+                                Intent perfil_propi = new Intent(getApplicationContext(), ProfileActivity.class);
+                                perfil_propi.putExtra("profile_user", current_user);
+                                startActivity(perfil_propi);
+                                break;
+                            case R.id.buscar_user:
+
+                                break;
                             case R.id.afegir_imatge:
                                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 startActivityForResult(i, 52);
@@ -95,6 +119,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                             case R.id.posts_propis:
                                 Intent postsAmagats = new Intent(getApplicationContext(), AllPostsActivity.class);
                                 postsAmagats.putExtra("type", "propis");
+                                postsAmagats.putExtra("user", profile_user);
                                 startActivity(postsAmagats);
                                 break;
                             case R.id.posts_amagats:
@@ -112,134 +137,160 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             }
         });
 
-        ControladorPresentacioProfileActivity.getUser();
+        ControladorPresentacioProfileActivity.getUser(profile_user);
     }
 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tres_punts:
-                break;
-            case R.id.btn_esport:
-                button = findViewById(R.id.btn_esport);
-                if(clicked_esport){
-                    item_seleccionat(button);
-                    clicked_esport = !clicked_esport;
-                    cp.setUserInterest("esport", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_esport = !clicked_esport;
-                    cp.setUserInterest("esport", "false");
-                }
-                break;
-            case R.id.btn_musica:
-                button = findViewById(R.id.btn_musica);
-                if(clicked_musica){
-                    item_seleccionat(button);
-                    clicked_musica = !clicked_musica;
-                    cp.setUserInterest("musica", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_musica = !clicked_musica;
-                    cp.setUserInterest("musica", "false");
-                }
-                break;
-            case R.id.btn_cinema:
-                button = findViewById(R.id.btn_cinema);
-                if(clicked_cinema){
-                    item_seleccionat(button);
-                    clicked_cinema = !clicked_cinema;
-                    cp.setUserInterest("cinema", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_cinema = !clicked_cinema;
-                    cp.setUserInterest("cinema", "false");
-                }
-                break;
-            case R.id.btn_lectura:
-                button = findViewById(R.id.btn_lectura);
-                if(clicked_lectura){
-                    item_seleccionat(button);
-                    clicked_lectura = !clicked_lectura;
-                    cp.setUserInterest("lectura", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_lectura = !clicked_lectura;
-                    cp.setUserInterest("lectura", "false");
-                }
-                break;
-            case R.id.btn_tech:
-                button = findViewById(R.id.btn_tech);
-                if(clicked_tech){
-                    item_seleccionat(button);
-                    clicked_tech = !clicked_tech;
-                    cp.setUserInterest("tecnologia", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_tech = !clicked_tech;
-                    cp.setUserInterest("tecnologia", "false");
-                }
-                break;
-            case R.id.btn_cuina:
-               button = findViewById(R.id.btn_cuina);
-                if(clicked_cuina){
-                   item_seleccionat(button);
-                    clicked_cuina = !clicked_cuina;
-                    cp.setUserInterest("cuina", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_cuina = !clicked_cuina;
-                    cp.setUserInterest("cuina", "false");
-                }
-                break;
-            case R.id.btn_moda:
-                button = findViewById(R.id.btn_moda);
-                if(clicked_moda){
-                    item_seleccionat(button);
-                    clicked_moda = !clicked_moda;
-                    cp.setUserInterest("moda", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_moda = !clicked_moda;
-                    cp.setUserInterest("moda", "false");
-                }
-                break;
-            case R.id.btn_viatges:
-                button = findViewById(R.id.btn_viatges);
-                if(clicked_viatges){
-                    item_seleccionat(button);
-                    clicked_viatges = !clicked_viatges;
-                    cp.setUserInterest("viatges", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_viatges = !clicked_viatges;
-                    cp.setUserInterest("viatges", "false");
-                }
-                break;
-            case R.id.btn_art:
-                button = findViewById(R.id.btn_art);
-                if(clicked_art){
-                    item_seleccionat(button);
-                    clicked_art = !clicked_art;
-                    cp.setUserInterest("art", "true");
-                }
-                else {
-                    item_no_seleccionat(button);
-                    clicked_art = !clicked_art;
-                    cp.setUserInterest("art", "false");
-                }
-                break;
-            default:
-                break;
+
+        if(current) {
+
+            switch (view.getId()) {
+
+                case R.id.tres_punts:
+                    break;
+
+                case R.id.btn_esport:
+                    button = findViewById(R.id.btn_esport);
+
+                    if (clicked_esport) {
+                        item_seleccionat(button);
+                        clicked_esport = !clicked_esport;
+                        cp.setUserInterest("esport", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_esport = !clicked_esport;
+                        cp.setUserInterest("esport", "false", profile_user);
+                    }
+
+                    break;
+
+                case R.id.btn_musica:
+                    button = findViewById(R.id.btn_musica);
+
+                    if (clicked_musica) {
+                        item_seleccionat(button);
+                        clicked_musica = !clicked_musica;
+                        cp.setUserInterest("musica", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_musica = !clicked_musica;
+                        cp.setUserInterest("musica", "false", profile_user);
+                    }
+
+                    break;
+
+                case R.id.btn_cinema:
+                    button = findViewById(R.id.btn_cinema);
+
+                    if (clicked_cinema) {
+                        item_seleccionat(button);
+                        clicked_cinema = !clicked_cinema;
+                        cp.setUserInterest("cinema", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_cinema = !clicked_cinema;
+                        cp.setUserInterest("cinema", "false", profile_user);
+                    }
+
+                    break;
+
+                case R.id.btn_lectura:
+                    button = findViewById(R.id.btn_lectura);
+
+                    if (clicked_lectura) {
+                        item_seleccionat(button);
+                        clicked_lectura = !clicked_lectura;
+                        cp.setUserInterest("lectura", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_lectura = !clicked_lectura;
+                        cp.setUserInterest("lectura", "false", profile_user);
+                    }
+
+                    break;
+
+
+                case R.id.btn_tech:
+                    button = findViewById(R.id.btn_tech);
+
+                    if (clicked_tech) {
+                        item_seleccionat(button);
+                        clicked_tech = !clicked_tech;
+                        cp.setUserInterest("tecnologia", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_tech = !clicked_tech;
+                        cp.setUserInterest("tecnologia", "false", profile_user);
+                    }
+
+                    break;
+
+                case R.id.btn_cuina:
+                    button = findViewById(R.id.btn_cuina);
+
+                    if (clicked_cuina) {
+                        item_seleccionat(button);
+                        clicked_cuina = !clicked_cuina;
+                        cp.setUserInterest("cuina", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_cuina = !clicked_cuina;
+                        cp.setUserInterest("cuina", "false", profile_user);
+                    }
+
+                    break;
+
+                case R.id.btn_moda:
+                    button = findViewById(R.id.btn_moda);
+
+                    if (clicked_moda) {
+                        item_seleccionat(button);
+                        clicked_moda = !clicked_moda;
+                        cp.setUserInterest("moda", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_moda = !clicked_moda;
+                        cp.setUserInterest("moda", "false", profile_user);
+                    }
+
+                    break;
+
+
+                case R.id.btn_viatges:
+                    button = findViewById(R.id.btn_viatges);
+
+                    if (clicked_viatges) {
+                        item_seleccionat(button);
+                        clicked_viatges = !clicked_viatges;
+                        cp.setUserInterest("viatges", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_viatges = !clicked_viatges;
+                        cp.setUserInterest("viatges", "false", profile_user);
+                    }
+
+                    break;
+
+                case R.id.btn_art:
+                    button = findViewById(R.id.btn_art);
+
+                    if (clicked_art) {
+                        item_seleccionat(button);
+                        clicked_art = !clicked_art;
+                        cp.setUserInterest("art", "true", profile_user);
+                    } else {
+                        item_no_seleccionat(button);
+                        clicked_art = !clicked_art;
+                        cp.setUserInterest("art", "false", profile_user);
+                    }
+
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 

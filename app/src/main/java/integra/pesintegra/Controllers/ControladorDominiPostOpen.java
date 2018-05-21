@@ -2,11 +2,10 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
@@ -120,5 +119,29 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         String id = this.getSessioUser();
         Comentari nou_comentari = new Comentari(id, text, data, post_id);
 
+    }
+
+    public String getCurrentUser() {
+        return this.getSessioUser();
+    }
+
+    public Boolean isHidden(final String post_id) {
+        PostService service = ServiceManager.getPostService();
+        Call<ArrayList<Post>> call = service.getHiddenListFromUser(this.getSessioUser());
+        final Boolean[] b = new Boolean[1];
+        b[0] = false;
+        call.enqueue(new Callback<ArrayList<Post>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
+                for(int i = 0; i < response.body().size() && !b[0]; ++i){
+                    if(response.body().get(i).getId().equals(post_id)) b[0] = true;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
+            }
+        });
+        return b[0];
     }
 }

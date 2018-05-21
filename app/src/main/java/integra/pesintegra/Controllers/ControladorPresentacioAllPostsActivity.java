@@ -45,7 +45,7 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
 
     public static void loadFeedHiddenPosts () { CDAllPosts.loadFeedHiddenPosts(); }
 
-    public static void loadFeedUserPropiPosts () { CDAllPosts.loadFeedUserPosts(); }
+    public static void loadFeedUserPropiPosts (String user) { CDAllPosts.loadFeedUserPosts(user); }
 
     public static void updateFeed(ArrayList<Post> posts) {
         AllPostsActivity.updateFeed(posts,context);

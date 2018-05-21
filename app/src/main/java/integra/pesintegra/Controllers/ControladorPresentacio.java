@@ -117,5 +117,9 @@ public class ControladorPresentacio extends AbstractBaseController {
         return generatedPassword;
     }
 
+    public String getSessioUser(){
+        return cntrlDom.getSessioUser();
+    }
+
 
 }

@@ -101,6 +101,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 break;
             case R.id.profile:
                 intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.putExtra("profile_user", cntrlPresentacio.getSessioUser());
                 startActivity(intent);
                 break;
             case R.id.calendar:

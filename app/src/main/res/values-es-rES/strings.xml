@@ -93,4 +93,8 @@
     <string name="invalid_date_month">La fecha es anterior, no es válida. Mes incorrecto.</string>
     <string name="invalid_date_day">La fecha es anterior, no es válida. Día incorrecto.</string>
     <string name="afegir_comment">Añade comentario</string>
+    <string name="my_profile">Mi perfil</string>
+    <string name="see_posts">Posts del usuario</string>
+    <string name="search_user">Buscar usuario</string>
+    <string name="view_map">Ver en el mapa</string>
 </resources>
