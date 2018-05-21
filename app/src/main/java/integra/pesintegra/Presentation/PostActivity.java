@@ -48,7 +48,6 @@ import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
 public class PostActivity extends Activity implements View.OnClickListener{
-
     Post post;
     String post_id;
     private static final int SELECTED_PICTURE = 1;
@@ -256,6 +255,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 ).show();
                 String user_id = "1";
                 Comentari comment = new Comentari(user_id, text_comentari, data, post_id);
+                cp.creaComentari(text_comentari, data, post_id);
                 break;
         }
 

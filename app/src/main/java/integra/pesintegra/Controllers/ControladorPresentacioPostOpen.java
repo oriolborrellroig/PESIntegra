@@ -51,4 +51,9 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void joinActivity() {
         Cdomini.joinActivity();
     }
+
+    public void creaComentari(String text, String data, String post_id){
+        Cdomini.creaComentari(text, data, post_id);
+
+    }
 }

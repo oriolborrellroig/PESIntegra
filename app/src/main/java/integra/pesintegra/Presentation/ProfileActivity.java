@@ -118,168 +118,126 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
-
             case R.id.tres_punts:
                 break;
-
-
             case R.id.btn_esport:
                 button = findViewById(R.id.btn_esport);
-
                 if(clicked_esport){
                     item_seleccionat(button);
                     clicked_esport = !clicked_esport;
                     cp.setUserInterest("esport", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_esport = !clicked_esport;
                     cp.setUserInterest("esport", "false");
                 }
-
                 break;
-
             case R.id.btn_musica:
                 button = findViewById(R.id.btn_musica);
-
                 if(clicked_musica){
                     item_seleccionat(button);
                     clicked_musica = !clicked_musica;
                     cp.setUserInterest("musica", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_musica = !clicked_musica;
                     cp.setUserInterest("musica", "false");
                 }
-
                 break;
-
             case R.id.btn_cinema:
                 button = findViewById(R.id.btn_cinema);
-
                 if(clicked_cinema){
                     item_seleccionat(button);
                     clicked_cinema = !clicked_cinema;
                     cp.setUserInterest("cinema", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_cinema = !clicked_cinema;
                     cp.setUserInterest("cinema", "false");
                 }
-
                 break;
-
             case R.id.btn_lectura:
                 button = findViewById(R.id.btn_lectura);
-
                 if(clicked_lectura){
                     item_seleccionat(button);
                     clicked_lectura = !clicked_lectura;
                     cp.setUserInterest("lectura", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_lectura = !clicked_lectura;
                     cp.setUserInterest("lectura", "false");
                 }
-
                 break;
-
-
             case R.id.btn_tech:
                 button = findViewById(R.id.btn_tech);
-
                 if(clicked_tech){
                     item_seleccionat(button);
                     clicked_tech = !clicked_tech;
                     cp.setUserInterest("tecnologia", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_tech = !clicked_tech;
                     cp.setUserInterest("tecnologia", "false");
                 }
-
                 break;
-
             case R.id.btn_cuina:
                button = findViewById(R.id.btn_cuina);
-
                 if(clicked_cuina){
                    item_seleccionat(button);
                     clicked_cuina = !clicked_cuina;
                     cp.setUserInterest("cuina", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_cuina = !clicked_cuina;
                     cp.setUserInterest("cuina", "false");
                 }
-
                 break;
-
             case R.id.btn_moda:
                 button = findViewById(R.id.btn_moda);
-
                 if(clicked_moda){
                     item_seleccionat(button);
                     clicked_moda = !clicked_moda;
                     cp.setUserInterest("moda", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_moda = !clicked_moda;
                     cp.setUserInterest("moda", "false");
                 }
-
                 break;
-
-
             case R.id.btn_viatges:
                 button = findViewById(R.id.btn_viatges);
-
                 if(clicked_viatges){
                     item_seleccionat(button);
                     clicked_viatges = !clicked_viatges;
                     cp.setUserInterest("viatges", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_viatges = !clicked_viatges;
                     cp.setUserInterest("viatges", "false");
                 }
-
                 break;
-
             case R.id.btn_art:
                 button = findViewById(R.id.btn_art);
-
                 if(clicked_art){
                     item_seleccionat(button);
                     clicked_art = !clicked_art;
                     cp.setUserInterest("art", "true");
                 }
-
                 else {
                     item_no_seleccionat(button);
                     clicked_art = !clicked_art;
                     cp.setUserInterest("art", "false");
                 }
-
                 break;
-
             default:
                 break;
         }

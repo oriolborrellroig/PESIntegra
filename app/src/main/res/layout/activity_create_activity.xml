@@ -181,132 +181,142 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center"
-                android:inputType="none"
-                android:text="@string/interests"
-                tools:ignore="LabelFor" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_esport"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNsport"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:onClick="onClick"> </Button>
 
-            <CheckBox
-                android:id="@+id/tag_musica"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Música" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_esport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Esport" />
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_musica"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNmusic"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
 
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_cinema"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNcinema"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+            </GridLayout>
 
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_cinema"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="Cinema" />
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_lectura"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNreading"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_tech"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNtecnology"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_cuina"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNcooking"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+            </GridLayout>
+
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_lectura"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="Lectura" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_tecnologia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:text="Tecnologia" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_cuina"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:text="Cuina" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_moda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="Moda" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_viatges"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:text="Viatges" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-            <CheckBox
-                android:id="@+id/tag_art"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Art" />
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_moda"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNfashion"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_viatges"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNtravelling"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+                <Button
+                    android:layout_columnWeight="4"
+                    android:id="@+id/btn_art"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BTNart"
+                    android:textColor="@color/primary_dark"
+                    android:background="@color/primary_light"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="onClick"> </Button>
+
+            </GridLayout>
+
         </TableRow>
 
 

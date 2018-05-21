@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.Services.PostService;
@@ -113,5 +114,11 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
 
     public void joinActivity() {
+    }
+
+    public void creaComentari(String text, String data, String post_id){
+        String id = this.getSessioUser();
+        Comentari nou_comentari = new Comentari(id, text, data, post_id);
+
     }
 }

@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -64,15 +65,16 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private Bitmap bitmapImage;
     private Post new_post;
     private Uri imageUri;
-    private CheckBox checkBox_esport;
-    private CheckBox checkBox_musica;
-    private CheckBox checkBox_cinema;
-    private CheckBox checkBox_lectura;
-    private CheckBox checkBox_tecnologia;
-    private CheckBox checkBox_cuina;
-    private CheckBox checkBox_moda;
-    private CheckBox checkBox_viatges;
-    private CheckBox checkBox_art;
+    private Button button;
+    private Boolean clicked_esport = true;
+    private Boolean clicked_musica = true;
+    private Boolean clicked_cinema = true;
+    private Boolean clicked_lectura = true;
+    private Boolean clicked_tech = true;
+    private Boolean clicked_cuina = true;
+    private Boolean clicked_moda = true;
+    private Boolean clicked_viatges = true;
+    private Boolean clicked_art = true;
     private Context context;
 
     @Override
@@ -99,15 +101,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         FloatingActionButton add_image_btn = findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
         iv = findViewById(R.id.img_prev);
-        checkBox_esport = findViewById(R.id.tag_esport);
-        checkBox_musica = findViewById(R.id.tag_musica);
-        checkBox_cinema = findViewById(R.id.tag_cinema);
-        checkBox_lectura = findViewById(R.id.tag_lectura);
-        checkBox_tecnologia = findViewById(R.id.tag_tecnologia);
-        checkBox_cuina = findViewById(R.id.tag_cuina);
-        checkBox_moda = findViewById(R.id.tag_moda);
-        checkBox_viatges = findViewById(R.id.tag_viatges);
-        checkBox_art = findViewById(R.id.tag_art);
+
     }
 
     private void setSpinner() {
@@ -205,6 +199,105 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
 
         switch (v.getId()) {
+            case R.id.btn_esport:
+                button = findViewById(R.id.btn_esport);
+                if(clicked_esport){
+                    item_seleccionat(button);
+                    clicked_esport = !clicked_esport;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_esport = !clicked_esport;
+                }
+                break;
+            case R.id.btn_musica:
+                button = findViewById(R.id.btn_musica);
+                if(clicked_musica){
+                    item_seleccionat(button);
+                    clicked_musica = !clicked_musica;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_musica = !clicked_musica;
+                }
+                break;
+            case R.id.btn_cinema:
+                button = findViewById(R.id.btn_cinema);
+                if(clicked_cinema){
+                    item_seleccionat(button);
+                    clicked_cinema = !clicked_cinema;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_cinema = !clicked_cinema;
+                }
+                break;
+            case R.id.btn_lectura:
+                button = findViewById(R.id.btn_lectura);
+                if(clicked_lectura){
+                    item_seleccionat(button);
+                    clicked_lectura = !clicked_lectura;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_lectura = !clicked_lectura;
+                }
+                break;
+            case R.id.btn_tech:
+                button = findViewById(R.id.btn_tech);
+                if(clicked_tech){
+                    item_seleccionat(button);
+                    clicked_tech = !clicked_tech;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_tech = !clicked_tech;
+                }
+                break;
+            case R.id.btn_cuina:
+                button = findViewById(R.id.btn_cuina);
+                if(clicked_cuina){
+                    item_seleccionat(button);
+                    clicked_cuina = !clicked_cuina;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_cuina = !clicked_cuina;
+                }
+                break;
+            case R.id.btn_moda:
+                button = findViewById(R.id.btn_moda);
+                if(clicked_moda){
+                    item_seleccionat(button);
+                    clicked_moda = !clicked_moda;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_moda = !clicked_moda;
+                }
+                break;
+            case R.id.btn_viatges:
+                button = findViewById(R.id.btn_viatges);
+                if(clicked_viatges){
+                    item_seleccionat(button);
+                    clicked_viatges = !clicked_viatges;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_viatges = !clicked_viatges;
+                }
+                break;
+            case R.id.btn_art:
+                button = findViewById(R.id.btn_art);
+                if(clicked_art){
+                    item_seleccionat(button);
+                    clicked_art = !clicked_art;
+                }
+                else {
+                    item_no_seleccionat(button);
+                    clicked_art = !clicked_art;
+                }
+                break;
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
                 String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
@@ -218,15 +311,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 else lang = "EN";
                 Log.d("laaaang", lang);
                 LatLng coord = controlador.getLoc(lloc, context);
-                Boolean tag_esport = checkBox_esport.isChecked();
-                Boolean tag_musica = checkBox_musica.isChecked();
-                Boolean tag_cinema = checkBox_cinema.isChecked();
-                Boolean tag_lectura = checkBox_lectura.isChecked();
-                Boolean tag_tecnologia = checkBox_tecnologia.isChecked();
-                Boolean tag_cuina = checkBox_cuina.isChecked();
-                Boolean tag_moda = checkBox_moda.isChecked();
-                Boolean tag_viatges = checkBox_viatges.isChecked();
-                Boolean tag_art = checkBox_art.isChecked();
+
                 //fer algo amb els booleans dels tags
                  new_post = new Post_Activitat();
 
@@ -265,6 +350,22 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 break;
         }
 
+
+    }
+
+    public void item_seleccionat(Button b){
+        //pintar color seleccionat primary_dark
+
+        b.setBackgroundColor(Color.parseColor("#303F9F"));
+        b.setTextColor(getResources().getColor(R.color.icons));
+
+    }
+
+    public void item_no_seleccionat(Button b){
+        //pintar color no seleccionat primary_light
+
+        b.setBackgroundColor(Color.parseColor("#C5CAE9"));
+        b.setTextColor(getResources().getColor(R.color.primary_dark));
 
     }
 
