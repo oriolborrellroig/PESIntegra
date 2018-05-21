@@ -76,6 +76,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
     private Context context;
+    private List<String> clicked_tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         }
         addDatePickerListener();
         addTimePickerListener();
-
+        clicked_tags = new ArrayList<>();
         setSpinner();
 
         context = getApplicationContext();
@@ -202,99 +203,99 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             case R.id.btn_esport:
                 button = findViewById(R.id.btn_esport);
                 if(clicked_esport){
-                    item_seleccionat(button);
+                    item_seleccionat(button,"esport");
                     clicked_esport = !clicked_esport;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "esport");
                     clicked_esport = !clicked_esport;
                 }
                 break;
             case R.id.btn_musica:
                 button = findViewById(R.id.btn_musica);
                 if(clicked_musica){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "musica");
                     clicked_musica = !clicked_musica;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "musica");
                     clicked_musica = !clicked_musica;
                 }
                 break;
             case R.id.btn_cinema:
                 button = findViewById(R.id.btn_cinema);
                 if(clicked_cinema){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "cinema");
                     clicked_cinema = !clicked_cinema;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "cinema");
                     clicked_cinema = !clicked_cinema;
                 }
                 break;
             case R.id.btn_lectura:
                 button = findViewById(R.id.btn_lectura);
                 if(clicked_lectura){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "lectura");
                     clicked_lectura = !clicked_lectura;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "lectura");
                     clicked_lectura = !clicked_lectura;
                 }
                 break;
             case R.id.btn_tech:
                 button = findViewById(R.id.btn_tech);
                 if(clicked_tech){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "tecnologia");
                     clicked_tech = !clicked_tech;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "tecnologia");
                     clicked_tech = !clicked_tech;
                 }
                 break;
             case R.id.btn_cuina:
                 button = findViewById(R.id.btn_cuina);
                 if(clicked_cuina){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "cuina");
                     clicked_cuina = !clicked_cuina;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "cuina");
                     clicked_cuina = !clicked_cuina;
                 }
                 break;
             case R.id.btn_moda:
                 button = findViewById(R.id.btn_moda);
                 if(clicked_moda){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "moda");
                     clicked_moda = !clicked_moda;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "moda");
                     clicked_moda = !clicked_moda;
                 }
                 break;
             case R.id.btn_viatges:
                 button = findViewById(R.id.btn_viatges);
                 if(clicked_viatges){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "viatges");
                     clicked_viatges = !clicked_viatges;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "viatges");
                     clicked_viatges = !clicked_viatges;
                 }
                 break;
             case R.id.btn_art:
                 button = findViewById(R.id.btn_art);
                 if(clicked_art){
-                    item_seleccionat(button);
+                    item_seleccionat(button, "art");
                     clicked_art = !clicked_art;
                 }
                 else {
-                    item_no_seleccionat(button);
+                    item_no_seleccionat(button, "art");
                     clicked_art = !clicked_art;
                 }
                 break;
@@ -353,20 +354,20 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
     }
 
-    public void item_seleccionat(Button b){
+    public void item_seleccionat(Button b, String tag){
         //pintar color seleccionat primary_dark
 
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
-
+        clicked_tags.add(tag);
     }
 
-    public void item_no_seleccionat(Button b){
+    public void item_no_seleccionat(Button b, String tag){
         //pintar color no seleccionat primary_light
 
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));
-
+        clicked_tags.remove(tag);
     }
 
     @Override

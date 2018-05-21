@@ -188,11 +188,11 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
             case R.id.adv_search_btn_tech:
                 button = findViewById(R.id.adv_search_btn_tech);
                 if(clicked_tech){
-                    item_seleccionat(button, "tech");
+                    item_seleccionat(button, "tecnologia");
                     clicked_tech = !clicked_tech;
                 }
                 else {
-                    item_no_seleccionat(button, "tech");
+                    item_no_seleccionat(button, "tecnologia");
                     clicked_tech = !clicked_tech;
                 }
                 break;

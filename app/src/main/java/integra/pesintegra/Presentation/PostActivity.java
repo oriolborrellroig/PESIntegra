@@ -18,6 +18,9 @@ import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +38,7 @@ import org.w3c.dom.Text;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -43,12 +47,15 @@ import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
 import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
+import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;
 
 public class PostActivity extends Activity implements View.OnClickListener{
     Post post;
+    private static ListAdapter listAdapter;
+    private static RecyclerView recyclerView;
     String post_id;
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
@@ -253,9 +260,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                         data,
                         Toast.LENGTH_SHORT
                 ).show();
-                String user_id = "1";
-                Comentari comment = new Comentari(user_id, text_comentari, data, post_id);
                 cp.creaComentari(text_comentari, data, post_id);
+                //update_comments();
                 break;
         }
 
@@ -327,4 +333,12 @@ public class PostActivity extends Activity implements View.OnClickListener{
         Log.d("PUNTS ", puntuacio);
         Log.d("VOTS ", nombreVots);
     }
+
+    /*public static void updateFeed(ArrayList<Comentari> body, Context ctx) {
+        listAdapter = new ListAdapter(body);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(listAdapter);
+    }*/
 }
