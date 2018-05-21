@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import retrofit2.Call;
@@ -47,4 +48,7 @@ public interface PostService {
 
     @PATCH("post/vote")
     Call<JsonObject> votePost(@Query("postid") String postid, @Query("punts") String punts);
+
+    @PATCH("post/newComment")
+    Call<Void> createComment(@Query("postid") String postid,@Body Comentari comentari);
 }
