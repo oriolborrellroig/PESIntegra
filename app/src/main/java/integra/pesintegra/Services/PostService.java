@@ -49,6 +49,6 @@ public interface PostService {
     @PATCH("post/vote")
     Call<JsonObject> votePost(@Query("postid") String postid, @Query("punts") String punts);
 
-    @POST("post/newComment")
+    @PATCH("post/newComment")
     Call<Void> createComment(@Query("postid") String postid,@Body Comentari comentari);
 }
