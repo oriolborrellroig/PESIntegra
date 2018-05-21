@@ -73,6 +73,7 @@
         android:layout_margin="20dp"
         android:src="@mipmap/ic_calendar_plus_grey600_36dp"
         android:tint="@color/icons"
+        android:visibility="gone"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
 

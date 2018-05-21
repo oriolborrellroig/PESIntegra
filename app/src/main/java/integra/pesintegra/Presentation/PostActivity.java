@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -51,19 +52,22 @@ import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
 public class PostActivity extends Activity implements View.OnClickListener{
-    Post post;
     private static ListAdapter listAdapter;
     private static RecyclerView recyclerView;
     String post_id;
+    private Post post;
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
     private ControladorPresentacioPostOpen cp;
     String current_user;
     String post_user;
+    private Post_Activitat pa;
+    private int places;
     TextView votantsTotals;
     TextView avgScore;
     RatingBar scoreBar;
@@ -75,8 +79,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         cp = new ControladorPresentacioPostOpen(this, getApplicationContext());
         setContentView(R.layout.activity_post);
-        FloatingActionButton join = findViewById(R.id.join);
-        join.setOnClickListener(this);
         Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
         iv = findViewById(R.id.imatge);
@@ -218,6 +220,28 @@ public class PostActivity extends Activity implements View.OnClickListener{
         //Intent intent = getIntent();
        // String image_name = intent.getStringExtra("bitmap_img");
 
+        this.post = (Post) getIntent().getExtras().getSerializable("post");
+        if (post.getTipus() == 'A') {
+            FloatingActionButton join = findViewById(R.id.join);
+            join.setVisibility(View.VISIBLE);
+            join.setOnClickListener(this);
+            //TODO: CRIDA PQ TORNI DE BD NMAX I NACT
+            this.pa = new Post_Activitat(post);
+            TextView free_places = findViewById(R.id.free_places);
+            free_places.setVisibility(View.VISIBLE);
+            this.places = pa.getN_max() - pa.getN_act();
+            if (places > 0) {
+                free_places.setText(getString(R.string.freePlaces) + places);
+                free_places.setTextColor(Color.GREEN);
+            }
+            else {
+                free_places.setTextColor(Color.RED);
+                free_places.setText(R.string.noFreePlaces);
+
+            }
+        }
+
+
         votantsTotals = findViewById(R.id.votantsTotals);
         avgScore = findViewById(R.id.avgPunt);
         scoreBar = findViewById(R.id.ratingBar1);
@@ -264,8 +288,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 break;
 
             case R.id.join:
-                cp.joinActivity();
 
+                if (places > 0) {
+                    //try{
+                        cp.joinActivity(pa);
+                    /*}
+                    catch (Exception e){
+
+                    }*/
+                }
+                else {
+                    Toast.makeText(
+                            PostActivity.this,
+                            R.string.noFreePlaces,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
                 break;
             case R.id.post_direccio:
                 Intent intent = new Intent(getApplicationContext(),MapsActivity.class);

@@ -60,6 +60,23 @@ public abstract class Post implements Serializable {
         setShow();
     }
 
+    public Post (Post post) {
+        this.titol = post.getTitol();
+        this.descripcio = post.getDescripcio();
+        this.dataini = post.getDataIni();
+        this.datafi = post.getDataFi();
+        this.hora = post.getHora();
+        this.localitzacio = post.getLocalitzacio();
+        this.owner = post.getOwner();
+        this.tipus = post.getTipus();
+        this.lat = post.getLat();
+        this.lng = post.getLng();
+        this.puntuacio = 0;
+        this.nombreVots = 0;
+        this.id = post.getId();
+        setShow();
+    }
+
     public String getTitol(){
         return this.titol;
     }
@@ -156,6 +173,21 @@ public abstract class Post implements Serializable {
 
     public double getLng() {
         return lng;
+    }
+
+    public int getN_act() {
+        return 0;
+    }
+
+    public void setN_act(int n_act) {
+    }
+
+    public int getN_max() {
+        return 0;
+    }
+
+    public void setN_max(int n_max) {
+
     }
 
     public List<String> getInteressos(){

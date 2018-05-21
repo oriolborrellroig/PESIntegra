@@ -5,7 +5,7 @@ public class Post_Activitat extends Post{
 
     //n_max = nombre maxim de persones en aquella activitat
     private int n_max;
-    //n_max = nombre de persones apuntades actualment a aquella activitat
+    //n_act = nombre de persones apuntades actualment a aquella activitat
     private int n_act;
 
     public Post_Activitat(){
@@ -17,11 +17,25 @@ public class Post_Activitat extends Post{
         //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
     }
 
+    public Post_Activitat(Post post) {
+        super(post);
+        this.n_max = 20;
+        this.n_act = 10;
+    }
+
     public int getN_max() {
         return n_max;
     }
 
     public void setN_max(int n_max) {
         this.n_max = n_max;
+    }
+
+    public int getN_act() {
+        return n_act;
+    }
+
+    public void setN_act(int n_act) {
+        this.n_act = n_act;
     }
 }

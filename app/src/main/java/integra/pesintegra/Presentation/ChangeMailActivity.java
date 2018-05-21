@@ -35,7 +35,6 @@ public class ChangeMailActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        Intent intent;
         switch (view.getId()) {
             case R.id.change_email_cancel:
                 this.finish();

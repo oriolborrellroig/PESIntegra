@@ -5,6 +5,7 @@ import android.content.Context;
 
 import java.util.ResourceBundle;
 
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
 
 public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
@@ -48,8 +49,8 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         activity.updateRating(puntuacio,nombreVots);
     }
 
-    public void joinActivity() {
-        Cdomini.joinActivity();
+    public void joinActivity(Post_Activitat activity) {
+        Cdomini.joinActivity(activity);
     }
 
     public void creaComentari(String text, String data, String post_id){

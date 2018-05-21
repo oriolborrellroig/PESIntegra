@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
@@ -112,7 +113,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
     }
 
 
-    public void joinActivity() {
+    public void joinActivity(Post_Activitat activity) {
     }
 
     public void creaComentari(String text, String data, String post_id){

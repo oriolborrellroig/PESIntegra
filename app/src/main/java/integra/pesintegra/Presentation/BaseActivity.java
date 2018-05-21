@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
@@ -111,6 +112,10 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 break;
             case R.id.information:
                 intent = new Intent(getApplicationContext(), InformationActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.settings:
+                intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.exit:
