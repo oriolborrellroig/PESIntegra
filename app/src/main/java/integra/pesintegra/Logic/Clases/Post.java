@@ -41,7 +41,7 @@ public abstract class Post implements Serializable {
         this.tipus = tipus;
     }
 
-    Post(String titol, String descripcio, String dataini, String datafi, String hora, String localitzacio, String owner, char tipus, double lat, double lng, String idioma){
+    Post(String titol, String descripcio, String dataini, String datafi, String hora, String localitzacio, String owner, char tipus, double lat, double lng, String idioma, ArrayList<String> clicked_tags){
         this.titol = titol;
         this.descripcio = descripcio;
         this.dataini = dataini;
@@ -55,7 +55,7 @@ public abstract class Post implements Serializable {
         this.idioma = idioma;
         this.puntuacio = 0;
         this.nombreVots = 0;
-        this.interessos = new ArrayList<>();
+        this.interessos = clicked_tags;
         setId();
         setShow();
     }

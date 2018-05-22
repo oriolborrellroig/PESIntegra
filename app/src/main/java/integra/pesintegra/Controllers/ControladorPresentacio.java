@@ -8,7 +8,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import integra.pesintegra.Logic.Clases.Post;
@@ -31,7 +33,7 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
 
-    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang) throws Exception {
+    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -41,13 +43,13 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
 
-        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang);
+        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
         cntrlDom.creaPostActivitat(activitat);
 
         return activitat;
     }
 
-    public Post_Habitatge creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang) throws Exception {
+    public Post_Habitatge creaPostHabitatge(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -57,13 +59,13 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
 
-        Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang);
+        Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
         cntrlDom.creaPostHabitatge(habitatge);
 
         return habitatge;
     }
 
-    public Post_Feina creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang) throws Exception {
+    public Post_Feina creaPostFeina(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -73,7 +75,7 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
 
-        Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang);
+        Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
         cntrlDom.creaPostFeina(feina);
 
         return feina;

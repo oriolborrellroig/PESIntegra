@@ -104,7 +104,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         current = current_user.equals(post_user);
-        hidden = cp.isHidden(post_id);
+        hidden = false;
+        cp.isHidden(post_id);
 
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,15 +117,16 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popupMenu);
 
                 if(current){
-                    popupMenu.findItem(R.id.hide_post).setVisible(false);
-                    popupMenu.findItem(R.id.show_post).setVisible(false);
+                    //popupMenu.findItem(R.id.hide_post).setVisible(false);
+                    //popupMenu.findItem(R.id.show_post).setVisible(false);
+                    if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
+                    else popupMenu.findItem(R.id.show_post).setVisible(false);
                 }
                 else{
                     if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
                     popupMenu.findItem(R.id.borrar_post).setVisible(false);
-
                 }
 
                 //registering popup with OnMenuItemClickListener
@@ -396,6 +398,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         Log.d("PUNTS ", puntuacio);
         Log.d("VOTS ", nombreVots);
+    }
+
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
     }
 
     /*public static void updateFeed(ArrayList<Comentari> body, Context ctx) {

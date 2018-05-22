@@ -1,6 +1,9 @@
 package integra.pesintegra.Logic.Clases;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Post_Activitat extends Post{
 
     //n_max = nombre maxim de persones en aquella activitat
@@ -12,8 +15,8 @@ public class Post_Activitat extends Post{
         super('A');
     }
 
-    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, double lat, double lng, String lang){
-        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A', lat, lng, lang);
+    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, double lat, double lng, String lang, ArrayList<String> clicked_tags){
+        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A', lat, lng, lang, clicked_tags);
         //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
     }
 
