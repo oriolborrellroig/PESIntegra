@@ -3,6 +3,8 @@ package integra.pesintegra.Presentation;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -51,10 +53,13 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        Intent refreshMain = new Intent(SettingsActivity.this, AllPostsActivity.class);
         switch (view.getId()) {
             case R.id.settingsCancel:
-                this.finish();
+                refreshMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                refreshMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                refreshMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(refreshMain);
                 break;
 
             case R.id.settingsSave:
@@ -74,17 +79,31 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                             .setNeutralButton(R.string.BTNback, null)
                             .show();
                 }
-                this.finish();
+                refreshMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                refreshMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                refreshMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(refreshMain);
                 break;
         }
     }
 
     public void setLanaguage(String lang) {
+        if (lang.equalsIgnoreCase(""))
+            return;
         Locale myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
+        saveLocale(lang);
+        Locale.setDefault(myLocale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    public void saveLocale(String lang) {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
+                Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(langPref, lang);
+        editor.apply();
     }
 }
