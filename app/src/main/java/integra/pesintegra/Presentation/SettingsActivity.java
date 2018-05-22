@@ -30,9 +30,11 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.cp = new ControladorPresentacioSettingsActivity();
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setContentView(R.layout.activity_settings);
-        Context context = getApplicationContext();
+        Button cancel = findViewById(R.id.settingsCancel);
+        cancel.setOnClickListener(this);
+        Button confirm = findViewById(R.id.settingsSave);
+        confirm.setOnClickListener(this);
         setSpinner();
     }
 
