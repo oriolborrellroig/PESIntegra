@@ -3,8 +3,6 @@ package integra.pesintegra.Controllers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import java.util.ResourceBundle;
-
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
 
@@ -62,7 +60,11 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         return Cdomini.getCurrentUser();
     }
 
-    public Boolean isHidden(String post_id) {
-        return Cdomini.isHidden(post_id);
+    public void isHidden(String post_id) {
+        Cdomini.isHidden(post_id);
+    }
+
+    public void isHiddenCallback(Boolean hidden) {
+        activity.setHidden(hidden);
     }
 }

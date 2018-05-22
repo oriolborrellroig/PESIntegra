@@ -2,6 +2,7 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.JsonObject;
 
@@ -151,7 +152,10 @@ public class ControladorDominiPostOpen extends ControladorDomini {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
                 for(int i = 0; i < response.body().size() && !b[0]; ++i){
-                    if(response.body().get(i).getId().equals(post_id)) b[0] = true;
+                    if(response.body().get(i).getId().equals(post_id)) {
+                        b[0] = true;
+                        Cpresentacio.isHiddenCallback(b[0]);
+                    }
                 }
             }
 
