@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/adv_search_query_layout"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/queryInputAct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="@string/adv_search_query"
+                        android:inputType="textPersonName" />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <Spinner
+                    android:id="@+id/tipoPostInputAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="5dp"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <Spinner
+                    android:id="@+id/languageInputAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="5dp"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/adv_search_user_layout"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/userInputAct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="@string/adv_search_user"
+                        android:inputType="textPersonName" />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/adv_search_data_ini_layout"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/dateIniInputAct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="@string/adv_search_date_ini"
+                        android:inputType="date"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/adv_search_data_fi_layout"
+                    android:layout_width="342dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/dateFiInputAct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:hint="@string/adv_search_date_fi"
+                        android:inputType="date"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
+            </TableRow>
+
+
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="30dp"
+                android:background="@color/primary_dark"/>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_esport"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNsport"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"> </Button>
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_musica"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNmusic"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:onClick="onClick"> </Button>
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_cinema"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNcinema"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:onClick="onClick"> </Button>
+
+                </GridLayout>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_lectura"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNreading"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"> </Button>
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_tech"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNtecnology"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:onClick="onClick"> </Button>
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_cuina"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNcooking"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:onClick="onClick"> </Button>
+
+                </GridLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UselessParent">
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_moda"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNfashion"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"> </Button>
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_viatges"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNtravelling"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:onClick="onClick"> </Button>
+
+                    <Button
+                        android:layout_columnWeight="4"
+                        android:id="@+id/adv_search_btn_art"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BTNart"
+                        android:textColor="@color/primary_dark"
+                        android:background="@color/primary_light"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="15dp"
+                        android:onClick="onClick"> </Button>
+
+                </GridLayout>
+
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="30dp"
+                android:background="@color/primary_dark"/>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/submitSearchAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/BTNadv_search" />
+            </TableRow>
+
+        </TableLayout>
+    </android.support.v4.widget.NestedScrollView>

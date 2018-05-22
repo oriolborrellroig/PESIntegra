@@ -37,12 +37,12 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     protected void setView() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.nav_drawer);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        DrawerLayout mDrawerLayout = findViewById(R.id.nav_drawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
