@@ -1,5 +1,6 @@
 package integra.pesintegra.Presentation;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -20,7 +21,7 @@ import integra.pesintegra.Controllers.ControladorPresentacioSettingsActivity;
 import integra.pesintegra.R;
 
 
-class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
+public class SettingsActivity extends Activity implements View.OnClickListener {
 
     private Spinner langType;
     private ControladorPresentacioSettingsActivity cp;
