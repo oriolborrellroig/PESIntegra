@@ -31,7 +31,7 @@ public class Comentari {
     public String getuser_id(){
         return user_id;
     }
-    public String getdata(){
+        public String getdata(){
         return data;
     }
     public String getreply(){

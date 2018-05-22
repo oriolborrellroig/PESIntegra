@@ -40,8 +40,10 @@ import org.w3c.dom.Text;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import integra.pesintegra.Controllers.ControladorDomini;
@@ -49,6 +51,7 @@ import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
 import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
+import integra.pesintegra.Logic.Adapter.CommentListAdapter;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post;
@@ -56,8 +59,12 @@ import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
 public class PostActivity extends Activity implements View.OnClickListener{
-    private static ListAdapter listAdapter;
     private static RecyclerView recyclerView;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private static CommentListAdapter commentlistAdapter;
     String post_id;
     private Post post;
     private static final int SELECTED_PICTURE = 1;
@@ -89,7 +96,19 @@ public class PostActivity extends Activity implements View.OnClickListener{
         post_direccio.setOnClickListener(this);
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
+
+        /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
+
         recyclerView =  findViewById(R.id.recycler);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        List<Comentari> myDataset;
+       // mAdapter = new CommentAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+        /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
+
 
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         TextView post_titol = findViewById(R.id.post_titol);
@@ -323,14 +342,14 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
                 String data= year + "/" + month + "/" + day;
-                Toast.makeText(
-                        PostActivity.this,
-                        data,
-                        Toast.LENGTH_SHORT
-                ).show();
                 cp.creaComentari(text_comentari, data, post_id);
                 EditText editText_comentari = (EditText) findViewById(R.id.comentari);
                 editText_comentari.setText("");
+                Context cc = getApplicationContext();
+                Comentari comment_provisional = new Comentari("1", text_comentari, data, post_id);
+                ArrayList<Comentari> comentaris_provisionals = new ArrayList<Comentari>();
+                comentaris_provisionals.add(comment_provisional);
+                updateFeed(comentaris_provisionals, cc);
                 //update_comments();
                 break;
         }
@@ -408,11 +427,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
         this.hidden = hidden;
     }
 
-    /*public static void updateFeed(ArrayList<Comentari> body, Context ctx) {
-        listAdapter = new ListAdapter(body);
+    public static void updateFeed(ArrayList<Comentari> body, Context ctx) {
+        commentlistAdapter = new CommentListAdapter(body);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(listAdapter);
-    }*/
+        recyclerView.setAdapter(commentlistAdapter);
+    }
 }
