@@ -3,6 +3,7 @@ package integra.pesintegra.Controllers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
 
@@ -52,7 +53,10 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public void creaComentari(String text, String data, String post_id){
-        Cdomini.creaComentari(text, data, post_id);
+        //Cdomini.creaComentari(text, data, post_id);
+        String id = Cdomini.getCurrentUser();
+        Comentari nou_comentari = new Comentari(id, text, data, post_id);
+        Cdomini.addComentari(post_id, nou_comentari);
 
     }
 

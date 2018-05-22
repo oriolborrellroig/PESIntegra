@@ -73,6 +73,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     RatingBar scoreBar;
     Boolean current;
     Boolean hidden;
+
     private final LoginActivity li = new LoginActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         post_direccio.setOnClickListener(this);
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
+        recyclerView =  findViewById(R.id.recycler);
 
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         TextView post_titol = findViewById(R.id.post_titol);
@@ -313,7 +315,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 intent.putExtra("lng", post.getLng());
                 startActivity(intent);
                 break;
-            case R.id.enviar:
+            case R.id.enviar: //comentari
 
                 String text_comentari = ((EditText) findViewById(R.id.comentari)).getText().toString();
                 final Calendar c = Calendar.getInstance();
@@ -327,6 +329,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                         Toast.LENGTH_SHORT
                 ).show();
                 cp.creaComentari(text_comentari, data, post_id);
+                EditText editText_comentari = (EditText) findViewById(R.id.comentari);
+                editText_comentari.setText("");
                 //update_comments();
                 break;
         }
