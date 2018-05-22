@@ -17,10 +17,10 @@ public class User {
         hiddenPosts = new ArrayList<String>();
     }
 
-    public User(String mail, String testTipus, String testData) {
+    public User(String mail, String testTipus, String testData, String username) {
         setId();
         this.mail = mail;
-        setUsernameFromEmail();
+        this.username = username;
         this.tipus = testTipus;
         this.data = testData;
         hiddenPosts = new ArrayList<String>();

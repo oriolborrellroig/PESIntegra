@@ -87,11 +87,12 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
 
-    public User comprovar_camps(String pass1, String pass2, String email, String dataN) throws Exception{
+    public User comprovar_camps(String pass1, String pass2, String email, String dataN, String username) throws Exception{
         valid_mail(email);
+        comprovaCampNoBuid(username);
         comprova_contrasenya_coincident(pass1, pass2);
         data_naix_correcte(dataN);
-        return new User(email, "usuari", dataN);
+        return new User(email, "usuari", dataN, username);
     }
 
     public String hash_password(String pas) {

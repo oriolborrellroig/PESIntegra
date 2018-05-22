@@ -36,7 +36,10 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         //activity.updateFeed(response.body(), context);
-                        if ( response.body() == null) {
+                        if (response.body() == null) {
+                            Log.d("aaa", "response.body == null");
+                            Log.d("bbb", user.getUsername());
+                            Log.d("ccc", hash);
                         }
                         else {
 

@@ -64,8 +64,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String pass2 = ((EditText) findViewById(R.id.register_confirmacio_pass)).getText().toString();
                 String email = ((EditText) findViewById(R.id.register_email)).getText().toString();
                 String dataN = ((TextView) findViewById(R.id.register_datanaixement)).getText().toString();
+                String username = ((EditText) findViewById(R.id.register_username)).getText().toString();
                 try {
-                    User newUser = cp.comprovar_camps(pass1, pass2, email, dataN);
+                    User newUser = cp.comprovar_camps(pass1, pass2, email, dataN, username);
                     String hash = cp.hash_password(pass1);
                     ControladorPresentacioRegisterActivity controlador = new ControladorPresentacioRegisterActivity(this, getApplicationContext());
                     controlador.doRegister(newUser, hash);
