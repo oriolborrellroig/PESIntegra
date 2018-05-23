@@ -11,7 +11,7 @@ import retrofit2.Response;
 public class ControladorDominiSearchUserActivity extends ControladorDomini {
     private ControladorPresentacioSearchUserActivity cp;
 
-    public ControladorDominiSearchUserActivity(ControladorPresentacioSearchUserActivity cp){
+    ControladorDominiSearchUserActivity(ControladorPresentacioSearchUserActivity cp){
         this.cp = cp;
     }
 
@@ -22,13 +22,14 @@ public class ControladorDominiSearchUserActivity extends ControladorDomini {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                cp.setId(response.body().getId());
+                if(response.body() != null) cp.setId(response.body().getId());
+                else cp.setId("null");
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
             }
         });
-        ;
+
     }
 }

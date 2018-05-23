@@ -35,18 +35,7 @@ public class SearchUserActivity extends Activity implements View.OnClickListener
                 break;
             case R.id.search_user_confirm:
                 String user = ((EditText) findViewById(R.id.search_user)).getText().toString();
-                try {
-                    cp.getSearchUser(user);
-
-                    break;
-                }
-                catch (Exception e) {
-                    new AlertDialog.Builder(this)
-                            .setTitle(R.string.errorTitle)
-                            .setMessage(e.getMessage())
-                            .setNeutralButton(R.string.BTNback, null)
-                            .show();
-                }
+                cp.getSearchUser(user);
                 break;
 
         }
@@ -54,10 +43,20 @@ public class SearchUserActivity extends Activity implements View.OnClickListener
 
     public void setId(String id) {
         this.id = id;
-        Intent intent;
-        intent = new Intent(getApplicationContext(),ProfileActivity.class);
-        intent.putExtra("profile_user", id);
-        startActivity(intent);
-        this.finish();
+        try {
+            if(this.id.equals("null")) throw new Exception(getString(R.string.usr_not_exists));
+            Intent intent;
+            intent = new Intent(getApplicationContext(),ProfileActivity.class);
+            intent.putExtra("profile_user", id);
+            startActivity(intent);
+            this.finish();
+        }
+        catch (Exception e) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.errorTitle)
+                    .setMessage(e.getMessage())
+                    .setNeutralButton(R.string.BTNback, null)
+                    .show();
+        }
     }
 }
