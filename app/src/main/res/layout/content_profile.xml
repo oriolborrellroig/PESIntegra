@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/user_name"
             android:layout_weight="3"
-            android:hint="prova"
+            android:hint="@string/username"
             android:textSize="20dp"
             android:textColor="@color/primary_dark"
             android:layout_margin="15dp"
@@ -28,12 +28,12 @@
             <TextView
                 android:id="@+id/user_mail"
                 android:layout_weight="3"
-                android:hint="prova@pes.esi.upc.edu"
+                android:hint="@string/currentEmail"
                 android:textSize="20dp"
                 android:textColor="@color/primary_dark"
                 android:layout_margin="15dp"
                 android:padding="5dp"
-                android:drawableLeft="@mipmap/ic_email"
+                android:drawableLeft="@mipmap/ic_email_dark"
                 android:gravity="center"
                 android:drawableTint="@color/accent"
                 ></TextView>
@@ -43,7 +43,7 @@
             <TextView
                 android:id="@+id/user_birth_date"
                 android:layout_weight="3"
-                android:hint="27/01/1996"
+                android:hint="@string/date"
                 android:textSize="20dp"
                 android:textColor="@color/primary_dark"
                 android:layout_margin="15dp"
