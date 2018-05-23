@@ -84,7 +84,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         this.cntrlPresentacio = new ControladorPresentacio();
         this.controlador = new ControladorPresentacioCreateActivity(this, getApplicationContext());
         setContentView(R.layout.activity_create_activity);
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

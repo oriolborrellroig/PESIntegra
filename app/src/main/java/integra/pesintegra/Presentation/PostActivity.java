@@ -425,6 +425,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
+        Log.d("aaaa", Boolean.toString(this.hidden));
     }
 
     public static void updateFeed(ArrayList<Comentari> body, Context ctx) {

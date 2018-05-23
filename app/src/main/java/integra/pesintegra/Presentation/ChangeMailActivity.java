@@ -26,9 +26,9 @@ public class ChangeMailActivity extends Activity implements View.OnClickListener
         this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_changemail);
 
-        Button cancel = (Button)findViewById(R.id.change_email_cancel);
+        Button cancel = findViewById(R.id.change_email_cancel);
         cancel.setOnClickListener(this);
-        Button register = (Button)findViewById(R.id.change_email_confirm);
+        Button register = findViewById(R.id.change_email_confirm);
         register.setOnClickListener(this);
 
     }

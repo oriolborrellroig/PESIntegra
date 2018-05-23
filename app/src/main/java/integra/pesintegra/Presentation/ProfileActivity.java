@@ -102,7 +102,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 startActivity(perfil_propi);
                                 break;
                             case R.id.buscar_user:
-
+                                Intent search_user = new Intent(getApplicationContext(), SearchUserActivity.class);
+                                startActivity(search_user);
                                 break;
                             case R.id.afegir_imatge:
                                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
