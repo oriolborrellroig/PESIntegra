@@ -313,7 +313,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     public void setUserInfo(User body, Context context) {
         TextView mail = findViewById(R.id.user_mail);
-        mail.setText(body.getMail());
+
+        if(current) mail.setText(body.getMail());
+        else mail.setVisibility(View.GONE);
+
+        TextView username = findViewById(R.id.user_name);
+        username.setText(body.getUsername());
         TextView data = findViewById(R.id.user_birth_date);
         data.setText(body.getData());
         for ( int i = 0; i < body.getInteressos().size(); ++i){
