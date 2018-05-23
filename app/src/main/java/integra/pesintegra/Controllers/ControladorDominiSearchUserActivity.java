@@ -1,6 +1,14 @@
 package integra.pesintegra.Controllers;
 
-public class ControladorDominiSearchUserActivity {
+import integra.pesintegra.Logic.Clases.User;
+import integra.pesintegra.Services.PostService;
+import integra.pesintegra.Services.ServiceManager;
+import integra.pesintegra.Services.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ControladorDominiSearchUserActivity extends ControladorDomini {
     private ControladorPresentacioSearchUserActivity cp;
 
     public ControladorDominiSearchUserActivity(ControladorPresentacioSearchUserActivity cp){
@@ -9,7 +17,18 @@ public class ControladorDominiSearchUserActivity {
 
     public void getSearchUser(String user) {
         //Aqui va la crida a BD
+        UserService service = ServiceManager.getUserService();
+        Call<User> call = service.getUserByUsername(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                cp.setId(response.body().getId());
+            }
 
-        cp.setId("null_60cfecd6-955a-408b-be76-394df0ea18be");
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
+        ;
     }
 }

@@ -21,6 +21,9 @@ public interface UserService {
     @GET("/users/get")
     Call<User> getUser(@Query("usr") String usr);
 
+    @GET("/users/getByUsername")
+    Call<User> getUserByUsername(@Query("usr") String usr);
+
     @POST("users/new")
     Call<Void> createUser(@Body User user, @Header("password") String pas);
 
@@ -36,6 +39,8 @@ public interface UserService {
     @PATCH("users/updateInterest")
     Call<JsonObject> setInterest(@Query("userID") String userid, @Query("interest") String interestName,
                                   @Query("ivalue") String valor);
+
+
 }
 
 

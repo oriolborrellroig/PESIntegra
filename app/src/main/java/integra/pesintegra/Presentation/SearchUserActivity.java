@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,11 +37,7 @@ public class SearchUserActivity extends Activity implements View.OnClickListener
                 String user = ((EditText) findViewById(R.id.search_user)).getText().toString();
                 try {
                     cp.getSearchUser(user);
-                    Intent intent;
-                    intent = new Intent(getApplicationContext(),ProfileActivity.class);
-                    intent.putExtra("profile_user", id);
-                    startActivity(intent);
-                    this.finish();
+
                     break;
                 }
                 catch (Exception e) {
@@ -57,5 +54,10 @@ public class SearchUserActivity extends Activity implements View.OnClickListener
 
     public void setId(String id) {
         this.id = id;
+        Intent intent;
+        intent = new Intent(getApplicationContext(),ProfileActivity.class);
+        intent.putExtra("profile_user", id);
+        startActivity(intent);
+        this.finish();
     }
 }

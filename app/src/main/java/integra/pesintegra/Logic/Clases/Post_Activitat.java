@@ -7,9 +7,9 @@ import java.util.List;
 public class Post_Activitat extends Post{
 
     //n_max = nombre maxim de persones en aquella activitat
-    private int n_max;
+    private int assistentsMax;
     //n_act = nombre de persones apuntades actualment a aquella activitat
-    private int n_act;
+    private int n_assistens;
 
     public Post_Activitat(){
         super('A');
@@ -22,23 +22,23 @@ public class Post_Activitat extends Post{
 
     public Post_Activitat(Post post) {
         super(post);
-        this.n_max = 20;
-        this.n_act = 10;
+        this.assistentsMax = 20;
+        this.n_assistens = 10;
     }
 
-    public int getN_max() {
-        return n_max;
+    public int getAssistentsMax() {
+        return assistentsMax;
     }
 
-    public void setN_max(int n_max) {
-        this.n_max = n_max;
+    public void setAssistentsMax(int n_max) {
+        this.assistentsMax = n_max;
     }
 
-    public int getN_act() {
-        return n_act;
+    public int getN_assistens() {
+        return n_assistens;
     }
 
-    public void setN_act(int n_act) {
-        this.n_act = n_act;
+    public void setN_assistens(int n_act) {
+        this.n_assistens = n_act;
     }
 }
