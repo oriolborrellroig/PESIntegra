@@ -215,7 +215,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 break;
 
                             case R.id.editar_post:
-
+                                Intent intent1 = new Intent(getApplicationContext(), EditActivityActivity.class);
+                                intent1.putExtra("postId", post_id);
+                                intent1.putExtra("post", post);
+                                startActivity(intent1);
                                 break;
 
                             case R.id.maps:

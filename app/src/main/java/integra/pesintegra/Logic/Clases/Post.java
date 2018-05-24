@@ -121,6 +121,11 @@ public abstract class Post implements Serializable {
         return this.localitzacio;
     }
 
+    public void setCoord(double lat, double lng){
+        this.lat = lat;
+        this.lng = lng;
+    }
+
     public void setLocalitzacio(String localitzacio){
         this.localitzacio = localitzacio;
     }

@@ -9,7 +9,7 @@ public abstract class AbstractBaseController {
 
 
     public void comprovaCampNoBuid(String s) throws Exception {
-        if (s.equals("")) {
+        if (s == null || s.equals("")) {
             throw new Exception("Hi ha algun camp buit");
         }
     }
