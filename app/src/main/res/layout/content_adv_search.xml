@@ -153,148 +153,143 @@
                 android:background="@color/primary_dark"/>
 
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:ignore="UselessParent">
+                    android:layout_gravity="top|center"
+                    android:layout_weight="1">
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_esport"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNsport"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
-                        android:onClick="onClick"> </Button>
+                        android:onClick="onClick"
+                        android:text="@string/BTNsport"
+                        android:textColor="@color/primary_dark" />
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_musica"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNmusic"
-                        android:textColor="@color/primary_dark"
-                        android:background="@color/primary_light"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:onClick="onClick"> </Button>
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"
+                        android:text="@string/BTNmusic"
+                        android:textColor="@color/primary_dark" />
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_cinema"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNcinema"
-                        android:textColor="@color/primary_dark"
-                        android:background="@color/primary_light"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:onClick="onClick"> </Button>
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"
+                        android:text="@string/BTNcinema"
+                        android:textColor="@color/primary_dark" />
 
                 </GridLayout>
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
+
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     tools:ignore="UselessParent">
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_lectura"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNreading"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
-                        android:onClick="onClick"> </Button>
+                        android:onClick="onClick"
+                        android:text="@string/BTNreading"
+                        android:textColor="@color/primary_dark" />
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_tech"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNtecnology"
-                        android:textColor="@color/primary_dark"
-                        android:background="@color/primary_light"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:onClick="onClick"> </Button>
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"
+                        android:text="@string/BTNtecnology"
+                        android:textColor="@color/primary_dark" />
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_cuina"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNcooking"
-                        android:textColor="@color/primary_dark"
-                        android:background="@color/primary_light"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:onClick="onClick"> </Button>
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"
+                        android:text="@string/BTNcooking"
+                        android:textColor="@color/primary_dark" />
 
                 </GridLayout>
 
-            </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     tools:ignore="UselessParent">
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_moda"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNfashion"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
-                        android:onClick="onClick"> </Button>
+                        android:onClick="onClick"
+                        android:text="@string/BTNfashion"
+                        android:textColor="@color/primary_dark" />
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_viatges"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNtravelling"
-                        android:textColor="@color/primary_dark"
-                        android:background="@color/primary_light"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:onClick="onClick"> </Button>
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"
+                        android:text="@string/BTNtravelling"
+                        android:textColor="@color/primary_dark" />
 
                     <Button
-                        android:layout_columnWeight="4"
                         android:id="@+id/adv_search_btn_art"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/BTNart"
-                        android:textColor="@color/primary_dark"
-                        android:background="@color/primary_light"
+                        android:layout_columnWeight="4"
                         android:layout_margin="10dp"
                         android:layout_marginStart="15dp"
-                        android:onClick="onClick"> </Button>
+                        android:background="@color/primary_light"
+                        android:onClick="onClick"
+                        android:text="@string/BTNart"
+                        android:textColor="@color/primary_dark" />
 
                 </GridLayout>
-
-            </TableRow>
 
             <View
                 android:layout_width="match_parent"
