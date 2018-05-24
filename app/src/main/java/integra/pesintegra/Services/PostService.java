@@ -54,4 +54,7 @@ public interface PostService {
 
     @GET("post/userVote")
     Call<String> getUserVote(@Query("postid") String postid, @Query("userid") String userid);
+
+    @GET("post/advancedSearch")
+    Call<ArrayList<Post>> advancedSearch(@Query("text") String text, @Query("tipus") String tipus, @Query("lang") String lang, @Query("dateIni") String dateIni,@Query("dateFi") String dateFi, @Query("user") String user, @Query("tags") ArrayList<String> tags);
 }

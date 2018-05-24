@@ -84,6 +84,13 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         String dateFi = extras.getString("dateFi");
         String user = extras.getString("user");
         ArrayList<String> tags = extras.getStringArrayList("tags");
+        PostService service = ServiceManager.getPostService();
+        if (tipus.equals("Tots els posts")) tipus = null;
+        if (lang.equals("Qualsevol idioma")) lang = null;
+        if (user.equals("")) user = null;
+        if (text.equals("")) text = null;
+        Call<ArrayList<Post>> call = service.advancedSearch(text, tipus, lang, dateIni, dateFi, user, tags);
+        enqueueCall(call);
 
     }
 
