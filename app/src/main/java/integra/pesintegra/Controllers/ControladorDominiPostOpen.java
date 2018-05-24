@@ -95,6 +95,22 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
+    public void deleteComment (String postId, String commentId) {
+
+        PostService service = ServiceManager.getPostService();
+        Call<Void> createCall = service.deleteComment(postId, commentId);
+        createCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void getRating (String postId) {
         PostService service = ServiceManager.getPostService();
         Call<JsonObject> createCall = service.getPostRating(postId);
