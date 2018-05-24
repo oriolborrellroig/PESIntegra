@@ -115,10 +115,12 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
+        String type = getIntent().getStringExtra("type");
         DrawerLayout drawer = findViewById(R.id.nav_drawer);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             super.onBackPressed();
         }
+        else if(type.equals("propis") || type.equals("hide")) super.onBackPressed();
     }
 
     @Override
