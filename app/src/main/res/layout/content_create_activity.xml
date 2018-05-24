@@ -187,7 +187,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_esport"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNsport"
                         android:layout_margin="10dp"
@@ -199,7 +199,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_musica"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNmusic"
                         android:textColor="@color/primary_dark"
@@ -211,7 +211,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_cinema"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNcinema"
                         android:textColor="@color/primary_dark"
@@ -230,7 +230,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_lectura"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNreading"
                         android:layout_margin="10dp"
@@ -242,19 +242,19 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_tech"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNtecnology"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_cuina"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNcooking"
                         android:textColor="@color/primary_dark"
@@ -272,7 +272,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_moda"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNfashion"
                         android:layout_margin="10dp"
@@ -284,7 +284,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_viatges"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNtravelling"
                         android:textColor="@color/primary_dark"
@@ -296,7 +296,7 @@
                     <Button
                         android:layout_columnWeight="4"
                         android:id="@+id/btn_art"
-                        android:layout_width="100dp"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
                         android:text="@string/BTNart"
                         android:textColor="@color/primary_dark"
