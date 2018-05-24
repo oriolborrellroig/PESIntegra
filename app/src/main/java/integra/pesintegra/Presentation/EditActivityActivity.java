@@ -105,17 +105,61 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         iv = findViewById(R.id.img_prev);
 
         TextView post_titol = findViewById(R.id.titolInputAct);
-        Log.d("title", post.getTitol());
         post_titol.setText(post.getTitol());
-        /*TextView post_direccio = findViewById(R.id.post_direccio);
+        TextView post_text = findViewById(R.id.descriptionTitolAct);
+        post_text.setText(post.getDescripcio());
+        TextView post_data = findViewById(R.id.dateInputAct);
+        post_data.setText(post.getDataIni());
+        TextView post_hora = findViewById(R.id.hourInputAct);
+        post_hora.setText(post.getHora());
+        TextView post_direccio = findViewById(R.id.locationInputAct);
         post_direccio.setOnClickListener(this);
         post_direccio.setText(post.getLocalitzacio());
-        TextView post_data = findViewById(R.id.post_data);
-        post_data.setText(post.getDataIni());
-        TextView post_text = findViewById(R.id.post_text);
-        post_text.setText(post.getDescripcio());
-        */
 
+       ArrayList<String> interessos = (ArrayList<String>) post.getInteressos();
+       Log.d("is interesos null?:", String.valueOf(interessos == null));
+       /*for(String interes : interessos){
+           Log.d("interes:", interes);
+           Button button;
+           switch (interes){
+               case "esport":
+                   button = findViewById(R.id.btn_esport);
+                   item_seleccionat(button, "esport");
+                   break;
+               case "musica":
+                   button = findViewById(R.id.btn_musica);
+                   item_seleccionat(button, "musica");
+                   break;
+               case "cinema":
+                   button = findViewById(R.id.btn_cinema);
+                   item_seleccionat(button, "cinema");
+                   break;
+               case "lectura":
+                   button = findViewById(R.id.btn_lectura);
+                   item_seleccionat(button, "lectura");
+                   break;
+               case "tecnologia":
+                   button = findViewById(R.id.btn_tech);
+                   item_seleccionat(button, "tecnologia");
+                   break;
+               case "cuina":
+                   button = findViewById(R.id.btn_cuina);
+                   item_seleccionat(button, "cuina");
+                   break;
+               case "moda":
+                   button = findViewById(R.id.btn_moda);
+                   item_seleccionat(button, "moda");
+                   break;
+               case "viatges":
+                   button = findViewById(R.id.btn_viatges);
+                   item_seleccionat(button, "viatges");
+                   break;
+               case "art":
+                   button = findViewById(R.id.btn_art);
+                   item_seleccionat(button, "art");
+                   break;
+           }
+       }*/
     }
 
     private void setSpinner() {
@@ -338,38 +382,18 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 LatLng coord = controlador.getLoc(lloc, context);
 
                 //fer algo amb els booleans dels tags
-                new_post = new Post_Activitat();
-                String type_spinner = spinnerType.getSelectedItem().toString();
-                String tipus = null;
-                if(type_spinner.equals(getString(R.string.work))) tipus = "F";
-                else if(type_spinner.equals(getString(R.string.housing))) tipus = "H";
-                else if(type_spinner.equals(getString(R.string.activities))) tipus = "F";
 
-                this.post.setTitol(titol);
-                Log.d("New title",titol);
-                Log.d("My post title", post.getTitol());
-                /*try {
-                    switch (tipus) {
-                        case "A":
-                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
-                            break;
-                        case "F":
-                            new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
-                            break;
-                        case "H":
-                            new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
-                            break;
-                    }
-                    controlador.createPost(new_post,imageUri);
-                    break;
-
+                post.setTitol(titol);
+                post.setTDataIni(dataI);
+                post.setDescripcio(descripcio);
+                post.setHora(hora);
+                post.setLocalitzacio(lloc);
+                post.setCoord(coord.latitude, coord.longitude);
+                try {
+                    controlador.editPost(this.post.getId() ,post,imageUri);
                 } catch (Exception e) {
-                    new AlertDialog.Builder(this)
-                            .setTitle(R.string.errorTitle)
-                            .setMessage(e.getMessage())
-                            .setNeutralButton(R.string.BTNback, null)
-                            .show();
-                }*/
+                    e.printStackTrace();
+                }
 
                 break;
             case R.id.add_image:
@@ -472,9 +496,10 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
             byte[] byteArray = bStream.toByteArray();
         }
         //intent_act.putExtra("image", byteArray);
-        intent_act.putExtra("post", new_post);
+        intent_act.putExtra("post", post);
         this.finish();
         startActivity(intent_act);
+        Log.d("location:" ,"in EditActivityActivity showNewPost!");
     }
 
 

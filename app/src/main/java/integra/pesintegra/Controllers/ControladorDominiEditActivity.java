@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -27,14 +28,16 @@ public class ControladorDominiEditActivity extends ControladorDomini {
     }
 
 
-    public void createPost (Post post, Uri uri) {
+    public void editPost(String originPostId, Post post, Uri uri) {
         post.setOwner(this.getSessioUser());
         PostService service = ServiceManager.getPostService();
-        Call<Void> createCall = service.createPost(post);
+        Call<Void> createCall = service.updatePost(originPostId,post);
+        Log.d("Location", "Inside controlador Domini Edit Post!!");
         createCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Cpresentacio.showNewPost();
+                //Log.d("Location", "DominiEditPost response received!");
             }
 
             @Override
