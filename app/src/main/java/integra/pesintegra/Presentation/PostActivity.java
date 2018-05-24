@@ -78,6 +78,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     TextView votantsTotals;
     TextView avgScore;
     RatingBar scoreBar;
+    RatingBar userRatingBar;
     Boolean current;
     Boolean hidden;
 
@@ -273,18 +274,16 @@ public class PostActivity extends Activity implements View.OnClickListener{
         scoreBar = findViewById(R.id.ratingBar1);
 
         cp.getPostRating(this.post.getId());
-        RatingBar ratingBar = findViewById(R.id.ratingBar2);
+        userRatingBar = findViewById(R.id.ratingBar2);
 
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
+        userRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                ratingBar.setIsIndicator(true);
                 cp.votePost(post.getId(), String.valueOf(ratingBar.getRating()));
-                /*Toast.makeText(PostActivity.this,
-                        "Rating changed, current rating "+ ratingBar.getRating(),
-                        Toast.LENGTH_SHORT).show();*/
             }
         });
+
+        cp.getUserRating(this.post.getId(), this.current_user);
 
         //DANI T HE COMENTAT TOT AIXO
 /*
@@ -425,9 +424,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
         votantsTotals.setText("("+nombreVots+")");
         avgScore.setText(String.valueOf(puntuacioRounded));
         scoreBar.setRating(Float.parseFloat(puntuacio));
-
-        Log.d("PUNTS ", puntuacio);
-        Log.d("VOTS ", nombreVots);
     }
 
     public void setHidden(Boolean hidden) {
@@ -444,6 +440,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     public void setUserRating(String body) {
-        Log.d("BVOYTTTT", body);
+        Float puntuacio = Float.parseFloat(body);
+        userRatingBar.setRating(puntuacio);
     }
 }
