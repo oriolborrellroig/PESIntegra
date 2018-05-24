@@ -51,7 +51,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Comentari c = comments.get(position);
 
-        //TODO: TOT AIXO HAN DE SER COMENTARIS I COSES DELS COMENTARIS
         holder.text.setText(c.gettext());
         holder.dia.setText(String.valueOf(c.getdata()));
         holder.c = c;

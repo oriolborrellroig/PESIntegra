@@ -442,6 +442,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             ByteArrayOutputStream bStream = new ByteArrayOutputStream();
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
             byte[] byteArray = bStream.toByteArray();
+            //MOISES AQUI ESTÁ LA IMAGEN COMO BYTEARRAY
         }
         //intent_act.putExtra("image", byteArray);
         intent_act.putExtra("post", new_post);

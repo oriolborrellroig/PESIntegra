@@ -287,22 +287,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
         });
 
         //DANI T HE COMENTAT TOT AIXO
-
-        //Bitmap img_pre;
-        //byte[] byteArray = getIntent().getByteArrayExtra("image");
-        //img_pre = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        //iv.setImageBitmap(img_pre);
-
+/*
+        Bitmap img_pre;
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        img_pre = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        iv.setImageBitmap(img_pre);
+*/
         // JAJA FINS AQUI
 
 
 
-        /*
-        if (la imatge del post no és nul·la){
-            iv.setImageBitmap(Bitmap.createScaledBitmap(bitmap_del_post, iv.getMaxWidth(), iv.getMaxHeight(), false));
-        }
 
-        */
+        //if (la imatge del post no és nul·la){
+           // iv.setImageBitmap(Bitmap.createScaledBitmap(bitmap_del_post, iv.getMaxWidth(), iv.getMaxHeight(), false));
+        //}
+
+
 
     }
 
@@ -352,7 +352,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 Comentari comment_provisional = new Comentari("1", text_comentari, data, post_id);
                 ArrayList<Comentari> comentaris_provisionals = new ArrayList<Comentari>();
                 comentaris_provisionals.add(comment_provisional);
+                comment_provisional = new Comentari("2", "salu2", data, post_id);
+                comentaris_provisionals.add(comment_provisional);
                 updateFeed(comentaris_provisionals, cc);
+                updateFeed(comentaris_provisionals, cc);
+
                 //update_comments();
                 break;
         }
