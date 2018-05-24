@@ -62,6 +62,9 @@
             android:name=".Presentation.CreateActivityActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Presentation.EditActivityActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Presentation.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
