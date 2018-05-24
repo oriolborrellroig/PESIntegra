@@ -51,4 +51,7 @@ public interface PostService {
 
     @PATCH("post/newComment")
     Call<Void> createComment(@Query("postid") String postid,@Body Comentari comentari);
+
+    @GET("post/userVote")
+    Call<String> getUserVote(@Query("postid") String postid, @Query("userid") String userid);
 }

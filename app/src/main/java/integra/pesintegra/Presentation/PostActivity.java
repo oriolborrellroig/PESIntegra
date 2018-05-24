@@ -267,7 +267,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
             }
         }
 
-
+        cp.getUserRating(post.getId(), current_user);
         votantsTotals = findViewById(R.id.votantsTotals);
         avgScore = findViewById(R.id.avgPunt);
         scoreBar = findViewById(R.id.ratingBar1);
@@ -441,5 +441,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(commentlistAdapter);
+    }
+
+    public void setUserRating(String body) {
+        Log.d("BVOYTTTT", body);
     }
 }

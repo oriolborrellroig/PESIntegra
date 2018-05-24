@@ -71,4 +71,12 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void isHiddenCallback(Boolean hidden) {
         activity.setHidden(hidden);
     }
+
+    public void getUserRating(String postid, String userid) {
+        Cdomini.getUserRating(postid, userid);
+    }
+
+    public void setUserRating(String body) {
+        activity.setUserRating(body);
+    }
 }

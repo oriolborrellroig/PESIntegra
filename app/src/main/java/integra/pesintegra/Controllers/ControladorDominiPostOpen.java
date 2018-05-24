@@ -129,6 +129,23 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
+    public void getUserRating (String postid, String userid) {
+        PostService service = ServiceManager.getPostService();
+        Call<String> createCall = service.getUserVote(postid, userid);
+        createCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                 Cpresentacio.setUserRating(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     public void joinActivity(Post_Activitat activity) {
     }
