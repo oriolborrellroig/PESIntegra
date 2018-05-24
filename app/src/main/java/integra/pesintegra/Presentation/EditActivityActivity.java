@@ -379,7 +379,8 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
                 else lang = "EN";
                 Log.d("laaaang", lang);
-                LatLng coord = controlador.getLoc(lloc, context);
+                LatLng coord = null;
+                if(lloc!= null) coord = controlador.getLoc(lloc, context);
 
                 //fer algo amb els booleans dels tags
 
@@ -389,7 +390,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 post.setHora(hora);
                 if(!lloc.isEmpty()) {
                     post.setLocalitzacio(lloc);
-                    post.setCoord(coord.latitude, coord.longitude);
+                    if(coord != null )post.setCoord(coord.latitude, coord.longitude);
                 }
                 try {
                     controlador.editPost(this.post.getId(),post,imageUri);
