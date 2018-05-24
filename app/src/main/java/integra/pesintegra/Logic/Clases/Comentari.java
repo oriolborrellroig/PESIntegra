@@ -1,8 +1,9 @@
 package integra.pesintegra.Logic.Clases;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Comentari {
+public class Comentari implements Serializable {
     private String id;
     private String text;
     private String post_id;

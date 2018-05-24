@@ -28,7 +28,7 @@ public abstract class Post implements Serializable {
     private double lng;
     private String idioma;
     private ArrayList<String> interessos;
-
+    private ArrayList<Comentari> comments;
     private boolean hidden;
 
     private int puntuacio;
@@ -119,6 +119,10 @@ public abstract class Post implements Serializable {
 
     public String getLocalitzacio(){
         return this.localitzacio;
+    }
+
+    public Integer numComents(){
+        return this.comments.size();
     }
 
     public void setCoord(double lat, double lng){
