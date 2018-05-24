@@ -387,12 +387,18 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 post.setTDataIni(dataI);
                 post.setDescripcio(descripcio);
                 post.setHora(hora);
-                post.setLocalitzacio(lloc);
-                post.setCoord(coord.latitude, coord.longitude);
+                if(!lloc.isEmpty()) {
+                    post.setLocalitzacio(lloc);
+                    post.setCoord(coord.latitude, coord.longitude);
+                }
                 try {
-                    controlador.editPost(this.post.getId() ,post,imageUri);
+                    controlador.editPost(this.post.getId(),post,imageUri);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    new AlertDialog.Builder(this)
+                            .setTitle(R.string.errorTitle)
+                            .setMessage(e.getMessage())
+                            .setNeutralButton(R.string.BTNback, null)
+                            .show();
                 }
 
                 break;
