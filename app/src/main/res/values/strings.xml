@@ -130,4 +130,6 @@
     <string name="BTNnewest">NEWEST</string>
     <string name="delete_comment">Delete comment</string>
     <string name="report_comment">Report comment</string>
+    <string name="ERRsystem">System Error</string>
+    <string name="ERRnoPlaces">There were no free places</string>
 </resources>

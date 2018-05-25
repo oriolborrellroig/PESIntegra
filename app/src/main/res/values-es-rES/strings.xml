@@ -112,4 +112,6 @@
     <string name="BTNnewest">NUEVOS</string>
     <string name="delete_comment">Borrar comentario</string>
     <string name="report_comment">Reportar comentario</string>
+    <string name="ERRsystem">Error del sistema</string>
+    <string name="ERRnoPlaces">No quedavan plazas libres</string>
 </resources>

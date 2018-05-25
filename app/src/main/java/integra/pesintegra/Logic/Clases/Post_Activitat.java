@@ -20,12 +20,6 @@ public class Post_Activitat extends Post{
         this.assistentsMax = nmax;
     }
 
-    public Post_Activitat(Post post) {
-        super(post);
-        this.assistentsMax = 20;
-        this.n_assistens = 10;
-    }
-
     public int getAssistentsMax() {
         return assistentsMax;
     }

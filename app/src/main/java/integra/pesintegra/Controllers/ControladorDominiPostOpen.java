@@ -224,7 +224,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 Cpresentacio.setAssistents(response.body());
-
             }
 
             @Override
