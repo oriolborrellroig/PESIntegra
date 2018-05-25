@@ -14,20 +14,20 @@ import static java.util.Base64.*;
 public class ImageBM {
 
 
-    private String idOwner;
-    private String ownerType;
-    private String  base64Image;
+    private String idImage;
+    private String owner;
+    private String  data;
 
     public ImageBM(String imageId, String ownerType, Bitmap data) {
-        this.idOwner = imageId;
-        this.ownerType = ownerType;
+        this.idImage = imageId;
+        this.owner = ownerType;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         data.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        base64Image = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT );
+        this.data = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT );
     }
 
     public Bitmap getBitmapImage() {
-        byte[] byteImage = Base64.decode(base64Image, 0);
+        byte[] byteImage = Base64.decode(data, 0);
         return BitmapFactory.decodeByteArray(byteImage, 0,byteImage.length);
     }
 }

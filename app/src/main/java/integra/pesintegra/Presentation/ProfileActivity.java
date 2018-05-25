@@ -108,7 +108,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                             case R.id.afegir_imatge:
                                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 startActivityForResult(i, 52);
-                                cp.storeImage("profile", bitmapImage);
+
                                 break;
                             case R.id.canviar_mail:
                                 Intent intent = new Intent(getApplicationContext(), ChangeMailActivity.class);
@@ -384,6 +384,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
                         //guardar imatge a la bd
+                        cp.storeImage("profile", bitmapImage);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

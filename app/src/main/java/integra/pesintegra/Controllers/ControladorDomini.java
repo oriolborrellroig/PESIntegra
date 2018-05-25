@@ -1,6 +1,7 @@
 package integra.pesintegra.Controllers;
 
 
+import android.graphics.Bitmap;
 import android.location.Geocoder;
 import android.util.Log;
 
@@ -88,6 +89,9 @@ public class ControladorDomini extends  AbstractBaseController{
     public void storeImage(ImageBM i){
 
         ImageService service = ServiceManager.getImageService();
+        Bitmap lol = i.getBitmapImage();
+        ImageBM ima = new ImageBM("12345", "post", lol);
+        //Call<Void> ccall = service.createImage(ima);
         Call<Void> ccall = service.createImage(i);
         ccall.enqueue(new Callback<Void>() {
             @Override
