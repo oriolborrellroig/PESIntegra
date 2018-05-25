@@ -103,4 +103,6 @@
     <string name="see_posts">Posts del usuari</string>
     <string name="search_user">Buscar usuari</string>
     <string name="view_map">Veure en el mapa</string>
+    <string name="delete_comment">Esborrar comentari</string>
+    <string name="report_comment">Reportar comentari</string>
 </resources>

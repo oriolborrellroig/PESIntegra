@@ -121,4 +121,6 @@
     <string name="see_posts">Posts of user</string>
     <string name="search_user">Search user</string>
     <string name="view_map">View on map</string>
+    <string name="delete_comment">Delete comment</string>
+    <string name="report_comment">Report comment</string>
 </resources>

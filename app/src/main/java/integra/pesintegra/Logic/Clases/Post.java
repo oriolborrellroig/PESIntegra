@@ -56,6 +56,7 @@ public abstract class Post implements Serializable {
         this.puntuacio = 0;
         this.nombreVots = 0;
         this.interessos = clicked_tags;
+        this.comments = new ArrayList<Comentari>();
         setId();
         setShow();
     }
@@ -128,6 +129,10 @@ public abstract class Post implements Serializable {
     public void setCoord(double lat, double lng){
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public ArrayList<Comentari> getComments(){
+        return comments;
     }
 
     public void setLocalitzacio(String localitzacio){

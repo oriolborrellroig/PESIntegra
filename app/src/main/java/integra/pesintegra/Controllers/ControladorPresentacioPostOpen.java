@@ -18,6 +18,9 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         Cdomini = new ControladorDominiPostOpen(this);
     }
 
+    public void deleteComment(String post_id, String comment_id){
+        Cdomini.deleteComment(post_id, comment_id);
+    }
 
     public static void deletePost (String postId) {
         Cdomini.deletePost(postId);
@@ -52,12 +55,12 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         Cdomini.joinActivity(activity);
     }
 
-    public void creaComentari(String text, String data, String post_id){
+    public Comentari creaComentari(String text, String data, String post_id){
         //Cdomini.creaComentari(text, data, post_id);
         String id = Cdomini.getCurrentUser();
         Comentari nou_comentari = new Comentari(id, text, data, post_id);
         Cdomini.addComentari(post_id, nou_comentari);
-
+        return nou_comentari;
     }
 
     public String getCurrentUser() {

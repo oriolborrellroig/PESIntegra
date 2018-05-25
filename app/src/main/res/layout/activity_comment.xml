@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cv">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
-            android:padding="6dip" >
+            android:layout_height="wrap_content"
+            android:padding="6dip">
 
             <ImageView
                 android:id="@+id/icon"
@@ -28,28 +29,39 @@
             <TextView
                 android:id="@+id/cv_text"
                 android:layout_width="wrap_content"
-                android:layout_height="26dip"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cv_data"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@id/icon"
                 android:gravity="center_vertical"
-                android:text="COMENTARI"
-                android:textSize="16sp" />
+                android:text="COMENTARI asdf sadf sad f sd f asdf sd f sad f sadf asd f as df lokooooooooosdfsdfsdfsdfasdfsad fas df sadf sdaf sda fsdaf sda f sdaf sadf asdf sd f sad fsad f dsa fs daf asd"
+                android:textSize="16sp"
+                tools:maxLines="5" />
 
 
             <TextView
                 android:id="@+id/cv_data"
-                android:layout_width="fill_parent"
-                android:layout_height="22dp"
-                android:layout_above="@id/cv_dia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignWithParentIfMissing="true"
+                android:layout_marginRight="54dp"
                 android:layout_toRightOf="@id/icon"
                 android:text="DATA DEL COMENTARI"
                 android:textSize="12sp" />
 
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/opcions_comentari"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/cv_data"
+                android:rotation="180"
+                android:src="@mipmap/ic_triangle"
+                android:tintMode="@color/accent" />
 
         </RelativeLayout>
 

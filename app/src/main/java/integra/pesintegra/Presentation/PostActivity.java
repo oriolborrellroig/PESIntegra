@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -81,6 +82,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     RatingBar userRatingBar;
     Boolean current;
     Boolean hidden;
+    private ArrayList<Comentari> comentaris;
 
     private final LoginActivity li = new LoginActivity();
     @Override
@@ -91,12 +93,14 @@ public class PostActivity extends Activity implements View.OnClickListener{
         Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);
         iv = findViewById(R.id.imatge);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
         final Button tres_punts = findViewById(R.id.tres_punts);
         TextView post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setOnClickListener(this);
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
+
 
         /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
 
@@ -122,7 +126,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
         TextView post_text = findViewById(R.id.post_text);
         post_text.setText(post.getDescripcio());
         //iv.setImageBitmap(post.getImatge());
-
+        comentaris = post.getComments();
+        Context cc = getApplicationContext();
+        updateFeed(comentaris, cc, this, cp);
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         current = current_user.equals(post_user);
@@ -344,19 +350,12 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
                 String data= year + "/" + month + "/" + day;
-                cp.creaComentari(text_comentari, data, post_id);
+                Comentari new_c = cp.creaComentari(text_comentari, data, post_id);
+                comentaris.add(new_c);
                 EditText editText_comentari = (EditText) findViewById(R.id.comentari);
                 editText_comentari.setText("");
                 Context cc = getApplicationContext();
-                Comentari comment_provisional = new Comentari("1", text_comentari, data, post_id);
-                ArrayList<Comentari> comentaris_provisionals = new ArrayList<Comentari>();
-                comentaris_provisionals.add(comment_provisional);
-                comment_provisional = new Comentari("2", "salu2", data, post_id);
-                comentaris_provisionals.add(comment_provisional);
-                updateFeed(comentaris_provisionals, cc);
-                updateFeed(comentaris_provisionals, cc);
-
-                //update_comments();
+                updateFeed(comentaris, cc, this, cp);
                 break;
         }
 
@@ -431,8 +430,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         Log.d("aaaa", Boolean.toString(this.hidden));
     }
 
-    public static void updateFeed(ArrayList<Comentari> body, Context ctx) {
-        commentlistAdapter = new CommentListAdapter(body);
+    public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp) {
+        commentlistAdapter = new CommentListAdapter(body, pa, cpp);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
