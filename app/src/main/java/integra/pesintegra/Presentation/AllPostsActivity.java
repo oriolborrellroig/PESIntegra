@@ -1,9 +1,8 @@
 package integra.pesintegra.Presentation;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.camera2.CameraManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
@@ -20,16 +19,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
-import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
-import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
-
-import integra.pesintegra.Logic.Clases.Post_Activitat;
-import integra.pesintegra.Logic.Clases.Post_Feina;
-import integra.pesintegra.Logic.Clases.User;
 
 import integra.pesintegra.R;
 
@@ -44,7 +36,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private static List<String> hidden_posts;
     private String postType = "none";
 
-    private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct;
+    private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct, button_ratting, button_newest;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
 
@@ -61,6 +53,10 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext());
         ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();
+        this.button_newest = findViewById(R.id.button_newest);
+        button_newest.setOnClickListener(this);
+        this.button_ratting = findViewById(R.id.button_ratting);
+        button_ratting.setOnClickListener(this);
 
         getPostsFromDB();
 
@@ -96,21 +92,45 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 cs.loadFeedActivityPosts();
                 break;
             case "propis":
+                hide_buttons();
                 ControladorPresentacioAllPostsActivity.loadFeedUserPropiPosts(getIntent().getStringExtra("user"));
                 break;
             case "hide":
+                hide_buttons();
                 ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();
                 break;
             case "tags":
+                hide_buttons();
                 ControladorPresentacioAllPostsActivity.loadFeedTagsPosts();
                 break;
             case "calendar":
+                hide_buttons();
                 ControladorPresentacioAllPostsActivity.loadFeedTaCalendarPosts();
                 break;
             case "adv_search":
+                hide_buttons();
                 cs.loadFeedAdvSearch(getIntent().getExtras());
                 break;
         }
+    }
+
+    //0->rating
+    //1->time
+    private void change_buttons_colour(int a) {
+        if (a == 0) {
+            button_ratting.setColorFilter(getResources().getColor(R.color.accent));
+            button_newest.setColorFilter(getResources().getColor(R.color.primary_text));
+        }
+        else {
+            button_ratting.setColorFilter(getResources().getColor(R.color.primary_text));
+            button_newest.setColorFilter(getResources().getColor(R.color.accent));
+
+        }
+    }
+
+    private void hide_buttons(){
+        button_ratting.setVisibility(View.GONE);
+        button_newest.setVisibility(View.GONE);
     }
 
     @Override
@@ -221,6 +241,14 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 intent = new Intent(getApplicationContext(),CreateActivityActivity.class);
                 intent.putExtra("flag", "F");
                 startActivity(intent);
+                break;
+
+            case R.id.button_ratting:
+                change_buttons_colour(0);
+                break;
+
+            case R.id.button_newest:
+                change_buttons_colour(1);
                 break;
             case R.id.recycler :
 

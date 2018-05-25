@@ -121,6 +121,13 @@
     <string name="see_posts">Posts of user</string>
     <string name="search_user">Search user</string>
     <string name="view_map">View on map</string>
+    <string name="ERRnoValidLoc">Location is not valid</string>
+    <string name="ERRemptyFields">There are empty fields</string>
+    <string name="ERRnotValidDate">The date isn\'t valid</string>
+    <string name="ERRincorrectMail">The email format isn\'t correct</string>
+    <string name="ERRpasswordNotMatch">The passwords doesn\'t match</string>
+    <string name="BTNrating">RATING</string>
+    <string name="BTNnewest">NEWEST</string>
     <string name="delete_comment">Delete comment</string>
     <string name="report_comment">Report comment</string>
 </resources>

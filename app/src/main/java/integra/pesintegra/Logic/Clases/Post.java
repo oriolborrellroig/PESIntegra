@@ -193,15 +193,8 @@ public abstract class Post implements Serializable {
         return 0;
     }
 
-    public void setN_act(int n_act) {
-    }
-
     public int getN_max() {
         return 0;
-    }
-
-    public void setN_max(int n_max) {
-
     }
 
     public List<String> getInteressos(){

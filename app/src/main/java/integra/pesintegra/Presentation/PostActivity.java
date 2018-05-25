@@ -74,14 +74,15 @@ public class PostActivity extends Activity implements View.OnClickListener{
     private ControladorPresentacioPostOpen cp;
     String current_user;
     String post_user;
-    private Post_Activitat pa;
     private int places;
+    private Post_Activitat pa;
     TextView votantsTotals;
     TextView avgScore;
     RatingBar scoreBar;
     RatingBar userRatingBar;
     Boolean current;
     Boolean hidden;
+    private TextView free_places;
     private ArrayList<Comentari> comentaris;
 
     private final LoginActivity li = new LoginActivity();
@@ -254,24 +255,23 @@ public class PostActivity extends Activity implements View.OnClickListener{
        // String image_name = intent.getStringExtra("bitmap_img");
 
         this.post = (Post) getIntent().getExtras().getSerializable("post");
-        if (post.getTipus() == 'A') {
+        if (post instanceof Post_Activitat) {
+            this.pa = (Post_Activitat) post;
             FloatingActionButton join = findViewById(R.id.join);
-            join.setVisibility(View.VISIBLE);
-            join.setOnClickListener(this);
-            //TODO: CRIDA PQ TORNI DE BD NMAX I NACT
-            this.pa = new Post_Activitat(post);
-            TextView free_places = findViewById(R.id.free_places);
-            free_places.setVisibility(View.VISIBLE);
-            this.places = pa.getN_max() - pa.getN_act();
-            if (places > 0) {
-                free_places.setText(getString(R.string.freePlaces) + places);
-                free_places.setTextColor(Color.GREEN);
+            FloatingActionButton disengage = findViewById(R.id.disengage);
+            //si el user no està apuntat:
+            if (true) {
+                join.setVisibility(View.VISIBLE);
+                join.setOnClickListener(this);
             }
+            //si el user està apuntat
             else {
-                free_places.setTextColor(Color.RED);
-                free_places.setText(R.string.noFreePlaces);
-
+                disengage.setVisibility(View.VISIBLE);
+                disengage.setOnClickListener(this);
             }
+            this.free_places = findViewById(R.id.free_places);
+            free_places.setVisibility(View.VISIBLE);
+            print_free_places();
         }
 
         cp.getUserRating(post.getId(), current_user);
@@ -311,6 +311,18 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
     }
 
+    public void print_free_places() {
+        this.places = pa.getAssistentsMax() - pa.getN_assistens();
+        if (places > 0) {
+            free_places.setText(getString(R.string.freePlaces) + places);
+            free_places.setTextColor(Color.GREEN);
+        }
+        else {
+            free_places.setTextColor(Color.RED);
+            free_places.setText(R.string.noFreePlaces);
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -321,12 +333,17 @@ public class PostActivity extends Activity implements View.OnClickListener{
             case R.id.join:
 
                 if (places > 0) {
-                    //try{
+                    try{
                         cp.joinActivity(pa);
-                    /*}
+                        print_free_places();
+                    }
                     catch (Exception e){
-
-                    }*/
+                        new AlertDialog.Builder(this)
+                                .setTitle(R.string.errorTitle)
+                                .setMessage(e.getMessage())
+                                .setNeutralButton(R.string.BTNback, null)
+                                .show();
+                    }
                 }
                 else {
                     Toast.makeText(

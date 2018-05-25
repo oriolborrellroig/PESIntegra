@@ -103,6 +103,13 @@
     <string name="view_map">Ver en el mapa</string>
     <string name="languageTitle">Idioma:</string>
     <string name="msgBadSettings">La configuración no es correcta</string>
+    <string name="ERRnoValidLoc">La localización no es válida</string>
+    <string name="ERRemptyFields">Hay algún campo vacío</string>
+    <string name="ERRnotValidDate">La fecha es anterior, no es válida</string>
+    <string name="ERRincorrectMail">El formato del correo es incorrecto</string>
+    <string name="ERRpasswordNotMatch">Las contraseñas no coinciden</string>
+    <string name="BTNrating">VALORACIÓN</string>
+    <string name="BTNnewest">NUEVOS</string>
     <string name="delete_comment">Borrar comentario</string>
     <string name="report_comment">Reportar comentario</string>
 </resources>

@@ -5,18 +5,21 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
+
+import integra.pesintegra.R;
+
 public abstract class AbstractBaseController {
 
 
     public void comprovaCampNoBuid(String s) throws Exception {
         if (s == null || s.equals("")) {
-            throw new Exception("Hi ha algun camp buit");
+            throw new Exception(String.valueOf(R.string.ERRemptyFields));
         }
     }
 
     void comprovaCampNoNull(LatLng l) throws Exception {
         if (l == null) {
-            throw new Exception("Localitzacio no vàlida");
+            throw new Exception(String.valueOf(R.string.ERRnoValidLoc));
         }
     }
 
@@ -27,15 +30,15 @@ public abstract class AbstractBaseController {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         if (Integer.parseInt(d.substring(6, 10)) < year ) {
-            throw new Exception("La data és anterior, no és vàlida. Any incorrecte.");
+            throw new Exception(String.valueOf(R.string.ERRnotValidDate));
         }
         else if (Integer.parseInt(d.substring(6, 10)) == year ) {
             if (Integer.parseInt(d.substring(3, 5)) < month + 1) {
-                throw new Exception("La data és anterior, no és vàlida. Mes incorrecte.");
+                throw new Exception(String.valueOf(R.string.ERRnotValidDate));
             }
             else if (Integer.parseInt(d.substring(3, 5)) == month + 1 ) {
                 if (Integer.parseInt(d.substring(0, 2)) <= day ) {
-                    throw new Exception("La data és anterior, no és vàlida. Dia incorrecte.");
+                    throw new Exception(String.valueOf(R.string.ERRnotValidDate));
                 }
             }
         }
@@ -90,14 +93,14 @@ public abstract class AbstractBaseController {
 
         Pattern pat = Pattern.compile(emailRegex);
         if (email == null)
-            throw new Exception("Format mail incorrecte");
+            throw new Exception(String.valueOf(R.string.ERRnotValidDate));
         if (!pat.matcher(email).matches())
-            throw new Exception("Format mail incorrecte");
+            throw new Exception(String.valueOf(R.string.ERRnotValidDate));
     }
 
     void comprova_contrasenya_coincident(String pass1, String pass2) throws Exception {
         if (!pass1.equals(pass2))
-            throw new Exception("Les passwords no coincideixen");
+            throw new Exception(String.valueOf(R.string.ERRpasswordNotMatch));
     }
 
 

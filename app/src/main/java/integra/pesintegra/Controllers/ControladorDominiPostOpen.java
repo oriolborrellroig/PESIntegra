@@ -164,6 +164,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
 
     public void joinActivity(Post_Activitat activity) {
+
     }
 
     public void creaComentari(String text, String data, String post_id){

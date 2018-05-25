@@ -15,9 +15,9 @@ public class Post_Activitat extends Post{
         super('A');
     }
 
-    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, double lat, double lng, String lang, ArrayList<String> clicked_tags){
-        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A', lat, lng, lang, clicked_tags);
-        //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
+    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, String owner, double lat, double lng, String lang, ArrayList<String> clicked_tags, int nmax){
+        super(titol, descripcio, dataini, datafi, hora, direccio, owner, 'A', lat, lng, lang, clicked_tags);
+        this.assistentsMax = nmax;
     }
 
     public Post_Activitat(Post post) {

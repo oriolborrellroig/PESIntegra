@@ -312,15 +312,14 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 Log.d("laaaang", lang);
                 LatLng coord = controlador.getLoc(lloc, context);
 
-                //fer algo amb els booleans dels tags
-                 new_post = new Post_Activitat();
+                new_post = new Post_Activitat();
 
                 try {
                     Intent intent = getIntent();
                     String tipus = intent.getStringExtra("flag");
                     switch (tipus) {
                         case "A":
-                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
+                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags, 20);
                             break;
                         case "F":
                             new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);

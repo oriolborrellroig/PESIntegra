@@ -33,7 +33,7 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
 
-    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags) throws Exception {
+    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags, int nmax) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -42,8 +42,8 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoBuid(lloc);
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
-
-        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
+        String owner = this.getSessioUser();
+        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, owner, coord.latitude, coord.longitude, lang, clicked_tags, nmax);
         cntrlDom.creaPostActivitat(activitat);
 
         return activitat;
