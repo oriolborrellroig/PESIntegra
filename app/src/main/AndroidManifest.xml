@@ -48,7 +48,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Presentation.PostActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".Presentation.InformationActivity"
             android:screenOrientation="portrait" />
