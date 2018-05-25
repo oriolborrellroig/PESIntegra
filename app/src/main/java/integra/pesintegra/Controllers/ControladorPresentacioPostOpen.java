@@ -82,4 +82,24 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void setUserRating(String body) {
         activity.setUserRating(body);
     }
+
+    public void userAssisteix(String post_id, String current_user) {
+        Cdomini.userAssisteix(post_id, current_user);
+    }
+
+    public void setAssisteix(String body) {
+        activity.userAssisteix(body);
+    }
+
+    public void addAttendant(String post_id, String current_user) {
+        Cdomini.addAttendant(post_id, current_user);
+    }
+
+    public void removeAttendant(String post_id, String current_user) {
+        Cdomini.removeAttendant(post_id, current_user);
+    }
+
+    public void setAssistents(Integer body) {
+        activity.setAssistents(body);
+    }
 }

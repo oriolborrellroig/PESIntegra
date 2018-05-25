@@ -136,6 +136,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         hidden = false;
         cp.isHidden(post_id);
 
+
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -458,5 +459,16 @@ public class PostActivity extends Activity implements View.OnClickListener{
     public void setUserRating(String body) {
         Float puntuacio = Float.parseFloat(body);
         userRatingBar.setRating(puntuacio);
+    }
+
+    public void setAssistents (Integer assistents) {
+        Log.d("Assistents", assistents.toString());
+
+    }
+
+    public void userAssisteix (String assisteix) {
+        Log.d("Assistents",assisteix );
+
+
     }
 }

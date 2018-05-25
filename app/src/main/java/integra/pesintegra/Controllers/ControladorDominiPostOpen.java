@@ -199,4 +199,55 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
         return b[0];
     }
+
+    public void userAssisteix(String post_id, String current_user) {
+        PostService service = ServiceManager.getPostService();
+        Call<String> createCall = service.userAssisteix(post_id, current_user);
+        createCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Cpresentacio.setAssisteix(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void addAttendant(String post_id, String current_user) {
+        PostService service = ServiceManager.getPostService();
+        Call<Integer> createCall = service.addAttendant(post_id, current_user);
+        createCall.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                Cpresentacio.setAssistents(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void removeAttendant(String post_id, String current_user) {
+        PostService service = ServiceManager.getPostService();
+        Call<Integer> createCall = service.removeAttendant(post_id, current_user);
+        createCall.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                Cpresentacio.setAssistents(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+    }
 }

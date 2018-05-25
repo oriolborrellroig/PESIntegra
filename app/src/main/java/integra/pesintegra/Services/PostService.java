@@ -37,6 +37,9 @@ public interface PostService {
     @GET("/post/rating")
     Call<JsonObject> getPostRating(@Query("postid") String postID);
 
+    @GET("/post/userAttends")
+    Call<String> userAssisteix(@Query("postid") String postid, @Query("userid") String userid);
+
     @POST("post/new")
     Call<Void> createPost(@Body Post post);
 
@@ -45,6 +48,12 @@ public interface PostService {
 
     @PATCH("post/update")
     Call<Void> updatePost(@Query("postid") String postid, @Body Post post);
+
+    @PATCH("post/attend")
+    Call<Integer> addAttendant(@Query("postid") String postid, @Query("userid") String userid);
+
+    @PATCH("post/unattend")
+    Call<Integer> removeAttendant(@Query("postid") String postid, @Query("userid") String userid);
 
     @PATCH("post/vote")
     Call<JsonObject> votePost(@Query("postid") String postid, @Query("punts") String punts);
