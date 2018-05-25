@@ -82,8 +82,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
     RatingBar userRatingBar;
     Boolean current;
     Boolean hidden;
+    Boolean assisteix;
     private TextView free_places;
     private ArrayList<Comentari> comentaris;
+    private FloatingActionButton join, disengage;
 
     private final LoginActivity li = new LoginActivity();
     @Override
@@ -258,18 +260,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
         this.post = (Post) getIntent().getExtras().getSerializable("post");
         if (post instanceof Post_Activitat) {
             this.pa = (Post_Activitat) post;
-            FloatingActionButton join = findViewById(R.id.join);
-            FloatingActionButton disengage = findViewById(R.id.disengage);
-            //si el user no està apuntat:
-            if (true) {
-                join.setVisibility(View.VISIBLE);
-                join.setOnClickListener(this);
-            }
-            //si el user està apuntat
-            else {
-                disengage.setVisibility(View.VISIBLE);
-                disengage.setOnClickListener(this);
-            }
+            this.join = findViewById(R.id.join);
+            this.disengage = findViewById(R.id.disengage);
+            join.setOnClickListener(this);
+            disengage.setOnClickListener(this);
+            cp.userAssisteix(post.getId(), current_user);
             this.free_places = findViewById(R.id.free_places);
             free_places.setVisibility(View.VISIBLE);
             print_free_places();
@@ -324,6 +319,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         }
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -331,20 +327,17 @@ public class PostActivity extends Activity implements View.OnClickListener{
                this.finish();
                 break;
 
-            case R.id.join:
+            case R.id.disengage:
+                cp.removeAttendant(post.getId(),current_user);
+                cp.userAssisteix(post.getId(), current_user);
+                print_free_places();
+                break;
 
+            case R.id.join:
                 if (places > 0) {
-                    try{
-                        cp.joinActivity(pa);
-                        print_free_places();
-                    }
-                    catch (Exception e){
-                        new AlertDialog.Builder(this)
-                                .setTitle(R.string.errorTitle)
-                                .setMessage(e.getMessage())
-                                .setNeutralButton(R.string.BTNback, null)
-                                .show();
-                    }
+                    cp.addAttendant(post.getId(),current_user);
+                    cp.userAssisteix(post.getId(), current_user);
+                    print_free_places();
                 }
                 else {
                     Toast.makeText(
@@ -354,6 +347,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                     ).show();
                 }
                 break;
+
             case R.id.post_direccio:
                 Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
                 intent.putExtra("lat", post.getLat());
@@ -462,13 +456,25 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     public void setAssistents (Integer assistents) {
-        Log.d("Assistents", assistents.toString());
-
+        if (assistents == -1) {
+            pa.setN_assistens(pa.getAssistentsMax());
+        }
+        else {
+            pa.setN_assistens(assistents);
+        }
     }
 
     public void userAssisteix (String assisteix) {
-        Log.d("Assistents",assisteix );
-
-
+        Log.d("patata", assisteix);
+        if (assisteix.equals("true")) {
+            this.assisteix = true;
+            disengage.setVisibility(View.VISIBLE);
+            join.setVisibility(View.GONE);
+        }
+        else {
+            this.assisteix = false;
+            join.setVisibility(View.VISIBLE);
+            disengage.setVisibility(View.GONE);
+        }
     }
 }

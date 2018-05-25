@@ -112,4 +112,6 @@
     <string name="BTNnewest">NOUS</string>
     <string name="delete_comment">Esborrar comentari</string>
     <string name="report_comment">Reportar comentari</string>
+    <string name="ERRsystem">Error del sistema</string>
+    <string name="ERRnoPlaces">No quedaven places lliures</string>
 </resources>
