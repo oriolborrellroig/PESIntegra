@@ -2,12 +2,14 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.ProfileActivity;
@@ -63,6 +65,11 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
                 Log.d("sadasds","aaa");
             }
         });
+    }
+
+    public void storeImage(String type, Bitmap data){
+        ImageBM image = new ImageBM(getCurrentUser(), type, data);
+        super.storeImage(image);
     }
 
     public String getCurrentUser() {
