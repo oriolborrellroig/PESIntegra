@@ -112,13 +112,13 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                             Menu popupMenu = popup.getMenu();
                             popup.getMenuInflater().inflate(R.menu.popup_menu_comentari, popupMenu);
 
-                            /*if(c.getuser_id() != cpp.getCurrentUser()){
+                            if(!(c.getuser_id().equals(cpp.getCurrentUser()))){
                                 //popupMenu.findItem(R.id.hide_post).setVisible(false);
                                 //popupMenu.findItem(R.id.show_post).setVisible(false);
                                 popupMenu.findItem(R.id.borrar_comentari).setVisible(false);
                             }else{
                                 popupMenu.findItem(R.id.borrar_comentari).setVisible(true);
-                            }*/
+                            }
 
 
                             //registering popup with OnMenuItemClickListener
