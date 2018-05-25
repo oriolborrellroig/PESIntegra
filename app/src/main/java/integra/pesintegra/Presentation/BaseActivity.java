@@ -155,14 +155,14 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer);
         //drawer.closeDrawer(GravityCompat.START);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);

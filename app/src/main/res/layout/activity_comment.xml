@@ -60,7 +60,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/cv_data"
                 android:rotation="180"
-                android:src="@mipmap/ic_triangle"
+                android:src="@mipmap/ic_email"
                 android:tintMode="@color/accent" />
 
         </RelativeLayout>

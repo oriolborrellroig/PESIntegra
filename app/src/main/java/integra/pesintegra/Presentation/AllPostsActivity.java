@@ -120,7 +120,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             super.onBackPressed();
         }
-        else if(type.equals("propis") || type.equals("hide")) super.onBackPressed();
+        else if(type.equals("propis") || type.equals("hide") || type.equals("adv_search")) super.onBackPressed();
     }
 
     @Override

@@ -135,7 +135,6 @@
                         android:layout_marginTop="5dp"
                         android:hint="@string/adv_search_date_fi"
                         android:inputType="date"
-                        android:focusable="true"
                         android:clickable="true"
                         android:maxLines="1" />
                 </android.support.design.widget.TextInputLayout>
