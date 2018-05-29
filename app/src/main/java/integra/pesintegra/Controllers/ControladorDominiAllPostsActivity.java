@@ -20,8 +20,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     public void loadFeedAnyPosts () {
         PostService service = ServiceManager.getPostService();
-        Log.d("TOOKKKK",this.getSessioToken());
-        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
         Call<ArrayList<Post>> call = service.getAllPosts("any");
         enqueueCall(call);
     }
@@ -29,8 +27,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     public void loadFeedTagsPosts(){
 
         PostService service = ServiceManager.getPostService();
-        Log.d("TOOKKKK",this.getSessioToken());
-        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
         Call<ArrayList<Post>> call = service.getAllPosts("activity");
         enqueueCall(call);
 
@@ -38,8 +34,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     public void loadFeedCalendarPosts(){
         PostService service = ServiceManager.getPostService();
-        Log.d("TOOKKKK",this.getSessioToken());
-        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
         Call<ArrayList<Post>> call = service.getAllPosts("any");
         enqueueCall(call);
     }
@@ -85,9 +79,19 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         String user = extras.getString("user");
         ArrayList<String> tags = extras.getStringArrayList("tags");
         PostService service = ServiceManager.getPostService();
+        assert tipus != null;
         if (tipus.equals("Tots els posts") || tipus.equals("All posts") || tipus.equals("Todos los posts")) tipus = null;
+        else if (tipus.equals("Activities") || tipus.equals("Activitats") || tipus.equals("Actividades")) tipus = "A";
+        else if (tipus.equals("Work") || tipus.equals("Feina") || tipus.equals("Trabajo")) tipus = "F";
+        else tipus = "H";
+        assert lang != null;
         if (lang.equals("Qualsevol idioma") || lang.equals("Any language") || lang.equals("Cualquier idioma")) lang = null;
+        else if (lang.equals("Catalan (ca)") || lang.equals("Català (ca)") || lang.equals("Catalán (ca)")) lang = "CA";
+        else if (lang.equals("English (EN)") || lang.equals("Anglès (EN)") || lang.equals("Inglés (EN)")) lang = "EN";
+        else lang = "ES";
+        assert user != null;
         if (user.equals("")) user = null;
+        assert text != null;
         if (text.equals("")) text = null;
         Call<ArrayList<Post>> call = service.advancedSearch(text, tipus, lang, dateIni, dateFi, user, tags);
         enqueueCall(call);
