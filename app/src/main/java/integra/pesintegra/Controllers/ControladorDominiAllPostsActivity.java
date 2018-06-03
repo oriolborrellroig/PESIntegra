@@ -18,35 +18,35 @@ import retrofit2.Response;
 
 public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
-    public void loadFeedAnyPosts () {
+    public void loadFeedAnyPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        Call<ArrayList<Post>> call = service.getAllPosts("any", order);
         enqueueCall(call);
     }
 
-    public void loadFeedTagsPosts(){
+    public void loadFeedTagsPosts(Integer order){
 
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("activity");
+        Call<ArrayList<Post>> call = service.getAllPosts("activity", order);
         enqueueCall(call);
 
     }
 
     public void loadFeedCalendarPosts(){
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        Call<ArrayList<Post>> call = service.getAllPosts("any", 1);
         enqueueCall(call);
     }
 
-    public void loadFeedWorkPosts () {
+    public void loadFeedWorkPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("work");
+        Call<ArrayList<Post>> call = service.getAllPosts("work", order);
         enqueueCall(call);
     }
 
-    public void loadFeedActivityPosts () {
+    public void loadFeedActivityPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("activity");
+        Call<ArrayList<Post>> call = service.getAllPosts("activity", order);
         enqueueCall(call);
     }
 
@@ -56,9 +56,9 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         enqueueCall(call);
     }
 
-    public void loadFeedHousePosts () {
+    public void loadFeedHousePosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("home");
+        Call<ArrayList<Post>> call = service.getAllPosts("home", order);
         enqueueCall(call);
     }
 

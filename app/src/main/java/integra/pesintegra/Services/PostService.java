@@ -26,7 +26,7 @@ public interface PostService {
     Call<Post> getPost(@Query("id") String value);
 
     @GET("/post/all")
-    Call<ArrayList<Post>> getAllPosts(@Query("type") String type);
+    Call<ArrayList<Post>> getAllPosts(@Query("type") String type, @Query("order") Integer order);
 
     @GET("/post/allUser")
     Call<ArrayList<Post>> getAllPostsFromUser(@Query("owner") String owner);
