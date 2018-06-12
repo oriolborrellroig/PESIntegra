@@ -31,6 +31,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
@@ -65,7 +69,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private Bitmap bitmapImage;
     private Post new_post;
     private Uri imageUri;
-    private Button button;
     private Boolean clicked_esport = true;
     private Boolean clicked_musica = true;
     private Boolean clicked_cinema = true;
@@ -75,8 +78,10 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private Boolean clicked_moda = true;
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
-    private Context context;
     private ArrayList<String> clicked_tags;
+    private LatLng coord;
+    private String lloc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +99,30 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         clicked_tags = new ArrayList<>();
         setSpinner();
 
-        context = getApplicationContext();
+        Context context = getApplicationContext();
 
         Button enviar_btn = findViewById(R.id.submitPostAct);
         enviar_btn.setOnClickListener(this);
         FloatingActionButton add_image_btn = findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
         iv = findViewById(R.id.img_prev);
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i("aaaaaaaaa", "Place: " + place.getName());
+                coord = place.getLatLng();
+                lloc = place.getName().toString();
+            }
 
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i("aaaaaaaaa", "An error occurred: " + status);
+            }
+        });
     }
 
     private void setSpinner() {
@@ -200,7 +221,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
         switch (v.getId()) {
             case R.id.btn_esport:
-                button = findViewById(R.id.btn_esport);
+                Button button = findViewById(R.id.btn_esport);
                 if(clicked_esport){
                     item_seleccionat(button,"esport");
                     clicked_esport = !clicked_esport;
@@ -300,7 +321,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
-                String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
@@ -310,7 +330,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
                 else lang = "EN";
                 Log.d("laaaang", lang);
-                LatLng coord = controlador.getLoc(lloc, context);
+
 
                 new_post = new Post_Activitat();
 

@@ -17,6 +17,10 @@
         android:title="@string/deletePost"/>
 
     <item
+        android:id="@+id/report_post"
+        android:title="@string/report_post"/>
+
+    <item
         android:id="@+id/maps"
         android:title="@string/view_map"/>
 

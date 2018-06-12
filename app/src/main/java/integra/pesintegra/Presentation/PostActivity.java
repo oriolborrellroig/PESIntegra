@@ -149,8 +149,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popupMenu);
 
                 if(current){
-                    //popupMenu.findItem(R.id.hide_post).setVisible(false);
-                    //popupMenu.findItem(R.id.show_post).setVisible(false);
+                    popupMenu.findItem(R.id.report_post).setVisible(false);
                     if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                 }

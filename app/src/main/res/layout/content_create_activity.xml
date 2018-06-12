@@ -143,23 +143,13 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/create_post_localitzacio_layout"
-                    android:layout_width="342dp"
-                    android:layout_height="wrap_content">
-
-
-
-                    <EditText
-                        android:id="@+id/locationInputAct"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="@string/location"
-                        android:inputType="textPersonName" />
-                </android.support.design.widget.TextInputLayout>
+                <fragment
+                    android:id="@+id/place_autocomplete_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/location"
+                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                    />
             </TableRow>
 
             <TableRow
