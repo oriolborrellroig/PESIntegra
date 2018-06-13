@@ -12,11 +12,18 @@ import integra.pesintegra.Presentation.AllPostsActivity;
 import integra.pesintegra.Presentation.LoginActivity;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
+import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControladorDominiAllPostsActivity extends ControladorDomini {
+
+    public void loadFeedAllBooked (String userid) {
+        UserService service = ServiceManager.getUserService();
+        Call<ArrayList<Post>> call = service.getBookedPosts(userid);
+        enqueueCall(call);
+    }
 
     public void loadFeedAnyPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
