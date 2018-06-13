@@ -53,8 +53,9 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     }
 
     public static void loadFeedTagsPosts(Integer order) {
-        CDAllPosts.loadFeedTagsPosts(order);
-    }//TODO: esta hardcoded
+        ArrayList<String> listtags = new ArrayList<String>() ;
+        CDAllPosts.loadFeedTagsPosts(listtags);
+    }//TODO: array buit, cal passar per parametre els tags en format d'arraylist
 
     public static void loadFeedTaCalendarPosts() {
         CDAllPosts.loadFeedCalendarPosts();

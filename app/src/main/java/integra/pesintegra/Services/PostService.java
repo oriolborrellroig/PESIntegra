@@ -73,4 +73,7 @@ public interface PostService {
     @GET("/users/getBookedPosts")
     Call<ArrayList<Post>> getBookedPosts(@Query("userid") String userid);
 
+    @GET("/post/searchByTags")
+    Call<ArrayList<Post>> getPostsByTags( @Query("tags") ArrayList<String> listtags);
+
 }

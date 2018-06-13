@@ -31,10 +31,10 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         enqueueCall(call);
     }
 
-    public void loadFeedTagsPosts(Integer order){
+    public void loadFeedTagsPosts(ArrayList<String> listtags){
 
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("activity", order);
+        Call<ArrayList<Post>> call = service.getPostsByTags(listtags);
         enqueueCall(call);
 
     }
@@ -44,6 +44,7 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         Call<ArrayList<Post>> call = service.getAllPosts("any", 1);
         enqueueCall(call);
     }
+
 
     public void loadFeedWorkPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
@@ -109,7 +110,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
-                Log.v("TAAAAAAG",((Integer) response.body().size()).toString());
                 ControladorPresentacioAllPostsActivity.updateFeed(response.body());
             }
 
@@ -118,7 +118,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
             }
         });
     }
-
 
 
 }
