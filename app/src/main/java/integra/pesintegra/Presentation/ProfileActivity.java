@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
@@ -145,10 +146,15 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 });
 
                 popup.show(); //showing popup menu
+
+
+
             }
         });
 
         ControladorPresentacioProfileActivity.getUser(profile_user);
+        //Bitmap imatge_perfil = cp.getImage("profile").getBitmapImage();
+        //iv.setImageBitmap(imatge_perfil);
     }
 
 
@@ -390,7 +396,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         int alcada = iv.getMaxHeight();
                         int amplada = iv.getMaxWidth();
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
-                        iv.setImageBitmap(bitmapImage);
+                        //iv.setImageBitmap(bitmapImage);
+                        ImageBM image_to_store = new ImageBM("id_loko", bitmapImage);
+                        cp.addProfileImage(image_to_store);
+                        //carregar de la BD per provar que funciona i tal
+                        Bitmap lol_xd_prova = image_to_store.getBitmapImage();
+                        iv.setImageBitmap(lol_xd_prova);
                         imageUri = selectedImage;
                         //guardar imatge a la bd
 
@@ -433,5 +444,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     public void setIsMod(String isMod) {
         this.isMod = (isMod.equals("moderador"));
         Log.i("aaaaaaa", this.isMod.toString());
+    }
+    public void loadImage(Bitmap bitmapImage) {
+        iv.setImageBitmap(bitmapImage);
     }
 }

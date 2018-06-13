@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.ProfileActivity;
 
@@ -34,6 +35,12 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public void updateInterestInfo(String interes, String valor) {
         activity.updateInterestInfo(interes, valor);
     }
+
+    public void addProfileImage(ImageBM i) {
+        Cdomini.storeImage(i);
+    }
+
+
 
 
 

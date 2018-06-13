@@ -13,6 +13,7 @@ import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.ProfileActivity;
+import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
@@ -68,6 +69,7 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     }
 
 
+
     public String getCurrentUser() {
         return this.getSessioUser();
     }
@@ -96,5 +98,26 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     public void convertToMod(String id) {
         //TODO: canviar tipus del user a "moderador"
         Log.i("aaaa", id);
+    }
+
+
+    public void storeImage(ImageBM i){
+
+        ImageService service = ServiceManager.getImageService();
+        Bitmap bm = i.getBitmapImage();
+        ImageBM ima = new ImageBM("12345", bm);
+        //Call<Void> ccall = service.createImage(ima);
+        Call<Void> ccall = service.createImage(i);
+        ccall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("ole","aaa");
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("sadasds","aaa");
+            }
+        });
     }
 }

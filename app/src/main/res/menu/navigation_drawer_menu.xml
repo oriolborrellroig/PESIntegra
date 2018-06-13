@@ -75,6 +75,22 @@
     </group>
 
     <group
+        android:id="@+id/menu_section_7"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/posts_reportats"
+            android:title="@string/posts_reportats2"
+            android:icon="@mipmap/ic_inbox_multiple_grey600_36dp">
+        </item>
+
+        <item
+            android:id="@+id/comentaris_reportats"
+            android:title="@string/comments_reportats2"
+            android:icon="@mipmap/ic_message_reply_text">
+        </item>
+    </group>
+
+    <group
         android:id="@+id/menu_section_5"
         android:checkableBehavior="single">
         <item

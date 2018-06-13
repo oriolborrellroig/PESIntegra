@@ -153,6 +153,14 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                         .setNegativeButton(R.string.msgNo, null)
                         .show();
                 break;
+            case R.id.posts_reportats:
+                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+                intent.putExtra("type", "any");
+                startActivity(intent);
+                break;
+            case R.id.comentaris_reportats:
+
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.nav_drawer);
