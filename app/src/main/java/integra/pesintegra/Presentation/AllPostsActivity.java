@@ -35,7 +35,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private List<Post> list_posts = new ArrayList<>();
     private static List<String> hidden_posts;
     private String postType = "none";
-
+    private Boolean rating_clicked, creation_clicked;
     private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct, button_ratting, button_newest;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
@@ -57,8 +57,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         button_newest.setOnClickListener(this);
         this.button_ratting = findViewById(R.id.button_ratting);
         button_ratting.setOnClickListener(this);
-
-        getPostsFromDB();
+        rating_clicked = creation_clicked = false;
+        getPostsFromDB(0);
 
         fabAdd = findViewById(R.id.fabAdd);
         fabAddHab = findViewById(R.id.fabAddHab);
@@ -76,20 +76,20 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    private void getPostsFromDB() {
+    private void getPostsFromDB(Integer order) {
         ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
         switch (postType) {
             case "any":
-                cs.loadFeedAnyPosts();
+                cs.loadFeedAnyPosts(order);
                 break;
             case "house":
-                cs.loadFeedHousePosts();
+                cs.loadFeedHousePosts(order);
                 break;
             case "work":
-                cs.loadFeedWorkPosts();
+                cs.loadFeedWorkPosts(order);
                 break;
             case "activity":
-                cs.loadFeedActivityPosts();
+                cs.loadFeedActivityPosts(order);
                 break;
             case "propis":
                 hide_buttons();
@@ -101,7 +101,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 break;
             case "tags":
                 hide_buttons();
-                ControladorPresentacioAllPostsActivity.loadFeedTagsPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedTagsPosts(order);
                 break;
             case "calendar":
                 hide_buttons();
@@ -114,18 +114,24 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    //0->rating
-    //1->time
+    //0->rating unclicked clicked and click rating
+    //1->vote unclicked clicked and click vote
+    //2->any clicked and click same
+
     private void change_buttons_colour(int a) {
         if (a == 0) {
             button_ratting.setColorFilter(getResources().getColor(R.color.accent));
             button_newest.setColorFilter(getResources().getColor(R.color.primary_text));
         }
-        else {
+        else if (a == 1) {
             button_ratting.setColorFilter(getResources().getColor(R.color.primary_text));
             button_newest.setColorFilter(getResources().getColor(R.color.accent));
-
         }
+        else {
+            button_ratting.setColorFilter(getResources().getColor(R.color.primary_text));
+            button_newest.setColorFilter(getResources().getColor(R.color.primary_text));
+        }
+
     }
 
     private void hide_buttons(){
@@ -146,7 +152,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onResume(){
         super.onResume();
-        getPostsFromDB();
+        getPostsFromDB(0);
         if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
 
@@ -244,12 +250,37 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 break;
 
             case R.id.button_ratting:
-                change_buttons_colour(0);
+                if (rating_clicked) {
+                    change_buttons_colour(2);
+                    getPostsFromDB(0);
+                    rating_clicked = false;
+                }
+                else { //not rating_clicked
+                    if (creation_clicked) {
+                        creation_clicked = false;
+                    }
+                    change_buttons_colour(0);
+                    getPostsFromDB(2);
+                    rating_clicked = true;
+                }
                 break;
 
             case R.id.button_newest:
-                change_buttons_colour(1);
+                if (creation_clicked) {
+                    change_buttons_colour(2);
+                    getPostsFromDB(0);
+                    creation_clicked = false;
+                }
+                else { //not creation_clicked
+                    if (rating_clicked) {
+                        rating_clicked = false;
+                    }
+                    change_buttons_colour(1);
+                    getPostsFromDB(1);
+                    creation_clicked = true;
+                }
                 break;
+
             case R.id.recycler :
 
                 int position = recyclerView.getChildLayoutPosition(v);

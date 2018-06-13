@@ -339,7 +339,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
             case R.id.join:
                 if (places > 0) {
-                    cp.addAttendant(post.getId(),current_user);
+                    Log.i("ERRORRR", Integer.toString(places));
+                    cp.addAttendant(post.getId(), current_user);
                     cp.userAssisteix(post.getId(), current_user);
                     print_free_places();
                 }
@@ -469,7 +470,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     public void userAssisteix (String assisteix) {
-        Log.d("patata", assisteix);
         if (assisteix.equals("true")) {
             this.assisteix = true;
             disengage.setVisibility(View.VISIBLE);

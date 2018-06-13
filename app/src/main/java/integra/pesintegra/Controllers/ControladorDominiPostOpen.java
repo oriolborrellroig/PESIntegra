@@ -2,6 +2,7 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.JsonObject;
 
@@ -228,7 +229,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-
             }
         });
     }

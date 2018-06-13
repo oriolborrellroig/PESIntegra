@@ -28,20 +28,20 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         CDAllPosts = new ControladorDominiAllPostsActivity();
     }
 
-    public void loadFeedAnyPosts () {
-        CDAllPosts.loadFeedAnyPosts(1);
+    public void loadFeedAnyPosts (Integer order) {
+        CDAllPosts.loadFeedAnyPosts(order);
     } //TODO: esta hardcoded
 
-    public void loadFeedWorkPosts () {
-        CDAllPosts.loadFeedWorkPosts(2);
+    public void loadFeedWorkPosts (Integer order) {
+        CDAllPosts.loadFeedWorkPosts(order);
     } //TODO: esta hardcoded
 
-    public void loadFeedActivityPosts () {
-        CDAllPosts.loadFeedActivityPosts(1);
+    public void loadFeedActivityPosts (Integer order) {
+        CDAllPosts.loadFeedActivityPosts(order);
     } //TODO: esta hardcoded
 
-    public void loadFeedHousePosts () {
-        CDAllPosts.loadFeedHousePosts(2);
+    public void loadFeedHousePosts (Integer order) {
+        CDAllPosts.loadFeedHousePosts(order);
     }//TODO: esta hardcoded
 
     public static void loadFeedHiddenPosts () { CDAllPosts.loadFeedHiddenPosts(); }
@@ -52,8 +52,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         AllPostsActivity.updateFeed(posts,context);
     }
 
-    public static void loadFeedTagsPosts() {
-        CDAllPosts.loadFeedTagsPosts(2);
+    public static void loadFeedTagsPosts(Integer order) {
+        CDAllPosts.loadFeedTagsPosts(order);
     }//TODO: esta hardcoded
 
     public static void loadFeedTaCalendarPosts() {
