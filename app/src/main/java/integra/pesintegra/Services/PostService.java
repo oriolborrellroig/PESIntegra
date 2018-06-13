@@ -69,4 +69,8 @@ public interface PostService {
 
     @GET("post/advancedSearch")
     Call<ArrayList<Post>> advancedSearch(@Query("text") String text, @Query("tipus") String tipus, @Query("lang") String lang, @Query("dateIni") String dateIni,@Query("dateFi") String dateFi, @Query("user") String user, @Query("tags") ArrayList<String> tags);
+
+    @GET("/users/getBookedPosts")
+    Call<ArrayList<Post>> getBookedPosts(@Query("userid") String userid);
+
 }

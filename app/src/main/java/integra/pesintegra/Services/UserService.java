@@ -24,9 +24,6 @@ public interface UserService {
     @GET("/users/getByUsername")
     Call<User> getUserByUsername(@Query("usr") String usr);
 
-    @GET("/users/getBookedPosts")
-    Call<ArrayList<Post>> getBookedPosts(@Query("userid") String userid);
-
     @POST("users/new")
     Call<Void> createUser(@Body User user, @Header("password") String pas);
 

@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     public void loadFeedAllBooked (String userid) {
-        UserService service = ServiceManager.getUserService();
+        PostService service = ServiceManager.getPostService();
         Call<ArrayList<Post>> call = service.getBookedPosts(userid);
         enqueueCall(call);
     }
@@ -109,6 +109,7 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
+                Log.v("TAAAAAAG",((Integer) response.body().size()).toString());
                 ControladorPresentacioAllPostsActivity.updateFeed(response.body());
             }
 
