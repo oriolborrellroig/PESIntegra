@@ -8,9 +8,11 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Comentari;
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
+import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
@@ -256,5 +258,22 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         //TODO; crida a BD per saber si current_user ha reportat post_id.
         //TODO: cal guardar el resultat a reported en l'activitat. Canviar aquest false per la resposta de la crida.
         Cpresentacio.isReportedCallback(false);
+    }
+
+    public ImageBM getImage(String id){
+
+        ImageService service = ServiceManager.getImageService();
+        Call<ImageBM> ccall = service.getImagePost(id);
+        ccall.enqueue(new Callback<ImageBM>() {
+            @Override
+            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                Cpresentacio.getImageResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ImageBM> call, Throwable t) {
+            }
+        });
+        return result;
     }
 }

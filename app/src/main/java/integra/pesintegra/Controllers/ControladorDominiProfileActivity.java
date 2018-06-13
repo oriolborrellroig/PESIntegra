@@ -67,10 +67,6 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         });
     }
 
-    public void storeImage(String type, Bitmap data){
-        ImageBM image = new ImageBM(getCurrentUser(), type, data);
-        super.storeImage(image);
-    }
 
     public String getCurrentUser() {
         return this.getSessioUser();

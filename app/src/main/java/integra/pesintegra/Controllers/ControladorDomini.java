@@ -68,41 +68,5 @@ public class ControladorDomini extends  AbstractBaseController{
 
     }
 
-    public ImageBM getImage(String id, String owner){
 
-        ImageService service = ServiceManager.getImageService();
-        Call<ImageBM> ccall = service.getImage(id, owner);
-        ccall.enqueue(new Callback<ImageBM>() {
-            @Override
-            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
-                result = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<ImageBM> call, Throwable t) {
-                Log.d("sadasds","aaa");
-            }
-        });
-        return result;
-    }
-
-    public void storeImage(ImageBM i){
-
-        ImageService service = ServiceManager.getImageService();
-        Bitmap lol = i.getBitmapImage();
-        ImageBM ima = new ImageBM("12345", "post", lol);
-        //Call<Void> ccall = service.createImage(ima);
-        Call<Void> ccall = service.createImage(i);
-        ccall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("ole","aaa");
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("sadasds","aaa");
-            }
-        });
-    }
 }

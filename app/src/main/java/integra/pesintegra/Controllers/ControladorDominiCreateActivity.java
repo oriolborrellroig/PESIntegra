@@ -84,4 +84,24 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
         return null;
 
     }
+
+    public void storeImage(ImageBM i){
+
+        ImageService service = ServiceManager.getImageService();
+        Bitmap bm = i.getBitmapImage();
+        ImageBM ima = new ImageBM("12345", bm);
+        //Call<Void> ccall = service.createImage(ima);
+        Call<Void> ccall = service.createImage(i);
+        ccall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("ole","aaa");
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("sadasds","aaa");
+            }
+        });
+    }
 }

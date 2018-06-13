@@ -18,10 +18,10 @@ import retrofit2.http.Query;
 public interface ImageService {
 
 
-    @GET("/image/get")
-    Call<ImageBM> getImage(@Query ("idImage") String imageId, @Query ("owner") String owner);
+    @GET("/image/getPost")
+    Call<ImageBM> getImagePost(@Query ("idImage") String imageId);
 
-    @POST("/image/new")
+    @POST("/image/newPost")
     Call<Void> createImage(@Body ImageBM pic);
 
     @PATCH("/image/update")

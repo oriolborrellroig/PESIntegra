@@ -136,6 +136,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         current = current_user.equals(post_user);
         hidden = false;
         cp.isHidden(post_id);
+        cp.getImage(post_id);
         cp.isReported(current_user, post_id);
 
 
@@ -483,5 +484,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
     public void setReported(boolean reported) {
         this.reported = reported;
+    }
+
+    public void loadImage(Bitmap bitmapImage) {
+        iv.setImageBitmap(bitmapImage);
     }
 }

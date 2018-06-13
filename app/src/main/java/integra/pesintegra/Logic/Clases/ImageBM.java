@@ -15,12 +15,10 @@ public class ImageBM {
 
 
     private String idImage;
-    private String owner;
     private String  data;
 
-    public ImageBM(String imageId, String ownerType, Bitmap data) {
+    public ImageBM(String imageId, Bitmap data) {
         this.idImage = imageId;
-        this.owner = ownerType;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         data.compress(Bitmap.CompressFormat.PNG, 100, baos);
         this.data = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT );

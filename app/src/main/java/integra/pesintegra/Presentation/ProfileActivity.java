@@ -393,7 +393,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
                         //guardar imatge a la bd
-                        cp.storeImage("profile", bitmapImage);
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

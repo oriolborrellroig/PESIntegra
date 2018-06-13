@@ -17,6 +17,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeImageTransform;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -348,6 +350,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
 
                     controlador.createPost(new_post,imageUri);
+                    ImageBM imageToStore = new ImageBM(new_post.getId(), bitmapImage);
+                    controlador.addPostImage(imageToStore);
 
                     break;
 
@@ -400,7 +404,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
                         iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
-                        //guardar imatge a la bd
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

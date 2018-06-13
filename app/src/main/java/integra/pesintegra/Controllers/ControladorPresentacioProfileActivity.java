@@ -35,9 +35,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
         activity.updateInterestInfo(interes, valor);
     }
 
-    public void storeImage(String type, Bitmap image){
-        Cdomini.storeImage(type, image);
-    }
+
 
     public String getCurrentUser() {
         return Cdomini.getCurrentUser();

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import integra.pesintegra.Logic.Clases.Comentari;
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
 
@@ -113,5 +114,13 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
     public void isReportedCallback(boolean b) {
         activity.setReported(b);
+    }
+
+    public void getImage (String postid) {
+        Cdomini.getImage (postid);
+    }
+
+    public void getImageResponse (ImageBM image) {
+        activity.loadImage(image.getBitmapImage());
     }
 }
