@@ -102,4 +102,16 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void setAssistents(Integer body) {
         activity.setAssistents(body);
     }
+
+    public void report_post(String current_user, String post_id) {
+        Cdomini.report_post(current_user, post_id);
+    }
+
+    public void isReported(String current_user, String post_id) {
+        Cdomini.isReported(current_user, post_id);
+    }
+
+    public void isReportedCallback(boolean b) {
+        activity.setReported(b);
+    }
 }

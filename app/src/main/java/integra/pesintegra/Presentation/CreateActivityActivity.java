@@ -111,15 +111,12 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                Log.i("aaaaaaaaa", "Place: " + place.getName());
                 coord = place.getLatLng();
                 lloc = place.getName().toString();
             }
 
             @Override
             public void onError(Status status) {
-                // TODO: Handle the error.
                 Log.i("aaaaaaaaa", "An error occurred: " + status);
             }
         });

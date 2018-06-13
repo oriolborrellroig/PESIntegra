@@ -2,7 +2,6 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.JsonObject;
 
@@ -177,7 +176,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         return this.getSessioUser();
     }
 
-    public Boolean isHidden(final String post_id) {
+    public void isHidden(final String post_id) {
         PostService service = ServiceManager.getPostService();
         Call<ArrayList<Post>> call = service.getHiddenListFromUser(this.getSessioUser());
         final Boolean[] b = new Boolean[1];
@@ -197,7 +196,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
             public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
             }
         });
-        return b[0];
     }
 
     public void userAssisteix(String post_id, String current_user) {
@@ -248,5 +246,15 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
             }
         });
+    }
+
+    public void report_post(String current_user, String post_id) {
+        //TODO: crida a BD per afegir current_user a posts_reportats de post_id
+    }
+
+    public void isReported(String current_user, String post_id) {
+        //TODO; crida a BD per saber si current_user ha reportat post_id.
+        //TODO: cal guardar el resultat a reported en l'activitat. Canviar aquest false per la resposta de la crida.
+        Cpresentacio.isReportedCallback(false);
     }
 }

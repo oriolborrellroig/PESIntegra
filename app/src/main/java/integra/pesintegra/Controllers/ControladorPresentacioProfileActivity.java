@@ -42,4 +42,20 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public String getCurrentUser() {
         return Cdomini.getCurrentUser();
     }
+
+    public void isMod(String id) {
+        Cdomini.isMod(id);
+    }
+
+    public void isModCallback(String tipus) {
+        activity.setIsMod(tipus);
+    }
+
+    public void banUser(String id) {
+        Cdomini.banUser(id);
+    }
+
+    public void convertToMod(String id) {
+        Cdomini.convertToMod(id);
+    }
 }

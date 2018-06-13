@@ -43,6 +43,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     String current_user;
     String profile_user;
     Boolean current;
+    Boolean isMod;
     ImageView iv;
     Bitmap bitmapImage;
     Uri imageUri;
@@ -61,6 +62,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         current_user = cp.getCurrentUser();
         profile_user = getIntent().getStringExtra("profile_user");
         current = current_user.equals(profile_user);
+        cp.isMod(current_user);
 
         final Button tres_punts = findViewById(R.id.tres_punts);
         tres_punts.setOnClickListener(new View.OnClickListener() {
@@ -74,10 +76,14 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 popup.getMenuInflater().inflate(R.menu.popup_menu_perfil, popupMenu);
                 if(current){
                     popupMenu.findItem(R.id.perfil_propi).setVisible(false);
-
-
+                    popupMenu.findItem(R.id.ban_user).setVisible(false);
+                    popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
                 }
                 else{
+                    if(!isMod){
+                        popupMenu.findItem(R.id.ban_user).setVisible(false);
+                        popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                    }
                     popupMenu.findItem(R.id.afegir_imatge).setVisible(false);
                     popupMenu.findItem(R.id.canviar_mail).setVisible(false);
                     popupMenu.findItem(R.id.canviar_pswd).setVisible(false);
@@ -129,7 +135,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 inte.putExtra("type", "hide");
                                 startActivity(inte);
                                 break;
-
+                            case R.id.ban_user:
+                                cp.banUser(profile_user);
+                            case R.id.convert_to_mod:
+                                cp.convertToMod(profile_user);
                         }
                         return true;
                     }
@@ -419,5 +428,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         //Log.d("interes : ", interes);
         //Log.d("valorrr : ", valor);
         //fer coses amb el nom del interes canviat i el nou valor true false en format string.
+    }
+
+    public void setIsMod(String isMod) {
+        this.isMod = (isMod.equals("moderador"));
+        Log.i("aaaaaaa", this.isMod.toString());
     }
 }

@@ -75,4 +75,30 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     public String getCurrentUser() {
         return this.getSessioUser();
     }
+
+    public void isMod(String id) {
+        UserService service = ServiceManager.getUserService();
+        Call<User> createCall2 = service.getUser(id);
+        createCall2.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Cpresentacio.isModCallback(response.body().getTipus());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("sadasds","aaa");
+            }
+        });
+    }
+
+    public void banUser(String id) {
+        //TODO: canviar nom i contrassenya del user amb id = id
+        Log.i("aaaa", id);
+    }
+
+    public void convertToMod(String id) {
+        //TODO: canviar tipus del user a "moderador"
+        Log.i("aaaa", id);
+    }
 }

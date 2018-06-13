@@ -115,4 +115,6 @@
     <string name="ERRsystem">Error del sistema</string>
     <string name="ERRnoPlaces">No quedavan plazas libres</string>
     <string name="report_post">Reportar post</string>
+    <string name="ban_user">Banear usuario</string>
+    <string name="mod">Convertir usuario a moderador</string>
 </resources>

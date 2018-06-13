@@ -133,4 +133,6 @@
     <string name="ERRsystem">System Error</string>
     <string name="ERRnoPlaces">There were no free places</string>
     <string name="report_post">Report post</string>
+    <string name="ban_user">Ban user</string>
+    <string name="mod">Convert user to mod</string>
 </resources>

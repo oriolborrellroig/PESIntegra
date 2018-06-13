@@ -62,10 +62,7 @@ import integra.pesintegra.R;
 public class PostActivity extends Activity implements View.OnClickListener{
     private static RecyclerView recyclerView;
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private static CommentListAdapter commentlistAdapter;
     String post_id;
     private Post post;
     private static final int SELECTED_PICTURE = 1;
@@ -83,11 +80,13 @@ public class PostActivity extends Activity implements View.OnClickListener{
     Boolean current;
     Boolean hidden;
     Boolean assisteix;
+    Boolean reported;
     private TextView free_places;
     private ArrayList<Comentari> comentaris;
     private FloatingActionButton join, disengage;
 
     private final LoginActivity li = new LoginActivity();
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +108,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         recyclerView =  findViewById(R.id.recycler);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         List<Comentari> myDataset;
        // mAdapter = new CommentAdapter(myDataset);
@@ -137,6 +136,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         current = current_user.equals(post_user);
         hidden = false;
         cp.isHidden(post_id);
+        cp.isReported(current_user, post_id);
 
 
         tres_punts.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +154,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                 }
                 else{
+                    if(reported) popupMenu.findItem(R.id.report_post).setVisible(false);
                     if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
@@ -218,6 +219,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                         });
                                 snackbar3.show();
                                 break;
+
+                            case R.id.report_post:
+                                cp.report_post(current_user, post_id);
 
                             case R.id.borrar_post:
                                 onDelete();
@@ -442,7 +446,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     }
 
     public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp) {
-        commentlistAdapter = new CommentListAdapter(body, pa, cpp);
+        CommentListAdapter commentlistAdapter = new CommentListAdapter(body, pa, cpp);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -475,5 +479,9 @@ public class PostActivity extends Activity implements View.OnClickListener{
             join.setVisibility(View.VISIBLE);
             disengage.setVisibility(View.GONE);
         }
+    }
+
+    public void setReported(boolean reported) {
+        this.reported = reported;
     }
 }
