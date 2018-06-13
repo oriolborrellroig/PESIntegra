@@ -404,6 +404,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
                         iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
+
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

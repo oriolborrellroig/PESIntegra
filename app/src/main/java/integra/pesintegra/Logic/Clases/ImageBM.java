@@ -28,4 +28,8 @@ public class ImageBM {
         byte[] byteImage = Base64.decode(data, 0);
         return BitmapFactory.decodeByteArray(byteImage, 0,byteImage.length);
     }
+
+    public String getImageString() {
+        return this.data;
+    }
 }

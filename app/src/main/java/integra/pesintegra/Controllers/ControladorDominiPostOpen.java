@@ -267,6 +267,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         ccall.enqueue(new Callback<ImageBM>() {
             @Override
             public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
                 Cpresentacio.getImageResponse(response.body());
             }
 
