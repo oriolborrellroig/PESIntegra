@@ -30,6 +30,9 @@ public interface UserService {
     @PATCH("users/updateMail")
     Call<Void> updateMailUser(@Query("usrid") String userid, @Query("mail") String mail, @Query("pass") String pass);
 
+    @PATCH("users/updatePassword")
+    Call<Void> updatePasswordUser(@Query("usrid") String userid, @Query("newPass") String pass);
+
     @PATCH("users/updateAddToHide")
     Call<Void> updateAddToHide(@Query("usrid") String userid, @Query("postid") String postid);
 
