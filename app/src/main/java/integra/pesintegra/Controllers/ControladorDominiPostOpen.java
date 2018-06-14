@@ -252,6 +252,10 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
+    public void report_comment(String post_id, String comment_id, String user_id){
+        //TODO: crida a BD per afegir el comentari a reportat
+    }
+
     public void report_post(String current_user, String post_id) {
         //TODO: crida a BD per afegir current_user a posts_reportats de post_id
     }

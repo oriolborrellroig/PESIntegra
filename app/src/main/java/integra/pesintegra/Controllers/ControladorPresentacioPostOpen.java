@@ -20,7 +20,15 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public void deleteComment(String post_id, String comment_id){
+        //buscar si te reply
+
+
         Cdomini.deleteComment(post_id, comment_id);
+
+    }
+
+    public void reportComment(String post_id, String comment_id, String user_id){
+        Cdomini.report_comment(post_id, comment_id, user_id);
     }
 
     public static void deletePost (String postId) {
@@ -132,5 +140,17 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
     public void getImageResponse (ImageBM image) {
         activity.loadImage(image.getBitmapImage());
+    }
+
+    public void afegeix_comentari(Comentari nou_comment){
+        activity.add_comment(nou_comment);
+    }
+
+    public void actualitzaComments(){
+        activity.updateFeed(activity.comentaris, activity.cc, activity, activity.cp, activity.current);
+    }
+
+    public void borra_comments_post(String id){
+        activity.borra_comments_post(id);
     }
 }

@@ -102,6 +102,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         public TableRow reply_row, send_reply_row;
         String id_comment, id_comment_reply;
         Button btn_enviar_r;
+        EditText comment_text;
 
         String id_post;
         View boto_menu;
@@ -118,6 +119,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             dia = view.findViewById(R.id.cv_data);
             text_reply = view.findViewById(R.id.cv_text_reply);
             dia_reply = view.findViewById(R.id.cv_data_reply);
+            comment_text = view.findViewById(R.id.comentari_r);
             btn_enviar_r = view.findViewById(R.id.enviar_r);
             btn_enviar_r.setOnClickListener(this);
             context2 = view.getContext();
@@ -128,39 +130,26 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         @Override
         public void onClick(View v){
             cp = new ControladorPresentacioPostOpen(pa, context2);
-            /*Log.d("sadf", "abans de fer el gettttttt");
-            String text_comentari = String.valueOf(((EditText) v.findViewById(R.id.comentari_r)).getText());
-            Log.d("asdf", "despres de fer el gettttt;");*/
             //TODO: peta al fer el get del text del comentari, pero si es fa en el default no peta, jo no entenc res
             switch (v.getId()) {
                 case R.id.enviar_r:
-                    /*Log.d("jeje", "estic al boto ostia  ");
-
-                    if (!text_comentari.equals("")){
+                    Log.d("jeje", "estic al boto ostia  ");
+                    String text_comentari2 = comment_text.getText().toString();
+                    if (!text_comentari2.equals("")){
                         Log.d("jeje", "estic al boto 222222222222222222222ostia  ");
                         final Calendar c = Calendar.getInstance();
                         int year = c.get(Calendar.YEAR);
                         int month = c.get(Calendar.MONTH);
                         int day = c.get(Calendar.DAY_OF_MONTH);
                         String data= year + "/" + month + "/" + day;
-                        Comentari new_c = cp.creaReply(text_comentari, data, id_post, id_comment); //potser peta lo del id_post i id_comment?
-
-                    }*/
-                    break;
-                default:
-                    Log.d("hi soc", Integer.toString(v.getId()));
-                    String text_comentari2 = ((EditText) v.findViewById(R.id.comentari_r)).getText().toString();
-                    /*if (!text_comentari2.equals("")){
-                        final Calendar c = Calendar.getInstance();
-                        int year = c.get(Calendar.YEAR);
-                        int month = c.get(Calendar.MONTH);
-                        int day = c.get(Calendar.DAY_OF_MONTH);
-                        String data= year + "/" + month + "/" + day;
                         Comentari new_c = cp.creaReply(text_comentari2, data, id_post, id_comment); //potser peta lo del id_post i id_comment?
+                        cp.afegeix_comentari(new_c);
+                        cp.actualitzaComments();
+                        //TODO: update feed
 
                     }
-                    */
                     break;
+
             }
 
 
@@ -177,11 +166,11 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                             popup.getMenuInflater().inflate(R.menu.popup_menu_comentari, popupMenu);
 
                             if(!(c.getUser_id().equals(cpp.getCurrentUser()))){
-                                //popupMenu.findItem(R.id.hide_post).setVisible(false);
-                                //popupMenu.findItem(R.id.show_post).setVisible(false);
                                 popupMenu.findItem(R.id.borrar_comentari).setVisible(false);
+                                popupMenu.findItem(R.id.reportar_comentari).setVisible(true);
                             }else{
                                 popupMenu.findItem(R.id.borrar_comentari).setVisible(true);
+                                popupMenu.findItem(R.id.reportar_comentari).setVisible(false);
                             }
 
 
@@ -197,11 +186,23 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                                     switch (item.getItemId()){
 
                                         case R.id.borrar_comentari:
+                                            for (CommentReply reply : comments){
+                                                Log.d("soc", "soc a borrar un comentari");
+                                                if (reply.getId().equals(id_comment)){
+                                                    Log.d("sa","soc on ha de borrar la reply");
+                                                    //TODO: s'han de borar les replies un cop es borra un comentari
+                                                    if (reply.hasReply()) {
+                                                        cp.deleteComment(id_post, reply.getReply().getId());
+                                                    }
+                                                }
+                                            }
                                             cp.deleteComment(id_post, id_comment);
+                                            cp.borra_comments_post(id_comment);
+                                            cp.actualitzaComments();
                                             break;
 
                                         case R.id.reportar_comentari:
-
+                                            cp.reportComment(id_post, id_comment, cpp.getCurrentUser());
                                             break;
 
                                     }

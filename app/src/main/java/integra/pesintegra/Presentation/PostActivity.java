@@ -67,11 +67,12 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
     private RecyclerView.Adapter mAdapter;
     String post_id;
+    public Context cc;
     private Post post;
     private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
-    private ControladorPresentacioPostOpen cp;
+    public ControladorPresentacioPostOpen cp;
     String current_user;
     String post_user;
     private int places;
@@ -80,9 +81,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
     TextView avgScore;
     RatingBar scoreBar;
     RatingBar userRatingBar;
-    Boolean current, hidden, assisteix, reported, followed;
+    Boolean hidden, assisteix, reported, followed;
+    public Boolean current;
     private TextView free_places;
-    private ArrayList<Comentari> comentaris;
+    public ArrayList<Comentari> comentaris;
     private FloatingActionButton join, disengage;
 
     private final LoginActivity li = new LoginActivity();
@@ -129,7 +131,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         post_text.setText(post.getDescripcio());
         //iv.setImageBitmap(post.getImatge());
         comentaris = post.getComments();
-        Context cc = getApplicationContext();
+        cc = getApplicationContext();
 
         //updateFeed(comentaris, cc, this, cp);
         current_user = cp.getCurrentUser();
@@ -551,5 +553,17 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
     public void loadImage(Bitmap bitmapImage) {
         iv.setImageBitmap(bitmapImage);
+    }
+
+    public void add_comment(Comentari nou_comment){
+        comentaris.add(nou_comment);
+    }
+
+    public void borra_comments_post(String id_a_borrar){
+        for(int i = 0; i < comentaris.size(); i++){
+            if (comentaris.get(i).getID().equals(id_a_borrar)){
+                comentaris.remove(i);
+            }
+        }
     }
 }
