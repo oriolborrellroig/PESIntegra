@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.AllPostsActivity;
@@ -52,8 +53,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         AllPostsActivity.updateFeed(posts,context);
     }
 
-    public static void loadFeedTagsPosts(Integer order) {
-        ArrayList<String> listtags = new ArrayList<String>() ;
+    public static void loadFeedTagsPosts(ArrayList<String> listtags) {
+        //ArrayList<String> listtags = new ArrayList<String>() ;
         CDAllPosts.loadFeedTagsPosts(listtags);
     }//TODO: array buit, cal passar per parametre els tags en format d'arraylist
 
@@ -65,4 +66,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
 
 
     public static void loadReportedPosts() { CDAllPosts.loadReportedPosts();}
+
+    public List<String> getTagsSessio(){
+        return CDAllPosts.getTagsSessio();
+    }
 }

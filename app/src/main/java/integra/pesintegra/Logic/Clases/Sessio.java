@@ -33,9 +33,20 @@ public class Sessio {
         return id;
     }
 
+    public List<String> getTagsSessio(){
+        return tags;
+    }
+
 
     public String getToken() {
         return token;
+    }
+
+    public void setTag(String tag){
+        tags.add(tag);
+    }
+    public void remove_tag(String tag){
+        tags.remove(tag);
     }
 
 

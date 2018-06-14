@@ -49,6 +49,11 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
 
         //String userID = this.getSessioUser();
         UserService service = ServiceManager.getUserService();
+        if (valor.equals("true")){
+            super.set_tag(interes);
+        }else{
+            super.remove_tag(interes);
+        }
         Call<JsonObject> createCall2 = service.setInterest(userID, interes, valor);
         Log.d("interiooor", "user");
         createCall2.enqueue(new Callback<JsonObject>() {
