@@ -38,4 +38,8 @@ public class Sessio {
         return token;
     }
 
+
+    public String getId(){
+        return id;
+    }
 }

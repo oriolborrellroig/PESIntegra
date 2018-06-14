@@ -62,6 +62,10 @@ public class ControladorDomini extends  AbstractBaseController{
         return sessio.getUsername();
     }
 
+    String getSessioId(){
+        return sessio.getId();
+    }
+
 
     String getSessioToken() {
         return sessio.getToken();

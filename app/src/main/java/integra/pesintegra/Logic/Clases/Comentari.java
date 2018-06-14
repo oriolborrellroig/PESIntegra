@@ -19,6 +19,15 @@ public class Comentari implements Serializable {
         setId();
     }
 
+    public Comentari(String user_id, String text, String data, String post_id, String reply_id){
+        this.user_id = user_id;
+        this.text = text;
+        this.data = data;
+        this.post_id = post_id;
+        this.reply_id = reply_id;
+        setId();
+    }
+
     private void setId() {
         this.id = UUID.randomUUID().toString();
     }

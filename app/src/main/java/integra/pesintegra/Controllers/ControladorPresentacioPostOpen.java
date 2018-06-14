@@ -64,8 +64,21 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         return nou_comentari;
     }
 
+    public Comentari creaReply(String text, String data, String post_id, String replyid){
+        //Cdomini.creaComentari(text, data, post_id);
+        String id = Cdomini.getCurrentUser();
+        Comentari nou_comentari = new Comentari(id, text, data, post_id, replyid);
+        Cdomini.addComentari(post_id, nou_comentari);
+        return nou_comentari;
+    }
+
+
     public String getCurrentUser() {
         return Cdomini.getCurrentUser();
+    }
+
+    public String getCurrentUserId() {
+        return Cdomini.getCurrentUserId();
     }
 
     public void isHidden(String post_id) {

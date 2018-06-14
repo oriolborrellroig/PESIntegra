@@ -156,6 +156,7 @@
             android:background="@color/primary_dark" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fer_comentari"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal">

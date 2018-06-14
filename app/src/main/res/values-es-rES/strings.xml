@@ -119,4 +119,5 @@
     <string name="mod">Convertir usuario a moderador</string>
     <string name="comments_reportats2">Comentarios reportados</string>
     <string name="posts_reportats2">Posts reportados</string>
+    <string name="afegir_resposta">Responde</string>
 </resources>

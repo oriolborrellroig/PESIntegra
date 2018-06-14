@@ -30,12 +30,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import org.w3c.dom.Comment;
 import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
@@ -55,6 +57,7 @@ import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Adapter.CommentListAdapter;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
+import integra.pesintegra.Logic.Clases.CommentReply;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
@@ -130,10 +133,18 @@ public class PostActivity extends Activity implements View.OnClickListener{
         //iv.setImageBitmap(post.getImatge());
         comentaris = post.getComments();
         Context cc = getApplicationContext();
-        updateFeed(comentaris, cc, this, cp);
+
+        //updateFeed(comentaris, cc, this, cp);
+        String user_id = cp.getCurrentUserId();
+        for(Comentari comment_for : comentaris){
+            if (comment_for.getuser_id().equals(user_id)){
+                disable_comment();
+            }
+        }
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         current = current_user.equals(post_user);
+        updateFeed(comentaris, cc, this, cp, current);
         hidden = false;
         cp.isHidden(post_id);
         cp.getImage(post_id);
@@ -362,17 +373,22 @@ public class PostActivity extends Activity implements View.OnClickListener{
             case R.id.enviar: //comentari
 
                 String text_comentari = ((EditText) findViewById(R.id.comentari)).getText().toString();
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                String data= year + "/" + month + "/" + day;
-                Comentari new_c = cp.creaComentari(text_comentari, data, post_id);
-                comentaris.add(new_c);
-                EditText editText_comentari = (EditText) findViewById(R.id.comentari);
-                editText_comentari.setText("");
-                Context cc = getApplicationContext();
-                updateFeed(comentaris, cc, this, cp);
+                if (!text_comentari.equals("")){
+                    disable_comment();
+                    final Calendar c = Calendar.getInstance();
+                    int year = c.get(Calendar.YEAR);
+                    int month = c.get(Calendar.MONTH);
+                    int day = c.get(Calendar.DAY_OF_MONTH);
+                    String data= year + "/" + month + "/" + day;
+                    Comentari new_c = cp.creaComentari(text_comentari, data, post_id);
+                    comentaris.add(new_c);
+                    EditText editText_comentari = (EditText) findViewById(R.id.comentari);
+                    editText_comentari.setText("");
+                    Context cc = getApplicationContext();
+                    updateFeed(comentaris, cc, this, cp, current);
+                    //updateFeed(comentaris, cc, this, cp);
+                }
+
                 break;
         }
 
@@ -447,8 +463,32 @@ public class PostActivity extends Activity implements View.OnClickListener{
         Log.d("aaaa", Boolean.toString(this.hidden));
     }
 
-    public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp) {
-        CommentListAdapter commentlistAdapter = new CommentListAdapter(body, pa, cpp);
+    public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp, Boolean current3) {
+        List<CommentReply> new_body = new ArrayList<CommentReply>();
+        for (Comentari comm : body){
+            if (comm.getreply() == null){
+                Log.d("aqui van 2", "lel");
+                CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
+                new_body.add(new_comment_reply);
+            }
+        }
+        Log.d("updatefeed", "estic a update feed");
+        //ara tenim els comentaris que no son replies
+        for(Comentari comm : body){
+            Log.d("hi soc", "hi soc!!!");
+            if (comm.getreply() != null){ //aquest es un reply al comentari original
+                CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
+                for (CommentReply cmm : new_body){
+                    if (cmm.getId().equals(comm.getreply())){
+                        cmm.setHasReply(true);
+                        cmm.setReply(new_comment_reply);
+                        Log.d("updatefeed", "estic a una replyyyy");
+                        break; //ja se que no es posen ostia pero mira coses de la bida
+                    }
+                }
+            }
+        }
+        CommentListAdapter commentlistAdapter = new CommentListAdapter(new_body, pa, cpp, current3);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -480,6 +520,11 @@ public class PostActivity extends Activity implements View.OnClickListener{
             join.setVisibility(View.VISIBLE);
             disengage.setVisibility(View.GONE);
         }
+    }
+
+    private void disable_comment(){
+        LinearLayout layout_comentari = (LinearLayout) findViewById(R.id.fer_comentari);
+        layout_comentari.setVisibility(View.GONE);
     }
 
     public void setReported(boolean reported) {

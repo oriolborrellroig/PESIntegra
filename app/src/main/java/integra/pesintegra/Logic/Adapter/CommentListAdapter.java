@@ -10,8 +10,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RatingBar;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.view.View;
 import android.content.Intent;
@@ -19,11 +23,15 @@ import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 
+import org.w3c.dom.Comment;
+
+import java.util.Calendar;
 import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
 import integra.pesintegra.Logic.Clases.Comentari;
+import integra.pesintegra.Logic.Clases.CommentReply;
 import integra.pesintegra.Logic.Clases.Post;
 //import integra.pesintegra.Logic.Interface.CustomItemClickListener;
 import integra.pesintegra.Presentation.EditActivityActivity;
@@ -40,15 +48,17 @@ import retrofit2.Response;
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.MyViewHolder>{
 
     private Context context;
-    private static List<Comentari> comments;
+    private static List<CommentReply> comments;
     private ControladorPresentacioPostOpen cp;
     private PostActivity pa;
     private ControladorPresentacioPostOpen cpp;
+    public Boolean mod_or_op;
 
-    public CommentListAdapter (List<Comentari> list_comments, PostActivity pa, ControladorPresentacioPostOpen cpp){
+    public CommentListAdapter (List<CommentReply> list_comments, PostActivity pa, ControladorPresentacioPostOpen cpp, Boolean mod_or_op){
         this.comments = list_comments;
         this.pa = pa;
         this.cpp = cpp;
+        this.mod_or_op = mod_or_op;
     }
 
     @Override
@@ -63,12 +73,22 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Comentari com = getItem(position);
-
-        holder.text.setText(com.gettext());
-        holder.dia.setText(String.valueOf(com.getdata()));
-        holder.id_comment = com.getID();
+        CommentReply com = getItem(position);
+        if (!mod_or_op || com.hasReply()){ //cas de OP o que te resposta -> no es pot contestar
+            holder.send_reply_row.setVisibility(View.GONE);
+        }
+        holder.text.setText(com.getText());
+        holder.dia.setText(String.valueOf(com.getData()));
+        holder.id_comment = com.getId();
         holder.id_post = com.getPost_id();
+        if (com.hasReply()){
+            holder.text_reply.setText(com.getReply().getText());
+            holder.dia_reply.setText(String.valueOf(com.getReply().getData()));
+            holder.id_comment_reply = com.getReply().getId();
+            holder.c_reply = com.getReply();
+        }else{ //cas que no te resposta -> no es veu la resposta
+            holder.reply_row.setVisibility(View.GONE);
+        }
         holder.c = com; //aixo guarda el comentari al holder, per quan es clica i tal
     }
 
@@ -77,18 +97,29 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView text, dia; //aixo hauria de ser privat i aquestes coses pero weno
-        public Comentari c;
-        String id_comment;
+        public TextView text, dia, text_reply, dia_reply; //aixo hauria de ser privat i aquestes coses pero weno
+        public CommentReply c, c_reply;
+        public TableRow reply_row, send_reply_row;
+        String id_comment, id_comment_reply;
+        Button btn_enviar_r;
+
         String id_post;
         View boto_menu;
         private final Context context2;
 
+
+
+
         public MyViewHolder(View view) {
             super(view);
+            send_reply_row = view.findViewById(R.id.send_reply_row);
+            reply_row = view.findViewById(R.id.reply_row);
             text = view.findViewById(R.id.cv_text);
             dia = view.findViewById(R.id.cv_data);
-            boto_menu = view.findViewById((R.id.opcions_comentari));
+            text_reply = view.findViewById(R.id.cv_text_reply);
+            dia_reply = view.findViewById(R.id.cv_data_reply);
+            btn_enviar_r = view.findViewById(R.id.enviar_r);
+            btn_enviar_r.setOnClickListener(this);
             context2 = view.getContext();
             view.setClickable(true);
             view.setOnClickListener(this);
@@ -97,7 +128,40 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         @Override
         public void onClick(View v){
             cp = new ControladorPresentacioPostOpen(pa, context2);
+            /*Log.d("sadf", "abans de fer el gettttttt");
+            String text_comentari = String.valueOf(((EditText) v.findViewById(R.id.comentari_r)).getText());
+            Log.d("asdf", "despres de fer el gettttt;");*/
+            //TODO: peta al fer el get del text del comentari, pero si es fa en el default no peta, jo no entenc res
+            switch (v.getId()) {
+                case R.id.enviar_r:
+                    /*Log.d("jeje", "estic al boto ostia  ");
 
+                    if (!text_comentari.equals("")){
+                        Log.d("jeje", "estic al boto 222222222222222222222ostia  ");
+                        final Calendar c = Calendar.getInstance();
+                        int year = c.get(Calendar.YEAR);
+                        int month = c.get(Calendar.MONTH);
+                        int day = c.get(Calendar.DAY_OF_MONTH);
+                        String data= year + "/" + month + "/" + day;
+                        Comentari new_c = cp.creaReply(text_comentari, data, id_post, id_comment); //potser peta lo del id_post i id_comment?
+
+                    }*/
+                    break;
+                default:
+                    Log.d("hi soc", Integer.toString(v.getId()));
+                    String text_comentari2 = ((EditText) v.findViewById(R.id.comentari_r)).getText().toString();
+                    /*if (!text_comentari2.equals("")){
+                        final Calendar c = Calendar.getInstance();
+                        int year = c.get(Calendar.YEAR);
+                        int month = c.get(Calendar.MONTH);
+                        int day = c.get(Calendar.DAY_OF_MONTH);
+                        String data= year + "/" + month + "/" + day;
+                        Comentari new_c = cp.creaReply(text_comentari2, data, id_post, id_comment); //potser peta lo del id_post i id_comment?
+
+                    }
+                    */
+                    break;
+            }
 
 
 
@@ -112,7 +176,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                             Menu popupMenu = popup.getMenu();
                             popup.getMenuInflater().inflate(R.menu.popup_menu_comentari, popupMenu);
 
-                            if(!(c.getuser_id().equals(cpp.getCurrentUser()))){
+                            if(!(c.getUser_id().equals(cpp.getCurrentUser()))){
                                 //popupMenu.findItem(R.id.hide_post).setVisible(false);
                                 //popupMenu.findItem(R.id.show_post).setVisible(false);
                                 popupMenu.findItem(R.id.borrar_comentari).setVisible(false);
@@ -163,7 +227,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
 
 
-    public Comentari getItem(int position){
+    public CommentReply getItem(int position){
         return comments.get(position);
     }
 
