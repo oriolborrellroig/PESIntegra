@@ -70,4 +70,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public List<String> getTagsSessio(){
         return CDAllPosts.getTagsSessio();
     }
+
+    public void loadTagsSessio() {
+        CDAllPosts.loadTagsSessio();
+    }
 }

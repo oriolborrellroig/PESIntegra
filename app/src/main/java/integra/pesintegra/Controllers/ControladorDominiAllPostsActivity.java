@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.AllPostsActivity;
 import integra.pesintegra.Presentation.LoginActivity;
 import integra.pesintegra.Services.PostService;
@@ -122,5 +123,23 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     public void loadReportedPosts() {
         //TODO: Carregar posts reportats
+    }
+
+    public void loadTagsSessio() {
+        String id = super.getSessioUser();
+        UserService service = ServiceManager.getUserService();
+        Call<User> createCall2 = service.getUser(id);
+        createCall2.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                for (int i = 0; i < response.body().getInteressos().size(); ++i) {
+                    ControladorDominiAllPostsActivity.super.set_tag(response.body().getInteressos().get(i));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
     }
 }
