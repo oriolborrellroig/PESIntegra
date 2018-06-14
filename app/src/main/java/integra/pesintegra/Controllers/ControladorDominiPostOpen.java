@@ -266,6 +266,21 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         Cpresentacio.isReportedCallback(false);
     }
 
+    public void rejectReportedPost(String postid) {
+        PostService service = ServiceManager.getPostService();
+        Call<Void> createCall = service.rejectReportPost(postid);
+        createCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+               //TODO: Ja esta el update fet, no se que voleu que fagi, fet per Oriol Borrell.
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            }
+        });
+    }
+
     public ImageBM getImage(String id){
 
         ImageService service = ServiceManager.getImageService();

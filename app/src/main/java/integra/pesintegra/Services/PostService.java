@@ -76,4 +76,7 @@ public interface PostService {
     @GET("/post/searchByTags")
     Call<ArrayList<Post>> getPostsByTags( @Query("tags") ArrayList<String> listtags);
 
+    @PATCH("/mod/rejectReport")
+    Call<Void> rejectReportPost( @Query("postid") String postid);
+
 }
