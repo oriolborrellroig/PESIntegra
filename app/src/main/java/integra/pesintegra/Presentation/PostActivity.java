@@ -80,10 +80,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     TextView avgScore;
     RatingBar scoreBar;
     RatingBar userRatingBar;
-    Boolean current;
-    Boolean hidden;
-    Boolean assisteix;
-    Boolean reported;
+    Boolean current, hidden, assisteix, reported, followed;
     private TextView free_places;
     private ArrayList<Comentari> comentaris;
     private FloatingActionButton join, disengage;
@@ -145,6 +142,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         }
         updateFeed(comentaris, cc, this, cp, current);
         hidden = false;
+        followed = false;
+        // cp.isFollowed(post_id) fer funcio pq acabi setejant followed a true o false
         cp.isHidden(post_id);
         cp.getImage(post_id);
         cp.isReported(current_user, post_id);
@@ -158,7 +157,12 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 Menu popupMenu = popup.getMenu();
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popupMenu);
-
+                if (followed) {  //aixo no passa ara
+                    popupMenu.findItem(R.id.follow_post).setVisible(false);
+                }
+                else {
+                    popupMenu.findItem(R.id.unfollow_post).setVisible(false);
+                }
                 if(current){
                     popupMenu.findItem(R.id.report_post).setVisible(false);
                     if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
@@ -182,6 +186,18 @@ public class PostActivity extends Activity implements View.OnClickListener{
                         ).show();
 
                         switch (item.getItemId()){
+
+                            case R.id.follow_post:
+
+                                break;
+
+                            case R.id.unfollow_post:
+
+                                break;
+
+                            case R.id.translate_post:
+
+                                break;
 
                             case R.id.show_post:
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
@@ -350,7 +366,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
             case R.id.join:
                 if (places > 0) {
-                    Log.i("ERRORRR", Integer.toString(places));
                     cp.addAttendant(post.getId(), current_user);
                     cp.userAssisteix(post.getId(), current_user);
                     print_free_places();

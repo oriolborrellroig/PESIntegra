@@ -120,4 +120,7 @@
     <string name="reported_comments">Comentaris reportats</string>
     <string name="reported_posts">Posts reportats</string>
     <string name="afegir_resposta">Respon</string>
+    <string name="BTNfollow">Seguir post</string>
+    <string name="BTNunfollow">Deixar de seguir</string>
+    <string name="BTNtranslate">Traduir post</string>
 </resources>
