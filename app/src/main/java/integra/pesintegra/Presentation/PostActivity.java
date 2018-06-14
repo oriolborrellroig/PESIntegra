@@ -264,7 +264,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                             case R.id.maps:
                                 Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-                                intent.putExtra("type", "post");
+                                intent.putExtra("loc", post.getLocalitzacio());
+                                intent.putExtra("origin", "post");
                                 intent.putExtra("lat", post.getLat());
                                 intent.putExtra("lng", post.getLng());
                                 startActivity(intent);
@@ -381,6 +382,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
             case R.id.post_direccio:
                 Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                intent.putExtra("loc", post.getLocalitzacio());
+                intent.putExtra("origin", "post");
                 intent.putExtra("lat", post.getLat());
                 intent.putExtra("lng", post.getLng());
                 startActivity(intent);

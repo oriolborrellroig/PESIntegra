@@ -36,13 +36,11 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         createCall2.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Log.d("ASDAS", response.body().getId());
                 Cpresentacio.setUserInfo(response.body());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.d("sadasds","aaa");
             }
         });
     }

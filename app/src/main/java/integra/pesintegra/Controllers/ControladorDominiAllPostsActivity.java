@@ -39,9 +39,9 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     }
 
-    public void loadFeedCalendarPosts(){
+    public void loadFeedCalendarPosts(String id){
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("any", 1);
+        Call<ArrayList<Post>> call = service.getBookedPosts(id);
         enqueueCall(call);
     }
 

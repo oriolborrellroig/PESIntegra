@@ -12,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -103,6 +104,12 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
             case R.id.calendar:
                 intent = new Intent(getApplicationContext(), AllPostsActivity.class);
                 intent.putExtra("type", "calendar");
+                startActivity(intent);
+                break;
+            case R.id.google_maps:
+                Log.d("aaaa", "hollaaaaa");
+                intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("origin", "calendar");
                 startActivity(intent);
                 break;
             case R.id.information:

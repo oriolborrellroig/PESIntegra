@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioAdvancedSearchActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
@@ -106,7 +107,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 break;
             case "calendar":
                 hide_buttons();
-                ControladorPresentacioAllPostsActivity.loadFeedTaCalendarPosts();
+                ControladorPresentacioAllPostsActivity.loadFeedTaCalendarPosts(cs.getSessioUser());
                 break;
             case "adv_search":
                 hide_buttons();

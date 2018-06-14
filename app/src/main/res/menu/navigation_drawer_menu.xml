@@ -72,6 +72,11 @@
             android:title="@string/calendar"
             android:icon="@mipmap/ic_calendar_blank_grey600_36dp">
         </item>
+        <item
+            android:id="@+id/google_maps"
+            android:title="@string/google_maps"
+            android:icon="@mipmap/ic_google_maps">
+        </item>
     </group>
 
 

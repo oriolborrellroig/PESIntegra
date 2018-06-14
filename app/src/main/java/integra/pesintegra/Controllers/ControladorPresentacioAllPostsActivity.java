@@ -57,8 +57,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         CDAllPosts.loadFeedTagsPosts(listtags);
     }//TODO: array buit, cal passar per parametre els tags en format d'arraylist
 
-    public static void loadFeedTaCalendarPosts() {
-        CDAllPosts.loadFeedCalendarPosts();
+    public static void loadFeedTaCalendarPosts(String id) {
+        CDAllPosts.loadFeedCalendarPosts(id);
     }
 
     public void loadFeedAdvSearch(Bundle extras) { CDAllPosts.loadFeedAdvSearch(extras); }
