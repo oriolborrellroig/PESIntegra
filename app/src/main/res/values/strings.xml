@@ -135,7 +135,7 @@
     <string name="report_post">Report post</string>
     <string name="ban_user">Ban user</string>
     <string name="mod">Convert user to mod</string>
-    <string name="comments_reportats2">Reported comments</string>
-    <string name="posts_reportats2">Reported posts</string>
+    <string name="reported_comments">Reported comments</string>
+    <string name="reported_posts">Reported posts</string>
     <string name="afegir_resposta">Reply</string>
 </resources>

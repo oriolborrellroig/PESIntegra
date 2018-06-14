@@ -64,5 +64,5 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public void loadFeedAdvSearch(Bundle extras) { CDAllPosts.loadFeedAdvSearch(extras); }
 
 
-
+    public static void loadReportedPosts() { CDAllPosts.loadReportedPosts();}
 }

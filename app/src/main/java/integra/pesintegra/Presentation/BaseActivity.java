@@ -31,8 +31,6 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
         this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_base);
         setView();
-
-
     }
 
     protected void setView() {
@@ -48,10 +46,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -152,14 +147,6 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                         })
                         .setNegativeButton(R.string.msgNo, null)
                         .show();
-                break;
-            case R.id.posts_reportats:
-                intent = new Intent(getApplicationContext(), AllPostsActivity.class);
-                intent.putExtra("type", "any");
-                startActivity(intent);
-                break;
-            case R.id.comentaris_reportats:
-
                 break;
         }
 

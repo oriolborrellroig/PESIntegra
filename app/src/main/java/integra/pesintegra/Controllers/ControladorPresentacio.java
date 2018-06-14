@@ -124,5 +124,4 @@ public class ControladorPresentacio extends AbstractBaseController {
         return cntrlDom.getSessioUser();
     }
 
-
 }

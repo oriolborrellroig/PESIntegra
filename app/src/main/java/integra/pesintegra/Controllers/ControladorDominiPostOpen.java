@@ -179,9 +179,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         return this.getSessioUser();
     }
 
-    public String getCurrentUserId(){
-        return this.getSessioId();
-    }
+
 
     public void isHidden(final String post_id) {
         PostService service = ServiceManager.getPostService();

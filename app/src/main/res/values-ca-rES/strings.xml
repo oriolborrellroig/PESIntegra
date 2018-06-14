@@ -117,7 +117,7 @@
     <string name="report_post">Reportar post</string>
     <string name="ban_user">Banejar usuari</string>
     <string name="mod">Convertir usuari a moderador</string>
-    <string name="comments_reportats2">Comentaris reportats</string>
-    <string name="posts_reportats2">Posts reportats</string>
+    <string name="reported_comments">Comentaris reportats</string>
+    <string name="reported_posts">Posts reportats</string>
     <string name="afegir_resposta">Respon</string>
 </resources>

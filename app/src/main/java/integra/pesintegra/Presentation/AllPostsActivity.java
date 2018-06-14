@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorPresentacioAdvancedSearchActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
@@ -111,6 +112,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 hide_buttons();
                 cs.loadFeedAdvSearch(getIntent().getExtras());
                 break;
+            case "reported":
+                ControladorPresentacioAllPostsActivity.loadReportedPosts();
         }
     }
 

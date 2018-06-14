@@ -135,15 +135,14 @@ public class PostActivity extends Activity implements View.OnClickListener{
         Context cc = getApplicationContext();
 
         //updateFeed(comentaris, cc, this, cp);
-        String user_id = cp.getCurrentUserId();
-        for(Comentari comment_for : comentaris){
-            if (comment_for.getuser_id().equals(user_id)){
-                disable_comment();
-            }
-        }
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         current = current_user.equals(post_user);
+        for(Comentari comment_for : comentaris){
+            if (comment_for.getuser_id().equals(current_user)){
+                disable_comment();
+            }
+        }
         updateFeed(comentaris, cc, this, cp, current);
         hidden = false;
         cp.isHidden(post_id);
@@ -249,6 +248,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
                             case R.id.maps:
                                 Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
+                                intent.putExtra("type", "post");
                                 intent.putExtra("lat", post.getLat());
                                 intent.putExtra("lng", post.getLng());
                                 startActivity(intent);

@@ -77,9 +77,6 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         return Cdomini.getCurrentUser();
     }
 
-    public String getCurrentUserId() {
-        return Cdomini.getCurrentUserId();
-    }
 
     public void isHidden(String post_id) {
         Cdomini.isHidden(post_id);

@@ -39,7 +39,4 @@ public class Sessio {
     }
 
 
-    public String getId(){
-        return id;
-    }
 }

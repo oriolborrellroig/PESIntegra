@@ -79,17 +79,22 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     popupMenu.findItem(R.id.perfil_propi).setVisible(false);
                     popupMenu.findItem(R.id.ban_user).setVisible(false);
                     popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+
                 }
                 else{
-                    if(!isMod){
-                        popupMenu.findItem(R.id.ban_user).setVisible(false);
-                        popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
-                    }
+                    popupMenu.findItem(R.id.reported_posts).setVisible(false);
                     popupMenu.findItem(R.id.afegir_imatge).setVisible(false);
                     popupMenu.findItem(R.id.canviar_mail).setVisible(false);
                     popupMenu.findItem(R.id.canviar_pswd).setVisible(false);
                     popupMenu.findItem(R.id.posts_amagats).setVisible(false);
 
+                }
+                if(!isMod){
+                    popupMenu.findItem(R.id.reported_posts).setVisible(false);
+                    popupMenu.findItem(R.id.ban_user).setVisible(false);
+                    popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                    popupMenu.findItem(R.id.reported_posts).setVisible(false);
+                    popupMenu.findItem(R.id.reported_comments).setVisible(false);
                 }
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -140,6 +145,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 cp.banUser(profile_user);
                             case R.id.convert_to_mod:
                                 cp.convertToMod(profile_user);
+                            case R.id.reported_posts:
+                                Intent intentt = new Intent(getApplicationContext(), AllPostsActivity.class);
+                                intentt.putExtra("type", "reported");
+                                startActivity(intentt);
                         }
                         return true;
                     }

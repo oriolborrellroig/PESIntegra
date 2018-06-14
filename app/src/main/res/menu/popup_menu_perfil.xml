@@ -35,4 +35,13 @@
     <item
         android:id="@+id/ban_user"
         android:title="@string/ban_user"/>
+
+    <item
+        android:id="@+id/reported_posts"
+        android:title="@string/reported_posts"/>
+
+    <item
+        android:id="@+id/reported_comments"
+        android:title="@string/reported_comments"/>
+
 </menu>

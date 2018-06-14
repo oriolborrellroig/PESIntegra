@@ -120,4 +120,7 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     }
 
 
+    public void loadReportedPosts() {
+        //TODO: Carregar posts reportats
+    }
 }

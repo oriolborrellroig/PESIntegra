@@ -13,8 +13,10 @@ import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Logic.Clases.Sessio;
+import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.ServiceManager;
+import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,7 +27,7 @@ public class ControladorDomini extends  AbstractBaseController{
     private static Sessio sessio;
     public  ImageBM result;
 
-    public ControladorDomini () {}
+    public ControladorDomini () {  }
 
     void setSessio(Sessio usuari) {
 
@@ -60,10 +62,6 @@ public class ControladorDomini extends  AbstractBaseController{
 
     String getSessioUser() {
         return sessio.getUsername();
-    }
-
-    String getSessioId(){
-        return sessio.getId();
     }
 
 
