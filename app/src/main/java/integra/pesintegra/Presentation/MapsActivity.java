@@ -60,10 +60,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void setPosts(ArrayList<Post> posts) {
         LatLng coord;
-        for(int i = 0; i < posts.size(); ++i){
-            coord = new LatLng(posts.get(i).getLat(), posts.get(i).getLng());
-            googleMap.addMarker(new MarkerOptions().position(coord).title(posts.get(i).getLocalitzacio()));
+        if(posts == null){
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("No posts in calendar"));
+        }
+        else {
+            for (int i = 0; i < posts.size(); ++i) {
+                coord = new LatLng(posts.get(i).getLat(), posts.get(i).getLng());
+                googleMap.addMarker(new MarkerOptions().position(coord).title(posts.get(i).getLocalitzacio()));
 
+            }
         }
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0,0), 3.0f));
     }

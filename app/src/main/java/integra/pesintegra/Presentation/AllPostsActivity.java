@@ -293,11 +293,13 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     }
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
-        listAdapter = new ListAdapter(body);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(listAdapter);
+        if(body != null) {
+            listAdapter = new ListAdapter(body);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(listAdapter);
+        }
     }
 
 
