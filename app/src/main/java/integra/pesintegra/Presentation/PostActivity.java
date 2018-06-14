@@ -566,4 +566,5 @@ public class PostActivity extends Activity implements View.OnClickListener{
             }
         }
     }
+
 }

@@ -22,10 +22,13 @@ public interface ImageService {
     Call<ImageBM> getImagePost(@Query ("idImage") String imageId);
 
     @POST("/image/newPost")
-    Call<Void> createImage(@Body ImageBM pic);
+    Call<Void> createImagePost(@Body ImageBM pic);
 
-    @PATCH("/image/update")
-    Call<Void> updateImage(@Body ImageBM pic);
+    @GET("/image/getProfile")
+    Call<ImageBM> getImageProfile(@Query ("idImage") String imageId);
+
+    @POST("/image/newProfile")
+    Call<Void> createImageProfile(@Body ImageBM pic);
 
 
 

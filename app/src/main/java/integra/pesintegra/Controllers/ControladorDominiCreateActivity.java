@@ -90,8 +90,7 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
         ImageService service = ServiceManager.getImageService();
         Bitmap bm = i.getBitmapImage();
         ImageBM ima = new ImageBM("12345", bm);
-        //Call<Void> ccall = service.createImage(ima);
-        Call<Void> ccall = service.createImage(i);
+        Call<Void> ccall = service.createImagePost(i);
         ccall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

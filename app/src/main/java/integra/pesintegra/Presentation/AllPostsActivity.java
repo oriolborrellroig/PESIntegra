@@ -75,7 +75,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
 
-
+        ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
+        cs.loadTagsSessio();
     }
 
     private void getPostsFromDB(Integer order) {
@@ -103,15 +104,11 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 break;
             case "tags":
                 hide_buttons();
-                Log.d("hola", "soc aqui");
                 List<String> listtags = new ArrayList<String>();
                 listtags = cs.getTagsSessio();
-                Log.d("tinc tags", "tinc tags???");
-                Log.d("mida dels tags", Integer.toString(listtags.size()));
                 ArrayList<String> listtags2 = new ArrayList<String>();
                 for(String kk : listtags){
                     listtags2.add(kk);
-                    Log.d("tag", kk);
                 }
                 ControladorPresentacioAllPostsActivity.loadFeedTagsPosts(listtags2);
                 break;
