@@ -252,18 +252,42 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
+    public void report_post(String current_user, String post_id) {
+        PostService service = ServiceManager.getPostService();
+        Call<Void> createCall = service.reportPost(post_id, current_user);
+        createCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Cpresentacio.isReportedCallback(true);
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
     public void report_comment(String post_id, String comment_id, String user_id){
         //TODO: crida a BD per afegir el comentari a reportat
     }
 
-    public void report_post(String current_user, String post_id) {
-        //TODO: crida a BD per afegir current_user a posts_reportats de post_id
-    }
-
     public void isReported(String current_user, String post_id) {
-        //TODO; crida a BD per saber si current_user ha reportat post_id.
-        //TODO: cal guardar el resultat a reported en l'activitat. Canviar aquest false per la resposta de la crida.
-        Cpresentacio.isReportedCallback(false);
+        PostService service = ServiceManager.getPostService();
+        Call<String> createCall = service.isReported(post_id, current_user);
+        createCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.body().equals("True")) Cpresentacio.isReportedCallback(true);
+                else Cpresentacio.isReportedCallback(false);
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 
     public void rejectReportedPost(String postid) {

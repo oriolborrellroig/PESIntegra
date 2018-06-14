@@ -11,14 +11,16 @@ public class Sessio {
     private List<String> tags;
     private String idioma;
     private String token;
+    private String tipusUser;
 
 
     //creacio d'un usuari nou amb tags buids, sense foto...
-    public Sessio (String id, String token) {
+    public Sessio (String id, String token, String tipus) {
         this.id = id;
         this.idioma = "Catala";  //equivaldrà a numero del doc.
         this.tags = new ArrayList<>();
         this.token = token;
+        this.tipusUser = tipus;
     }
 
 

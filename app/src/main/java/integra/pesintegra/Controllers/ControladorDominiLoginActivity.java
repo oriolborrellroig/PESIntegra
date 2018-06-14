@@ -36,7 +36,8 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
                 }
                 else {
                     createSession(response.body().get("token").toString().replace("\"", ""),
-                            response.body().get("user").toString().replace("\"", ""));
+                            response.body().get("user").toString().replace("\"", ""),
+                            response.body().get("tipus").toString().replace("\"", ""));
                     Cpresentacio.acceptLogin();
                 }
 
@@ -48,8 +49,8 @@ public class ControladorDominiLoginActivity extends ControladorDomini {
         });
     }
 
-    private void createSession (String token, String username) {
-        Sessio sessio = new Sessio(username,token);
+    private void createSession (String token, String username, String tipus) {
+        Sessio sessio = new Sessio(username,token, tipus);
         this.setSessio(sessio);
 
     }

@@ -65,6 +65,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         current = current_user.equals(profile_user);
         cp.isMod(current_user);
 
+        cp.getImage(current_user);
         final Button tres_punts = findViewById(R.id.tres_punts);
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -406,7 +407,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         int amplada = iv.getMaxWidth();
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
                         //iv.setImageBitmap(bitmapImage);
-                        ImageBM image_to_store = new ImageBM("id_loko", bitmapImage);
+                        ImageBM image_to_store = new ImageBM(current_user, bitmapImage);
                         cp.addProfileImage(image_to_store);
                         //carregar de la BD per provar que funciona i tal
                         Bitmap lol_xd_prova = image_to_store.getBitmapImage();

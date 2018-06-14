@@ -17,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -79,4 +80,9 @@ public interface PostService {
     @PATCH("/mod/rejectReport")
     Call<Void> rejectReportPost( @Query("postid") String postid);
 
+    @PUT("post/report")
+    Call<Void> reportPost(@Query("postid") String postid, @Query("userid") String userid);
+
+    @GET("post/hasReported")
+    Call<String> isReported(@Query("postid") String postid, @Query("userid") String userid);
 }

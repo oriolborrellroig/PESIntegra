@@ -105,12 +105,10 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
 
 
     public void storeImage(ImageBM i){
-
         ImageService service = ServiceManager.getImageService();
         Bitmap bm = i.getBitmapImage();
         ImageBM ima = new ImageBM("12345", bm);
-        //Call<Void> ccall = service.createImage(ima);
-        Call<Void> ccall = service.createImage(i);
+        Call<Void> ccall = service.createImageProfile(i);
         ccall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -121,6 +119,24 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.d("sadasds","aaa");
             }
+    });
+    }
+
+    public ImageBM getImage(String id){
+
+        ImageService service = ServiceManager.getImageService();
+        Call<ImageBM> ccall = service.getImageProfile(id);
+        ccall.enqueue(new Callback<ImageBM>() {
+            @Override
+            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
+                Cpresentacio.getImageResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ImageBM> call, Throwable t) {
+            }
         });
+        return result;
     }
 }
