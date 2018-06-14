@@ -79,4 +79,7 @@ public interface PostService {
     @PATCH("/mod/rejectReport")
     Call<Void> rejectReportPost( @Query("postid") String postid);
 
+    @GET("/posts/reportedPosts")
+    Call<ArrayList<Post>> getReportedPosts();
+
 }

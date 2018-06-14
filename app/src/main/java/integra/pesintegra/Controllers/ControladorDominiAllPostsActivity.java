@@ -106,6 +106,12 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
     }
 
+    public void loadFeedReportedPosts () {
+        PostService service = ServiceManager.getPostService();
+        Call<ArrayList<Post>> call = service.getReportedPosts();
+        enqueueCall(call);
+    }
+
     private void enqueueCall (Call<ArrayList<Post>> call) {
         call.enqueue(new Callback<ArrayList<Post>>() {
             @Override
