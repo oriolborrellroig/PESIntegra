@@ -153,4 +153,8 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     public void borra_comments_post(String id){
         activity.borra_comments_post(id);
     }
+
+   /* public String getusernamebyid(String id){
+
+    }*/
 }

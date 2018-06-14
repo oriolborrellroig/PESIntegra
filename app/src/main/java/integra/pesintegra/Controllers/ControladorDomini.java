@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
@@ -63,6 +66,19 @@ public class ControladorDomini extends  AbstractBaseController{
     String getSessioUser() {
         return sessio.getUsername();
     }
+
+    public List<String> getTagsSessio(){
+        return sessio.getTagsSessio();
+    }
+
+    public void set_tag(String tag){
+        sessio.setTag(tag);
+    }
+
+    public void remove_tag(String tag){
+        sessio.remove_tag(tag);
+    }
+
 
 
     String getSessioToken() {
