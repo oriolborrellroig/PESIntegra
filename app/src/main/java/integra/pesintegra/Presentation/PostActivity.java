@@ -247,7 +247,9 @@ public class PostActivity extends Activity implements View.OnClickListener {
     private void onDelete() {
         new ControladorPresentacioPostOpen(this, getApplicationContext());
         ControladorPresentacioPostOpen.deletePost(post.getId());
-        this.finish();
+        Intent intent = new Intent(getApplicationContext(), AllPostsActivity.class);
+        intent.putExtra("type", "any");
+        startActivity(intent);
     }
 
     @SuppressLint("SetTextI18n")
@@ -373,6 +375,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
         //updateFeed(comentaris, cc, this, cp);
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
+        cp.isMod(post_user);
         current = current_user.equals(post_user);
         for (Comentari comment_for : comentaris) {
             if (comment_for.getuser_id().equals(current_user)) {
@@ -403,8 +406,9 @@ public class PostActivity extends Activity implements View.OnClickListener {
                     if (hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
-                    popupMenu.findItem(R.id.borrar_post).setVisible(false);
+
                 }
+                if(!isMod) popupMenu.findItem(R.id.borrar_post).setVisible(false);
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

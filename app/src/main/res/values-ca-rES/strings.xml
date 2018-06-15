@@ -126,4 +126,5 @@
     <string name="BTNtranslate">Traduir post</string>
     <string name="n_attendants">Nombre de participants</string>
     <string name="ERRnotValidAttendants">El nombre de participants ha de ser un enter</string>
+    <string name="unblock_user">Desbloquejar usuari</string>
 </resources>

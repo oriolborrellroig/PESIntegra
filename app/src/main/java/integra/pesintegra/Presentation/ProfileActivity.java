@@ -64,6 +64,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         current_user = cp.getCurrentUser();
         profile_user = getIntent().getStringExtra("profile_user");
         current = current_user.equals(profile_user);
+        posarData();
+    }
+    private void posarData(){
         cp.isMod(current_user);
         cp.getProfileTipus(profile_user);
 
@@ -82,7 +85,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     popupMenu.findItem(R.id.perfil_propi).setVisible(false);
                     popupMenu.findItem(R.id.ban_user).setVisible(false);
                     popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
-
+                    popupMenu.findItem(R.id.unblock_user).setVisible(false);
                 }
                 else{
                     popupMenu.findItem(R.id.reported_posts).setVisible(false);
@@ -98,12 +101,19 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
                     popupMenu.findItem(R.id.reported_posts).setVisible(false);
                     popupMenu.findItem(R.id.reported_comments).setVisible(false);
+                    popupMenu.findItem(R.id.unblock_user).setVisible(false);
                 }
-                if(profileTipus.equals("moderador")){
-                    popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
-                }
-                else if(profileTipus.equals("bloquejat")){
-                    popupMenu.findItem(R.id.ban_user).setVisible(false);
+                switch (profileTipus) {
+                    case "moderador":
+                        popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                        popupMenu.findItem(R.id.unblock_user).setVisible(false);
+                        break;
+                    case "bloquejat":
+                        popupMenu.findItem(R.id.ban_user).setVisible(false);
+                        break;
+                    case "usuari":
+                        popupMenu.findItem(R.id.unblock_user).setVisible(false);
+                        break;
                 }
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -152,9 +162,15 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 break;
                             case R.id.ban_user:
                                 cp.banUser(profile_user);
+                                posarData();
+                                break;
+                            case R.id.unblock_user:
+                                cp.unblockUser(profile_user);
+                                posarData();
                                 break;
                             case R.id.convert_to_mod:
                                 cp.convertToMod(profile_user);
+                                posarData();
                                 break;
                             case R.id.reported_posts:
                                 Intent intentt = new Intent(getApplicationContext(), AllPostsActivity.class);

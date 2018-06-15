@@ -37,6 +37,10 @@
         android:title="@string/ban_user"/>
 
     <item
+        android:id="@+id/unblock_user"
+        android:title="@string/unblock_user"/>
+
+    <item
         android:id="@+id/reported_posts"
         android:title="@string/reported_posts"/>
 
