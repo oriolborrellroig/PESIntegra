@@ -149,4 +149,6 @@
     <string name="BTNedit">EDIT</string>
     <string name="BTNreobrir">REOPEN</string>
     <string name="reopenPost">Reopen Post</string>
+    <string name="passwordFail">The Old Password doesn\'t match</string>
+    <string name="passwordUpdated">Password updated</string>
 </resources>

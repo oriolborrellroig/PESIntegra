@@ -2,29 +2,26 @@ package integra.pesintegra.Presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import integra.pesintegra.Controllers.ControladorPresentacio;
-import integra.pesintegra.Controllers.ControladorPresentacioChangeMailActivity;
+import android.widget.Toast;
 
 import integra.pesintegra.Controllers.ControladorPresentacioChangePassword;
-import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
-import integra.pesintegra.Logic.Clases.User;
+
 import integra.pesintegra.R;
 
+
 public class ChangePasswordActivity extends Activity implements View.OnClickListener{
-    static ControladorPresentacio cntrlPresentacio;
+
+    static ControladorPresentacioChangePassword cntrlPresentacioCP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cntrlPresentacio = new ControladorPresentacio();
+        cntrlPresentacioCP = new ControladorPresentacioChangePassword(this);
         setContentView(R.layout.activity_changepassword);
 
         Button cancel = findViewById(R.id.change_pswd_cancel);
@@ -36,7 +33,6 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Intent intent;
         switch (view.getId()) {
             case R.id.change_pswd_cancel:
                 this.finish();
@@ -46,11 +42,7 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
                 String pass2 = ((EditText) findViewById(R.id.confirm_pswd_pass1)).getText().toString();
                 String pass3 = ((EditText) findViewById(R.id.confirm_pswd_pass2)).getText().toString();
                 try {
-                    new ControladorPresentacioLoginActivity();
-                    new ControladorPresentacioLoginActivity(ControladorPresentacioLoginActivity.getActivityLogin(), getApplicationContext());
-                    String userID = ControladorPresentacioLoginActivity.getUserSessio();
-                    new ControladorPresentacioChangePassword(this, getApplicationContext()).changePassword(userID, pass1, pass2, pass3);
-                    this.finish();
+                    cntrlPresentacioCP.changePassword(pass1, pass2, pass3);
                     break;
                 }
                 catch (Exception e) {
@@ -61,6 +53,24 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
                             .show();
                 }
                 break;
+        }
+    }
+
+    public void changedMessage(int code) {
+        if (code == 200) {
+            Toast.makeText(
+                    ChangePasswordActivity.this,
+                    R.string.passwordUpdated,
+                    Toast.LENGTH_SHORT
+            ).show();
+            this.finish();
+        }
+        else {
+            Toast.makeText(
+                    ChangePasswordActivity.this,
+                    R.string.passwordFail,
+                    Toast.LENGTH_SHORT
+            ).show();
         }
     }
 }

@@ -131,4 +131,6 @@
     <string name="BTNedit">EDITAR</string>
     <string name="BTNreobrir">REABRIR</string>
     <string name="reopenPost">Reabrir Post</string>
+    <string name="passwordFail">La contraseña antigua no coincide</string>
+    <string name="passwordUpdated">Contraseña actualizada</string>
 </resources>

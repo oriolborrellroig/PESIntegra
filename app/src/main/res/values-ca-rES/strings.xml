@@ -131,4 +131,6 @@
     <string name="BTNedit">EDITAR</string>
     <string name="BTNreobrir">REOBRIR</string>
     <string name="reopenPost">Reobrir Post</string>
+    <string name="passwordFail">La contrassenya antiga no coincideix</string>
+    <string name="passwordUpdated">Contrassenya actualitzada</string>
 </resources>

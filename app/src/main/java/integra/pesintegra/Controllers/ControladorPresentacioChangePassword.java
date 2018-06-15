@@ -5,14 +5,21 @@ import android.content.Context;
 
 public class ControladorPresentacioChangePassword extends ControladorPresentacio {
     private static ControladorDominiChangePassword CDChangePassword;
+    private static ChangePasswordActivity activity;
 
-    public ControladorPresentacioChangePassword(ChangePasswordActivity act, Context con){
+    public ControladorPresentacioChangePassword(ChangePasswordActivity callActivity){
+        this.activity = callActivity;
         CDChangePassword= new ControladorDominiChangePassword();
     }
 
-    public void changePassword(String userID, String current_pass, String new_pass, String new_pass_confirm) throws Exception{
+
+    public void changePassword(String current_pass, String new_pass, String new_pass_confirm) throws Exception{
         comprova_contrasenya_coincident(new_pass, new_pass_confirm);
-        CDChangePassword.canviar_contrasenya(userID, current_pass, new_pass);
+        CDChangePassword.canviar_contrasenya(current_pass, new_pass);
+    }
+
+    public static void answer(int code) {
+        activity.changedMessage(code);
     }
 
 }
