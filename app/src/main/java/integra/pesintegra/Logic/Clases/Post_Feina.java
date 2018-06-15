@@ -1,6 +1,5 @@
 package integra.pesintegra.Logic.Clases;
 
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 

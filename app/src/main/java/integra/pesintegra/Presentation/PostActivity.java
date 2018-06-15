@@ -2,27 +2,19 @@ package integra.pesintegra.Presentation;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,34 +27,20 @@ import android.widget.PopupMenu;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import org.w3c.dom.Comment;
-import org.w3c.dom.Text;
-
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-
-import integra.pesintegra.Controllers.ControladorDomini;
-import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
-import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Adapter.CommentListAdapter;
-import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.CommentReply;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
-import static integra.pesintegra.Presentation.LoginActivity.resources;
 
 public class PostActivity extends Activity implements View.OnClickListener {
     private static RecyclerView recyclerView;
@@ -71,7 +49,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
     String post_id;
     public Context cc;
     private Post post;
-    private static final int SELECTED_PICTURE = 1;
     ImageView iv;
     private CoordinatorLayout coordinatorLayout;
     public ControladorPresentacioPostOpen cp;
@@ -92,7 +69,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
     Boolean isMod;
     private Button tres_punts;
 
-    private final LoginActivity li = new LoginActivity();
 
     @SuppressLint("CutPasteId")
     @Override
@@ -117,7 +93,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         List<Comentari> myDataset;
-        // mAdapter = new CommentAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -171,7 +146,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                 intent.putExtra("lng", post.getLng());
                 startActivity(intent);
                 break;
-            case R.id.enviar: //comentari
+            case R.id.enviar:
 
                 String text_comentari = ((EditText) findViewById(R.id.comentari)).getText().toString();
                 if (!text_comentari.equals("")) {
@@ -187,7 +162,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
                     editText_comentari.setText("");
                     Context cc = getApplicationContext();
                     updateFeed(comentaris, cc, this, cp, current);
-                    //updateFeed(comentaris, cc, this, cp);
                 }
 
                 break;
@@ -209,11 +183,9 @@ public class PostActivity extends Activity implements View.OnClickListener {
                         int amplada = iv.getMaxWidth();
                         Bitmap bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
                         iv.setImageBitmap(bitmapImage);
-                        //guardar imatge a la bd
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // Show the Selected Image on ImageView
 
 
                 }
@@ -254,7 +226,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
     @SuppressLint("SetTextI18n")
     public void updateRating(String puntuacio, String nombreVots) {
 
-        //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
         Double puntuacioRounded = Math.round(Double.parseDouble(puntuacio) * 100.0) / 100.0;
         votantsTotals.setText("(" + nombreVots + ")");
         avgScore.setText(String.valueOf(puntuacioRounded));
@@ -273,7 +244,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
                 new_body.add(new_comment_reply);
             }
         }
-        //ara tenim els comentaris que no son replies
         for (Comentari comm : body) {
             if (comm.getreply() != null) { //aquest es un reply al comentari original
                 CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
@@ -362,11 +332,8 @@ public class PostActivity extends Activity implements View.OnClickListener {
         post_data.setText(post.getDataIni());
         TextView post_text = findViewById(R.id.post_text);
         post_text.setText(post.getDescripcio());
-        //iv.setImageBitmap(post.getImatge());
         comentaris = post.getComments();
         Context cc = getApplicationContext();
-
-        //updateFeed(comentaris, cc, this, cp);
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         cp.isMod(current_user);
@@ -514,9 +481,9 @@ public class PostActivity extends Activity implements View.OnClickListener {
                     }
                 });
 
-                popup.show(); //showing popup menu
+                popup.show();
             }
-        }); //closing the setOnClickListener method
+        });
 
 
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");

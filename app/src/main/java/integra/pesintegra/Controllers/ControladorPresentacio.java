@@ -3,25 +3,20 @@ package integra.pesintegra.Controllers;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 
-import integra.pesintegra.Logic.Clases.ImageBM;
-import integra.pesintegra.Logic.Clases.Post;
+
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.AllPostsActivity;
-import integra.pesintegra.Presentation.BaseActivity;
-import integra.pesintegra.Presentation.LoginActivity;
+
 
 public class ControladorPresentacio extends AbstractBaseController {
 
     private ControladorDomini cntrlDom;
-    private ApplicationContextProvider context;
-    private AllPostsActivity activity;
+
 
     public ControladorPresentacio() {
         super();

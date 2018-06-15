@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 

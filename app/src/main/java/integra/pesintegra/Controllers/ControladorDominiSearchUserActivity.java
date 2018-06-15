@@ -15,7 +15,6 @@ public class ControladorDominiSearchUserActivity extends ControladorDomini {
     }
 
     public void getSearchUser(String user) {
-        //Aqui va la crida a BD
         UserService service = ServiceManager.getUserService();
         Call<User> call = service.getUserByUsername(user);
         call.enqueue(new Callback<User>() {

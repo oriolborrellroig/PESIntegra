@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import integra.pesintegra.Controllers.ControladorPresentacioInfoUtil;

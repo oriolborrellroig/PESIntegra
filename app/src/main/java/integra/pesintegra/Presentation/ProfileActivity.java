@@ -117,13 +117,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(
-                                ProfileActivity.this,
-                                R.string.msgYouClicked + item.getTitle().toString(),
-                                Toast.LENGTH_SHORT
-                        ).show();
-
-
 
                         switch (item.getItemId()){
                             case R.id.perfil_propi:
@@ -353,7 +346,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     public void item_seleccionat(Button b){
-        //pintar color seleccionat primary_dark
 
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
@@ -361,7 +353,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     public void item_no_seleccionat(Button b){
-        //pintar color no seleccionat primary_light
 
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));

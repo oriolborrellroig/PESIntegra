@@ -2,10 +2,8 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.google.gson.JsonObject;
-
 
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.User;
@@ -15,6 +13,7 @@ import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class ControladorDominiProfileActivity extends ControladorDomini {
 
@@ -26,7 +25,6 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     }
 
     public void getUser (String id) {
-        //String id = this.getSessioUser();
         UserService service = ServiceManager.getUserService();
         Call<User> createCall2 = service.getUser(id);
         createCall2.enqueue(new Callback<User>() {
@@ -43,7 +41,6 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
 
     public void setUserInfo(String interes, String valor, String userID) {
 
-        //String userID = this.getSessioUser();
         UserService service = ServiceManager.getUserService();
         if (valor.equals("true")){
             super.set_tag(interes);

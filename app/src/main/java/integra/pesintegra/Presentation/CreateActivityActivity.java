@@ -5,26 +5,19 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
 import android.net.Uri;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.transition.ChangeImageTransform;
-import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,12 +45,8 @@ import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
-import integra.pesintegra.Services.ImageService;
-import integra.pesintegra.Services.PostService;
-import integra.pesintegra.Services.ServiceManager;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
+
 
 public class CreateActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -102,7 +91,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         clicked_tags = new ArrayList<>();
         setSpinner();
 
-        Context context = getApplicationContext();
         Intent intent = getIntent();
         this.tipus = intent.getStringExtra("flag");
         if (!tipus.equals("A")) {
@@ -124,7 +112,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
             @Override
             public void onError(Status status) {
-                Log.i("aaaaaaaaa", "An error occurred: " + status);
+                Log.i("Error Location", "An error occurred: " + status);
             }
         });
     }
@@ -376,7 +364,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     }
 
     public void item_seleccionat(Button b, String tag){
-        //pintar color seleccionat primary_dark
 
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
@@ -384,7 +371,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     }
 
     public void item_no_seleccionat(Button b, String tag){
-        //pintar color no seleccionat primary_light
 
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));
@@ -411,9 +397,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // Show the Selected Image on ImageView
-
-
 
                 }
         }
@@ -442,14 +425,13 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     }
 
     public String createImageFromBitmap(Bitmap bitmap) {
-        String fileName = "myImage";//no .png or .jpg needed
+        String fileName = "myImage";
         try {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
             FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
             fo.write(bytes.toByteArray());
             fo.write(bytes.toByteArray());
-            // remember close file output
             fo.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -465,7 +447,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             ByteArrayOutputStream bStream = new ByteArrayOutputStream();
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
             byte[] byteArray = bStream.toByteArray();
-            //MOISES AQUI ESTÁ LA IMAGEN COMO BYTEARRAY
         }
         //intent_act.putExtra("image", byteArray);
         intent_act.putExtra("post", new_post);

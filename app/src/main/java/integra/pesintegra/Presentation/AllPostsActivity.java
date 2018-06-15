@@ -3,7 +3,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
@@ -15,14 +14,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import integra.pesintegra.Controllers.ControladorPresentacio;
-import integra.pesintegra.Controllers.ControladorPresentacioAdvancedSearchActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;

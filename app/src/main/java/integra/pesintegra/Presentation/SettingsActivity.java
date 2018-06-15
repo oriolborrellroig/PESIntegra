@@ -2,15 +2,9 @@ package integra.pesintegra.Presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,19 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import integra.pesintegra.Controllers.ControladorPresentacioSettingsActivity;
 import integra.pesintegra.R;
 
 
 public class SettingsActivity extends Activity implements View.OnClickListener {
 
     private Spinner langType;
-    private ControladorPresentacioSettingsActivity cp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.cp = new ControladorPresentacioSettingsActivity();
         setContentView(R.layout.activity_settings1);
         Button btn_back = findViewById(R.id.btn_post_back);
         btn_back.setOnClickListener(this);

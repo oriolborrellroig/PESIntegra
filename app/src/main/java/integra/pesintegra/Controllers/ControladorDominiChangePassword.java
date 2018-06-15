@@ -1,6 +1,5 @@
 package integra.pesintegra.Controllers;
 
-import android.util.Log;
 
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;

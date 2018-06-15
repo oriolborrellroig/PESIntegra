@@ -54,11 +54,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             case R.id.register_datanaixement:
                 showDatePickerDialog();
                 break;
+
             case R.id.registrar_cancel:
-               // intent = new Intent(getApplicationContext(),LoginActivity.class);
-                //startActivity(intent);
                 this.finish();
                 break;
+
             case R.id.registrar_entrar:
                 String pass1 = ((EditText) findViewById(R.id.register_pass)).getText().toString();
                 String pass2 = ((EditText) findViewById(R.id.register_confirmacio_pass)).getText().toString();
@@ -71,7 +71,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     ControladorPresentacioRegisterActivity controlador = new ControladorPresentacioRegisterActivity(this, getApplicationContext());
                     controlador.doRegister(newUser, hash);
                     break;
-
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.errorTitle)

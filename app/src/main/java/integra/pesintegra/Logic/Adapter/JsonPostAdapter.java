@@ -1,6 +1,5 @@
 package integra.pesintegra.Logic.Adapter;
 
-import android.util.Log;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

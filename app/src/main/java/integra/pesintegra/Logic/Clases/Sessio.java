@@ -1,6 +1,5 @@
 package integra.pesintegra.Logic.Clases;
 
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;

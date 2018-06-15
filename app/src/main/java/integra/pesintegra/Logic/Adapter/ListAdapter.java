@@ -2,10 +2,8 @@ package integra.pesintegra.Logic.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.Rating;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,7 +18,6 @@ import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
 import integra.pesintegra.Logic.Clases.Post;
-//import integra.pesintegra.Logic.Interface.CustomItemClickListener;
 import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.R;
 import integra.pesintegra.Services.PostService;

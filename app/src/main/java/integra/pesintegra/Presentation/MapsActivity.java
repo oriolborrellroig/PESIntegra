@@ -1,10 +1,8 @@
 package integra.pesintegra.Presentation;
 
 import android.content.Intent;
-import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,7 +13,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioMapsActivity;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.R;

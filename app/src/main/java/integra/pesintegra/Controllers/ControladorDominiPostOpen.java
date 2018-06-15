@@ -1,9 +1,7 @@
 package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.media.Image;
-import android.util.Log;
+
 import android.widget.ImageView;
 
 import com.google.gson.JsonObject;
@@ -16,7 +14,6 @@ import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
@@ -26,8 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControladorDominiPostOpen extends ControladorDomini {
-    private PostActivity activity;
-    private Context context;
     @SuppressLint("StaticFieldLeak")
     private static ControladorPresentacioPostOpen Cpresentacio;
 

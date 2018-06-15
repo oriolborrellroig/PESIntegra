@@ -1,6 +1,5 @@
 package integra.pesintegra.Presentation;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -8,11 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -333,7 +329,6 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
     }
 
     public void item_seleccionat(Button b, String tag){
-        //pintar color seleccionat primary_dark
 
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
@@ -341,7 +336,6 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
     }
 
     public void item_no_seleccionat(Button b, String tag){
-        //pintar color no seleccionat primary_light
 
         b.setBackgroundColor(Color.parseColor("#C5CAE9"));
         b.setTextColor(getResources().getColor(R.color.primary_dark));

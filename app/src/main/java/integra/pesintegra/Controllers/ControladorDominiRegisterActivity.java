@@ -1,7 +1,5 @@
 package integra.pesintegra.Controllers;
 
-import android.util.Log;
-
 import com.google.gson.JsonObject;
 
 import integra.pesintegra.Logic.Clases.Sessio;
@@ -33,7 +31,6 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
                 createCall2.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        //activity.updateFeed(response.body(), context);
                         if (response.body() == null) {
 
                         }

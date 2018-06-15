@@ -6,9 +6,7 @@ import java.util.List;
 
 public class Post_Activitat extends Post{
 
-    //n_max = nombre maxim de persones en aquella activitat
     private int assistentsMax;
-    //n_act = nombre de persones apuntades actualment a aquella activitat
     private int n_assistents;
 
     public Post_Activitat(){

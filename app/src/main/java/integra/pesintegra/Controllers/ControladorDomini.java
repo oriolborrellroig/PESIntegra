@@ -3,13 +3,9 @@ package integra.pesintegra.Controllers;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.ImageBM;
-import integra.pesintegra.Logic.Clases.Post_Activitat;
-import integra.pesintegra.Logic.Clases.Post_Feina;
-import integra.pesintegra.Logic.Clases.Post_Habitatge;
+
 import integra.pesintegra.Logic.Clases.Sessio;
-import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.BaseActivity;
-import integra.pesintegra.Services.ImageService;
+
 
 import integra.pesintegra.Services.ServiceManager;
 

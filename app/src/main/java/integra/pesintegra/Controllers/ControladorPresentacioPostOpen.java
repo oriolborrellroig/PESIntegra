@@ -23,9 +23,6 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public void deleteComment(String post_id, String comment_id){
-        //buscar si te reply
-
-
         Cdomini.deleteComment(post_id, comment_id);
 
     }
@@ -68,7 +65,6 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public Comentari creaComentari(String text, String data, String post_id){
-        //Cdomini.creaComentari(text, data, post_id);
         String id = Cdomini.getCurrentUser();
         Comentari nou_comentari = new Comentari(id, text, data, post_id);
         Cdomini.addComentari(post_id, nou_comentari);
@@ -76,7 +72,6 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public Comentari creaReply(String text, String data, String post_id, String replyid){
-        //Cdomini.creaComentari(text, data, post_id);
         String id = Cdomini.getCurrentUser();
         Comentari nou_comentari = new Comentari(id, text, data, post_id, replyid);
         Cdomini.addComentari(post_id, nou_comentari);
@@ -178,8 +173,4 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         Cdomini.posa_imatge(id, foto_perfil, list_ad);
     }
 
-
-   /* public String getusernamebyid(String id){
-
-    }*/
 }

@@ -1,10 +1,6 @@
 package integra.pesintegra.Logic.Clases;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
-
-import com.google.android.gms.maps.model.LatLng;
-import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;

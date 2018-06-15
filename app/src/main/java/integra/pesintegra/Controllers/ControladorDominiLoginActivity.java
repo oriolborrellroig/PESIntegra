@@ -15,8 +15,6 @@ import retrofit2.Response;
 public class ControladorDominiLoginActivity extends ControladorDomini {
 
     private ControladorPresentacioLoginActivity Cpresentacio;
-    private Context context;
-    private String username;
 
     ControladorDominiLoginActivity(ControladorPresentacioLoginActivity Cpresentacio) {
         this.Cpresentacio = Cpresentacio;
