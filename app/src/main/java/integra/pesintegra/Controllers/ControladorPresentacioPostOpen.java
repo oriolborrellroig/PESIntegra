@@ -151,6 +151,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         activity.loadPost(post);
     }
 
+
     public void afegeix_comentari(Comentari nou_comment){
         activity.add_comment(nou_comment);
     }

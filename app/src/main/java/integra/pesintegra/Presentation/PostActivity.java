@@ -62,7 +62,7 @@ import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
-public class PostActivity extends Activity implements View.OnClickListener{
+public class PostActivity extends Activity implements View.OnClickListener {
     private static RecyclerView recyclerView;
 
     private RecyclerView.Adapter mAdapter;
@@ -79,6 +79,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     private Post_Activitat pa;
     TextView votantsTotals;
     TextView avgScore;
+    TextView post_direccio;
     RatingBar scoreBar;
     RatingBar userRatingBar;
     Boolean hidden, assisteix, reported, followed;
@@ -87,8 +88,10 @@ public class PostActivity extends Activity implements View.OnClickListener{
     public ArrayList<Comentari> comentaris;
     private FloatingActionButton join, disengage;
     Boolean isMod;
+    private Button tres_punts;
 
     private final LoginActivity li = new LoginActivity();
+
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +103,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
         iv = findViewById(R.id.imatge);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
-        final Button tres_punts = findViewById(R.id.tres_punts);
-        TextView post_direccio = findViewById(R.id.post_direccio);
+        this.tres_punts = findViewById(R.id.tres_punts);
+        this.post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setOnClickListener(this);
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
@@ -109,21 +112,257 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
 
-        recyclerView =  findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.recycler);
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         List<Comentari> myDataset;
-       // mAdapter = new CommentAdapter(myDataset);
+        // mAdapter = new CommentAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
         /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
 
 
-        this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
+        post_id = ((Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post")).getId();
+        Log.i("AAAAAAAAAAAAAPOSTID", post_id);      ///////////////////////////////////////////////////////////////////////////////////////
+        cp.getPost(post_id); //carrega el post desde bd
+
+    }
+
+    public void print_free_places() {
+        this.places = pa.getAssistentsMax() - pa.getN_assistens();
+        Log.i("assisnts max", Integer.toString(pa.getAssistentsMax()));
+        Log.i("assisnts actuals", Integer.toString(pa.getN_assistens()));
+        if (places > 0) {
+            free_places.setText(getString(R.string.freePlaces) + places);
+            free_places.setTextColor(Color.GREEN);
+        } else {
+            free_places.setTextColor(Color.RED);
+            free_places.setText(R.string.noFreePlaces);
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_post_back:
+                this.finish();
+                break;
+
+            case R.id.disengage:
+                cp.removeAttendant(post.getId(), current_user);
+                break;
+
+            case R.id.join:
+                if (places > 0) {
+                    cp.addAttendant(post.getId(), current_user);
+                } else {
+                    Toast.makeText(
+                            PostActivity.this,
+                            R.string.noFreePlaces,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+                break;
+
+            case R.id.post_direccio:
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("loc", post.getLocalitzacio());
+                intent.putExtra("origin", "post");
+                intent.putExtra("lat", post.getLat());
+                intent.putExtra("lng", post.getLng());
+                startActivity(intent);
+                break;
+            case R.id.enviar: //comentari
+
+                String text_comentari = ((EditText) findViewById(R.id.comentari)).getText().toString();
+                if (!text_comentari.equals("")) {
+                    disable_comment();
+                    final Calendar c = Calendar.getInstance();
+                    int year = c.get(Calendar.YEAR);
+                    int month = c.get(Calendar.MONTH);
+                    int day = c.get(Calendar.DAY_OF_MONTH);
+                    String data = year + "/" + month + "/" + day;
+                    Comentari new_c = cp.creaComentari(text_comentari, data, post_id);
+                    comentaris.add(new_c);
+                    EditText editText_comentari = (EditText) findViewById(R.id.comentari);
+                    editText_comentari.setText("");
+                    Context cc = getApplicationContext();
+                    updateFeed(comentaris, cc, this, cp, current);
+                    //updateFeed(comentaris, cc, this, cp);
+                }
+
+                break;
+        }
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        switch (requestCode) {
+            case 52:
+                if (resultCode == Activity.RESULT_OK) {
+
+                    Uri selectedImage = intent.getData();
+                    try {
+                        int alcada = iv.getMaxHeight();
+                        int amplada = iv.getMaxWidth();
+                        Bitmap bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
+                        iv.setImageBitmap(bitmapImage);
+                        //guardar imatge a la bd
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    // Show the Selected Image on ImageView
+
+
+                }
+        }
+    }
+
+    /*
+
+
+     */
+    public Bitmap decodeBitmap(Uri selectedImage, int alc, int ampl) throws FileNotFoundException {
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
+
+        int width_tmp = o.outWidth, height_tmp = o.outHeight;
+        int scale = 1;
+
+        if (alc / height_tmp > ampl / width_tmp) { //fer petit d'ample
+            scale = scale * width_tmp / ampl;
+        } else { //fer petit d'alt
+            scale = scale * height_tmp / alc;
+        }
+
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
+    }
+
+    private void onDelete() {
+        new ControladorPresentacioPostOpen(this, getApplicationContext());
+        ControladorPresentacioPostOpen.deletePost(post.getId());
+        this.finish();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void updateRating(String puntuacio, String nombreVots) {
+
+        //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
+        Double puntuacioRounded = Math.round(Double.parseDouble(puntuacio) * 100.0) / 100.0;
+        votantsTotals.setText("(" + nombreVots + ")");
+        avgScore.setText(String.valueOf(puntuacioRounded));
+        scoreBar.setRating(Float.parseFloat(puntuacio));
+    }
+
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
+        Log.d("aaaa", Boolean.toString(this.hidden));
+    }
+
+    public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp, Boolean current3) {
+        List<CommentReply> new_body = new ArrayList<CommentReply>();
+        for (Comentari comm : body) {
+            if (comm.getreply() == null) {
+                Log.d("aqui van 2", "lel");
+                CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
+                new_body.add(new_comment_reply);
+            }
+        }
+        Log.d("updatefeed", "estic a update feed");
+        //ara tenim els comentaris que no son replies
+        for (Comentari comm : body) {
+            Log.d("hi soc", "hi soc!!!");
+            if (comm.getreply() != null) { //aquest es un reply al comentari original
+                CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
+                for (CommentReply cmm : new_body) {
+                    if (cmm.getId().equals(comm.getreply())) {
+                        cmm.setHasReply(true);
+                        cmm.setReply(new_comment_reply);
+                        Log.d("updatefeed", "estic a una replyyyy");
+                        break; //ja se que no es posen ostia pero mira coses de la bida
+                    }
+                }
+            }
+        }
+        CommentListAdapter commentlistAdapter = new CommentListAdapter(new_body, pa, cpp, current3);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(commentlistAdapter);
+    }
+
+    public void setUserRating(String body) {
+        Float puntuacio = Float.parseFloat(body);
+        userRatingBar.setRating(puntuacio);
+    }
+
+    public void setAssistents(Integer assistents) {
+        if (assistents == -1) {
+            pa.setN_assistens(pa.getAssistentsMax());
+        } else {
+            pa.setN_assistens(assistents);
+        }
+        print_free_places();
+        cp.userAssisteix(post.getId(), current_user);
+    }
+
+    public void userAssisteix(String assisteix) {
+        if (assisteix.equals("true")) {
+            this.assisteix = true;
+            disengage.setVisibility(View.VISIBLE);
+            join.setVisibility(View.GONE);
+        } else {
+            this.assisteix = false;
+            join.setVisibility(View.VISIBLE);
+            disengage.setVisibility(View.GONE);
+        }
+    }
+
+    private void disable_comment() {
+        LinearLayout layout_comentari = (LinearLayout) findViewById(R.id.fer_comentari);
+        layout_comentari.setVisibility(View.GONE);
+    }
+
+    public void setReported(boolean reported) {
+        this.reported = reported;
+    }
+
+    public void loadImage(Bitmap bitmapImage) {
+        iv.setImageBitmap(bitmapImage);
+    }
+
+    public void add_comment(Comentari nou_comment) {
+        comentaris.add(nou_comment);
+    }
+
+    public void borra_comments_post(String id_a_borrar) {
+        for (int i = 0; i < comentaris.size(); i++) {
+            if (comentaris.get(i).getID().equals(id_a_borrar)) {
+                comentaris.remove(i);
+            }
+        }
+    }
+
+    public void setTipus(String tipus) {
+        this.isMod = (tipus.equals("moderador"));
+    }
+
+    public void loadPost(Post post) {
+        this.post = post;
+        onCreateContinue();
+    }
+
+    private void onCreateContinue() {
         TextView post_titol = findViewById(R.id.post_titol);
         post_titol.setText(post.getTitol());
-        post_id = post.getId();
         // post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setText(post.getLocalitzacio());
         TextView post_data = findViewById(R.id.post_data);
@@ -132,22 +371,19 @@ public class PostActivity extends Activity implements View.OnClickListener{
         post_text.setText(post.getDescripcio());
         //iv.setImageBitmap(post.getImatge());
         comentaris = post.getComments();
-        cc = getApplicationContext();
+        Context cc = getApplicationContext();
 
         //updateFeed(comentaris, cc, this, cp);
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         current = current_user.equals(post_user);
-        cp.isMod(current_user);
-        for(Comentari comment_for : comentaris){
-            if (comment_for.getuser_id().equals(current_user)){
+        for (Comentari comment_for : comentaris) {
+            if (comment_for.getuser_id().equals(current_user)) {
                 disable_comment();
             }
         }
         updateFeed(comentaris, cc, this, cp, current);
         hidden = false;
-        followed = false;
-        // cp.isFollowed(post_id) fer funcio pq acabi setejant followed a true o false
         cp.isHidden(post_id);
         cp.getImage(post_id);
         cp.isReported(current_user, post_id);
@@ -161,23 +397,16 @@ public class PostActivity extends Activity implements View.OnClickListener{
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 Menu popupMenu = popup.getMenu();
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popupMenu);
-                if (followed) {  //aixo no passa ara
-                    popupMenu.findItem(R.id.follow_post).setVisible(false);
-                }
-                else {
-                    popupMenu.findItem(R.id.unfollow_post).setVisible(false);
-                }
-                if(current){
+                if (current) {
                     popupMenu.findItem(R.id.report_post).setVisible(false);
-                    if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
+                    if (hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
-                }
-                else{
-                    if(reported) popupMenu.findItem(R.id.report_post).setVisible(false);
-                    if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
+                } else {
+                    if (reported) popupMenu.findItem(R.id.report_post).setVisible(false);
+                    if (hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
-                    if(!isMod) popupMenu.findItem(R.id.borrar_post).setVisible(false);
+                    popupMenu.findItem(R.id.borrar_post).setVisible(false);
                 }
 
                 //registering popup with OnMenuItemClickListener
@@ -189,19 +418,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 Toast.LENGTH_SHORT
                         ).show();
 
-                        switch (item.getItemId()){
+                        switch (item.getItemId()) {
 
-                            case R.id.follow_post:
-
-                                break;
-
-                            case R.id.unfollow_post:
-
-                                break;
-
-                            case R.id.translate_post:
-
-                                break;
 
                             case R.id.show_post:
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
@@ -267,9 +485,8 @@ public class PostActivity extends Activity implements View.OnClickListener{
                                 break;
 
                             case R.id.maps:
-                                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-                                intent.putExtra("loc", post.getLocalitzacio());
-                                intent.putExtra("origin", "post");
+                                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                                intent.putExtra("type", "post");
                                 intent.putExtra("lat", post.getLat());
                                 intent.putExtra("lng", post.getLng());
                                 startActivity(intent);
@@ -291,7 +508,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         }); //closing the setOnClickListener method
 
         //Intent intent = getIntent();
-       // String image_name = intent.getStringExtra("bitmap_img");
+        // String image_name = intent.getStringExtra("bitmap_img");
 
         this.post = (Post) getIntent().getExtras().getSerializable("post");
         if (post instanceof Post_Activitat) {
@@ -314,7 +531,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         cp.getPostRating(this.post.getId());
         userRatingBar = findViewById(R.id.ratingBar2);
 
-        userRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
+        userRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 cp.votePost(post.getId(), String.valueOf(ratingBar.getRating()));
@@ -323,253 +540,6 @@ public class PostActivity extends Activity implements View.OnClickListener{
 
         cp.getUserRating(this.post.getId(), this.current_user);
 
-        //DANI T HE COMENTAT TOT AIXO
-/*
-        Bitmap img_pre;
-        byte[] byteArray = getIntent().getByteArrayExtra("image");
-        img_pre = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        iv.setImageBitmap(img_pre);
-*/
-        // JAJA FINS AQUI
-
-
-
-
-        //if (la imatge del post no és nul·la){
-           // iv.setImageBitmap(Bitmap.createScaledBitmap(bitmap_del_post, iv.getMaxWidth(), iv.getMaxHeight(), false));
-        //}
-
-
-
     }
 
-    public void print_free_places() {
-        this.places = pa.getAssistentsMax() - pa.getN_assistens();
-        if (places > 0) {
-            free_places.setText(getString(R.string.freePlaces) + places);
-            free_places.setTextColor(Color.GREEN);
-        }
-        else {
-            free_places.setTextColor(Color.RED);
-            free_places.setText(R.string.noFreePlaces);
-        }
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_post_back:
-               this.finish();
-                break;
-
-            case R.id.disengage:
-                cp.removeAttendant(post.getId(),current_user);
-                cp.userAssisteix(post.getId(), current_user);
-                print_free_places();
-                break;
-
-            case R.id.join:
-                if (places > 0) {
-                    cp.addAttendant(post.getId(), current_user);
-                    cp.userAssisteix(post.getId(), current_user);
-                    print_free_places();
-                }
-                else {
-                    Toast.makeText(
-                            PostActivity.this,
-                            R.string.noFreePlaces,
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-                break;
-
-            case R.id.post_direccio:
-                Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
-                intent.putExtra("loc", post.getLocalitzacio());
-                intent.putExtra("origin", "post");
-                intent.putExtra("lat", post.getLat());
-                intent.putExtra("lng", post.getLng());
-                startActivity(intent);
-                break;
-            case R.id.enviar: //comentari
-
-                String text_comentari = ((EditText) findViewById(R.id.comentari)).getText().toString();
-                if (!text_comentari.equals("")){
-                    disable_comment();
-                    final Calendar c = Calendar.getInstance();
-                    int year = c.get(Calendar.YEAR);
-                    int month = c.get(Calendar.MONTH);
-                    int day = c.get(Calendar.DAY_OF_MONTH);
-                    String data= year + "/" + month + "/" + day;
-                    Comentari new_c = cp.creaComentari(text_comentari, data, post_id);
-                    comentaris.add(new_c);
-                    EditText editText_comentari = (EditText) findViewById(R.id.comentari);
-                    editText_comentari.setText("");
-                    Context cc = getApplicationContext();
-                    updateFeed(comentaris, cc, this, cp, current);
-                    //updateFeed(comentaris, cc, this, cp);
-                }
-
-                break;
-        }
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-        switch (requestCode) {
-            case 52:
-                if (resultCode == Activity.RESULT_OK) {
-
-                    Uri selectedImage = intent.getData();
-                    try {
-                        int alcada = iv.getMaxHeight();
-                        int amplada = iv.getMaxWidth();
-                        Bitmap bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
-                        iv.setImageBitmap(bitmapImage);
-                        //guardar imatge a la bd
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    // Show the Selected Image on ImageView
-
-
-
-                }
-        }
-    }
-/*
-
-
- */
-    public Bitmap decodeBitmap(Uri selectedImage, int alc, int ampl) throws FileNotFoundException {
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
-
-        int width_tmp = o.outWidth, height_tmp = o.outHeight;
-        int scale = 1;
-
-        if (alc/height_tmp > ampl/width_tmp){ //fer petit d'ample
-            scale = scale*width_tmp/ampl;
-        }else{ //fer petit d'alt
-            scale = scale*height_tmp/alc;
-        }
-
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
-    }
-
-    private void onDelete () {
-        new ControladorPresentacioPostOpen(this, getApplicationContext());
-        ControladorPresentacioPostOpen.deletePost(post.getId());
-        this.finish();
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void updateRating(String puntuacio, String nombreVots) {
-
-        //RESULTATS DE LA CRIDA A BD PER SABER LA PUNTUACIO DEL POST I EL NOMBRE DE VOTS
-        Double puntuacioRounded = Math.round(Double.parseDouble(puntuacio) * 100.0) / 100.0;
-        votantsTotals.setText("("+nombreVots+")");
-        avgScore.setText(String.valueOf(puntuacioRounded));
-        scoreBar.setRating(Float.parseFloat(puntuacio));
-    }
-
-    public void setHidden(Boolean hidden) {
-        this.hidden = hidden;
-        Log.d("aaaa", Boolean.toString(this.hidden));
-    }
-
-    public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp, Boolean current3) {
-        List<CommentReply> new_body = new ArrayList<CommentReply>();
-        for (Comentari comm : body){
-            if (comm.getreply() == null){
-                Log.d("aqui van 2", "lel");
-                CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
-                new_body.add(new_comment_reply);
-            }
-        }
-        Log.d("updatefeed", "estic a update feed");
-        //ara tenim els comentaris que no son replies
-        for(Comentari comm : body){
-            Log.d("hi soc", "hi soc!!!");
-            if (comm.getreply() != null){ //aquest es un reply al comentari original
-                CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
-                for (CommentReply cmm : new_body){
-                    if (cmm.getId().equals(comm.getreply())){
-                        cmm.setHasReply(true);
-                        cmm.setReply(new_comment_reply);
-                        Log.d("updatefeed", "estic a una replyyyy");
-                        break; //ja se que no es posen ostia pero mira coses de la bida
-                    }
-                }
-            }
-        }
-        CommentListAdapter commentlistAdapter = new CommentListAdapter(new_body, pa, cpp, current3);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(commentlistAdapter);
-    }
-
-    public void setUserRating(String body) {
-        Float puntuacio = Float.parseFloat(body);
-        userRatingBar.setRating(puntuacio);
-    }
-
-    public void setAssistents (Integer assistents) {
-        if (assistents == -1) {
-            pa.setN_assistens(pa.getAssistentsMax());
-        }
-        else {
-            pa.setN_assistens(assistents);
-        }
-    }
-
-    public void userAssisteix (String assisteix) {
-        if (assisteix.equals("true")) {
-            this.assisteix = true;
-            disengage.setVisibility(View.VISIBLE);
-            join.setVisibility(View.GONE);
-        }
-        else {
-            this.assisteix = false;
-            join.setVisibility(View.VISIBLE);
-            disengage.setVisibility(View.GONE);
-        }
-    }
-
-    private void disable_comment(){
-        LinearLayout layout_comentari = (LinearLayout) findViewById(R.id.fer_comentari);
-        layout_comentari.setVisibility(View.GONE);
-    }
-
-    public void setReported(boolean reported) {
-        this.reported = reported;
-    }
-
-    public void loadImage(Bitmap bitmapImage) {
-        iv.setImageBitmap(bitmapImage);
-    }
-
-    public void add_comment(Comentari nou_comment){
-        comentaris.add(nou_comment);
-    }
-
-    public void borra_comments_post(String id_a_borrar){
-        for(int i = 0; i < comentaris.size(); i++){
-            if (comentaris.get(i).getID().equals(id_a_borrar)){
-                comentaris.remove(i);
-            }
-        }
-    }
-
-    public void setTipus(String tipus) {
-        this.isMod = (tipus.equals("moderador"));
-    }
 }
