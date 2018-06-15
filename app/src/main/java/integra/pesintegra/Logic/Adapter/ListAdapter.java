@@ -1,12 +1,14 @@
 package integra.pesintegra.Logic.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.Rating;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 
+import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
 import integra.pesintegra.Logic.Clases.Post;
 //import integra.pesintegra.Logic.Interface.CustomItemClickListener;
 import integra.pesintegra.Presentation.PostActivity;
@@ -31,10 +34,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
     private Context context;
     private static List<Post> posts;
     private float rate = 0;
+    private ControladorPresentacioAllPostsActivity cpp;
 
-    public ListAdapter (List<Post> list_posts){
+    public ListAdapter (List<Post> list_posts, ControladorPresentacioAllPostsActivity cp){
         this.posts = list_posts;
-
+        this.cpp = cp;
     }
 
     @Override
@@ -54,6 +58,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         holder.dia.setText(String.valueOf(p.getDataIni()));
         getRating(p.getId(), holder.rating);
         holder.rating.setRating(rate);
+        cpp.afegir_imatge(p.getId(), holder.icon_post, this);
         holder.p = p;
     }
 
@@ -78,11 +83,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         rating.setRating(rate);
     }
 
+    public void posa_imatge(ImageView ff, Bitmap bitmapImage) {
+        ff.setImageBitmap(bitmapImage);
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView titol, dia;
         public RatingBar rating;
         public Post p;
         private final Context context2;
+        ImageView icon_post;
 
         public MyViewHolder(View view) {
             super(view);
@@ -90,6 +100,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
             dia = view.findViewById(R.id.cv_dia);
             rating = view.findViewById(R.id.cv_ratingBar);
             context2 = view.getContext();
+            icon_post = view.findViewById(R.id.icon);
             view.setClickable(true);
             view.setOnClickListener(this);
         }

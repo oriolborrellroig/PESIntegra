@@ -42,7 +42,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private Boolean rating_clicked, creation_clicked;
     private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct, button_ratting, button_newest;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
-
+    private static ControladorPresentacioAllPostsActivity cstemp;
 
 
     @Override
@@ -85,6 +85,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     private void getPostsFromDB(Integer order) {
         ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
+        cstemp =cs;
         switch (postType) {
             case "any":
                 cs.loadFeedAnyPosts(order);
@@ -122,6 +123,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 cs.loadFeedAdvSearch(getIntent().getExtras());
                 break;
             case "reported":
+                ControladorPresentacioAllPostsActivity.loadReportedPosts();
+                break;
+            case "reported_comments":
                 ControladorPresentacioAllPostsActivity.loadReportedPosts();
                 break;
 
@@ -302,8 +306,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     }
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
+        ControladorPresentacioAllPostsActivity css = cstemp;
         if(body != null) {
-            listAdapter = new ListAdapter(body);
+            listAdapter = new ListAdapter(body, css);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());

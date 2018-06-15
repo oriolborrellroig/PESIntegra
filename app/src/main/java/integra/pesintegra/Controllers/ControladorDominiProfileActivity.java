@@ -143,6 +143,7 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         ccall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                Cpresentacio.reloadImages();
             }
 
             @Override

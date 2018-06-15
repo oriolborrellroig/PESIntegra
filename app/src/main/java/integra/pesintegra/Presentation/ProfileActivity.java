@@ -177,7 +177,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 startActivity(intentt);
                                 break;
                             case R.id.reported_comments:
-
+                                Intent intentt2 = new Intent(getApplicationContext(), AllPostsActivity.class);
+                                intentt2.putExtra("type", "reported_comments");
+                                startActivity(intentt2);
                                 break;
                         }
                         return true;
@@ -435,22 +437,16 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         int alcada = iv.getMaxHeight();
                         int amplada = iv.getMaxWidth();
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
-                        //iv.setImageBitmap(bitmapImage);
+
                         ImageBM image_to_store = new ImageBM(current_user, bitmapImage);
                         cp.addProfileImage(image_to_store);
-                        //carregar de la BD per provar que funciona i tal
-                        //Bitmap lol_xd_prova = image_to_store.getBitmapImage();
-                        iv.setImageBitmap(bitmapImage);
+                        //iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
-                        //guardar imatge a la bd
+                       // cp.getImage(current_user);
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    // Show the Selected Image on ImageView
-
-
-
                 }
         }
     }
@@ -489,5 +485,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     public void setProfileTipus(String profileTipus) {
         this.profileTipus = profileTipus;
+    }
+
+    public void reloadImages() {
+        cp.getImage(current_user);
     }
 }

@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.AllPostsActivity;
@@ -82,4 +84,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     }
 
     public void getReportedCommentedPosts(){ CDAllPosts.loadReportedCommentedPosts(); }
+
+    public void afegir_imatge(String id, ImageView icon_post, ListAdapter listAdapter) {
+        CDAllPosts.posa_imatge(id, icon_post, listAdapter);
+    }
 }

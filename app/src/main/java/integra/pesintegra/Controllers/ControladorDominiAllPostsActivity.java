@@ -2,9 +2,11 @@ package integra.pesintegra.Controllers;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.User;
@@ -160,6 +162,23 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
             @Override
             public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
                 Cpresentacio.getImageResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ImageBM> call, Throwable t) {
+            }
+        });
+    }
+
+    public void posa_imatge(String id, ImageView icon_post, ListAdapter listAdapter) {
+        ImageService service = ServiceManager.getImageService();
+        final ImageView ff = icon_post;
+        final ListAdapter list_ad2 = listAdapter;
+        Call<ImageBM> ccall = service.getImagePost(id);
+        ccall.enqueue(new Callback<ImageBM>() {
+            @Override
+            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                list_ad2.posa_imatge(ff, response.body().getBitmapImage());
             }
 
             @Override

@@ -70,6 +70,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
         activity.loadImage(image.getBitmapImage());
     }
 
+
     public void getProfileTipus(String id) {
         Cdomini.getProfileTipus(id);
     }
@@ -83,4 +84,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     }
 
 
+    public void reloadImages() {
+        activity.reloadImages();
+    }
 }
