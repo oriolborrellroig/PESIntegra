@@ -3,6 +3,7 @@ package integra.pesintegra.Controllers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,7 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     }
 
     public void setImage(AllPostsActivity act) {
-        //Log.d("hey", "22222222222222222");
+        Log.d("hey", "22222222222222222");
         activity = act;
         CDAllPosts.setImageDrawer(this);
     }

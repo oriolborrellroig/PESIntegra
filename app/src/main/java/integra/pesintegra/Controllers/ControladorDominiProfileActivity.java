@@ -139,7 +139,7 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         ImageService service = ServiceManager.getImageService();
         Bitmap bm = i.getBitmapImage();
         ImageBM ima = new ImageBM("12345", bm);
-        Call<Void> ccall = service.createImagePost(i);
+        Call<Void> ccall = service.createImageProfile(i);
         ccall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -156,6 +156,8 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     public ImageBM getImage(String id){
 
         ImageService service = ServiceManager.getImageService();
+        Log.d("safd","999999999999999999999");
+        Log.d("id", id);
         Call<ImageBM> ccall = service.getImageProfile(id);
         ccall.enqueue(new Callback<ImageBM>() {
             @Override
