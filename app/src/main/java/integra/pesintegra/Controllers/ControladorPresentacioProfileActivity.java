@@ -70,4 +70,12 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public void getImageResponse (ImageBM image) {
         activity.loadImage(image.getBitmapImage());
     }
+
+    public void getProfileTipus(String id) {
+        Cdomini.getProfileTipus(id);
+    }
+
+    public void getProfileTipusCallback(String tipus) {
+        activity.setProfileTipus(tipus);
+    }
 }
