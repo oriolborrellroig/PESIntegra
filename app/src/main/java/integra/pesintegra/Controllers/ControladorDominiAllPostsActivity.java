@@ -1,16 +1,12 @@
 package integra.pesintegra.Controllers;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.AllPostsActivity;
-import integra.pesintegra.Presentation.LoginActivity;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;

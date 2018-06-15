@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,25 +15,23 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-import integra.pesintegra.Logic.Clases.User;
-
-import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.Controllers.ControladorPresentacioLoginActivity;
 import integra.pesintegra.R;
-import integra.pesintegra.Constants1;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
 
-
+    public static Resources resources;
 
     ControladorPresentacioLoginActivity cp;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         loadLocale();
         super.onCreate(savedInstanceState);
+        resources = getResources();
         setContentView(R.layout.activity_login);
         Button entrar_btn = findViewById(R.id.login_entrar);
         entrar_btn.setText(R.string.BTNlogin);

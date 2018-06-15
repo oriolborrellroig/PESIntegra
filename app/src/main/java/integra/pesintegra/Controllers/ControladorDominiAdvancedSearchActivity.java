@@ -1,7 +1,6 @@
 package integra.pesintegra.Controllers;
 
 import android.content.Context;
-import android.util.Log;
 
 import integra.pesintegra.R;
 

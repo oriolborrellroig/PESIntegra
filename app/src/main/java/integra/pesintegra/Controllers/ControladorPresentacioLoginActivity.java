@@ -2,7 +2,6 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 import integra.pesintegra.Presentation.LoginActivity;
 

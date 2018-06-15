@@ -14,7 +14,6 @@ public class ControladorPresentacioChangeMailActivity extends ControladorPresent
     }
 
     public void changeMail (String email, String pass1) throws Exception {
-        //comprova_contrasenya_coincident(pass1, pass2);
         CDChangeMail.changeMail(email, pass1);
     }
 }

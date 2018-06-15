@@ -82,7 +82,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
     TextView post_direccio;
     RatingBar scoreBar;
     RatingBar userRatingBar;
-    Boolean hidden, assisteix, reported, followed;
+    Boolean hidden, assisteix, reported;
     public Boolean current;
     private TextView free_places;
     public ArrayList<Comentari> comentaris;

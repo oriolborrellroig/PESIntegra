@@ -1,25 +1,16 @@
 package integra.pesintegra.Controllers;
 
-import android.app.Application;
-import android.content.Context;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.regex.Pattern;
 
-import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
-import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.LoginActivity;
 
 public class ControladorPresentacio extends AbstractBaseController {
 

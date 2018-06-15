@@ -1,28 +1,15 @@
 package integra.pesintegra.Controllers;
 
-
-import android.graphics.Bitmap;
-import android.location.Geocoder;
-import android.util.Log;
-
-import com.google.android.gms.maps.model.LatLng;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.ImageBM;
-import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Logic.Clases.Sessio;
-import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Services.ImageService;
+
 import integra.pesintegra.Services.ServiceManager;
-import integra.pesintegra.Services.UserService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class ControladorDomini extends  AbstractBaseController{
 
@@ -49,11 +36,6 @@ public class ControladorDomini extends  AbstractBaseController{
     }
 
 
-    // Idea és passar tots els post de la database per comprobar quins s'haurien de guardar com expired. (es podria passar com a llista)
-    public Boolean post_Caducat(Post post) {
-        return comprovaDataExpired(post.getDataFi());
-    }
-
     public void logout() {
         sessio.resetSessio();
     }
@@ -78,7 +60,6 @@ public class ControladorDomini extends  AbstractBaseController{
     public void remove_tag(String tag){
         sessio.remove_tag(tag);
     }
-
 
 
     String getSessioToken() {

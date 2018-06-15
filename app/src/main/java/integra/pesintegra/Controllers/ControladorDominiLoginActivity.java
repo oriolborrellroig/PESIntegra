@@ -1,17 +1,13 @@
 package integra.pesintegra.Controllers;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
-import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.LoginActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

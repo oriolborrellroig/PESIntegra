@@ -1,9 +1,7 @@
 package integra.pesintegra.Controllers;
 
-import integra.pesintegra.Presentation.ChangeMailActivity;
 import integra.pesintegra.Presentation.ChangePasswordActivity;
 import android.content.Context;
-import integra.pesintegra.Presentation.ChangeMailActivity;
 
 public class ControladorPresentacioChangePassword extends ControladorPresentacio {
     private static ControladorDominiChangePassword CDChangePassword;

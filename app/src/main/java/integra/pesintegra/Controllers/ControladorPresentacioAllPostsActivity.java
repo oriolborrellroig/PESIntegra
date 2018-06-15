@@ -3,17 +3,13 @@ package integra.pesintegra.Controllers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.AllPostsActivity;
-import integra.pesintegra.Services.PostService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class ControladorPresentacioAllPostsActivity extends ControladorPresentacio {
 

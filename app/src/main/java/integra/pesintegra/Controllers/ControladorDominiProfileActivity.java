@@ -1,18 +1,14 @@
 package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.ImageBM;
-import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.ProfileActivity;
 import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;

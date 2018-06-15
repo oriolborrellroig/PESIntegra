@@ -1,7 +1,6 @@
 package integra.pesintegra.Controllers;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
@@ -10,27 +9,18 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.lang.Object;
 
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
-import integra.pesintegra.Presentation.AllPostsActivity;
-import integra.pesintegra.Presentation.CreateActivityActivity;
-import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class ControladorDominiCreateActivity extends ControladorDomini {
 

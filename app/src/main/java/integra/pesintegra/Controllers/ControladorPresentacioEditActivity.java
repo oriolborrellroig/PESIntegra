@@ -2,7 +2,6 @@ package integra.pesintegra.Controllers;
 
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 

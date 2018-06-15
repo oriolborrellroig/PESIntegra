@@ -2,9 +2,7 @@ package integra.pesintegra.Controllers;
 
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class ControladorDominiChangePassword extends ControladorDomini {
 

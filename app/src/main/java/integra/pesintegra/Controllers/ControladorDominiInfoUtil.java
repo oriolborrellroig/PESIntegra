@@ -1,14 +1,8 @@
 package integra.pesintegra.Controllers;
 
-import android.content.Context;
-import android.util.Log;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
-
-import integra.pesintegra.Presentation.InformationActivity;
 import integra.pesintegra.Services.InfoService;
 import integra.pesintegra.Services.ServiceManager;
 import retrofit2.Call;

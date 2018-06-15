@@ -13,18 +13,6 @@
         android:title="@string/editPost"/>
 
     <item
-        android:id="@+id/follow_post"
-        android:title="@string/BTNfollow"/>
-
-    <item
-        android:id="@+id/unfollow_post"
-        android:title="@string/BTNunfollow"/>
-
-    <item
-        android:id="@+id/translate_post"
-        android:title="@string/BTNtranslate"/>
-
-    <item
         android:id="@+id/borrar_post"
         android:title="@string/deletePost"/>
 

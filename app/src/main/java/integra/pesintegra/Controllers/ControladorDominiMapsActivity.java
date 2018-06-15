@@ -1,7 +1,5 @@
 package integra.pesintegra.Controllers;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import integra.pesintegra.Logic.Clases.Post;
