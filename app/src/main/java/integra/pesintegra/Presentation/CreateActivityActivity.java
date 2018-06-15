@@ -324,12 +324,11 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
                 String lang_spinner = spinnerLang.getSelectedItem().toString();
+                String n_assistents = ((TextView) findViewById(R.id.n_participants)).getText().toString();
                 String lang = "";
                 if(lang_spinner.equals(getString(R.string.catalan))) lang = "CA";
                 else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
                 else lang = "EN";
-                Log.d("laaaang", lang);
-
 
                 new_post = new Post_Activitat();
 
@@ -338,7 +337,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                     String tipus = intent.getStringExtra("flag");
                     switch (tipus) {
                         case "A":
-                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags, 20);
+                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags, n_assistents);
                             break;
                         case "F":
                             new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);

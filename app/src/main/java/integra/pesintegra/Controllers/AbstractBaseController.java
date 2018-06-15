@@ -83,6 +83,15 @@ public abstract class AbstractBaseController {
         return Boolean.FALSE;
     }
 
+    int comprova_participants_to_integer (String participants) throws Exception {
+
+        if (!Pattern.matches("[a-zA-Z]+", participants)) {
+            return Integer.parseInt(participants);
+        }
+        else {
+            throw new Exception(String.valueOf(R.string.ERRnotValidAttendants));
+        }
+    }
 
     static void valid_mail(String email) throws Exception
     {

@@ -142,4 +142,6 @@
     <string name="BTNfollow">Follow post</string>
     <string name="BTNunfollow">Unfollow post</string>
     <string name="BTNtranslate">Translate post</string>
+    <string name="n_attendants">Number of attendants</string>
+    <string name="ERRnotValidAttendants">Number of attendants has to be an integer</string>
 </resources>

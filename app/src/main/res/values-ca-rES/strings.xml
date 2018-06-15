@@ -124,4 +124,6 @@
     <string name="BTNfollow">Seguir post</string>
     <string name="BTNunfollow">Deixar de seguir</string>
     <string name="BTNtranslate">Traduir post</string>
+    <string name="n_attendants">Nombre de participants</string>
+    <string name="ERRnotValidAttendants">El nombre de participants ha de ser un enter</string>
 </resources>

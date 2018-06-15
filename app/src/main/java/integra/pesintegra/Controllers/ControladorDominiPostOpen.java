@@ -339,6 +339,28 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         return result;
     }
 
+    public void getPost(String post_id) {
+        PostService service = ServiceManager.getPostService();
+        Call<Post> createCall = service.getPost(post_id);
+        createCall.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                Log.i("AAAAAAAAA3", Integer.toString(response.body().getN_act()));
+                Log.i("AAAAAAAAA2", (response.body().getTitol()));
+                Log.i("AAAAAAAAA1", Integer.toString(response.body().getPuntuacio()));
+                Cpresentacio.loadPost(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                Log.i("AAAAAAAAA3", Integer.toString(1));
+                Log.i("AAAAAAAAA3", Integer.toString(1));
+                Log.i("AAAAAAAAA3", Integer.toString(1));
+            }
+        });
+    }
+
     public void isMod(String id) {
         UserService service = ServiceManager.getUserService();
         Call<User> createCall2 = service.getUser(id);

@@ -5,6 +5,7 @@ import android.content.Context;
 
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.ImageBM;
+import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Presentation.PostActivity;
 
@@ -140,6 +141,14 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
     public void getImageResponse (ImageBM image) {
         activity.loadImage(image.getBitmapImage());
+    }
+
+    public void getPost(String post_id) {
+        Cdomini.getPost(post_id);
+    }
+
+    public void loadPost(Post post) {
+        activity.loadPost(post);
     }
 
     public void afegeix_comentari(Comentari nou_comment){
