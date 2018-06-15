@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface UserService {
@@ -43,6 +44,11 @@ public interface UserService {
     Call<JsonObject> setInterest(@Query("userID") String userid, @Query("interest") String interestName,
                                   @Query("ivalue") String valor);
 
+    @PUT("mod/createMod")
+    Call<Void> createMod(@Query("usrid") String userid);
+
+    @PUT("mod/block")
+    Call<Void> banUser(@Query("usrid") String userid);
 
 }
 
