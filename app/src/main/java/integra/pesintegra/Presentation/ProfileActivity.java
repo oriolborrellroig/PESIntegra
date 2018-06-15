@@ -144,12 +144,15 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 break;
                             case R.id.ban_user:
                                 cp.banUser(profile_user);
+                                break;
                             case R.id.convert_to_mod:
                                 cp.convertToMod(profile_user);
+                                break;
                             case R.id.reported_posts:
                                 Intent intentt = new Intent(getApplicationContext(), AllPostsActivity.class);
                                 intentt.putExtra("type", "reported");
                                 startActivity(intentt);
+                                break;
                         }
                         return true;
                     }
@@ -453,7 +456,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     public void setIsMod(String isMod) {
         this.isMod = (isMod.equals("moderador"));
-        Log.i("aaaaaaa", this.isMod.toString());
     }
     public void loadImage(Bitmap bitmapImage) {
         iv.setImageBitmap(bitmapImage);

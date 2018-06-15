@@ -12,6 +12,7 @@ import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
+import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.PostActivity;
 import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
@@ -336,5 +337,21 @@ public class ControladorDominiPostOpen extends ControladorDomini {
             }
         });
         return result;
+    }
+
+    public void isMod(String id) {
+        UserService service = ServiceManager.getUserService();
+        Call<User> createCall2 = service.getUser(id);
+        createCall2.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Cpresentacio.isModCallback(response.body().getTipus());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
     }
 }

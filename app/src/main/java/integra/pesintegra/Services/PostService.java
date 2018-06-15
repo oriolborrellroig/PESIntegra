@@ -86,7 +86,7 @@ public interface PostService {
     @GET("post/hasReported")
     Call<String> isReported(@Query("postid") String postid, @Query("userid") String userid);
 
-    @GET("/posts/reportedPosts")
+    @GET("/post/reportedPosts")
     Call<ArrayList<Post>> getReportedPosts();
 
     @PUT("post/reportComment")

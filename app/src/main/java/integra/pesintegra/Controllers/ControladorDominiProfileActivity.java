@@ -55,18 +55,18 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
             super.remove_tag(interes);
         }
         Call<JsonObject> createCall2 = service.setInterest(userID, interes, valor);
-        Log.d("interiooor", "user");
+
         createCall2.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Log.d("crida fetaaa", response.body().get("interes").toString().replace("\"", ""));
+
                 Cpresentacio.updateInterestInfo(response.body().get("interes").toString().replace("\"", ""),
                         response.body().get("valor").toString().replace("\"", ""));
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("sadasds","aaa");
+
             }
         });
     }
@@ -88,7 +88,7 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.d("sadasds","aaa");
+
             }
         });
     }

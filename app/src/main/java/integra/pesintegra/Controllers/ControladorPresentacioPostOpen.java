@@ -154,6 +154,14 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         activity.borra_comments_post(id);
     }
 
+    public void isMod(String id) {
+        Cdomini.isMod(id);
+    }
+
+    public void isModCallback(String tipus) {
+        activity.setTipus(tipus);
+    }
+
 
    /* public String getusernamebyid(String id){
 

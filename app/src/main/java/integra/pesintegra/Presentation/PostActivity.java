@@ -86,6 +86,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
     private TextView free_places;
     public ArrayList<Comentari> comentaris;
     private FloatingActionButton join, disengage;
+    Boolean isMod;
 
     private final LoginActivity li = new LoginActivity();
     @SuppressLint("CutPasteId")
@@ -137,6 +138,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
         current = current_user.equals(post_user);
+        cp.isMod(current_user);
         for(Comentari comment_for : comentaris){
             if (comment_for.getuser_id().equals(current_user)){
                 disable_comment();
@@ -175,7 +177,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
                     if(hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
-                    popupMenu.findItem(R.id.borrar_post).setVisible(false);
+                    if(!isMod) popupMenu.findItem(R.id.borrar_post).setVisible(false);
                 }
 
                 //registering popup with OnMenuItemClickListener
@@ -567,4 +569,7 @@ public class PostActivity extends Activity implements View.OnClickListener{
         }
     }
 
+    public void setTipus(String tipus) {
+        this.isMod = (tipus.equals("moderador"));
+    }
 }

@@ -121,7 +121,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 cs.loadFeedAdvSearch(getIntent().getExtras());
                 break;
             case "reported":
+                Log.d("aaa", "estic al allPostsActivity");
                 ControladorPresentacioAllPostsActivity.loadReportedPosts();
+                break;
         }
     }
 
