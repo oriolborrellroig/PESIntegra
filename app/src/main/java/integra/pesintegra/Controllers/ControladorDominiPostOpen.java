@@ -269,9 +269,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
             }
         });
     }
-    public void report_comment(String post_id, String comment_id, String user_id){
-        //TODO: crida a BD per afegir el comentari a reportat
-    }
+
 
     public void isReported(String current_user, String post_id) {
         PostService service = ServiceManager.getPostService();
@@ -312,7 +310,7 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         createCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                //TODO: Ja esta el report comment fet, no se que voleu que fagi, fet per Oriol Borrell.
+                //TODO: Ja esta el report comment fet, no se que voleu que fagi, fet per Oriol Borrell. jeje xd salu2
             }
 
             @Override
