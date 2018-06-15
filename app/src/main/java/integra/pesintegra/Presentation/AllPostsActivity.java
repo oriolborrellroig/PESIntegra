@@ -122,7 +122,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 ControladorPresentacioAllPostsActivity.loadReportedPosts();
                 break;
             case "reported_comments":
-                ControladorPresentacioAllPostsActivity.loadReportedPosts();
+                ControladorPresentacioAllPostsActivity.getReportedCommentedPosts();
                 break;
 
         }

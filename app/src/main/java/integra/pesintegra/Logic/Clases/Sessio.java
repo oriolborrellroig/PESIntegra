@@ -19,7 +19,7 @@ public class Sessio {
         this.idioma = "Catala";  //equivaldrà a numero del doc.
         this.tags = new ArrayList<>();
         this.token = token;
-        this.tipusUser = tipus;
+        this.tipusUser = tipus; //
     }
 
 
@@ -50,5 +50,8 @@ public class Sessio {
         tags.remove(tag);
     }
 
+    public boolean isModerador(){
+        return tipusUser.equals("moderador");
+    }
 
 }

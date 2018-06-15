@@ -339,7 +339,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
         cp.isMod(current_user);
         current = current_user.equals(post_user);
         for (Comentari comment_for : comentaris) {
-            if (comment_for.getuser_id().equals(current_user)) {
+            if (comment_for.getuser_id().equals(current_user) && !current_user.equals(post.getOwner())) {
                 disable_comment();
             }
         }

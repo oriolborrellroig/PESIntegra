@@ -82,7 +82,7 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         activity.loadImage(body.getBitmapImage());
     }
 
-    public void getReportedCommentedPosts(){ CDAllPosts.loadReportedCommentedPosts(); }
+    public static void getReportedCommentedPosts(){ CDAllPosts.loadReportedCommentedPosts(); }
 
     public void afegir_imatge(String id, ImageView icon_post, ListAdapter listAdapter) {
         CDAllPosts.posa_imatge(id, icon_post, listAdapter);
