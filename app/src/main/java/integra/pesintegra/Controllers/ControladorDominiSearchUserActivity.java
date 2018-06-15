@@ -1,7 +1,6 @@
 package integra.pesintegra.Controllers;
 
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
 import retrofit2.Call;

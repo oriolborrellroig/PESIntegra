@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.R;
 
@@ -43,6 +44,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     String current_user;
     String profile_user;
     Boolean current;
+    Boolean isMod;
+    String profileTipus;
     ImageView iv;
     Bitmap bitmapImage;
     Uri imageUri;
@@ -61,7 +64,13 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         current_user = cp.getCurrentUser();
         profile_user = getIntent().getStringExtra("profile_user");
         current = current_user.equals(profile_user);
+        posarData();
+    }
+    private void posarData(){
+        cp.isMod(current_user);
+        cp.getProfileTipus(profile_user);
 
+        cp.getImage(current_user);
         final Button tres_punts = findViewById(R.id.tres_punts);
         tres_punts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,15 +83,37 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 popup.getMenuInflater().inflate(R.menu.popup_menu_perfil, popupMenu);
                 if(current){
                     popupMenu.findItem(R.id.perfil_propi).setVisible(false);
-
-
+                    popupMenu.findItem(R.id.ban_user).setVisible(false);
+                    popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                    popupMenu.findItem(R.id.unblock_user).setVisible(false);
                 }
                 else{
+                    popupMenu.findItem(R.id.reported_posts).setVisible(false);
                     popupMenu.findItem(R.id.afegir_imatge).setVisible(false);
                     popupMenu.findItem(R.id.canviar_mail).setVisible(false);
                     popupMenu.findItem(R.id.canviar_pswd).setVisible(false);
                     popupMenu.findItem(R.id.posts_amagats).setVisible(false);
 
+                }
+                if(!isMod){
+                    popupMenu.findItem(R.id.reported_posts).setVisible(false);
+                    popupMenu.findItem(R.id.ban_user).setVisible(false);
+                    popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                    popupMenu.findItem(R.id.reported_posts).setVisible(false);
+                    popupMenu.findItem(R.id.reported_comments).setVisible(false);
+                    popupMenu.findItem(R.id.unblock_user).setVisible(false);
+                }
+                switch (profileTipus) {
+                    case "moderador":
+                        popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                        popupMenu.findItem(R.id.unblock_user).setVisible(false);
+                        break;
+                    case "bloquejat":
+                        popupMenu.findItem(R.id.ban_user).setVisible(false);
+                        break;
+                    case "usuari":
+                        popupMenu.findItem(R.id.unblock_user).setVisible(false);
+                        break;
                 }
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -108,6 +139,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                             case R.id.afegir_imatge:
                                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 startActivityForResult(i, 52);
+
                                 break;
                             case R.id.canviar_mail:
                                 Intent intent = new Intent(getApplicationContext(), ChangeMailActivity.class);
@@ -128,17 +160,38 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 inte.putExtra("type", "hide");
                                 startActivity(inte);
                                 break;
-
+                            case R.id.ban_user:
+                                cp.banUser(profile_user);
+                                posarData();
+                                break;
+                            case R.id.unblock_user:
+                                cp.unblockUser(profile_user);
+                                posarData();
+                                break;
+                            case R.id.convert_to_mod:
+                                cp.convertToMod(profile_user);
+                                posarData();
+                                break;
+                            case R.id.reported_posts:
+                                Intent intentt = new Intent(getApplicationContext(), AllPostsActivity.class);
+                                intentt.putExtra("type", "reported");
+                                startActivity(intentt);
+                                break;
                         }
                         return true;
                     }
                 });
 
                 popup.show(); //showing popup menu
+
+
+
             }
         });
 
         ControladorPresentacioProfileActivity.getUser(profile_user);
+        //Bitmap imatge_perfil = cp.getImage("profile").getBitmapImage();
+        //iv.setImageBitmap(imatge_perfil);
     }
 
 
@@ -321,45 +374,49 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         username.setText(body.getUsername());
         TextView data = findViewById(R.id.user_birth_date);
         data.setText(body.getData());
-        for ( int i = 0; i < body.getInteressos().size(); ++i){
+        label:
+        for (int i = 0; i < body.getInteressos().size(); ++i) {
 
-            if (body.getInteressos().get(i).equals("esport") ){
-                button = findViewById(R.id.btn_esport);
-                item_seleccionat(button);
+            switch (body.getInteressos().get(i)) {
+                case "esport":
+                    button = findViewById(R.id.btn_esport);
+                    item_seleccionat(button);
+                    break;
+                case "musica":
+                    button = findViewById(R.id.btn_musica);
+                    item_seleccionat(button);
+                    break;
+                case "cinema":
+                    button = findViewById(R.id.btn_cinema);
+                    item_seleccionat(button);
+                    break;
+                case "lectura":
+                    button = findViewById(R.id.btn_lectura);
+                    item_seleccionat(button);
+                    break;
+                case "tecnologia":
+                    button = findViewById(R.id.btn_tech);
+                    item_seleccionat(button);
+                    break;
+                case "cuina":
+                    button = findViewById(R.id.btn_cuina);
+                    item_seleccionat(button);
+                    break;
+                case "moda":
+                    button = findViewById(R.id.btn_moda);
+                    item_seleccionat(button);
+                    break;
+                case "viatges":
+                    button = findViewById(R.id.btn_viatges);
+                    item_seleccionat(button);
+                    break;
+                case "art":
+                    button = findViewById(R.id.btn_art);
+                    item_seleccionat(button);
+                    break;
+                default:
+                    break label;
             }
-            else if (body.getInteressos().get(i).equals("musica")){
-                button = findViewById(R.id.btn_musica);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("cinema")){
-                button = findViewById(R.id.btn_cinema);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("lectura")){
-                button = findViewById(R.id.btn_lectura);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("tecnologia")){
-                button = findViewById(R.id.btn_tech);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("cuina")){
-                button = findViewById(R.id.btn_cuina);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("moda")){
-                button = findViewById(R.id.btn_moda);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("viatges")){
-                button = findViewById(R.id.btn_viatges);
-                item_seleccionat(button);
-            }
-            else if (body.getInteressos().get(i).equals("art")){
-                button = findViewById(R.id.btn_art);
-                item_seleccionat(button);
-            }
-            else break;
         }
     }
 
@@ -376,9 +433,15 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         int alcada = iv.getMaxHeight();
                         int amplada = iv.getMaxWidth();
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
+                        //iv.setImageBitmap(bitmapImage);
+                        ImageBM image_to_store = new ImageBM(current_user, bitmapImage);
+                        cp.addProfileImage(image_to_store);
+                        //carregar de la BD per provar que funciona i tal
+                        //Bitmap lol_xd_prova = image_to_store.getBitmapImage();
                         iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
                         //guardar imatge a la bd
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -413,5 +476,16 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         //Log.d("interes : ", interes);
         //Log.d("valorrr : ", valor);
         //fer coses amb el nom del interes canviat i el nou valor true false en format string.
+    }
+
+    public void setIsMod(String isMod) {
+        this.isMod = (isMod.equals("moderador"));
+    }
+    public void loadImage(Bitmap bitmapImage) {
+        iv.setImageBitmap(bitmapImage);
+    }
+
+    public void setProfileTipus(String profileTipus) {
+        this.profileTipus = profileTipus;
     }
 }

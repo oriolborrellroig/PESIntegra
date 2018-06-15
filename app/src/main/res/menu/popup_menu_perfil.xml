@@ -24,8 +24,28 @@
         android:id="@+id/posts_propis"
         android:title="@string/see_posts"/>
 
-
     <item
         android:id="@+id/posts_amagats"
         android:title="@string/hiddenPosts"/>
+
+    <item
+        android:id="@+id/convert_to_mod"
+        android:title="@string/mod"/>
+
+    <item
+        android:id="@+id/ban_user"
+        android:title="@string/ban_user"/>
+
+    <item
+        android:id="@+id/unblock_user"
+        android:title="@string/unblock_user"/>
+
+    <item
+        android:id="@+id/reported_posts"
+        android:title="@string/reported_posts"/>
+
+    <item
+        android:id="@+id/reported_comments"
+        android:title="@string/reported_comments"/>
+
 </menu>

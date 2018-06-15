@@ -1,4 +1,4 @@
 package integra.pesintegra.Controllers;
 
-public class ControladorPresentacioSettingsActivity {
+public class ControladorPresentacioSettingsActivity extends ControladorPresentacio{
 }

@@ -3,15 +3,15 @@ package integra.pesintegra.Controllers;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.AllPostsActivity;
-import integra.pesintegra.Services.PostService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class ControladorPresentacioAllPostsActivity extends ControladorPresentacio {
 
@@ -27,21 +27,21 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         CDAllPosts = new ControladorDominiAllPostsActivity();
     }
 
-    public void loadFeedAnyPosts () {
-        CDAllPosts.loadFeedAnyPosts();
-    }
+    public void loadFeedAnyPosts (Integer order) {
+        CDAllPosts.loadFeedAnyPosts(order);
+    } //TODO: esta hardcoded
 
-    public void loadFeedWorkPosts () {
-        CDAllPosts.loadFeedWorkPosts();
-    }
+    public void loadFeedWorkPosts (Integer order) {
+        CDAllPosts.loadFeedWorkPosts(order);
+    } //TODO: esta hardcoded
 
-    public void loadFeedActivityPosts () {
-        CDAllPosts.loadFeedActivityPosts();
-    }
+    public void loadFeedActivityPosts (Integer order) {
+        CDAllPosts.loadFeedActivityPosts(order);
+    } //TODO: esta hardcoded
 
-    public void loadFeedHousePosts () {
-        CDAllPosts.loadFeedHousePosts();
-    }
+    public void loadFeedHousePosts (Integer order) {
+        CDAllPosts.loadFeedHousePosts(order);
+    }//TODO: esta hardcoded
 
     public static void loadFeedHiddenPosts () { CDAllPosts.loadFeedHiddenPosts(); }
 
@@ -51,16 +51,36 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
         AllPostsActivity.updateFeed(posts,context);
     }
 
-    public static void loadFeedTagsPosts() {
-        CDAllPosts.loadFeedTagsPosts();
-    }
+    public static void loadFeedTagsPosts(ArrayList<String> listtags) {
+        //ArrayList<String> listtags = new ArrayList<String>() ;
+        CDAllPosts.loadFeedTagsPosts(listtags);
+    }//TODO: array buit, cal passar per parametre els tags en format d'arraylist
 
-    public static void loadFeedTaCalendarPosts() {
-        CDAllPosts.loadFeedCalendarPosts();
+    public static void loadFeedTaCalendarPosts(String id) {
+        CDAllPosts.loadFeedCalendarPosts(id);
     }
 
     public void loadFeedAdvSearch(Bundle extras) { CDAllPosts.loadFeedAdvSearch(extras); }
 
 
+    public static void loadReportedPosts() { CDAllPosts.loadReportedPosts();}
 
+    public List<String> getTagsSessio(){
+        return CDAllPosts.getTagsSessio();
+    }
+
+    public void loadTagsSessio() {
+        CDAllPosts.loadTagsSessio();
+    }
+
+    public void setImage(AllPostsActivity act) {
+        Log.d("hey", "22222222222222222");
+        activity = act;
+        CDAllPosts.setImageDrawer(this);
+    }
+
+    public void getImageResponse(ImageBM body) {
+        //Log.d("hey", "55555555555555555555");
+        activity.loadImage(body.getBitmapImage());
+    }
 }

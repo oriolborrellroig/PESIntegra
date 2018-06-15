@@ -12,6 +12,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface UserService {
@@ -30,6 +31,9 @@ public interface UserService {
     @PATCH("users/updateMail")
     Call<Void> updateMailUser(@Query("usrid") String userid, @Query("mail") String mail, @Query("pass") String pass);
 
+    @PATCH("users/updatePassword")
+    Call<Void> updatePasswordUser(@Query("oldpass") String oldpass, @Query("newPass") String newPass);
+
     @PATCH("users/updateAddToHide")
     Call<Void> updateAddToHide(@Query("usrid") String userid, @Query("postid") String postid);
 
@@ -40,6 +44,14 @@ public interface UserService {
     Call<JsonObject> setInterest(@Query("userID") String userid, @Query("interest") String interestName,
                                   @Query("ivalue") String valor);
 
+    @PUT("mod/createMod")
+    Call<Void> createMod(@Query("userid") String userid);
+
+    @PUT("mod/block")
+    Call<Void> banUser(@Query("userid") String userid);
+
+    @PUT("mod/unblock")
+    Call<Void> unbanUser(@Query("userid") String userid);
 
 }
 

@@ -1,9 +1,9 @@
 package integra.pesintegra.Presentation;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.camera2.CameraManager;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
@@ -15,21 +15,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
+import integra.pesintegra.Controllers.ControladorPresentacioAdvancedSearchActivity;
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
-import integra.pesintegra.Controllers.ControladorPresentacioPostOpen;
-import integra.pesintegra.Controllers.ControladorPresentacioProfileActivity;
 import integra.pesintegra.Logic.Adapter.ListAdapter;
 import integra.pesintegra.Logic.Clases.Post;
-
-import integra.pesintegra.Logic.Clases.Post_Activitat;
-import integra.pesintegra.Logic.Clases.Post_Feina;
-import integra.pesintegra.Logic.Clases.User;
 
 import integra.pesintegra.R;
 
@@ -43,8 +39,8 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     private List<Post> list_posts = new ArrayList<>();
     private static List<String> hidden_posts;
     private String postType = "none";
-
-    private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct;
+    private Boolean rating_clicked, creation_clicked;
+    private FloatingActionButton fabAdd,fabAddHab,fabAddFei, fabAddAct, button_ratting, button_newest;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
 
 
@@ -61,9 +57,12 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         new ControladorPresentacioAllPostsActivity(AllPostsActivity.this, getApplicationContext());
         ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();
-
-        getPostsFromDB();
-
+        this.button_newest = findViewById(R.id.button_newest);
+        button_newest.setOnClickListener(this);
+        this.button_ratting = findViewById(R.id.button_ratting);
+        button_ratting.setOnClickListener(this);
+        rating_clicked = creation_clicked = false;
+        getPostsFromDB(0);
         fabAdd = findViewById(R.id.fabAdd);
         fabAddHab = findViewById(R.id.fabAddHab);
         fabAddFei = findViewById(R.id.fabAddFei);
@@ -77,54 +76,97 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
 
-
+        ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
+        cs.loadTagsSessio();
+        Log.d("hey", "1111111111111111");
+        //iv = findViewById((R.id.imatge_perfil));
+        cs.setImage(this);
     }
 
-    private void getPostsFromDB() {
+    private void getPostsFromDB(Integer order) {
         ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
         switch (postType) {
             case "any":
-                cs.loadFeedAnyPosts();
+                cs.loadFeedAnyPosts(order);
                 break;
             case "house":
-                cs.loadFeedHousePosts();
+                cs.loadFeedHousePosts(order);
                 break;
             case "work":
-                cs.loadFeedWorkPosts();
+                cs.loadFeedWorkPosts(order);
                 break;
             case "activity":
-                cs.loadFeedActivityPosts();
+                cs.loadFeedActivityPosts(order);
                 break;
             case "propis":
+                hide_buttons();
                 ControladorPresentacioAllPostsActivity.loadFeedUserPropiPosts(getIntent().getStringExtra("user"));
                 break;
             case "hide":
+                hide_buttons();
                 ControladorPresentacioAllPostsActivity.loadFeedHiddenPosts();
                 break;
             case "tags":
-                ControladorPresentacioAllPostsActivity.loadFeedTagsPosts();
+                hide_buttons();
+                List<String> listtags;
+                listtags = cs.getTagsSessio();
+                ArrayList<String> listtags2 = new ArrayList<>(listtags);
+                ControladorPresentacioAllPostsActivity.loadFeedTagsPosts(listtags2);
                 break;
             case "calendar":
-                ControladorPresentacioAllPostsActivity.loadFeedTaCalendarPosts();
+                hide_buttons();
+                ControladorPresentacioAllPostsActivity.loadFeedTaCalendarPosts(cs.getSessioUser());
                 break;
             case "adv_search":
+                hide_buttons();
                 cs.loadFeedAdvSearch(getIntent().getExtras());
                 break;
+            case "reported":
+                ControladorPresentacioAllPostsActivity.loadReportedPosts();
+                break;
+
         }
+    }
+
+    //0->rating unclicked clicked and click rating
+    //1->vote unclicked clicked and click vote
+    //2->any clicked and click same
+
+    private void change_buttons_colour(int a) {
+        if (a == 0) {
+            button_ratting.setColorFilter(getResources().getColor(R.color.accent));
+            button_newest.setColorFilter(getResources().getColor(R.color.primary_text));
+        }
+        else if (a == 1) {
+            button_ratting.setColorFilter(getResources().getColor(R.color.primary_text));
+            button_newest.setColorFilter(getResources().getColor(R.color.accent));
+        }
+        else {
+            button_ratting.setColorFilter(getResources().getColor(R.color.primary_text));
+            button_newest.setColorFilter(getResources().getColor(R.color.primary_text));
+        }
+
+    }
+
+    private void hide_buttons(){
+        button_ratting.setVisibility(View.GONE);
+        button_newest.setVisibility(View.GONE);
     }
 
     @Override
     public void onBackPressed() {
+        String type = getIntent().getStringExtra("type");
         DrawerLayout drawer = findViewById(R.id.nav_drawer);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             super.onBackPressed();
         }
+        else if(type.equals("propis") || type.equals("hide") || type.equals("adv_search")) super.onBackPressed();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        getPostsFromDB();
+        getPostsFromDB(0);
         if(recyclerView != null) recyclerView.setAdapter(listAdapter);
     }
 
@@ -220,6 +262,39 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 intent.putExtra("flag", "F");
                 startActivity(intent);
                 break;
+
+            case R.id.button_ratting:
+                if (rating_clicked) {
+                    change_buttons_colour(2);
+                    getPostsFromDB(0);
+                    rating_clicked = false;
+                }
+                else { //not rating_clicked
+                    if (creation_clicked) {
+                        creation_clicked = false;
+                    }
+                    change_buttons_colour(0);
+                    getPostsFromDB(2);
+                    rating_clicked = true;
+                }
+                break;
+
+            case R.id.button_newest:
+                if (creation_clicked) {
+                    change_buttons_colour(2);
+                    getPostsFromDB(0);
+                    creation_clicked = false;
+                }
+                else { //not creation_clicked
+                    if (rating_clicked) {
+                        rating_clicked = false;
+                    }
+                    change_buttons_colour(1);
+                    getPostsFromDB(1);
+                    creation_clicked = true;
+                }
+                break;
+
             case R.id.recycler :
 
                 int position = recyclerView.getChildLayoutPosition(v);
@@ -228,11 +303,20 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
     }
 
     public static void updateFeed(ArrayList<Post> body, Context ctx) {
-        listAdapter = new ListAdapter(body);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(listAdapter);
+        if(body != null) {
+            listAdapter = new ListAdapter(body);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ctx);
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(listAdapter);
+        }
+    }
+
+    public void loadImage(Bitmap bitmapImage) {
+        super.loadImage(bitmapImage);
+        //Log.d("a", "apa, vaig a posar la imatge");
+        //Log.d("hey", "6666666666666666666666");
+        //iv.setImageBitmap(bitmapImage);
     }
 
 

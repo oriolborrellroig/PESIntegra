@@ -1,57 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="70dp">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cv">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
-            android:padding="6dip" >
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:stretchColumns="1">
+            <TableRow>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dip">
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="58dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="0dp"
-                android:layout_marginRight="6dp"
-                android:src="@mipmap/ic_launcher" />
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="6dp"
+                        android:src="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/cv_text"
-                android:layout_width="wrap_content"
-                android:layout_height="26dip"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@id/icon"
-                android:gravity="center_vertical"
-                android:text="COMENTARI"
-                android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/cv_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cv_data"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@id/icon"
+                        android:gravity="center_vertical"
+                        android:text="COMENTARI asdf sadf sad f sd f asdf sd f sad f sadf asd f as df lokooooooooosdfsdfsdfsdfasdfsad fas df sadf sdaf sda fsdaf sda f sdaf sadf asdf sd f sad fsad f dsa fs daf asd"
+                        android:textSize="16sp"
+                        tools:maxLines="5" />
 
 
-            <TextView
-                android:id="@+id/cv_data"
+                    <TextView
+                        android:id="@+id/cv_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignWithParentIfMissing="true"
+                        android:layout_marginRight="54dp"
+                        android:layout_toRightOf="@id/icon"
+                        android:text="DATA DEL COMENTARI"
+                        android:textSize="12sp" />
+
+
+
+                </RelativeLayout>
+            </TableRow>
+            <TableRow
+                android:id="@+id/reply_row"
                 android:layout_width="fill_parent"
-                android:layout_height="22dp"
-                android:layout_above="@id/cv_dia"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignWithParentIfMissing="true"
-                android:layout_toRightOf="@id/icon"
-                android:text="DATA DEL COMENTARI"
-                android:textSize="12sp" />
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="20dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dip">
+
+                    <ImageView
+                        android:id="@+id/icon_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="6dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/cv_text_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cv_data_reply"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@id/icon_reply"
+                        android:gravity="center_vertical"
+                        android:text="COMENTARI asdf sadf sad f sd f asdf sd f sad f sadf asd f as df lokooooooooosdfsdfsdfsdfasdfsad fas df sadf sdaf sda fsdaf sda f sdaf sadf asdf sd f sad fsad f dsa fs daf asd"
+                        android:textSize="16sp"
+                        tools:maxLines="5" />
+
+
+                    <TextView
+                        android:id="@+id/cv_data_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignWithParentIfMissing="true"
+                        android:layout_marginRight="54dp"
+                        android:layout_toRightOf="@id/icon_reply"
+                        android:text="DATA DEL COMENTARI"
+                        android:textSize="12sp" />
 
 
 
-        </RelativeLayout>
+
+                </RelativeLayout>
+            </TableRow>
+            <TableRow
+                android:id="@+id/send_reply_row"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/respondre_comentari"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/comentari_r"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.2"
+                        android:background="@drawable/input_text_background"
+                        android:gravity="center_vertical"
+                        android:hint="@string/afegir_resposta"
+                        android:minHeight="80dp"
+                        android:scrollHorizontally="false" />
+
+                    <Button
+                        android:id="@+id/enviar_r"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="right|center_horizontal|center"
+                        android:background="@mipmap/baseline_send_black_36"
+                        android:drawableTint="@color/accent" />
+
+                </LinearLayout>
+
+            </TableRow>
+        </TableLayout>
 
     </android.support.v7.widget.CardView>
 

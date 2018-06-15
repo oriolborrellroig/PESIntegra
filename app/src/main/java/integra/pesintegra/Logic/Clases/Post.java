@@ -28,9 +28,8 @@ public abstract class Post implements Serializable {
     private double lng;
     private String idioma;
     private ArrayList<String> interessos;
-
+    private ArrayList<Comentari> comments;
     private boolean hidden;
-
     private int puntuacio;
     private int nombreVots;
 
@@ -56,6 +55,7 @@ public abstract class Post implements Serializable {
         this.puntuacio = 0;
         this.nombreVots = 0;
         this.interessos = clicked_tags;
+        this.comments = new ArrayList<Comentari>();
         setId();
         setShow();
     }
@@ -121,9 +121,17 @@ public abstract class Post implements Serializable {
         return this.localitzacio;
     }
 
+    public Integer numComents(){
+        return this.comments.size();
+    }
+
     public void setCoord(double lat, double lng){
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public ArrayList<Comentari> getComments(){
+        return comments;
     }
 
     public void setLocalitzacio(String localitzacio){
@@ -180,19 +188,15 @@ public abstract class Post implements Serializable {
         return lng;
     }
 
-    public int getN_act() {
+    public int getN_assistents() {
         return 0;
     }
 
-    public void setN_act(int n_act) {
-    }
-
-    public int getN_max() {
+    public int getAssistentsMax() {
         return 0;
     }
 
-    public void setN_max(int n_max) {
-
+    public void setAssistentsMax(int assistentsMax) {
     }
 
     public List<String> getInteressos(){
@@ -200,6 +204,8 @@ public abstract class Post implements Serializable {
     }
 
     public String getIdioma() { return idioma; }
+
+    public void setIdioma(String idioma) { this.idioma = idioma; }
 
     public int getPuntuacio() {
         return puntuacio;

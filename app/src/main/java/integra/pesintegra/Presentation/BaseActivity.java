@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,10 +13,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.R;
@@ -24,14 +27,14 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     ControladorPresentacio cntrlPresentacio;
     private ActionBarDrawerToggle mToggle;
-
+    private ImageView iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_base);
         setView();
-
+        iv = findViewById((R.id.imatge_drawer));
 
     }
 
@@ -48,10 +51,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -110,6 +110,12 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent.putExtra("type", "calendar");
                 startActivity(intent);
                 break;
+            case R.id.google_maps:
+                Log.d("aaaa", "hollaaaaa");
+                intent = new Intent(getApplicationContext(), MapsActivity.class);
+                intent.putExtra("origin", "calendar");
+                startActivity(intent);
+                break;
             case R.id.information:
                 intent = new Intent(getApplicationContext(), InformationActivity.class);
                 startActivity(intent);
@@ -155,14 +161,14 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.nav_drawer);
+        DrawerLayout drawer = findViewById(R.id.nav_drawer);
         //drawer.closeDrawer(GravityCompat.START);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -174,4 +180,20 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
+
+    public void loadImage(Bitmap bitmapImage) {
+        RoundImage roundedImage;
+        roundedImage = new RoundImage(bitmapImage);
+        Log.d("a", "apa, vaig a posar la imatge");
+        Log.d("hey", "6666666666666666666666");
+        if (bitmapImage!=null) {
+            iv = findViewById((R.id.imatge_drawer));
+            //iv.setImageBitmap(bitmapImage);
+            iv.setImageDrawable(roundedImage);
+        }else{
+            Log.d("im", "la imatge es null");
+        }
+    }
+
+
 }

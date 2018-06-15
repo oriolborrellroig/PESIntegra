@@ -27,9 +27,9 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
         cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_changepassword);
 
-        Button cancel = (Button)findViewById(R.id.change_pswd_cancel);
+        Button cancel = findViewById(R.id.change_pswd_cancel);
         cancel.setOnClickListener(this);
-        Button register = (Button)findViewById(R.id.change_pswd_confirm);
+        Button register = findViewById(R.id.change_pswd_confirm);
         register.setOnClickListener(this);
 
     }

@@ -1,80 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    android:scrollbars="horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
         android:orientation="vertical">
-
 
 
         <TextView
             android:id="@+id/post_titol"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/title"
             android:textSize="40sp"
-            android:textStyle="bold"
-            android:hint="@string/title"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/free_places"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="20dp"
+            android:layout_marginTop="15dp"
             android:textSize="15dp"
-            android:visibility="gone"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/post_direccio"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="italic"
-            android:gravity="center|left"
             android:clickable="true"
             android:drawableRight="@mipmap/ic_map_marker_grey600_36dp"
             android:drawableTint="@color/accent"
-            android:hint="@string/locationGM"
             android:focusable="true"
+            android:gravity="center|left"
+            android:hint="@string/locationGM"
+            android:textStyle="italic"
             tools:ignore="RtlHardcoded"
             tools:targetApi="m" />
+
         <TextView
             android:id="@+id/post_data"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textStyle="italic"
-            android:gravity="center|left"
             android:drawableEnd="@mipmap/ic_today_black_36dp"
             android:drawableTint="@color/accent"
+            android:gravity="center|left"
             android:hint="3/4/2018 10:00 - 5/5/2018 13:00"
+            android:textStyle="italic"
             tools:targetApi="m" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/post_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:singleLine="false"
             android:layout_gravity="center_vertical|right"
-            android:hint="Text del Post"/>
+            android:layout_marginTop="10dp"
+            android:hint="Text del Post"
+            android:singleLine="false"
+            android:textSize="20sp" />
 
         <LinearLayout
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <TextView
@@ -119,15 +123,17 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/post_text3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:singleLine="false"
             android:layout_gravity="center_vertical|right"
-            android:hint="@string/vote"/>
+            android:layout_marginTop="10dp"
+            android:hint="@string/vote"
+            android:singleLine="false"
+            android:textSize="20sp" />
+
         <RatingBar
             android:id="@+id/ratingBar2"
             android:layout_width="wrap_content"
@@ -135,8 +141,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:rating="0"
             android:isIndicator="false"
+            android:rating="0"
             android:stepSize="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,32 +155,35 @@
             android:layout_margin="30dp"
             android:background="@color/primary_dark" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fer_comentari"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/comentari"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="0.2"
-            android:background="@drawable/input_text_background"
-            android:hint="@string/afegir_comment"
-            android:minHeight="80dp" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/comentari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.2"
+                android:background="@drawable/input_text_background"
+                android:gravity="center_vertical"
+                android:hint="@string/afegir_comment"
+                android:minHeight="80dp"
+                android:scrollHorizontally="false" />
 
-        <Button
-            android:id="@+id/enviar"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="right|center_horizontal|center"
-            android:background="@mipmap/baseline_send_black_36"/>
+            <Button
+                android:id="@+id/enviar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="right|center_horizontal|center"
+                android:background="@mipmap/baseline_send_black_36"
+                android:drawableTint="@color/accent" />
 
-    </LinearLayout>
+        </LinearLayout>
 
         <include layout="@layout/activity_list_comments" />
     </LinearLayout>

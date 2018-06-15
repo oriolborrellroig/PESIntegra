@@ -13,4 +13,5 @@ public class ControladorPresentacioAdvancedSearchActivity {
         cd.comprovaCamps(dateIni, dateFi, user);
     }
 
+
 }

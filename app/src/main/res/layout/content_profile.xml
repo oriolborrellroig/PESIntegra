@@ -60,9 +60,7 @@
             android:background="@color/primary_dark"/>
 
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -74,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/BTNsport"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:onClick="onClick"> </Button>
@@ -88,7 +86,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
@@ -100,15 +98,11 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                 </GridLayout>
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -120,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/BTNreading"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:onClick="onClick"> </Button>
@@ -134,7 +128,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
@@ -146,16 +140,12 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                 </GridLayout>
 
-            </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -167,7 +157,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/BTNfashion"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:onClick="onClick"> </Button>
@@ -181,7 +171,7 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                     <Button
@@ -193,12 +183,12 @@
                         android:textColor="@color/primary_dark"
                         android:background="@color/primary_light"
                         android:layout_margin="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:onClick="onClick"> </Button>
 
                 </GridLayout>
 
-            </TableRow>
+
 
     </TableLayout>
 

@@ -1,23 +1,27 @@
 package integra.pesintegra.Controllers;
 
+import java.util.List;
 
-import android.location.Geocoder;
-
-import com.google.android.gms.maps.model.LatLng;
-
-import integra.pesintegra.Logic.Clases.Post;
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
 import integra.pesintegra.Logic.Clases.Sessio;
+import integra.pesintegra.Logic.Clases.User;
+import integra.pesintegra.Presentation.BaseActivity;
+import integra.pesintegra.Services.ImageService;
+
 import integra.pesintegra.Services.ServiceManager;
+
 
 public class ControladorDomini extends  AbstractBaseController{
 
     private static ServiceManager serviceManager;
     private static Sessio sessio;
+    public  ImageBM result;
 
-    public ControladorDomini () {}
+
+    public ControladorDomini () {  }
 
     void setSessio(Sessio usuari) {
 
@@ -25,21 +29,6 @@ public class ControladorDomini extends  AbstractBaseController{
         serviceManager = new ServiceManager(usuari.getToken(), usuari.getUsername());
     }
 
-    public void creaPostActivitat(Post_Activitat activitat) {
-
-    }
-
-    public void creaPostHabitatge(Post_Habitatge habitatge) {
-    }
-
-    public void creaPostFeina(Post_Feina feina) {
-    }
-
-
-    // Idea és passar tots els post de la database per comprobar quins s'haurien de guardar com expired. (es podria passar com a llista)
-    public Boolean post_Caducat(Post post) {
-        return comprovaDataExpired(post.getDataFi());
-    }
 
     public void logout() {
         sessio.resetSessio();
@@ -54,10 +43,23 @@ public class ControladorDomini extends  AbstractBaseController{
         return sessio.getUsername();
     }
 
+    public List<String> getTagsSessio(){
+        return sessio.getTagsSessio();
+    }
+
+    public void set_tag(String tag){
+        sessio.setTag(tag);
+    }
+
+    public void remove_tag(String tag){
+        sessio.remove_tag(tag);
+    }
+
 
     String getSessioToken() {
         return sessio.getToken();
 
     }
+
 
 }

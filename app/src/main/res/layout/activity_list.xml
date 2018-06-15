@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddAct"
         android:layout_width="wrap_content"
@@ -66,6 +67,34 @@
         android:tint="@color/icons"
         android:src="@mipmap/ic_plus_grey600_36dp"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_newest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_toStartOf="@+id/fabAdd"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        app:elevation="6dp"
+        app:backgroundTint="@color/primary_light"
+        app:pressedTranslationZ="12dp"
+        android:tint="@color/primary_text"
+        android:src="@mipmap/ic_clock_outline"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_ratting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/button_newest"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        app:elevation="6dp"
+        app:backgroundTint="@color/primary_light"
+        app:pressedTranslationZ="12dp"
+        android:tint="@color/primary_text"
+        android:src="@mipmap/ic_star_outline"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
@@ -74,6 +103,7 @@
         android:scrollbars="vertical" >
 
     </android.support.v7.widget.RecyclerView>
+
 
 
 </RelativeLayout>

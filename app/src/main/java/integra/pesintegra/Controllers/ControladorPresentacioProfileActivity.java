@@ -2,6 +2,7 @@ package integra.pesintegra.Controllers;
 
 import android.content.Context;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.User;
 import integra.pesintegra.Presentation.ProfileActivity;
 
@@ -33,7 +34,51 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
         activity.updateInterestInfo(interes, valor);
     }
 
+    public void addProfileImage(ImageBM i) {
+        Cdomini.storeImage(i);
+    }
+
+
+
+
+
     public String getCurrentUser() {
         return Cdomini.getCurrentUser();
+    }
+
+    public void isMod(String id) {
+        Cdomini.isMod(id);
+    }
+
+    public void isModCallback(String tipus) {
+        activity.setIsMod(tipus);
+    }
+
+    public void banUser(String id) {
+        Cdomini.banUser(id);
+    }
+
+    public void convertToMod(String id) {
+        Cdomini.convertToMod(id);
+    }
+
+    public void getImage (String userid) {
+        Cdomini.getImage(userid);
+    }
+
+    public void getImageResponse (ImageBM image) {
+        activity.loadImage(image.getBitmapImage());
+    }
+
+    public void getProfileTipus(String id) {
+        Cdomini.getProfileTipus(id);
+    }
+
+    public void getProfileTipusCallback(String tipus) {
+        activity.setProfileTipus(tipus);
+    }
+
+    public void unblockUser(String id) {
+        Cdomini.unbanUser(id);
     }
 }

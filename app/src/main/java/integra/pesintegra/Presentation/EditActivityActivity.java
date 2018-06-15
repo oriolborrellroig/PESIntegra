@@ -1,5 +1,6 @@
 package integra.pesintegra.Presentation;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -31,6 +32,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
@@ -76,7 +81,11 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
     private ArrayList<String> clicked_tags;
     private String post_id;
     private Post post;
+    private LatLng coord;
+    private String lloc;
+    private char post_tipus;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,13 +101,20 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         addTimePickerListener();
         clicked_tags = new ArrayList<>();
         setSpinner();
-        //setSpinnerType();
 
         context = getApplicationContext();
         Intent intent = getIntent();
         post_id = intent.getStringExtra("postId");
+        post_tipus = intent.getCharExtra("postType", 'A');
+        String editat = intent.getStringExtra("editar");
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         Button enviar_btn = findViewById(R.id.submitPostAct);
+        if (editat.equals("si")) {
+            enviar_btn.setText(R.string.BTNedit);
+        }
+        else {
+            enviar_btn.setText(R.string.BTNreobrir);
+        }
         enviar_btn.setOnClickListener(this);
         FloatingActionButton add_image_btn = findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
@@ -108,13 +124,29 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         post_titol.setText(post.getTitol());
         TextView post_text = findViewById(R.id.descriptionTitolAct);
         post_text.setText(post.getDescripcio());
-        TextView post_data = findViewById(R.id.dateInputAct);
-        post_data.setText(post.getDataIni());
         TextView post_hora = findViewById(R.id.hourInputAct);
         post_hora.setText(post.getHora());
-        TextView post_direccio = findViewById(R.id.locationInputAct);
-        post_direccio.setOnClickListener(this);
-        post_direccio.setText(post.getLocalitzacio());
+        if (post_tipus!='A') {
+            findViewById(R.id.n_participants).setVisibility(View.GONE);
+        }
+        if (post_tipus=='A') {
+            TextView n_max = findViewById(R.id.n_participants);
+            n_max.setText(Integer.toString(post.getAssistentsMax()));
+        }
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                coord = place.getLatLng();
+                lloc = place.getName().toString();
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.i("aaaaaaaaa", "An error occurred: " + status);
+            }
+        });
 
        ArrayList<String> interessos = (ArrayList<String>) post.getInteressos();
        Log.d("is interesos null?:", String.valueOf(interessos == null));
@@ -173,16 +205,6 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         spinnerLang.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, languages));
     }
 
-    private void setSpinnerType() {
-        spinnerType = findViewById(R.id.TypeEditPost);
-
-        List<String> types = new ArrayList<>();
-        types.add(getString(R.string.housing));
-        types.add(getString(R.string.work));
-        types.add(getString(R.string.activities));
-
-        spinnerType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, types));
-    }
 
     private void addTimePickerListener() {
         activityHour = findViewById(R.id.hourInputAct);
@@ -367,33 +389,25 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                     clicked_art = !clicked_art;
                 }
                 break;
+
+
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
-                String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
                 String lang_spinner = spinnerLang.getSelectedItem().toString();
                 String lang = "";
+                String n_assistents = ((TextView) findViewById(R.id.n_participants)).getText().toString();
                 if(lang_spinner.equals(getString(R.string.catalan))) lang = "CA";
                 else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
                 else lang = "EN";
-                Log.d("laaaang", lang);
-                LatLng coord = null;
-                if(lloc!= null) coord = controlador.getLoc(lloc, context);
 
                 //fer algo amb els booleans dels tags
 
-                post.setTitol(titol);
-                post.setTDataIni(dataI);
-                post.setDescripcio(descripcio);
-                post.setHora(hora);
-                if(!lloc.isEmpty()) {
-                    post.setLocalitzacio(lloc);
-                    if(coord != null )post.setCoord(coord.latitude, coord.longitude);
-                }
+
                 try {
-                    controlador.editPost(this.post.getId(),post,imageUri);
+                    controlador.editPost(this.post.getId(), post, titol, dataI, descripcio, hora, lang, n_assistents, lloc, coord, imageUri, post_tipus);
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.errorTitle)
@@ -401,8 +415,9 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                             .setNeutralButton(R.string.BTNback, null)
                             .show();
                 }
-
                 break;
+
+
             case R.id.add_image:
                 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, 52);
@@ -413,7 +428,6 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void item_seleccionat(Button b, String tag){
-        //pintar color seleccionat primary_dark
 
         b.setBackgroundColor(Color.parseColor("#303F9F"));
         b.setTextColor(getResources().getColor(R.color.icons));
@@ -454,10 +468,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 }
         }
     }
-    /*
 
-
-     */
     public Bitmap decodeBitmap(Uri selectedImage, int alc, int ampl) throws FileNotFoundException {
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inJustDecodeBounds = true;
@@ -468,7 +479,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
         if (alc/height_tmp > ampl/width_tmp){ //fer petit d'ample
             scale = scale*width_tmp/ampl;
-        }else{ //fer petit d'alt
+        }else{
             scale = scale*height_tmp/alc;
         }
 
@@ -504,9 +515,10 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         }
         //intent_act.putExtra("image", byteArray);
         intent_act.putExtra("post", post);
+        intent_act.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent_act.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.finish();
         startActivity(intent_act);
-        Log.d("location:" ,"in EditActivityActivity showNewPost!");
     }
 
 

@@ -5,18 +5,23 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
+
+import integra.pesintegra.R;
+
+import static integra.pesintegra.Presentation.LoginActivity.resources;
+
 public abstract class AbstractBaseController {
 
 
     public void comprovaCampNoBuid(String s) throws Exception {
         if (s == null || s.equals("")) {
-            throw new Exception("Hi ha algun camp buit");
+            throw new Exception(resources.getString(R.string.ERRemptyFields));
         }
     }
 
     void comprovaCampNoNull(LatLng l) throws Exception {
         if (l == null) {
-            throw new Exception("Localitzacio no vàlida");
+            throw new Exception(resources.getString(R.string.ERRnoValidLoc));
         }
     }
 
@@ -27,57 +32,29 @@ public abstract class AbstractBaseController {
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         if (Integer.parseInt(d.substring(6, 10)) < year ) {
-            throw new Exception("La data és anterior, no és vàlida. Any incorrecte.");
+            throw new Exception(resources.getString(R.string.ERRnotValidDate));
         }
         else if (Integer.parseInt(d.substring(6, 10)) == year ) {
             if (Integer.parseInt(d.substring(3, 5)) < month + 1) {
-                throw new Exception("La data és anterior, no és vàlida. Mes incorrecte.");
+                throw new Exception(resources.getString(R.string.ERRnotValidDate));
             }
             else if (Integer.parseInt(d.substring(3, 5)) == month + 1 ) {
                 if (Integer.parseInt(d.substring(0, 2)) <= day ) {
-                    throw new Exception("La data és anterior, no és vàlida. Dia incorrecte.");
+                    throw new Exception(resources.getString(R.string.ERRnotValidDate));
                 }
             }
         }
     }
 
-    Boolean comprovaDataExpired(String d) {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        int dayExpire = Integer.parseInt(d.substring(0, 2)) + 7;
-        int monthExpire;
-        int yearExpire;
-            if (dayExpire > 31) {
-                dayExpire = dayExpire - 31;
-                monthExpire = Integer.parseInt(d.substring(3, 5)) + 1;
-                if (monthExpire > 12) {
-                    monthExpire = monthExpire - 12;
-                    yearExpire = Integer.parseInt(d.substring(6, 10)) + 1;
-                }
-                else {
-                    yearExpire = Integer.parseInt(d.substring(6, 10));
-                }
-            }
-            else {
-                monthExpire = Integer.parseInt(d.substring(3, 5));
-                yearExpire = Integer.parseInt(d.substring(6, 10));
-            }
-        if (yearExpire < year ) {
-            return Boolean.TRUE;
+
+    public int comprova_participants_to_integer (String participants) throws Exception {
+
+        if (!Pattern.matches("[a-zA-Z]+", participants)) {
+            return Integer.parseInt(participants);
         }
-        else if (yearExpire == year ) {
-            if (monthExpire < month + 1) {
-                return Boolean.TRUE;
-            }
-            else if (monthExpire == month + 1 ) {
-                if (dayExpire <= day ) {
-                    return Boolean.TRUE;
-                }
-            }
+        else {
+            throw new Exception(resources.getString(R.string.ERRnotValidAttendants));
         }
-        return Boolean.FALSE;
     }
 
 
@@ -90,16 +67,16 @@ public abstract class AbstractBaseController {
 
         Pattern pat = Pattern.compile(emailRegex);
         if (email == null)
-            throw new Exception("Format mail incorrecte");
+            throw new Exception(resources.getString(R.string.ERRincorrectMail));
         if (!pat.matcher(email).matches())
-            throw new Exception("Format mail incorrecte");
+            throw new Exception(resources.getString(R.string.ERRincorrectMail));
     }
+
 
     void comprova_contrasenya_coincident(String pass1, String pass2) throws Exception {
         if (!pass1.equals(pass2))
-            throw new Exception("Les passwords no coincideixen");
+            throw new Exception(resources.getString(R.string.ERRpasswordNotMatch));
     }
-
 
 
     void data_naix_correcte(String dataN) throws Exception{
@@ -116,38 +93,14 @@ public abstract class AbstractBaseController {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DAY_OF_MONTH);
-        boolean result = false;
-        if (any_i > year) throw new Exception("Data naixement incorrecte");
+        if (any_i > year) throw new Exception(resources.getString(R.string.ERRnotValidDate));
         else if (any_i == year){
-            if (mes_i > month) throw new Exception("Data naixement incorrecte");
+            if (mes_i > month) throw new Exception(resources.getString(R.string.ERRnotValidDate));
             else if (mes_i == month){
-                if (dia_i > day) throw new Exception("Data naixement incorrecte");
+                if (dia_i > day) throw new Exception(resources.getString(R.string.ERRnotValidDate));
             }
         }
 
-    }
-
-
-
-    //Per si cal es pot cambiar. (agafa num / lletres pero no signes extranys)
-
-    public void comprovaPasswordValida(String pw) throws Exception{
-
-        char[] array = pw.toCharArray();
-        for (char c : array) {
-            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
-                throw new Exception("Els caràcters no són vàlids");
-            }
-        }
-    }
-
-
-    public String dataActual () {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        return day + "/" + month + 1 + "/" + year;
     }
 
 }

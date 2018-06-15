@@ -1,13 +1,11 @@
 package integra.pesintegra.Controllers;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
 
 import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
-import integra.pesintegra.Presentation.RegisterActivity;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
@@ -45,7 +43,8 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
 
                             String token = response.body().get("token").toString().replace("\"", "");
                             String uid = response.body().get("user").toString().replace("\"", "");
-                            createSession(token,uid);
+                            String tipus = response.body().get("tipus").toString().replace("\"", "");
+                            createSession(token,uid,tipus);
 
                             Cpresentacio.acceptLogin();
                         }
@@ -67,8 +66,8 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
         });
     }
 
-    private void createSession (String token, String username) {
-        Sessio sessio = new Sessio(username,token);
+    private void createSession (String token, String username, String tipus) {
+        Sessio sessio = new Sessio(username,token, tipus);
         this.setSessio(sessio);
 
     }

@@ -1,30 +1,27 @@
 package integra.pesintegra.Controllers;
 
-import android.app.Application;
-import android.content.Context;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.regex.Pattern;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.Logic.Clases.Post_Feina;
 import integra.pesintegra.Logic.Clases.Post_Habitatge;
-import integra.pesintegra.Logic.Clases.Sessio;
 import integra.pesintegra.Logic.Clases.User;
+import integra.pesintegra.Presentation.AllPostsActivity;
+import integra.pesintegra.Presentation.BaseActivity;
 import integra.pesintegra.Presentation.LoginActivity;
 
 public class ControladorPresentacio extends AbstractBaseController {
 
     private ControladorDomini cntrlDom;
     private ApplicationContextProvider context;
+    private AllPostsActivity activity;
 
     public ControladorPresentacio() {
         super();
@@ -33,7 +30,7 @@ public class ControladorPresentacio extends AbstractBaseController {
 
 
 
-    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags) throws Exception {
+    public Post_Activitat creaPostActivitat(String titol, String descripcio, String dataI, String dataF, String hora, String lloc, LatLng coord, String lang, ArrayList<String> clicked_tags, String nmax) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
@@ -42,9 +39,9 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaCampNoBuid(lloc);
         comprovaCampNoNull(coord);
         comprovaDataValida(dataF);
-
-        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
-        cntrlDom.creaPostActivitat(activitat);
+        Integer n_max = comprova_participants_to_integer(nmax);
+        String owner = this.getSessioUser();
+        Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, owner, coord.latitude, coord.longitude, lang, clicked_tags, n_max);
 
         return activitat;
     }
@@ -60,7 +57,6 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaDataValida(dataF);
 
         Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
-        cntrlDom.creaPostHabitatge(habitatge);
 
         return habitatge;
     }
@@ -76,7 +72,6 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaDataValida(dataF);
 
         Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
-        cntrlDom.creaPostFeina(feina);
 
         return feina;
     }
@@ -123,6 +118,8 @@ public class ControladorPresentacio extends AbstractBaseController {
     public String getSessioUser(){
         return cntrlDom.getSessioUser();
     }
+
+
 
 
 }

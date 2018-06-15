@@ -17,6 +17,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.ChangeImageTransform;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +33,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.ByteArrayOutputStream;
@@ -65,7 +71,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private Bitmap bitmapImage;
     private Post new_post;
     private Uri imageUri;
-    private Button button;
     private Boolean clicked_esport = true;
     private Boolean clicked_musica = true;
     private Boolean clicked_cinema = true;
@@ -75,8 +80,11 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private Boolean clicked_moda = true;
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
-    private Context context;
     private ArrayList<String> clicked_tags;
+    private LatLng coord;
+    private String lloc;
+    private String tipus;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +102,31 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         clicked_tags = new ArrayList<>();
         setSpinner();
 
-        context = getApplicationContext();
-
+        Context context = getApplicationContext();
+        Intent intent = getIntent();
+        this.tipus = intent.getStringExtra("flag");
+        if (!tipus.equals("A")) {
+            findViewById(R.id.n_participants).setVisibility(View.GONE);
+        }
         Button enviar_btn = findViewById(R.id.submitPostAct);
         enviar_btn.setOnClickListener(this);
         FloatingActionButton add_image_btn = findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
         iv = findViewById(R.id.img_prev);
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                coord = place.getLatLng();
+                lloc = place.getName().toString();
+            }
 
+            @Override
+            public void onError(Status status) {
+                Log.i("aaaaaaaaa", "An error occurred: " + status);
+            }
+        });
     }
 
     private void setSpinner() {
@@ -200,7 +225,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
         switch (v.getId()) {
             case R.id.btn_esport:
-                button = findViewById(R.id.btn_esport);
+                Button button = findViewById(R.id.btn_esport);
                 if(clicked_esport){
                     item_seleccionat(button,"esport");
                     clicked_esport = !clicked_esport;
@@ -300,27 +325,22 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 break;
             case R.id.submitPostAct:
                 String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
-                String lloc = ((EditText) findViewById(R.id.locationInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
                 String lang_spinner = spinnerLang.getSelectedItem().toString();
+                String n_assistents = ((TextView) findViewById(R.id.n_participants)).getText().toString();
                 String lang = "";
                 if(lang_spinner.equals(getString(R.string.catalan))) lang = "CA";
                 else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
                 else lang = "EN";
-                Log.d("laaaang", lang);
-                LatLng coord = controlador.getLoc(lloc, context);
 
-                //fer algo amb els booleans dels tags
-                 new_post = new Post_Activitat();
+                new_post = new Post_Activitat();
 
                 try {
-                    Intent intent = getIntent();
-                    String tipus = intent.getStringExtra("flag");
                     switch (tipus) {
                         case "A":
-                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
+                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags, n_assistents);
                             break;
                         case "F":
                             new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
@@ -332,6 +352,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
 
 
                     controlador.createPost(new_post,imageUri);
+                    ImageBM imageToStore = new ImageBM(new_post.getId(), bitmapImage);
+                    controlador.addPostImage(imageToStore);
 
                     break;
 
@@ -384,7 +406,8 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                         bitmapImage = decodeBitmap(selectedImage, alcada, amplada);
                         iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
-                        //guardar imatge a la bd
+
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -442,6 +465,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
             ByteArrayOutputStream bStream = new ByteArrayOutputStream();
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
             byte[] byteArray = bStream.toByteArray();
+            //MOISES AQUI ESTÁ LA IMAGEN COMO BYTEARRAY
         }
         //intent_act.putExtra("image", byteArray);
         intent_act.putExtra("post", new_post);

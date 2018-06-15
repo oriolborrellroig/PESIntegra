@@ -32,7 +32,9 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.cp = new ControladorPresentacioSettingsActivity();
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_settings1);
+        Button btn_back = findViewById(R.id.btn_post_back);
+        btn_back.setOnClickListener(this);
         Button cancel = findViewById(R.id.settingsCancel);
         cancel.setOnClickListener(this);
         Button confirm = findViewById(R.id.settingsSave);
@@ -84,6 +86,11 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 refreshMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(refreshMain);
                 break;
+
+            case R.id.btn_post_back:
+                this.finish();
+                break;
+
         }
     }
 

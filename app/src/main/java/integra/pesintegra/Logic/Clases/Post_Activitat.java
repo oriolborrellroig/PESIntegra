@@ -9,21 +9,15 @@ public class Post_Activitat extends Post{
     //n_max = nombre maxim de persones en aquella activitat
     private int assistentsMax;
     //n_act = nombre de persones apuntades actualment a aquella activitat
-    private int n_assistens;
+    private int n_assistents;
 
     public Post_Activitat(){
         super('A');
     }
 
-    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, double lat, double lng, String lang, ArrayList<String> clicked_tags){
-        super(titol, descripcio, dataini, datafi, hora, direccio,"1",  'A', lat, lng, lang, clicked_tags);
-        //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
-    }
-
-    public Post_Activitat(Post post) {
-        super(post);
-        this.assistentsMax = 20;
-        this.n_assistens = 10;
+    public Post_Activitat(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, String owner, double lat, double lng, String lang, ArrayList<String> clicked_tags, int nmax){
+        super(titol, descripcio, dataini, datafi, hora, direccio, owner, 'A', lat, lng, lang, clicked_tags);
+        this.assistentsMax = nmax;
     }
 
     public int getAssistentsMax() {
@@ -34,11 +28,11 @@ public class Post_Activitat extends Post{
         this.assistentsMax = n_max;
     }
 
-    public int getN_assistens() {
-        return n_assistens;
+    public int getN_assistents() {
+        return n_assistents;
     }
 
-    public void setN_assistens(int n_act) {
-        this.n_assistens = n_act;
+    public void setN_assistents(int n_act) {
+        this.n_assistents = n_act;
     }
 }

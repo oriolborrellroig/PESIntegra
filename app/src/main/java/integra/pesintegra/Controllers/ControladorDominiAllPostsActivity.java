@@ -1,58 +1,61 @@
 package integra.pesintegra.Controllers;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
-import integra.pesintegra.Presentation.AllPostsActivity;
-import integra.pesintegra.Presentation.LoginActivity;
+import integra.pesintegra.Logic.Clases.User;
+import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
+import integra.pesintegra.Services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControladorDominiAllPostsActivity extends ControladorDomini {
+    private static ControladorPresentacioAllPostsActivity Cpresentacio;
 
-    public void loadFeedAnyPosts () {
+    public void loadFeedAllBooked (String userid) {
         PostService service = ServiceManager.getPostService();
-        Log.d("TOOKKKK",this.getSessioToken());
-        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
-        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        Call<ArrayList<Post>> call = service.getBookedPosts(userid);
         enqueueCall(call);
     }
 
-    public void loadFeedTagsPosts(){
+    public void loadFeedAnyPosts (Integer order) {
+        PostService service = ServiceManager.getPostService();
+        Call<ArrayList<Post>> call = service.getAllPosts("any", order);
+        enqueueCall(call);
+    }
+
+    public void loadFeedTagsPosts(ArrayList<String> listtags){
 
         PostService service = ServiceManager.getPostService();
-        Log.d("TOOKKKK",this.getSessioToken());
-        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
-        Call<ArrayList<Post>> call = service.getAllPosts("activity");
+        Call<ArrayList<Post>> call = service.getPostsByTags(listtags);
         enqueueCall(call);
 
     }
 
-    public void loadFeedCalendarPosts(){
+    public void loadFeedCalendarPosts(String id){
+        Log.d("aaa", id);
         PostService service = ServiceManager.getPostService();
-        Log.d("TOOKKKK",this.getSessioToken());
-        Log.d("TOOsadasdsadKKKK",this.getSessioUser());
-        Call<ArrayList<Post>> call = service.getAllPosts("any");
+        Call<ArrayList<Post>> call = service.getBookedPosts(id);
         enqueueCall(call);
     }
 
-    public void loadFeedWorkPosts () {
+
+    public void loadFeedWorkPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("work");
+        Call<ArrayList<Post>> call = service.getAllPosts("work", order);
         enqueueCall(call);
     }
 
-    public void loadFeedActivityPosts () {
+    public void loadFeedActivityPosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("activity");
+        Call<ArrayList<Post>> call = service.getAllPosts("activity", order);
         enqueueCall(call);
     }
 
@@ -62,9 +65,9 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         enqueueCall(call);
     }
 
-    public void loadFeedHousePosts () {
+    public void loadFeedHousePosts (Integer order) {
         PostService service = ServiceManager.getPostService();
-        Call<ArrayList<Post>> call = service.getAllPosts("home");
+        Call<ArrayList<Post>> call = service.getAllPosts("home", order);
         enqueueCall(call);
     }
 
@@ -84,6 +87,23 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         String dateFi = extras.getString("dateFi");
         String user = extras.getString("user");
         ArrayList<String> tags = extras.getStringArrayList("tags");
+        PostService service = ServiceManager.getPostService();
+        assert tipus != null;
+        if (tipus.equals("Tots els posts") || tipus.equals("All posts") || tipus.equals("Todos los posts")) tipus = null;
+        else if (tipus.equals("Activities") || tipus.equals("Activitats") || tipus.equals("Actividades")) tipus = "A";
+        else if (tipus.equals("Work") || tipus.equals("Feina") || tipus.equals("Trabajo")) tipus = "F";
+        else tipus = "H";
+        assert lang != null;
+        if (lang.equals("Qualsevol idioma") || lang.equals("Any language") || lang.equals("Cualquier idioma")) lang = null;
+        else if (lang.equals("Catalan (ca)") || lang.equals("Català (ca)") || lang.equals("Catalán (ca)")) lang = "CA";
+        else if (lang.equals("English (EN)") || lang.equals("Anglès (EN)") || lang.equals("Inglés (EN)")) lang = "EN";
+        else lang = "ES";
+        assert user != null;
+        if (user.equals("")) user = null;
+        assert text != null;
+        if (text.equals("")) text = null;
+        Call<ArrayList<Post>> call = service.advancedSearch(text, tipus, lang, dateIni, dateFi, user, tags);
+        enqueueCall(call);
 
     }
 
@@ -101,5 +121,46 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     }
 
 
+    public void loadReportedPosts() {
+        PostService service = ServiceManager.getPostService();
+        Call<ArrayList<Post>> call = service.getReportedPosts();
+        enqueueCall(call);
+    }
 
+    public void loadTagsSessio() {
+        String id = super.getSessioUser();
+        UserService service = ServiceManager.getUserService();
+        Call<User> createCall2 = service.getUser(id);
+        createCall2.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                for (int i = 0; i < response.body().getInteressos().size(); ++i) {
+                    ControladorDominiAllPostsActivity.super.set_tag(response.body().getInteressos().get(i));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
+    }
+
+    public void setImageDrawer(ControladorPresentacioAllPostsActivity cpres) {
+        Cpresentacio = cpres;
+        ImageService service = ServiceManager.getImageService();
+        String id = getSessioUser();
+        Log.d("id", "DRAWEERRRRRRRRRRRRRRRRRRRRRRRR");
+        Log.d("id", id);
+        Call<ImageBM> ccall = service.getImageProfile(id);
+        ccall.enqueue(new Callback<ImageBM>() {
+            @Override
+            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                Cpresentacio.getImageResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ImageBM> call, Throwable t) {
+            }
+        });
+    }
 }

@@ -1,8 +1,9 @@
 package integra.pesintegra.Logic.Clases;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Comentari {
+public class Comentari implements Serializable {
     private String id;
     private String text;
     private String post_id;
@@ -15,6 +16,15 @@ public class Comentari {
         this.text = text;
         this.data = data;
         this.post_id = post_id;
+        setId();
+    }
+
+    public Comentari(String user_id, String text, String data, String post_id, String reply_id){
+        this.user_id = user_id;
+        this.text = text;
+        this.data = data;
+        this.post_id = post_id;
+        this.reply_id = reply_id;
         setId();
     }
 

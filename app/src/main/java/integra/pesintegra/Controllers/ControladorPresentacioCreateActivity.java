@@ -5,10 +5,11 @@ import android.net.Uri;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.CreateActivityActivity;
 
-public class ControladorPresentacioCreateActivity extends ControladorPresentacio  {
+public class ControladorPresentacioCreateActivity extends ControladorPresentacio {
 
     private CreateActivityActivity activity;
     private ControladorDominiCreateActivity CDCreateActivity;
@@ -20,16 +21,14 @@ public class ControladorPresentacioCreateActivity extends ControladorPresentacio
         this.CDCreateActivity = new ControladorDominiCreateActivity(this);
     }
 
-    public void createPost (Post post, Uri uri) throws Exception {
+    public void createPost(Post post, Uri uri) throws Exception {
         comprovaCampNoBuid(post.getTitol());
         comprovaCampNoBuid(post.getDescripcio());
         comprovaCampNoBuid(post.getDataIni());
         comprovaCampNoBuid(post.getHora());
         comprovaCampNoBuid(post.getLocalitzacio());
         comprovaDataValida(post.getDataFi());
-        CDCreateActivity.createPost(post,uri);
-
-
+        CDCreateActivity.createPost(post, uri);
 
     }
 
@@ -39,5 +38,9 @@ public class ControladorPresentacioCreateActivity extends ControladorPresentacio
 
     public LatLng getLoc(String lloc, Context context) {
         return CDCreateActivity.getLoc(lloc, context);
+    }
+
+    public void addPostImage(ImageBM i) {
+        CDCreateActivity.storeImage(i);
     }
 }

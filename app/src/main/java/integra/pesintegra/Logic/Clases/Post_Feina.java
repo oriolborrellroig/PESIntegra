@@ -14,4 +14,5 @@ public class Post_Feina extends Post {
         super(titol, descripcio, dataini, datafi, hora, direccio, "1", 'F', lat, lng, lang, clicked_tags);
         //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
     }
+
 }
