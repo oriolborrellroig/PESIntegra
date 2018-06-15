@@ -2,6 +2,7 @@ package integra.pesintegra.Presentation;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -76,6 +78,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
         ControladorPresentacioAllPostsActivity cs = new ControladorPresentacioAllPostsActivity(this,getApplicationContext());
         cs.loadTagsSessio();
+        Log.d("hey", "1111111111111111");
+        //iv = findViewById((R.id.imatge_perfil));
+        cs.setImage(this);
     }
 
     private void getPostsFromDB(Integer order) {
@@ -309,6 +314,13 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(listAdapter);
         }
+    }
+
+    public void loadImage(Bitmap bitmapImage) {
+        super.loadImage(bitmapImage);
+        //Log.d("a", "apa, vaig a posar la imatge");
+        //Log.d("hey", "6666666666666666666666");
+        //iv.setImageBitmap(bitmapImage);
     }
 
 

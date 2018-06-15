@@ -437,8 +437,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         ImageBM image_to_store = new ImageBM(current_user, bitmapImage);
                         cp.addProfileImage(image_to_store);
                         //carregar de la BD per provar que funciona i tal
-                        Bitmap lol_xd_prova = image_to_store.getBitmapImage();
-                        iv.setImageBitmap(lol_xd_prova);
+                        //Bitmap lol_xd_prova = image_to_store.getBitmapImage();
+                        iv.setImageBitmap(bitmapImage);
                         imageUri = selectedImage;
                         //guardar imatge a la bd
 

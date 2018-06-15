@@ -65,6 +65,7 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public void getImage (String userid) {
         Cdomini.getImage(userid);
     }
+
     public void getImageResponse (ImageBM image) {
         activity.loadImage(image.getBitmapImage());
     }

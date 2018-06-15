@@ -5,8 +5,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.User;
+import integra.pesintegra.Services.ImageService;
 import integra.pesintegra.Services.PostService;
 import integra.pesintegra.Services.ServiceManager;
 import integra.pesintegra.Services.UserService;
@@ -15,6 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ControladorDominiAllPostsActivity extends ControladorDomini {
+    private static ControladorPresentacioAllPostsActivity Cpresentacio;
 
     public void loadFeedAllBooked (String userid) {
         PostService service = ServiceManager.getPostService();
@@ -138,6 +141,28 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
+    }
+
+    public void setImageDrawer(ControladorPresentacioAllPostsActivity cpres) {
+        Log.d("hey", "333333333333333333333");
+        Cpresentacio = cpres;
+        ImageService service = ServiceManager.getImageService();
+        String id = getSessioUser();
+        Log.d("id", id);
+        Call<ImageBM> ccall = service.getImagePost(id);
+        ccall.enqueue(new Callback<ImageBM>() {
+            @Override
+            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
+                Log.d("hey", "444444444444444444444444");
+                Cpresentacio.getImageResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ImageBM> call, Throwable t) {
+                Log.d("hey", "FFALLOOOOOOOOOOOOOOOOOOOOOO");
             }
         });
     }
