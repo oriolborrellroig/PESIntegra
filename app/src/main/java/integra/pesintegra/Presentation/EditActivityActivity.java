@@ -401,6 +401,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
                 post.setTitol(titol);
                 post.setTDataIni(dataI);
+                post.setDataFi(dataI);
                 post.setDescripcio(descripcio);
                 post.setHora(hora);
                 post.setIdioma(lang);
@@ -486,10 +487,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 }
         }
     }
-    /*
 
-
-     */
     public Bitmap decodeBitmap(Uri selectedImage, int alc, int ampl) throws FileNotFoundException {
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inJustDecodeBounds = true;
@@ -500,7 +498,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
         if (alc/height_tmp > ampl/width_tmp){ //fer petit d'ample
             scale = scale*width_tmp/ampl;
-        }else{ //fer petit d'alt
+        }else{
             scale = scale*height_tmp/alc;
         }
 
@@ -536,9 +534,10 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         }
         //intent_act.putExtra("image", byteArray);
         intent_act.putExtra("post", post);
+        intent_act.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent_act.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.finish();
         startActivity(intent_act);
-        Log.d("location:" ,"in EditActivityActivity showNewPost!");
     }
 
 
