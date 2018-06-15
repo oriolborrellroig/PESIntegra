@@ -345,6 +345,10 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         createCall.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
+                Log.d("aaa", "hola");
+                Log.d("aaa", response.body().getId());
+                Log.d("aaa", Integer.toString(response.body().getN_assistents()));
+                Log.d("aaa", Integer.toString(response.body().getAssistentsMax()));
                 Cpresentacio.loadPost(response.body());
 
             }

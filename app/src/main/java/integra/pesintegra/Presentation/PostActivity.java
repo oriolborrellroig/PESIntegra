@@ -109,9 +109,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
 
-
-        /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
-
         recyclerView = findViewById(R.id.recycler);
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -120,10 +117,10 @@ public class PostActivity extends Activity implements View.OnClickListener {
         List<Comentari> myDataset;
         // mAdapter = new CommentAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
-        /*PROVA DE FER ELS COMENTARIS AMB RECYCLER VIEW I AQUESTES SIDES*/
 
 
-        post_id = ((Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post")).getId();
+
+        post_id = ((Post) Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getSerializable("post"))).getId();
         cp.getPost(post_id); //carrega el post desde bd
 
     }
@@ -264,30 +261,25 @@ public class PostActivity extends Activity implements View.OnClickListener {
 
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
-        Log.d("aaaa", Boolean.toString(this.hidden));
     }
 
     public static void updateFeed(ArrayList<Comentari> body, Context ctx, PostActivity pa, ControladorPresentacioPostOpen cpp, Boolean current3) {
         List<CommentReply> new_body = new ArrayList<CommentReply>();
         for (Comentari comm : body) {
             if (comm.getreply() == null) {
-                Log.d("aqui van 2", "lel");
                 CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
                 new_body.add(new_comment_reply);
             }
         }
-        Log.d("updatefeed", "estic a update feed");
         //ara tenim els comentaris que no son replies
         for (Comentari comm : body) {
-            Log.d("hi soc", "hi soc!!!");
             if (comm.getreply() != null) { //aquest es un reply al comentari original
                 CommentReply new_comment_reply = new CommentReply(comm.getID(), comm.gettext(), comm.getPost_id(), comm.getuser_id(), comm.getdata());
                 for (CommentReply cmm : new_body) {
                     if (cmm.getId().equals(comm.getreply())) {
                         cmm.setHasReply(true);
                         cmm.setReply(new_comment_reply);
-                        Log.d("updatefeed", "estic a una replyyyy");
-                        break; //ja se que no es posen ostia pero mira coses de la bida
+                        break;
                     }
                 }
             }
@@ -512,7 +504,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
         //Intent intent = getIntent();
         // String image_name = intent.getStringExtra("bitmap_img");
 
-        this.post = (Post) getIntent().getExtras().getSerializable("post");
+        this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         if (post instanceof Post_Activitat) {
             this.pa = (Post_Activitat) post;
             this.join = findViewById(R.id.join);

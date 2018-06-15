@@ -103,13 +103,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 break;
             case "tags":
                 hide_buttons();
-                List<String> listtags = new ArrayList<String>();
+                List<String> listtags;
                 listtags = cs.getTagsSessio();
-                ArrayList<String> listtags2 = new ArrayList<String>();
-                for(String kk : listtags){
-                    listtags2.add(kk);
-                    Log.d("aaaaaa", kk);
-                }
+                ArrayList<String> listtags2 = new ArrayList<>(listtags);
                 ControladorPresentacioAllPostsActivity.loadFeedTagsPosts(listtags2);
                 break;
             case "calendar":
