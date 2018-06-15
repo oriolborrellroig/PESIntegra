@@ -21,6 +21,7 @@ class ControladorDominiAdvancedSearchActivity {
 
     //Throw Exception si dateFi < dateIni
     private void comprovaDates(String dateIni, String dateFi) throws Exception{
+        if (dateIni == null || dateFi == null) throw new Exception(context.getResources().getString(R.string.invalid_date_null));
         int yIni = Integer.parseInt(dateIni.substring(6, 10));
         int yFi = Integer.parseInt(dateFi.substring(6, 10));
         int mIni = Integer.parseInt(dateIni.substring(3, 5));

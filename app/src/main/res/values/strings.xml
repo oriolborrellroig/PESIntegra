@@ -145,4 +145,5 @@
     <string name="n_attendants">Number of attendants</string>
     <string name="ERRnotValidAttendants">Number of attendants has to be an integer</string>
     <string name="unblock_user">Unblock user</string>
+    <string name="invalid_date_null">One of the dates is not assigned.</string>
 </resources>

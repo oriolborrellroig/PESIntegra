@@ -61,7 +61,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
         button_ratting.setOnClickListener(this);
         rating_clicked = creation_clicked = false;
         getPostsFromDB(0);
-
         fabAdd = findViewById(R.id.fabAdd);
         fabAddHab = findViewById(R.id.fabAddHab);
         fabAddFei = findViewById(R.id.fabAddFei);
@@ -109,6 +108,7 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 ArrayList<String> listtags2 = new ArrayList<String>();
                 for(String kk : listtags){
                     listtags2.add(kk);
+                    Log.d("aaaaaa", kk);
                 }
                 ControladorPresentacioAllPostsActivity.loadFeedTagsPosts(listtags2);
                 break;
@@ -121,9 +121,9 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
                 cs.loadFeedAdvSearch(getIntent().getExtras());
                 break;
             case "reported":
-                Log.d("aaa", "estic al allPostsActivity");
                 ControladorPresentacioAllPostsActivity.loadReportedPosts();
                 break;
+
         }
     }
 

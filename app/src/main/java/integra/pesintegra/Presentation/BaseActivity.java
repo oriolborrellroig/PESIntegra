@@ -87,7 +87,7 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 intent.putExtra("type", "activity");
                 startActivity(intent);
                 break;
-            case R.id.tags: //TODO: Dani fer la crida a get posts by tags
+            case R.id.tags:
                 intent = new Intent(getApplicationContext(), AllPostsActivity.class);
                 intent.putExtra("type", "tags");
                 startActivity(intent);
