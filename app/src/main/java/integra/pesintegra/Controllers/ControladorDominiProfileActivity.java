@@ -93,6 +93,21 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         });
     }
 
+    public void unbanUser(String id) {
+        UserService service = ServiceManager.getUserService();
+        Call<Void> createCall2 = service.unbanUser(id);
+        createCall2.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
     public void banUser(String id) {
         UserService service = ServiceManager.getUserService();
         Call<Void> createCall2 = service.banUser(id);

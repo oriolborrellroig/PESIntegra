@@ -50,6 +50,9 @@ public interface UserService {
     @PUT("mod/block")
     Call<Void> banUser(@Query("userid") String userid);
 
+    @PUT("mod/unblock")
+    Call<Void> unbanUser(@Query("userid") String userid);
+
 }
 
 
