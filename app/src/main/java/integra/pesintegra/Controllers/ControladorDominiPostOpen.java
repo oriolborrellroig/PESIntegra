@@ -2,12 +2,15 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.Image;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
+import integra.pesintegra.Logic.Adapter.CommentListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
@@ -369,4 +372,23 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
+    public void posa_imatge(String id, ImageView foto_perfil, CommentListAdapter list_ad) {
+        ImageService service = ServiceManager.getImageService();
+        final ImageView ff = foto_perfil;
+        final CommentListAdapter list_ad2 = list_ad;
+        Call<ImageBM> ccall = service.getImageProfile(id);
+        ccall.enqueue(new Callback<ImageBM>() {
+            @Override
+            public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
+                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
+                list_ad2.posa_imatge(ff, response.body().getBitmapImage());
+            }
+
+            @Override
+            public void onFailure(Call<ImageBM> call, Throwable t) {
+            }
+        });
+
+
+    }
 }

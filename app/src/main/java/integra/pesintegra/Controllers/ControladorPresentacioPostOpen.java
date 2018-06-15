@@ -2,7 +2,9 @@ package integra.pesintegra.Controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.widget.ImageView;
 
+import integra.pesintegra.Logic.Adapter.CommentListAdapter;
 import integra.pesintegra.Logic.Clases.Comentari;
 import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
@@ -170,6 +172,10 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
 
     public void isModCallback(String tipus) {
         activity.setTipus(tipus);
+    }
+
+    public void afegir_imatge(String id, ImageView foto_perfil, CommentListAdapter list_ad) {
+        Cdomini.posa_imatge(id, foto_perfil, list_ad);
     }
 
 
