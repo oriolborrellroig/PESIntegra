@@ -58,4 +58,7 @@ public class ControladorDomini extends  AbstractBaseController{
     }
 
 
+    public boolean ismod_sessio() {
+        return sessio.isModerador();
+    }
 }

@@ -68,12 +68,14 @@ public class PostActivity extends Activity implements View.OnClickListener {
     private FloatingActionButton join, disengage;
     Boolean isMod;
     private Button tres_punts;
+    public Boolean mod_or_op;
 
 
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mod_or_op = false;
         cp = new ControladorPresentacioPostOpen(this, getApplicationContext());
         setContentView(R.layout.activity_post);
         Button btn_back = findViewById(R.id.btn_post_back);
@@ -86,7 +88,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
         post_direccio.setOnClickListener(this);
         Button btn_enviar = findViewById(R.id.enviar);
         btn_enviar.setOnClickListener(this);
-
+        if (cp.ismod_sessio()) mod_or_op = true;
         recyclerView = findViewById(R.id.recycler);
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -161,7 +163,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                     EditText editText_comentari = (EditText) findViewById(R.id.comentari);
                     editText_comentari.setText("");
                     Context cc = getApplicationContext();
-                    updateFeed(comentaris, cc, this, cp, current);
+                    updateFeed(comentaris, cc, this, cp, current || mod_or_op);
                 }
 
                 break;
@@ -343,7 +345,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                 disable_comment();
             }
         }
-        updateFeed(comentaris, cc, this, cp, current);
+        updateFeed(comentaris, cc, this, cp, current || mod_or_op);
         hidden = false;
         cp.isHidden(post_id);
         cp.getImage(post_id);

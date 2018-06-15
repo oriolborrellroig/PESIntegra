@@ -2,6 +2,8 @@ package integra.pesintegra.Logic.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.content.Intent;
 
 import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.util.List;
 
 import integra.pesintegra.Controllers.ControladorPresentacioAllPostsActivity;
@@ -56,6 +59,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         getRating(p.getId(), holder.rating);
         holder.rating.setRating(rate);
         cpp.afegir_imatge(p.getId(), holder.icon_post, this);
+        //TODO: posar si es d'un tipus o altre
+        //Bitmap bitmap = BitmapFactory.decodeFile(pathToPicture);
+        //String path = context.getFilesDir().getAbsolutePath() + "activitat.png";
+        //File imgFile = new File(path);
+        //Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        //holder.icon_post.setImageBitmap(BitmapFactory.decodeFile("/activitat.png"));
+        //holder.icon_post.setImageBitmap(myBitmap);
         holder.p = p;
     }
 

@@ -382,4 +382,8 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
 
     }
+
+    public boolean ismod_sessio() {
+        return super.ismod_sessio();
+    }
 }

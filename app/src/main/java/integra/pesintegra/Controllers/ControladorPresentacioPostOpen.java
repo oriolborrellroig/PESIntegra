@@ -154,7 +154,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public void actualitzaComments(){
-        activity.updateFeed(activity.comentaris, activity.cc, activity, activity.cp, activity.current);
+        activity.updateFeed(activity.comentaris, activity.cc, activity, activity.cp, activity.current || activity.mod_or_op);
     }
 
     public void borra_comments_post(String id){
@@ -173,4 +173,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
         Cdomini.posa_imatge(id, foto_perfil, list_ad);
     }
 
+    public boolean ismod_sessio() {
+        return Cdomini.ismod_sessio();
+    }
 }
