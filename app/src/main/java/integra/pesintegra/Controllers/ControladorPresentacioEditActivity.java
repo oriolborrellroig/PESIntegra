@@ -30,9 +30,8 @@ public class ControladorPresentacioEditActivity extends ControladorPresentacio  
         comprovaCampNoBuid(hora);
         comprovaDataValida(dataI);
         comprovaCampNoBuid(lloc);
-        int assistents = comprova_participants_to_integer(n_assistents);
         if (post_tipus == 'A'){
-            post.setAssistentsMax(assistents);
+            post.setAssistentsMax(comprova_participants_to_integer(n_assistents));
         }
         post.setTitol(titol);
         post.setTDataIni(dataI);

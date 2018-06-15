@@ -403,7 +403,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
 
                 }
-                if (!data_post_anterior()) {
+                if (data_post_anterior()) {
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
                 }
                 else {
@@ -518,8 +518,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
             }
         }); //closing the setOnClickListener method
 
-        //Intent intent = getIntent();
-        // String image_name = intent.getStringExtra("bitmap_img");
 
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         if (post instanceof Post_Activitat) {
