@@ -29,7 +29,7 @@ public class ControladorPresentacioPostOpen extends ControladorPresentacio  {
     }
 
     public void reportComment(String post_id, String comment_id, String user_id){
-        Cdomini.report_comment(post_id, comment_id, user_id);
+        Cdomini.reportComment(post_id, comment_id, user_id);
     }
 
     public static void deletePost (String postId) {
