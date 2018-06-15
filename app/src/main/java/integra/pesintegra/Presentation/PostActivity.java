@@ -472,7 +472,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
 
                             case R.id.report_post:
                                 cp.report_post(current_user, post_id);
-
+                                break;
                             case R.id.borrar_post:
                                 onDelete();
 
