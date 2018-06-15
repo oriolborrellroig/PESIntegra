@@ -20,14 +20,31 @@ public class ControladorPresentacioEditActivity extends ControladorPresentacio  
         this.CDEditActivity = new ControladorDominiEditActivity(this);
     }
 
-    public void editPost (String originPostId, Post post, Uri uri) throws Exception {
-        comprovaCampNoBuid(post.getTitol());
-        comprovaCampNoBuid(post.getDescripcio());
-        comprovaCampNoBuid(post.getDataIni());
-        comprovaCampNoBuid(post.getHora());
-        comprovaCampNoBuid(post.getLocalitzacio());
-        comprovaDataValida(post.getDataFi());
+
+    public void editPost (String originPostId, Post post, String titol, String dataI, String descripcio,
+                          String hora, String lang, String n_assistents, String lloc, LatLng coord, Uri uri, char post_tipus) throws Exception {
+
+        comprovaCampNoBuid(titol);
+        comprovaCampNoBuid(descripcio);
+        comprovaCampNoBuid(dataI);
+        comprovaCampNoBuid(hora);
+        comprovaDataValida(dataI);
+        comprovaCampNoBuid(lloc);
+        int assistents = comprova_participants_to_integer(n_assistents);
+        if (post_tipus == 'A'){
+            post.setAssistentsMax(assistents);
+        }
+        post.setTitol(titol);
+        post.setTDataIni(dataI);
+        post.setDataFi(dataI);
+        post.setDescripcio(descripcio);
+        post.setHora(hora);
+        post.setIdioma(lang);
+        post.setLocalitzacio(lloc);
+        if(coord != null )post.setCoord(coord.latitude, coord.longitude);
+
         CDEditActivity.editPost(originPostId, post, uri);
+
     }
 
     public void showNewPost() {

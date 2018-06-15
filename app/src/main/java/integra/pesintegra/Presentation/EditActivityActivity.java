@@ -393,40 +393,16 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
                 String lang_spinner = spinnerLang.getSelectedItem().toString();
                 String lang = "";
+                String n_assistents = ((TextView) findViewById(R.id.n_participants)).getText().toString();
                 if(lang_spinner.equals(getString(R.string.catalan))) lang = "CA";
                 else if(lang_spinner.equals(getString(R.string.spanish))) lang = "ES";
                 else lang = "EN";
 
                 //fer algo amb els booleans dels tags
 
-                post.setTitol(titol);
-                post.setTDataIni(dataI);
-                post.setDataFi(dataI);
-                post.setDescripcio(descripcio);
-                post.setHora(hora);
-                post.setIdioma(lang);
-
-                if (post_tipus!='A') {
-                    String n_assistents = ((TextView) findViewById(R.id.n_participants)).getText().toString();
-                    try {
-                        int assistents = controlador.comprova_participants_to_integer(n_assistents);
-                        post.setAssistentsMax(assistents);
-                    } catch (Exception e) {
-                        new AlertDialog.Builder(this)
-                                .setTitle(R.string.errorTitle)
-                                .setMessage(e.getMessage())
-                                .setNeutralButton(R.string.BTNback, null)
-                                .show();
-                    }
-                }
-
-                if(!lloc.isEmpty()) {
-                    post.setLocalitzacio(lloc);
-                    if(coord != null )post.setCoord(coord.latitude, coord.longitude);
-                }
 
                 try {
-                    controlador.editPost(this.post.getId(), post, imageUri);
+                    controlador.editPost(this.post.getId(), post, titol, dataI, descripcio, hora, lang, n_assistents, lloc, coord, imageUri, post_tipus);
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.errorTitle)
