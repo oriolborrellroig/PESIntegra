@@ -369,7 +369,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
         //updateFeed(comentaris, cc, this, cp);
         current_user = cp.getCurrentUser();
         post_user = post.getOwner();
-        cp.isMod(post_user);
+        cp.isMod(current_user);
         current = current_user.equals(post_user);
         for (Comentari comment_for : comentaris) {
             if (comment_for.getuser_id().equals(current_user)) {
