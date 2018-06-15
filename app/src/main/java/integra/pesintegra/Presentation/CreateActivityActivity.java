@@ -83,6 +83,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
     private ArrayList<String> clicked_tags;
     private LatLng coord;
     private String lloc;
+    private String tipus;
 
 
     @Override
@@ -102,7 +103,11 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
         setSpinner();
 
         Context context = getApplicationContext();
-
+        Intent intent = getIntent();
+        this.tipus = intent.getStringExtra("flag");
+        if (!tipus.equals("A")) {
+            findViewById(R.id.n_participants).setVisibility(View.GONE);
+        }
         Button enviar_btn = findViewById(R.id.submitPostAct);
         enviar_btn.setOnClickListener(this);
         FloatingActionButton add_image_btn = findViewById(R.id.add_image);
@@ -333,8 +338,6 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 new_post = new Post_Activitat();
 
                 try {
-                    Intent intent = getIntent();
-                    String tipus = intent.getStringExtra("flag");
                     switch (tipus) {
                         case "A":
                             new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags, n_assistents);
