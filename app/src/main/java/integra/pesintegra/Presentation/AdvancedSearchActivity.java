@@ -249,7 +249,6 @@ public class AdvancedSearchActivity extends AppCompatActivity implements View.On
         text_to_search = ETtext.getText().toString();
 
         tipus = ETtipus.getSelectedItem().toString();
-        if(tipus.equals(getString(R.id.activities)));
 
         EditText ETuser = findViewById(R.id.userInputAct);
         user = ETuser.getText().toString();
