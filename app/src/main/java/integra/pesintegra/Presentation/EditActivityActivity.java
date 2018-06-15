@@ -149,49 +149,59 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         });
 
        ArrayList<String> interessos = (ArrayList<String>) post.getInteressos();
-       Log.d("is interesos null?:", String.valueOf(interessos == null));
-       /*for(String interes : interessos){
-           Log.d("interes:", interes);
+       for(String s: interessos){
+           Log.d("Interes: ", s);
+       }
+       for(String interes : interessos){
            Button button;
            switch (interes){
                case "esport":
                    button = findViewById(R.id.btn_esport);
                    item_seleccionat(button, "esport");
+                   clicked_esport = !clicked_esport;
                    break;
                case "musica":
                    button = findViewById(R.id.btn_musica);
                    item_seleccionat(button, "musica");
+                   clicked_musica = !clicked_musica;
                    break;
                case "cinema":
                    button = findViewById(R.id.btn_cinema);
                    item_seleccionat(button, "cinema");
+                   clicked_cinema = !clicked_cinema;
                    break;
                case "lectura":
                    button = findViewById(R.id.btn_lectura);
                    item_seleccionat(button, "lectura");
+                   clicked_lectura = !clicked_lectura;
                    break;
                case "tecnologia":
                    button = findViewById(R.id.btn_tech);
                    item_seleccionat(button, "tecnologia");
+                   clicked_tech = !clicked_tech;
                    break;
                case "cuina":
                    button = findViewById(R.id.btn_cuina);
                    item_seleccionat(button, "cuina");
+                   clicked_cuina = !clicked_cuina;
                    break;
                case "moda":
                    button = findViewById(R.id.btn_moda);
                    item_seleccionat(button, "moda");
+                   clicked_moda = !clicked_moda;
                    break;
                case "viatges":
                    button = findViewById(R.id.btn_viatges);
                    item_seleccionat(button, "viatges");
+                   clicked_viatges = !clicked_viatges;
                    break;
                case "art":
                    button = findViewById(R.id.btn_art);
                    item_seleccionat(button, "art");
+                   clicked_art = !clicked_art;
                    break;
            }
-       }*/
+       }
     }
 
     private void setSpinner() {
@@ -407,7 +417,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
 
                 try {
-                    controlador.editPost(this.post.getId(), post, titol, dataI, descripcio, hora, lang, n_assistents, lloc, coord, imageUri, post_tipus);
+                    controlador.editPost(this.post.getId(), post, titol, dataI, descripcio, hora, lang, n_assistents, clicked_tags, lloc, coord, imageUri, post_tipus);
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.errorTitle)

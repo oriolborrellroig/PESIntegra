@@ -214,4 +214,8 @@ public abstract class Post implements Serializable {
     public int getNombreVots() {
         return nombreVots;
     }
+
+    public void setInteressos(ArrayList<String> interessos) {
+        this.interessos = interessos;
+    }
 }
