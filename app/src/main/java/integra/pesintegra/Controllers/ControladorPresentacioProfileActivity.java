@@ -78,4 +78,8 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public void getProfileTipusCallback(String tipus) {
         activity.setProfileTipus(tipus);
     }
+
+    public void unblockUser(String id) {
+        Cdomini.unbanUser(id);
+    }
 }
