@@ -91,4 +91,7 @@ public interface PostService {
 
     @PUT("post/reportComment")
     Call<Void> reportComment(@Query("postid") String postid, @Query("comentid") String commentid, @Query("userid") String userid);
+
+    @GET("/post/hasReportedComments")
+    Call<ArrayList<Post>> getCommentedReportedPosts();
 }
