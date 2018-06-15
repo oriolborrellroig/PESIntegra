@@ -45,10 +45,10 @@ public interface UserService {
                                   @Query("ivalue") String valor);
 
     @PUT("mod/createMod")
-    Call<Void> createMod(@Query("usrid") String userid);
+    Call<Void> createMod(@Query("userid") String userid);
 
     @PUT("mod/block")
-    Call<Void> banUser(@Query("usrid") String userid);
+    Call<Void> banUser(@Query("userid") String userid);
 
 }
 

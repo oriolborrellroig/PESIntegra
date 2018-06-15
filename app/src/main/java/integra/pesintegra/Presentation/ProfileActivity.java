@@ -45,6 +45,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     String profile_user;
     Boolean current;
     Boolean isMod;
+    String profileTipus;
     ImageView iv;
     Bitmap bitmapImage;
     Uri imageUri;
@@ -64,6 +65,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         profile_user = getIntent().getStringExtra("profile_user");
         current = current_user.equals(profile_user);
         cp.isMod(current_user);
+        cp.getProfileTipus(profile_user);
 
         cp.getImage(current_user);
         final Button tres_punts = findViewById(R.id.tres_punts);
@@ -96,6 +98,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
                     popupMenu.findItem(R.id.reported_posts).setVisible(false);
                     popupMenu.findItem(R.id.reported_comments).setVisible(false);
+                }
+                if(profileTipus.equals("moderador")){
+                    popupMenu.findItem(R.id.convert_to_mod).setVisible(false);
+                }
+                else if(profileTipus.equals("bloquejat")){
+                    popupMenu.findItem(R.id.ban_user).setVisible(false);
                 }
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -459,5 +467,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
     public void loadImage(Bitmap bitmapImage) {
         iv.setImageBitmap(bitmapImage);
+    }
+
+    public void setProfileTipus(String profileTipus) {
+        this.profileTipus = profileTipus;
     }
 }
