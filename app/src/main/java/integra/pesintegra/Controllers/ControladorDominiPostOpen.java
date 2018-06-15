@@ -305,6 +305,21 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         });
     }
 
+    public void reportComment(String postid, String commentid, String userid) {
+        PostService service = ServiceManager.getPostService();
+        Call<Void> createCall = service.reportComment(postid, commentid, userid);
+        createCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                //TODO: Ja esta el report comment fet, no se que voleu que fagi, fet per Oriol Borrell.
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            }
+        });
+    }
+
     public ImageBM getImage(String id){
 
         ImageService service = ServiceManager.getImageService();
