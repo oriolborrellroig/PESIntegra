@@ -473,9 +473,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     public void updateInterestInfo(String interes, String valor) {
 
-        //Log.d("interes : ", interes);
-        //Log.d("valorrr : ", valor);
-        //fer coses amb el nom del interes canviat i el nou valor true false en format string.
+
     }
 
     public void setIsMod(String isMod) {

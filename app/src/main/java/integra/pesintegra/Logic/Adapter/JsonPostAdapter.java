@@ -36,7 +36,6 @@ public class JsonPostAdapter implements JsonSerializer<Post>, JsonDeserializer<P
     public Post deserialize(JsonElement json, Type typeOfT,
                                JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
-        Log.d("json",jsonObject.toString());
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get("classname");
         String className = prim.getAsString();
 

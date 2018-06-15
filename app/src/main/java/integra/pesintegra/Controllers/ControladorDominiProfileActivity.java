@@ -143,12 +143,11 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
         ccall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("ole","aaa");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("sadasds","aaa");
+
             }
         });
     }
@@ -156,13 +155,11 @@ public class ControladorDominiProfileActivity extends ControladorDomini {
     public ImageBM getImage(String id){
 
         ImageService service = ServiceManager.getImageService();
-        Log.d("safd","999999999999999999999");
-        Log.d("id", id);
+
         Call<ImageBM> ccall = service.getImageProfile(id);
         ccall.enqueue(new Callback<ImageBM>() {
             @Override
             public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
-                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
                 Cpresentacio.getImageResponse(response.body());
             }
 

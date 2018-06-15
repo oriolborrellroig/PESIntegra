@@ -29,19 +29,19 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
 
     public void loadFeedAnyPosts (Integer order) {
         CDAllPosts.loadFeedAnyPosts(order);
-    } //TODO: esta hardcoded
+    }
 
     public void loadFeedWorkPosts (Integer order) {
         CDAllPosts.loadFeedWorkPosts(order);
-    } //TODO: esta hardcoded
+    }
 
     public void loadFeedActivityPosts (Integer order) {
         CDAllPosts.loadFeedActivityPosts(order);
-    } //TODO: esta hardcoded
+    }
 
     public void loadFeedHousePosts (Integer order) {
         CDAllPosts.loadFeedHousePosts(order);
-    }//TODO: esta hardcoded
+    }
 
     public static void loadFeedHiddenPosts () { CDAllPosts.loadFeedHiddenPosts(); }
 
@@ -52,9 +52,8 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     }
 
     public static void loadFeedTagsPosts(ArrayList<String> listtags) {
-        //ArrayList<String> listtags = new ArrayList<String>() ;
         CDAllPosts.loadFeedTagsPosts(listtags);
-    }//TODO: array buit, cal passar per parametre els tags en format d'arraylist
+    }
 
     public static void loadFeedTaCalendarPosts(String id) {
         CDAllPosts.loadFeedCalendarPosts(id);
@@ -74,13 +73,11 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     }
 
     public void setImage(AllPostsActivity act) {
-        Log.d("hey", "22222222222222222");
         activity = act;
         CDAllPosts.setImageDrawer(this);
     }
 
     public void getImageResponse(ImageBM body) {
-        //Log.d("hey", "55555555555555555555");
         activity.loadImage(body.getBitmapImage());
     }
 }

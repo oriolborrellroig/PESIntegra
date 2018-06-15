@@ -1,6 +1,7 @@
 package integra.pesintegra.Logic.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.media.Rating;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RatingBar;
@@ -81,15 +83,24 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         holder.dia.setText(String.valueOf(com.getData()));
         holder.id_comment = com.getId();
         holder.id_post = com.getPost_id();
+        String id = com.getUser_id();
+        cpp.afegir_imatge(id, holder.foto_perfil, this);
         if (com.hasReply()){
+            String id_reply = com.getReply().getUser_id();
             holder.text_reply.setText(com.getReply().getText());
             holder.dia_reply.setText(String.valueOf(com.getReply().getData()));
             holder.id_comment_reply = com.getReply().getId();
             holder.c_reply = com.getReply();
+            cpp.afegir_imatge(id_reply, holder.foto_perfil_reply, this);
+
         }else{ //cas que no te resposta -> no es veu la resposta
             holder.reply_row.setVisibility(View.GONE);
         }
         holder.c = com; //aixo guarda el comentari al holder, per quan es clica i tal
+    }
+
+    public void posa_imatge(ImageView ivv, Bitmap bitmapImage){
+        ivv.setImageBitmap(bitmapImage);
     }
 
 
@@ -103,6 +114,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         String id_comment, id_comment_reply;
         Button btn_enviar_r;
         EditText comment_text;
+        ImageView foto_perfil, foto_perfil_reply;
 
         String id_post;
         View boto_menu;
@@ -122,6 +134,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             comment_text = view.findViewById(R.id.comentari_r);
             btn_enviar_r = view.findViewById(R.id.enviar_r);
             btn_enviar_r.setOnClickListener(this);
+            foto_perfil  = view.findViewById(R.id.icon);
+            foto_perfil_reply = view.findViewById(R.id.icon_reply);
             context2 = view.getContext();
             view.setClickable(true);
             view.setOnClickListener(this);
@@ -130,7 +144,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         @Override
         public void onClick(View v){
             cp = new ControladorPresentacioPostOpen(pa, context2);
-            //TODO: peta al fer el get del text del comentari, pero si es fa en el default no peta, jo no entenc res
             switch (v.getId()) {
                 case R.id.enviar_r:
                     String text_comentari2 = comment_text.getText().toString();
@@ -143,7 +156,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                         Comentari new_c = cp.creaReply(text_comentari2, data, id_post, id_comment); //potser peta lo del id_post i id_comment?
                         cp.afegeix_comentari(new_c);
                         cp.actualitzaComments();
-                        //TODO: update feed
 
                     }
                     break;
@@ -185,10 +197,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
                                         case R.id.borrar_comentari:
                                             for (CommentReply reply : comments){
-                                                Log.d("soc", "soc a borrar un comentari");
                                                 if (reply.getId().equals(id_comment)){
-                                                    Log.d("sa","soc on ha de borrar la reply");
-                                                    //TODO: s'han de borar les replies un cop es borra un comentari
                                                     if (reply.hasReply()) {
                                                         cp.deleteComment(id_post, reply.getReply().getId());
                                                     }

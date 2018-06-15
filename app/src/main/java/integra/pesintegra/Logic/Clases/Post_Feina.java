@@ -12,7 +12,6 @@ public class Post_Feina extends Post {
 
     public Post_Feina(String titol, String descripcio, String dataini, String datafi, String hora, String direccio, double lat, double lng, String lang, ArrayList<String> clicked_tags){
         super(titol, descripcio, dataini, datafi, hora, direccio, "1", 'F', lat, lng, lang, clicked_tags);
-        //TODO: Quan es crea un post, esta hardcodejat que l'owner es l'1
     }
 
 }

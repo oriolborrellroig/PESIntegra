@@ -298,7 +298,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
             case R.id.recycler :
 
                 int position = recyclerView.getChildLayoutPosition(v);
-                Log.d("Pos " , ((Integer) position).toString());
         }
     }
 
@@ -314,9 +313,6 @@ public class AllPostsActivity extends BaseActivity implements View.OnClickListen
 
     public void loadImage(Bitmap bitmapImage) {
         super.loadImage(bitmapImage);
-        //Log.d("a", "apa, vaig a posar la imatge");
-        //Log.d("hey", "6666666666666666666666");
-        //iv.setImageBitmap(bitmapImage);
     }
 
 
