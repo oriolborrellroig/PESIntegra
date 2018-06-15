@@ -52,10 +52,10 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     private ControladorPresentacioPostOpen cp;
     private PostActivity pa;
     private ControladorPresentacioPostOpen cpp;
-    public Boolean mod_or_op;
+    private Boolean mod_or_op;
 
     public CommentListAdapter (List<CommentReply> list_comments, PostActivity pa, ControladorPresentacioPostOpen cpp, Boolean mod_or_op){
-        this.comments = list_comments;
+        comments = list_comments;
         this.pa = pa;
         this.cpp = cpp;
         this.mod_or_op = mod_or_op;
@@ -97,8 +97,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView text, dia, text_reply, dia_reply; //aixo hauria de ser privat i aquestes coses pero weno
-        public CommentReply c, c_reply;
+        TextView text, dia, text_reply, dia_reply; //aixo hauria de ser privat i aquestes coses pero weno
+        CommentReply c, c_reply;
         public TableRow reply_row, send_reply_row;
         String id_comment, id_comment_reply;
         Button btn_enviar_r;
@@ -133,10 +133,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             //TODO: peta al fer el get del text del comentari, pero si es fa en el default no peta, jo no entenc res
             switch (v.getId()) {
                 case R.id.enviar_r:
-                    Log.d("jeje", "estic al boto ostia  ");
                     String text_comentari2 = comment_text.getText().toString();
                     if (!text_comentari2.equals("")){
-                        Log.d("jeje", "estic al boto 222222222222222222222ostia  ");
                         final Calendar c = Calendar.getInstance();
                         int year = c.get(Calendar.YEAR);
                         int month = c.get(Calendar.MONTH);

@@ -40,6 +40,7 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     }
 
     public void loadFeedCalendarPosts(String id){
+        Log.d("aaa", id);
         PostService service = ServiceManager.getPostService();
         Call<ArrayList<Post>> call = service.getBookedPosts(id);
         enqueueCall(call);
@@ -121,7 +122,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
 
 
     public void loadReportedPosts() {
-        Log.d("aaa", "entro al reported");
         PostService service = ServiceManager.getPostService();
         Call<ArrayList<Post>> call = service.getReportedPosts();
         enqueueCall(call);
@@ -146,7 +146,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
     }
 
     public void setImageDrawer(ControladorPresentacioAllPostsActivity cpres) {
-        Log.d("hey", "333333333333333333333");
         Cpresentacio = cpres;
         ImageService service = ServiceManager.getImageService();
         String id = getSessioUser();
@@ -155,14 +154,11 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         ccall.enqueue(new Callback<ImageBM>() {
             @Override
             public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
-                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
-                Log.d("hey", "444444444444444444444444");
                 Cpresentacio.getImageResponse(response.body());
             }
 
             @Override
             public void onFailure(Call<ImageBM> call, Throwable t) {
-                Log.d("hey", "FFALLOOOOOOOOOOOOOOOOOOOOOO");
             }
         });
     }
