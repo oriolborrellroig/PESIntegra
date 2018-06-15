@@ -129,4 +129,20 @@ public abstract class AbstractBaseController {
         return generatedPassword;
     }
 
+    public String dataActual () {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        String dia = Integer.toString(day);
+        String mes = Integer.toString(month);
+        if (day < 10) {
+            dia = "0" + day;
+        }
+        if (month < 10) {
+            mes = "0" + month;
+        }
+        return dia + "/" + mes + 1 + "/" + year;
+    }
+
 }

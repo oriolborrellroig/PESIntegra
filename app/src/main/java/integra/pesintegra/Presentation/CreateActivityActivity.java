@@ -324,7 +324,7 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 }
                 break;
             case R.id.submitPostAct:
-                String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
+                String dataF = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
@@ -340,13 +340,13 @@ public class CreateActivityActivity extends AppCompatActivity implements View.On
                 try {
                     switch (tipus) {
                         case "A":
-                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags, n_assistents);
+                            new_post = cntrlPresentacio.creaPostActivitat(titol, descripcio, dataF, hora, lloc, coord, lang, clicked_tags, n_assistents);
                             break;
                         case "F":
-                            new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
+                            new_post = cntrlPresentacio.creaPostFeina(titol, descripcio, dataF, hora, lloc, coord, lang, clicked_tags);
                             break;
                         case "H":
-                            new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataI, dataI, hora, lloc, coord, lang, clicked_tags);
+                            new_post = cntrlPresentacio.creaPostHabitatge(titol, descripcio, dataF, hora, lloc, coord, lang, clicked_tags);
                             break;
                     }
 

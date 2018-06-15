@@ -21,21 +21,21 @@ public class ControladorPresentacioEditActivity extends ControladorPresentacio  
     }
 
 
-    public void editPost (String originPostId, Post post, String titol, String dataI, String descripcio,
+    public void editPost (String originPostId, Post post, String titol, String dataF, String descripcio,
                           String hora, String lang, String n_assistents, String lloc, LatLng coord, Uri uri, char post_tipus) throws Exception {
 
         comprovaCampNoBuid(titol);
         comprovaCampNoBuid(descripcio);
-        comprovaCampNoBuid(dataI);
+        comprovaCampNoBuid(dataF);
         comprovaCampNoBuid(hora);
-        comprovaDataValida(dataI);
+        comprovaDataValida(dataF);
         comprovaCampNoBuid(lloc);
         if (post_tipus == 'A'){
             post.setAssistentsMax(comprova_participants_to_integer(n_assistents));
         }
         post.setTitol(titol);
-        post.setTDataIni(dataI);
-        post.setDataFi(dataI);
+        post.setTDataIni(dataActual());
+        post.setDataFi(dataF);
         post.setDescripcio(descripcio);
         post.setHora(hora);
         post.setIdioma(lang);

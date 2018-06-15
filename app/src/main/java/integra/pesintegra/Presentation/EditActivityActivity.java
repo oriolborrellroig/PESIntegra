@@ -387,7 +387,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
 
             case R.id.submitPostAct:
-                String dataI = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
+                String dataF = ((TextView) findViewById(R.id.dateInputAct)).getText().toString();
                 String titol = ((EditText) findViewById(R.id.titolInputAct)).getText().toString();
                 String descripcio = ((EditText) findViewById(R.id.descriptionTitolAct)).getText().toString();
                 String hora = ((TextView) findViewById(R.id.hourInputAct)).getText().toString();
@@ -402,7 +402,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
 
                 try {
-                    controlador.editPost(this.post.getId(), post, titol, dataI, descripcio, hora, lang, n_assistents, lloc, coord, imageUri, post_tipus);
+                    controlador.editPost(this.post.getId(), post, titol, dataF, descripcio, hora, lang, n_assistents, lloc, coord, imageUri, post_tipus);
                 } catch (Exception e) {
                     new AlertDialog.Builder(this)
                             .setTitle(R.string.errorTitle)
