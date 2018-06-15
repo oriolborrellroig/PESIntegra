@@ -409,7 +409,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                 else {
                     popupMenu.findItem(R.id.reobrir_post).setVisible(false);
                 }
-                if(!isMod) popupMenu.findItem(R.id.borrar_post).setVisible(false);
+                if(!isMod && !current) popupMenu.findItem(R.id.borrar_post).setVisible(false);
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
