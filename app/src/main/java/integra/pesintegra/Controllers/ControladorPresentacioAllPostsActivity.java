@@ -7,6 +7,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
+import integra.pesintegra.Logic.Clases.ImageBM;
 import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Presentation.AllPostsActivity;
 
@@ -69,5 +70,16 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
 
     public void loadTagsSessio() {
         CDAllPosts.loadTagsSessio();
+    }
+
+    public void setImage(AllPostsActivity act) {
+        //Log.d("hey", "22222222222222222");
+        activity = act;
+        CDAllPosts.setImageDrawer(this);
+    }
+
+    public void getImageResponse(ImageBM body) {
+        //Log.d("hey", "55555555555555555555");
+        activity.loadImage(body.getBitmapImage());
     }
 }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import integra.pesintegra.Controllers.ControladorPresentacio;
 import integra.pesintegra.R;
@@ -25,13 +27,15 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
 
     ControladorPresentacio cntrlPresentacio;
     private ActionBarDrawerToggle mToggle;
-
+    private ImageView iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.cntrlPresentacio = new ControladorPresentacio();
         setContentView(R.layout.activity_base);
         setView();
+        iv = findViewById((R.id.imatge_drawer));
+
     }
 
     protected void setView() {
@@ -176,4 +180,17 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
+
+    public void loadImage(Bitmap bitmapImage) {
+        Log.d("a", "apa, vaig a posar la imatge");
+        Log.d("hey", "6666666666666666666666");
+        if (bitmapImage!=null) {
+            iv = findViewById((R.id.imatge_drawer));
+            iv.setImageBitmap(bitmapImage);
+        }else{
+            Log.d("im", "la imatge es null");
+        }
+    }
+
+
 }
