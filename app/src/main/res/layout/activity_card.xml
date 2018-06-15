@@ -22,8 +22,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentTop="true"
             android:layout_marginBottom="0dp"
-            android:layout_marginEnd="6dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_marginEnd="6dp" />
 
         <TextView
             android:id="@+id/cv_dia"

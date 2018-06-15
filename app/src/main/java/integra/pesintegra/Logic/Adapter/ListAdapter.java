@@ -58,14 +58,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder>{
         holder.dia.setText(String.valueOf(p.getDataIni()));
         getRating(p.getId(), holder.rating);
         holder.rating.setRating(rate);
-        cpp.afegir_imatge(p.getId(), holder.icon_post, this);
-        //TODO: posar si es d'un tipus o altre
-        //Bitmap bitmap = BitmapFactory.decodeFile(pathToPicture);
-        //String path = context.getFilesDir().getAbsolutePath() + "activitat.png";
-        //File imgFile = new File(path);
-        //Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-        //holder.icon_post.setImageBitmap(BitmapFactory.decodeFile("/activitat.png"));
-        //holder.icon_post.setImageBitmap(myBitmap);
+        //cpp.afegir_imatge(p.getId(), holder.icon_post, this);
+        switch (p.getTipus()){
+            case 'A':
+                holder.icon_post.setBackgroundResource(R.drawable.activitat);
+                break;
+            case 'F':
+                holder.icon_post.setBackgroundResource(R.drawable.feina);
+                break;
+            case 'H':
+                holder.icon_post.setBackgroundResource(R.drawable.casa);
+                break;
+        }
         holder.p = p;
     }
 
