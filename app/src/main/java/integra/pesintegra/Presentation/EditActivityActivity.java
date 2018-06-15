@@ -106,8 +106,15 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         Intent intent = getIntent();
         post_id = intent.getStringExtra("postId");
         post_tipus = intent.getCharExtra("postType", 'A');
+        String editat = intent.getStringExtra("editar");
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
         Button enviar_btn = findViewById(R.id.submitPostAct);
+        if (editat.equals("si")) {
+            enviar_btn.setText(R.string.BTNedit);
+        }
+        else {
+            enviar_btn.setText(R.string.BTNreobrir);
+        }
         enviar_btn.setOnClickListener(this);
         FloatingActionButton add_image_btn = findViewById(R.id.add_image);
         add_image_btn.setOnClickListener(this);
@@ -117,8 +124,6 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         post_titol.setText(post.getTitol());
         TextView post_text = findViewById(R.id.descriptionTitolAct);
         post_text.setText(post.getDescripcio());
-        TextView post_data = findViewById(R.id.dateInputAct);
-        post_data.setText(post.getDataIni());
         TextView post_hora = findViewById(R.id.hourInputAct);
         post_hora.setText(post.getHora());
         if (post_tipus!='A') {

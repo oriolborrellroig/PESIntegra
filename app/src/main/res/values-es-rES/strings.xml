@@ -128,4 +128,7 @@
     <string name="ERRnotValidAttendants">El número de participantes debe ser un entero</string>
     <string name="unblock_user">Desbloquear usuario</string>
     <string name="invalid_date_null">No se ha puesto alguna de las fechas.</string>
+    <string name="BTNedit">EDITAR</string>
+    <string name="BTNreobrir">REABRIR</string>
+    <string name="reopenPost">Reabrir Post</string>
 </resources>

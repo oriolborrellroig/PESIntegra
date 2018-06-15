@@ -13,6 +13,10 @@
         android:title="@string/editPost"/>
 
     <item
+        android:id="@+id/reobrir_post"
+        android:title="@string/reopenPost"/>
+
+    <item
         android:id="@+id/borrar_post"
         android:title="@string/deletePost"/>
 

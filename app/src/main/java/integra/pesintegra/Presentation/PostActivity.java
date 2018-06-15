@@ -62,6 +62,8 @@ import integra.pesintegra.Logic.Clases.Post;
 import integra.pesintegra.Logic.Clases.Post_Activitat;
 import integra.pesintegra.R;
 
+import static integra.pesintegra.Presentation.LoginActivity.resources;
+
 public class PostActivity extends Activity implements View.OnClickListener {
     private static RecyclerView recyclerView;
 
@@ -389,6 +391,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                 PopupMenu popup = new PopupMenu(PostActivity.this, tres_punts);
                 Menu popupMenu = popup.getMenu();
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popupMenu);
+
                 if (current) {
                     popupMenu.findItem(R.id.report_post).setVisible(false);
                     if (hidden) popupMenu.findItem(R.id.hide_post).setVisible(false);
@@ -399,6 +402,12 @@ public class PostActivity extends Activity implements View.OnClickListener {
                     else popupMenu.findItem(R.id.show_post).setVisible(false);
                     popupMenu.findItem(R.id.editar_post).setVisible(false);
 
+                }
+                if (data_post_anterior()) {
+                    popupMenu.findItem(R.id.editar_post).setVisible(false);
+                }
+                else {
+                    popupMenu.findItem(R.id.reobrir_post).setVisible(false);
                 }
                 if(!isMod) popupMenu.findItem(R.id.borrar_post).setVisible(false);
 
@@ -412,7 +421,14 @@ public class PostActivity extends Activity implements View.OnClickListener {
                         ).show();
 
                         switch (item.getItemId()) {
-
+                            case R.id.reobrir_post:
+                                Intent intent1 = new Intent(getApplicationContext(), EditActivityActivity.class);
+                                intent1.putExtra("postId", post_id);
+                                intent1.putExtra("post", post);
+                                intent1.putExtra("editar", "no");
+                                intent1.putExtra("postType", post.getTipus());
+                                startActivity(intent1);
+                                break;
 
                             case R.id.show_post:
                                 new ControladorPresentacioPostOpen(PostActivity.this, getApplicationContext());
@@ -471,11 +487,12 @@ public class PostActivity extends Activity implements View.OnClickListener {
                                 break;
 
                             case R.id.editar_post:
-                                Intent intent1 = new Intent(getApplicationContext(), EditActivityActivity.class);
-                                intent1.putExtra("postId", post_id);
-                                intent1.putExtra("post", post);
-                                intent1.putExtra("postType", post.getTipus());
-                                startActivity(intent1);
+                                Intent intent2 = new Intent(getApplicationContext(), EditActivityActivity.class);
+                                intent2.putExtra("postId", post_id);
+                                intent2.putExtra("post", post);
+                                intent2.putExtra("editar", "si");
+                                intent2.putExtra("postType", post.getTipus());
+                                startActivity(intent2);
                                 break;
 
                             case R.id.maps:
@@ -536,4 +553,30 @@ public class PostActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private boolean data_post_anterior () {
+        String dataN = post.getDataFi();
+        String[] parts = dataN.split("/");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String part3 = parts[2];
+        int dia_i = Integer.parseInt(part3);
+        int mes_i = Integer.parseInt(part2);
+        int any_i = Integer.parseInt(part1);
+
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        boolean anterior = false;
+
+        if (any_i < year) anterior = true;
+        else if (any_i == year) {
+            if (mes_i < month) anterior = true;
+            else if (mes_i == month) {
+                if (dia_i < day) anterior = true;
+            }
+        }
+        return anterior;
+    }
 }
