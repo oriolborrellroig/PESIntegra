@@ -192,8 +192,11 @@ public abstract class Post implements Serializable {
         return 0;
     }
 
-    public int getN_max() {
+    public int getAssistentsMax() {
         return 0;
+    }
+
+    public void setAssistentsMax(int assistentsMax) {
     }
 
     public List<String> getInteressos(){
@@ -201,6 +204,8 @@ public abstract class Post implements Serializable {
     }
 
     public String getIdioma() { return idioma; }
+
+    public void setIdioma(String idioma) { this.idioma = idioma; }
 
     public int getPuntuacio() {
         return puntuacio;

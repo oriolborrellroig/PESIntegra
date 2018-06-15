@@ -26,9 +26,8 @@ public class ControladorPresentacioEditActivity extends ControladorPresentacio  
         comprovaCampNoBuid(post.getDataIni());
         comprovaCampNoBuid(post.getHora());
         comprovaCampNoBuid(post.getLocalitzacio());
-        //comprovaDataValida(post.getDataFi());
-        CDEditActivity.editPost(originPostId,post,uri);
-
+        comprovaDataValida(post.getDataFi());
+        CDEditActivity.editPost(originPostId, post, uri);
     }
 
     public void showNewPost() {

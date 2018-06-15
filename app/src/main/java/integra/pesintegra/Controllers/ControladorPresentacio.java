@@ -36,7 +36,6 @@ public class ControladorPresentacio extends AbstractBaseController {
         Integer n_max = comprova_participants_to_integer(nmax);
         String owner = this.getSessioUser();
         Post_Activitat activitat = new Post_Activitat(titol, descripcio, dataI, dataF, hora, lloc, owner, coord.latitude, coord.longitude, lang, clicked_tags, n_max);
-        cntrlDom.creaPostActivitat(activitat);
 
         return activitat;
     }
@@ -52,7 +51,6 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaDataValida(dataF);
 
         Post_Habitatge habitatge = new Post_Habitatge(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
-        cntrlDom.creaPostHabitatge(habitatge);
 
         return habitatge;
     }
@@ -68,7 +66,6 @@ public class ControladorPresentacio extends AbstractBaseController {
         comprovaDataValida(dataF);
 
         Post_Feina feina = new Post_Feina(titol, descripcio, dataI, dataF, hora, lloc, coord.latitude, coord.longitude, lang, clicked_tags);
-        cntrlDom.creaPostFeina(feina);
 
         return feina;
     }

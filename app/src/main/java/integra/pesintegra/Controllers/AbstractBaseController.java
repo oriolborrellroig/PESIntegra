@@ -47,7 +47,7 @@ public abstract class AbstractBaseController {
     }
 
 
-    int comprova_participants_to_integer (String participants) throws Exception {
+    public int comprova_participants_to_integer (String participants) throws Exception {
 
         if (!Pattern.matches("[a-zA-Z]+", participants)) {
             return Integer.parseInt(participants);

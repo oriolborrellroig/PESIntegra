@@ -25,16 +25,6 @@ public class ControladorDomini extends  AbstractBaseController{
         serviceManager = new ServiceManager(usuari.getToken(), usuari.getUsername());
     }
 
-    public void creaPostActivitat(Post_Activitat activitat) {
-
-    }
-
-    public void creaPostHabitatge(Post_Habitatge habitatge) {
-    }
-
-    public void creaPostFeina(Post_Feina feina) {
-    }
-
 
     public void logout() {
         sessio.resetSessio();

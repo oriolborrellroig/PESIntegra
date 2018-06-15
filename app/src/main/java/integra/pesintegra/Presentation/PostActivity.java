@@ -482,6 +482,7 @@ public class PostActivity extends Activity implements View.OnClickListener {
                                 Intent intent1 = new Intent(getApplicationContext(), EditActivityActivity.class);
                                 intent1.putExtra("postId", post_id);
                                 intent1.putExtra("post", post);
+                                intent1.putExtra("postType", post.getTipus());
                                 startActivity(intent1);
                                 break;
 
