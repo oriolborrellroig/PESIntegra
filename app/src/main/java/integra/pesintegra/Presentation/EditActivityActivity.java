@@ -56,7 +56,6 @@ import integra.pesintegra.R;
 
 public class EditActivityActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ControladorPresentacio cntrlPresentacio;
     private ControladorPresentacioEditActivity controlador;
     private TextView limitDate;
     private TextView activityHour;
@@ -67,7 +66,6 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
     private Bitmap bitmapImage;
     private Post new_post;
     private Uri imageUri;
-    private Button button;
     private Boolean clicked_esport = true;
     private Boolean clicked_musica = true;
     private Boolean clicked_cinema = true;
@@ -77,9 +75,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
     private Boolean clicked_moda = true;
     private Boolean clicked_viatges = true;
     private Boolean clicked_art = true;
-    private Context context;
     private ArrayList<String> clicked_tags;
-    private String post_id;
     private Post post;
     private LatLng coord;
     private String lloc;
@@ -89,7 +85,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.cntrlPresentacio = new ControladorPresentacio();
+        ControladorPresentacio cntrlPresentacio = new ControladorPresentacio();
         this.controlador = new ControladorPresentacioEditActivity(this, getApplicationContext());
         setContentView(R.layout.activity_create_activity);
 
@@ -102,9 +98,9 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
         clicked_tags = new ArrayList<>();
         setSpinner();
 
-        context = getApplicationContext();
+        Context context = getApplicationContext();
         Intent intent = getIntent();
-        post_id = intent.getStringExtra("postId");
+        String post_id = intent.getStringExtra("postId");
         post_tipus = intent.getCharExtra("postType", 'A');
         String editat = intent.getStringExtra("editar");
         this.post = (Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post");
@@ -144,7 +140,6 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onError(Status status) {
-                Log.i("aaaaaaaaa", "An error occurred: " + status);
             }
         });
 
@@ -291,7 +286,7 @@ public class EditActivityActivity extends AppCompatActivity implements View.OnCl
 
         switch (v.getId()) {
             case R.id.btn_esport:
-                button = findViewById(R.id.btn_esport);
+                Button button = findViewById(R.id.btn_esport);
                 if(clicked_esport){
                     item_seleccionat(button,"esport");
                     clicked_esport = !clicked_esport;

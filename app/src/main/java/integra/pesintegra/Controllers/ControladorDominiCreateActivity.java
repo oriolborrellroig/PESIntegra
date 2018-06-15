@@ -84,12 +84,11 @@ public class ControladorDominiCreateActivity extends ControladorDomini {
         ccall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("ole","aaa");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("sadasds","aaa");
+
             }
         });
     }

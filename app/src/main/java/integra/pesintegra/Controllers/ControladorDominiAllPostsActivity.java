@@ -149,8 +149,6 @@ public class ControladorDominiAllPostsActivity extends ControladorDomini {
         Cpresentacio = cpres;
         ImageService service = ServiceManager.getImageService();
         String id = getSessioUser();
-        Log.d("id", "DRAWEERRRRRRRRRRRRRRRRRRRRRRRR");
-        Log.d("id", id);
         Call<ImageBM> ccall = service.getImageProfile(id);
         ccall.enqueue(new Callback<ImageBM>() {
             @Override

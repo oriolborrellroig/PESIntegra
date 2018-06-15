@@ -35,9 +35,7 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         //activity.updateFeed(response.body(), context);
                         if (response.body() == null) {
-                            Log.d("aaa", "response.body == null");
-                            Log.d("bbb", user.getUsername());
-                            Log.d("ccc", hash);
+
                         }
                         else {
 
@@ -53,7 +51,6 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
 
                     @Override
                     public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Log.v("TAAAAG", "Failure");
                     }
                 });
 
@@ -61,7 +58,6 @@ public class ControladorDominiRegisterActivity extends ControladorDomini {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                //Log.v("TAAAAG", "Failure");
             }
         });
     }

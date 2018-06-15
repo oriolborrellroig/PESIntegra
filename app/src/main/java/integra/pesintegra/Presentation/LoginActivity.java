@@ -78,7 +78,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public void rejectLogin(Context context) {
-        //TODO: Aquesta funcio es crida quan el login no es valid
         ((EditText)findViewById(R.id.input_password)).setText("");
         Toast.makeText(
                 LoginActivity.this,
@@ -89,7 +88,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
 
     public void acceptLogin(Context context) {
-        //TODO: Aquesta funcio es crida quan el login es acceptat
         Intent intent = new Intent(getApplicationContext(),AllPostsActivity.class);
         intent.putExtra("type", "any");
         startActivity(intent);

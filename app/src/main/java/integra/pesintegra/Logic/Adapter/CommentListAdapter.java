@@ -84,9 +84,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         holder.id_comment = com.getId();
         holder.id_post = com.getPost_id();
         String id = com.getUser_id();
-        //TODO: afegir la crida cp.fesimatge
         cpp.afegir_imatge(id, holder.foto_perfil, this);
-        //holder.foto_perfil.setImageBitmap();
         if (com.hasReply()){
             String id_reply = com.getReply().getUser_id();
             holder.text_reply.setText(com.getReply().getText());
@@ -146,7 +144,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         @Override
         public void onClick(View v){
             cp = new ControladorPresentacioPostOpen(pa, context2);
-            //TODO: peta al fer el get del text del comentari, pero si es fa en el default no peta, jo no entenc res
             switch (v.getId()) {
                 case R.id.enviar_r:
                     String text_comentari2 = comment_text.getText().toString();
@@ -159,7 +156,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
                         Comentari new_c = cp.creaReply(text_comentari2, data, id_post, id_comment); //potser peta lo del id_post i id_comment?
                         cp.afegeix_comentari(new_c);
                         cp.actualitzaComments();
-                        //TODO: update feed
 
                     }
                     break;
@@ -201,10 +197,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
                                         case R.id.borrar_comentari:
                                             for (CommentReply reply : comments){
-                                                Log.d("soc", "soc a borrar un comentari");
                                                 if (reply.getId().equals(id_comment)){
-                                                    Log.d("sa","soc on ha de borrar la reply");
-                                                    //TODO: s'han de borar les replies un cop es borra un comentari
                                                     if (reply.hasReply()) {
                                                         cp.deleteComment(id_post, reply.getReply().getId());
                                                     }

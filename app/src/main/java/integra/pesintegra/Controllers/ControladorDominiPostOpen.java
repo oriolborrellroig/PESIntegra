@@ -298,7 +298,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         createCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-               //TODO: Ja esta el update fet, no se que voleu que fagi, fet per Oriol Borrell.
             }
 
             @Override
@@ -313,7 +312,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         createCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                //TODO: Ja esta el report comment fet, no se que voleu que fagi, fet per Oriol Borrell. jeje xd salu2
             }
 
             @Override
@@ -329,7 +327,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         ccall.enqueue(new Callback<ImageBM>() {
             @Override
             public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
-                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
                 Cpresentacio.getImageResponse(response.body());
             }
 
@@ -380,7 +377,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         ccall.enqueue(new Callback<ImageBM>() {
             @Override
             public void onResponse(Call<ImageBM> call, Response<ImageBM> response) {
-                Log.d("image size", ((Integer)response.body().getImageString().length()).toString());
                 list_ad2.posa_imatge(ff, response.body().getBitmapImage());
             }
 

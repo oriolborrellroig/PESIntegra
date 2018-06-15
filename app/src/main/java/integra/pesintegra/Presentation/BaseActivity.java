@@ -111,7 +111,6 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
                 startActivity(intent);
                 break;
             case R.id.google_maps:
-                Log.d("aaaa", "hollaaaaa");
                 intent = new Intent(getApplicationContext(), MapsActivity.class);
                 intent.putExtra("origin", "calendar");
                 startActivity(intent);
@@ -184,14 +183,10 @@ public class BaseActivity extends Activity implements NavigationView.OnNavigatio
     public void loadImage(Bitmap bitmapImage) {
         RoundImage roundedImage;
         roundedImage = new RoundImage(bitmapImage);
-        Log.d("a", "apa, vaig a posar la imatge");
-        Log.d("hey", "6666666666666666666666");
         if (bitmapImage!=null) {
             iv = findViewById((R.id.imatge_drawer));
             //iv.setImageBitmap(bitmapImage);
             iv.setImageDrawable(roundedImage);
-        }else{
-            Log.d("im", "la imatge es null");
         }
     }
 
