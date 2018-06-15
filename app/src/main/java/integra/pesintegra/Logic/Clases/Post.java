@@ -30,7 +30,6 @@ public abstract class Post implements Serializable {
     private ArrayList<String> interessos;
     private ArrayList<Comentari> comments;
     private boolean hidden;
-
     private int puntuacio;
     private int nombreVots;
 
@@ -189,7 +188,7 @@ public abstract class Post implements Serializable {
         return lng;
     }
 
-    public int getN_act() {
+    public int getN_assistents() {
         return 0;
     }
 

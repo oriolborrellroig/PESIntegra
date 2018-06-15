@@ -9,7 +9,7 @@ public class Post_Activitat extends Post{
     //n_max = nombre maxim de persones en aquella activitat
     private int assistentsMax;
     //n_act = nombre de persones apuntades actualment a aquella activitat
-    private int n_assistens;
+    private int n_assistents;
 
     public Post_Activitat(){
         super('A');
@@ -28,11 +28,11 @@ public class Post_Activitat extends Post{
         this.assistentsMax = n_max;
     }
 
-    public int getN_assistens() {
-        return n_assistens;
+    public int getN_assistents() {
+        return n_assistents;
     }
 
-    public void setN_assistens(int n_act) {
-        this.n_assistens = n_act;
+    public void setN_assistents(int n_act) {
+        this.n_assistents = n_act;
     }
 }

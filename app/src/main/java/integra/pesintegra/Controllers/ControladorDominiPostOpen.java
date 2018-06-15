@@ -345,7 +345,8 @@ public class ControladorDominiPostOpen extends ControladorDomini {
         createCall.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
-                Log.i("AAAAAAAAA3", Integer.toString(response.body().getN_act()));
+                //TODO: Mirar pq el getpost sempre retorna 0 als assistents actuals
+                Log.i("AAAAAAAAA3", Integer.toString(response.body().getN_assistents()));
                 Log.i("AAAAAAAAA2", (response.body().getTitol()));
                 Log.i("AAAAAAAAA1", Integer.toString(response.body().getPuntuacio()));
                 Cpresentacio.loadPost(response.body());
@@ -354,9 +355,6 @@ public class ControladorDominiPostOpen extends ControladorDomini {
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                Log.i("AAAAAAAAA3", Integer.toString(1));
-                Log.i("AAAAAAAAA3", Integer.toString(1));
-                Log.i("AAAAAAAAA3", Integer.toString(1));
             }
         });
     }

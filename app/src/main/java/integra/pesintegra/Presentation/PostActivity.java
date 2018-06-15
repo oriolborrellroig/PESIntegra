@@ -124,15 +124,13 @@ public class PostActivity extends Activity implements View.OnClickListener {
 
 
         post_id = ((Post) Objects.requireNonNull(getIntent().getExtras()).getSerializable("post")).getId();
-        Log.i("AAAAAAAAAAAAAPOSTID", post_id);      ///////////////////////////////////////////////////////////////////////////////////////
         cp.getPost(post_id); //carrega el post desde bd
 
     }
 
     public void print_free_places() {
-        this.places = pa.getAssistentsMax() - pa.getN_assistens();
-        Log.i("assisnts max", Integer.toString(pa.getAssistentsMax()));
-        Log.i("assisnts actuals", Integer.toString(pa.getN_assistens()));
+        this.places = pa.getAssistentsMax() - pa.getN_assistents();
+
         if (places > 0) {
             free_places.setText(getString(R.string.freePlaces) + places);
             free_places.setTextColor(Color.GREEN);
@@ -306,9 +304,9 @@ public class PostActivity extends Activity implements View.OnClickListener {
 
     public void setAssistents(Integer assistents) {
         if (assistents == -1) {
-            pa.setN_assistens(pa.getAssistentsMax());
+            pa.setN_assistents(pa.getAssistentsMax());
         } else {
-            pa.setN_assistens(assistents);
+            pa.setN_assistents(assistents);
         }
         print_free_places();
         cp.userAssisteix(post.getId(), current_user);
@@ -363,7 +361,6 @@ public class PostActivity extends Activity implements View.OnClickListener {
     private void onCreateContinue() {
         TextView post_titol = findViewById(R.id.post_titol);
         post_titol.setText(post.getTitol());
-        // post_direccio = findViewById(R.id.post_direccio);
         post_direccio.setText(post.getLocalitzacio());
         TextView post_data = findViewById(R.id.post_data);
         post_data.setText(post.getDataIni());
