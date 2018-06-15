@@ -80,4 +80,6 @@ public class ControladorPresentacioAllPostsActivity extends ControladorPresentac
     public void getImageResponse(ImageBM body) {
         activity.loadImage(body.getBitmapImage());
     }
+
+    public void getReportedCommentedPosts(){ CDAllPosts.loadReportedCommentedPosts(); }
 }

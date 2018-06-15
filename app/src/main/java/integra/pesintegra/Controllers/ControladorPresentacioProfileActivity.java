@@ -81,4 +81,6 @@ public class ControladorPresentacioProfileActivity extends ControladorPresentaci
     public void unblockUser(String id) {
         Cdomini.unbanUser(id);
     }
+
+
 }

@@ -69,7 +69,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private void posarData(){
         cp.isMod(current_user);
         cp.getProfileTipus(profile_user);
-
         cp.getImage(current_user);
         final Button tres_punts = findViewById(R.id.tres_punts);
         tres_punts.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +175,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                 Intent intentt = new Intent(getApplicationContext(), AllPostsActivity.class);
                                 intentt.putExtra("type", "reported");
                                 startActivity(intentt);
+                                break;
+                            case R.id.reported_comments:
+
                                 break;
                         }
                         return true;
@@ -481,6 +483,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
     public void loadImage(Bitmap bitmapImage) {
         iv.setImageBitmap(bitmapImage);
+        super.loadImage(bitmapImage);
+
     }
 
     public void setProfileTipus(String profileTipus) {
